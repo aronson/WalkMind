@@ -4,7 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="State.fs" />
+    <Compile Include="Domain.fs" />
+    <Compile Include="ContextProcessor.fs" />
     <Compile Include="Program.fs" />
-    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="4.2.7" />
   </ItemGroup>
 </Project>
