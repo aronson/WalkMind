@@ -73,29 +73,27 @@ let seekMagic: Result<int * int, string> =
         let primaryMagic = 1689123404
         let secondaryMagic = 2035498713
 
-        for offset in 0x400000 .. 0x40000000 do
-
+        // Search from 4 MB base offset to ~250 MB of process memory
+        for offset in 4194304 .. 4 .. 2101346304 do
             match PTR with
             | Error _ ->
                 let value = readInt offset processHandle
 
                 if (value = (primaryMagic)) then
                     PTR <- Ok(offset, primaryMagic)
-                    printfn "Seek found first pointer at %d" offset
-                    ()
-                else
-                    ()
-            | Ok value when snd value = primaryMagic ->
-                printfn "Searching second"
-                let value = readInt offset processHandle
+                    // Sometimes we find the code pointer instead, we need to learn about regions to fix that
+                    printfn "Seek found first pointer at %d, searching for second" offset
+                    let value2 = readInt (offset + 4) processHandle
 
-                if (value = secondaryMagic) then
-                    PTR <- Ok(offset, secondaryMagic)
-                    printfn "Seek found second pointer at %d" offset
-                    ()
-                else
-                    ()
-
+                    if (value2 = secondaryMagic) then
+                        printfn "Seek found second pointer at %d" (offset + 4)
+                        // Can now infer movement value
+                        let movementValue = readInt (offset + 8) processHandle
+                        PTR <- Ok(offset + 8, movementValue)
+                        ()
+                    else
+                        PTR <- Error "found only sparse result"
             | Ok _ -> ()
 
+        CloseHandle(processHandle) |> ignore
         PTR
