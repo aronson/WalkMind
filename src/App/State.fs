@@ -1,17 +1,18 @@
+module State
+
 open System
 open System.IO
 
 type State<'s, 'a> = State of ('s -> ('a * 's))
 
-module State =
-    let inline run state x = let (State (f)) = x in f state
-    let get = State(fun s -> s, s)
-    let put newState = State(fun _ -> (), newState)
+let inline run state x = let (State (f)) = x in f state
+let get = State(fun s -> s, s)
+let put newState = State(fun _ -> (), newState)
 
-    let map f s =
-        State (fun (state: 's) ->
-            let x, state = run state s
-            f x, state)
+let map f s =
+    State (fun (state: 's) ->
+        let x, state = run state s
+        f x, state)
 
 /// The state monad passes around an explicit internal state that can be
 /// updated along the way. It enables the appearance of mutability in a purely
@@ -25,13 +26,13 @@ type StateBuilder() =
 
     member this.Bind(x, f) : State<'s, 'b> =
         State (fun state ->
-            let (result: 'a), state = State.run state x
-            State.run state (f result))
+            let (result: 'a), state = run state x
+            run state (f result))
 
     member this.Combine(x1: State<'s, 'a>, x2: State<'s, 'b>) =
         State (fun state ->
-            let result, state = State.run state x1
-            State.run state x2)
+            let result, state = run state x1
+            run state x2)
 
     member this.Delay f : State<'s, 'a> = f ()
 
