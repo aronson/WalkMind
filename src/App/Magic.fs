@@ -92,7 +92,7 @@ let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPoint
 
 type AddressCoordinate = AddressCoordinate of (int * int)
 
-type MagicResult = Result<LuigiTile list, string>
+type MagicResult = Result<LuigiAi * LuigiTile list, string>
 
 let seekMagic: MagicResult =
     match seekCogmindProcess with
@@ -134,12 +134,14 @@ let seekMagic: MagicResult =
             | Ok luigiAi ->
                 let openTilePointer (AddressCoordinate (x, y)) =
                     let offset =
-                        x * luigiAi.mapHeight + y + luigiAi.tilePointer
+                        (x * luigiAi.mapHeight + y) * 24
+                        + luigiAi.tilePointer
 
                     let pointerFilter =
                         function
-                        | value when value <> 0 && value <> -1 -> Some value
+                        | value when value > 0 -> Some value
                         | _ -> None
+
 
                     let propPointer =
                         readInt (offset + propPointerOffset) processHandle
@@ -163,12 +165,14 @@ let seekMagic: MagicResult =
                       itemPointer = itemPointer }
 
                 let coordinates =
-                    List.zip [ 0 .. luigiAi.mapHeight ] [ 0 .. luigiAi.mapWidth ]
+                    List.allPairs [ 0 .. luigiAi.mapHeight ] [ 0 .. luigiAi.mapWidth ]
+
+                printfn "Testing %d coordinates" (List.length coordinates)
 
                 let addressCoordinates: AddressCoordinate list =
                     coordinates |> List.map AddressCoordinate
 
-                List.map openTilePointer addressCoordinates |> Ok
+                Ok(luigiAi, List.map openTilePointer addressCoordinates)
 
         CloseHandle(processHandle) |> ignore
         arrayResult

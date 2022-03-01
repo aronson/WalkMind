@@ -6,7 +6,9 @@ open Magic
 let main args =
     match Magic.seekMagic with
     | Error message -> printfn "Seek failed... '%s'" message
-    | Ok data -> printfn "Seek succeeded! Inferring movement value is %A" data
+    | Ok (luigiAi, tiles) ->
+        printfn "LuigiAi: %A" luigiAi
+        printfn "Tiles: %A" (List.filter (fun x -> x.lastAction <> 0) tiles)
 
     printfn "I'm walking here"
     0
