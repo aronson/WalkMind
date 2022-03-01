@@ -1,6 +1,7 @@
 ﻿open System
 open System.IO
 open Magic
+open Model
 
 [<EntryPoint>]
 let main args =
@@ -8,7 +9,12 @@ let main args =
     | Error message -> printfn "Seek failed... '%s'" message
     | Ok (luigiAi, tiles) ->
         printfn "LuigiAi: %A" luigiAi
-        printfn "Tiles: %A" (List.filter (fun x -> Option.isSome x.entity) tiles)
+
+        for x in 0 .. luigiAi.mapHeight - 1 do
+            for y in 0 .. luigiAi.mapWidth - 1 do
+                printf "%s" (cellToChar tiles.[y * luigiAi.mapHeight + x])
+
+            printfn ""
 
     printfn "I'm walking here"
     0
