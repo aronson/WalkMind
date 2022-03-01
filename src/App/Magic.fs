@@ -16,9 +16,9 @@ extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte [] lpBuffer,
 
 let ReadMemory hProcess lpBaseAddress dwSize =
     let mutable buffer = Array.init dwSize byte
-    let mutable lpNumberOfBytesRidden = 0
+    let mutable lpNumberOfBytesWritten = 0
 
-    ReadProcessMemory(hProcess, lpBaseAddress, buffer, dwSize, &lpNumberOfBytesRidden)
+    ReadProcessMemory(hProcess, lpBaseAddress, buffer, dwSize, &lpNumberOfBytesWritten)
     |> ignore
 
     buffer
@@ -64,36 +64,56 @@ let seekCogmindProcess: Result<Process, string> =
     | [| cogmindProcess |] -> Ok cogmindProcess
     | _ -> Error "Multiple processes found for Cogmind"
 
-let seekMagic: Result<int * int, string> =
+type LuigiAi =
+    { magic1: int
+      magic2: int
+      actionReady: int
+      mapWidth: int
+      mapHeight: int
+      tilePointer: IntPtr }
+
+type MagicResult = Result<LuigiAi, string>
+
+let seekMagic: MagicResult =
     match seekCogmindProcess with
     | Error message -> Error message
     | Ok cogmindProcess ->
         let processHandle = openProcess cogmindProcess
-        let mutable PTR: Result<int * int, string> = Error "magic not found" // beginning of memory
         let primaryMagic = 1689123404
         let secondaryMagic = 2035498713
+        // four byte-aligned struct
+        let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset) =
+            (4, 8, 12, 16, 20)
 
-        // Search from 4 MB base offset to ~250 MB of process memory
-        for offset in 4194304 .. 4 .. 2101346304 do
-            match PTR with
-            | Error _ ->
+        let rec seekNext offset : MagicResult =
+            if (offset >= 210346304) then
+                Error "magic not found before 250 MiB"
+            else
                 let value = readInt offset processHandle
 
                 if (value = (primaryMagic)) then
-                    PTR <- Ok(offset, primaryMagic)
                     // Sometimes we find the code pointer instead, we need to learn about regions to fix that
-                    printfn "Seek found first pointer at %d, searching for second" offset
-                    let value2 = readInt (offset + 4) processHandle
+                    printfn "Seek found first pointer at %d" offset
+
+                    let value2 =
+                        readInt (offset + secondaryMagicOffset) processHandle
 
                     if (value2 = secondaryMagic) then
-                        printfn "Seek found second pointer at %d" (offset + 4)
+                        printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
                         // Can now infer movement value
-                        let movementValue = readInt (offset + 8) processHandle
-                        PTR <- Ok(offset + 8, movementValue)
-                        ()
+                        Ok
+                            { magic1 = primaryMagic
+                              magic2 = secondaryMagic
+                              actionReady = readInt (offset + actionReadyOffset) processHandle
+                              mapWidth = readInt (offset + mapWidthOffset) processHandle
+                              mapHeight = readInt (offset + mapHeightOffset) processHandle
+                              tilePointer = new IntPtr(readInt (offset + mapDataOffset) processHandle) }
                     else
-                        PTR <- Error "found only sparse result"
-            | Ok _ -> ()
+                        seekNext (offset + 4)
+                else
+                    seekNext (offset + 4)
+
+        let result = seekNext 4194304
 
         CloseHandle(processHandle) |> ignore
-        PTR
+        result

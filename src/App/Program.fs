@@ -6,7 +6,7 @@ open Magic
 let main args =
     match Magic.seekMagic with
     | Error message -> printfn "Seek failed... '%s'" message
-    | Ok pointer -> printfn "Seek succeeded! Inferring movement value is %d" (snd pointer)
+    | Ok data -> printfn "Seek succeeded! Inferring movement value is %A" data
 
     printfn "I'm walking here"
     0
