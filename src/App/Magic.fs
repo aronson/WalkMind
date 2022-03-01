@@ -70,22 +70,37 @@ type LuigiAi =
       actionReady: int
       mapWidth: int
       mapHeight: int
-      tilePointer: IntPtr }
+      tilePointer: int }
 
-type MagicResult = Result<LuigiAi, string>
+let primaryMagic = 1689123404
+let secondaryMagic = 2035498713
+// four byte-aligned struct
+let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset) = (4, 8, 12, 16, 20)
+
+type LuigiTile =
+    { x: int
+      y: int
+      lastAction: int
+      cell: int
+      lastFov: int
+      propPointer: int option
+      entityPointer: int option
+      itemPointer: int option }
+
+let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPointerOffset, itemPointerOffset) =
+    (0, 4, 8, 12, 16, 20)
+
+type AddressCoordinate = AddressCoordinate of (int * int)
+
+type MagicResult = Result<LuigiTile list, string>
 
 let seekMagic: MagicResult =
     match seekCogmindProcess with
     | Error message -> Error message
     | Ok cogmindProcess ->
         let processHandle = openProcess cogmindProcess
-        let primaryMagic = 1689123404
-        let secondaryMagic = 2035498713
-        // four byte-aligned struct
-        let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset) =
-            (4, 8, 12, 16, 20)
 
-        let rec seekNext offset : MagicResult =
+        let rec seekNext offset : Result<LuigiAi, string> =
             if (offset >= 210346304) then
                 Error "magic not found before 250 MiB"
             else
@@ -107,13 +122,53 @@ let seekMagic: MagicResult =
                               actionReady = readInt (offset + actionReadyOffset) processHandle
                               mapWidth = readInt (offset + mapWidthOffset) processHandle
                               mapHeight = readInt (offset + mapHeightOffset) processHandle
-                              tilePointer = new IntPtr(readInt (offset + mapDataOffset) processHandle) }
+                              tilePointer = readInt (offset + mapDataOffset) processHandle }
                     else
                         seekNext (offset + 4)
                 else
                     seekNext (offset + 4)
 
-        let result = seekNext 4194304
+        let arrayResult =
+            match seekNext 4194304 with
+            | Error message -> Error message
+            | Ok luigiAi ->
+                let openTilePointer (AddressCoordinate (x, y)) =
+                    let offset =
+                        x * luigiAi.mapHeight + y + luigiAi.tilePointer
+
+                    let pointerFilter =
+                        function
+                        | value when value <> 0 && value <> -1 -> Some value
+                        | _ -> None
+
+                    let propPointer =
+                        readInt (offset + propPointerOffset) processHandle
+                        |> pointerFilter
+
+                    let entityPointer =
+                        readInt (offset + entityPointerOffset) processHandle
+                        |> pointerFilter
+
+                    let itemPointer =
+                        readInt (offset + itemPointerOffset) processHandle
+                        |> pointerFilter
+
+                    { x = x
+                      y = y
+                      lastAction = readInt offset processHandle
+                      cell = readInt (offset + cellOffset) processHandle
+                      lastFov = readInt (offset + lastFovOffset) processHandle
+                      propPointer = propPointer
+                      entityPointer = entityPointer
+                      itemPointer = itemPointer }
+
+                let coordinates =
+                    List.zip [ 0 .. luigiAi.mapHeight ] [ 0 .. luigiAi.mapWidth ]
+
+                let addressCoordinates: AddressCoordinate list =
+                    coordinates |> List.map AddressCoordinate
+
+                List.map openTilePointer addressCoordinates |> Ok
 
         CloseHandle(processHandle) |> ignore
-        result
+        arrayResult
