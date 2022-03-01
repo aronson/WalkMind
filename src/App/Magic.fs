@@ -172,8 +172,6 @@ let seekMagic: MagicResult =
                 let coordinates =
                     List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
 
-                printfn "Testing %d coordinates" (List.length coordinates)
-
                 let addressCoordinates: AddressCoordinate list =
                     coordinates |> List.map AddressCoordinate
 
