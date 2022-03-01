@@ -8,7 +8,7 @@ let main args =
     | Error message -> printfn "Seek failed... '%s'" message
     | Ok (luigiAi, tiles) ->
         printfn "LuigiAi: %A" luigiAi
-        printfn "Tiles: %A" (List.filter (fun x -> x.lastAction <> 0) tiles)
+        printfn "Tiles: %A" (List.filter (fun x -> Option.isSome x.entity) tiles)
 
     printfn "I'm walking here"
     0

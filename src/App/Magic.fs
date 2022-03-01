@@ -3,6 +3,7 @@ module Magic
 open System.Diagnostics
 open System.Runtime.InteropServices
 open System
+open Domain
 
 // https://stackoverflow.com/q/33882995
 let flip f x y = f y x
@@ -81,11 +82,11 @@ type LuigiTile =
     { x: int
       y: int
       lastAction: int
-      cell: int
+      cell: cell
       lastFov: int
       propPointer: int option
-      entityPointer: int option
-      itemPointer: int option }
+      entity: int option
+      item: item option }
 
 let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPointerOffset, itemPointerOffset) =
     (0, 4, 8, 12, 16, 20)
@@ -128,6 +129,9 @@ let seekMagic: MagicResult =
                 else
                     seekNext (offset + 4)
 
+        let unwrapItem pointer : item =
+            readInt pointer processHandle |> enum<item>
+
         let arrayResult =
             match seekNext 4194304 with
             | Error message -> Error message
@@ -141,7 +145,6 @@ let seekMagic: MagicResult =
                         function
                         | value when value > 0 -> Some value
                         | _ -> None
-
 
                     let propPointer =
                         readInt (offset + propPointerOffset) processHandle
@@ -158,14 +161,16 @@ let seekMagic: MagicResult =
                     { x = x
                       y = y
                       lastAction = readInt offset processHandle
-                      cell = readInt (offset + cellOffset) processHandle
+                      cell =
+                        readInt (offset + cellOffset) processHandle
+                        |> enum<cell>
                       lastFov = readInt (offset + lastFovOffset) processHandle
                       propPointer = propPointer
-                      entityPointer = entityPointer
-                      itemPointer = itemPointer }
+                      entity = Option.map (fun x -> readInt x processHandle) entityPointer
+                      item = Option.map unwrapItem itemPointer }
 
                 let coordinates =
-                    List.allPairs [ 0 .. luigiAi.mapHeight ] [ 0 .. luigiAi.mapWidth ]
+                    List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
 
                 printfn "Testing %d coordinates" (List.length coordinates)
 
