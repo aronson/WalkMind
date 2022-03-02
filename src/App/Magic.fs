@@ -5,6 +5,14 @@ open System.Runtime.InteropServices
 open System
 open Domain
 
+type OptionBuilder() =
+    member x.Bind(v, f) = Option.bind f v
+    member x.Return v = Some v
+    member x.ReturnFrom o = o
+    member x.Zero() = None
+
+let opt = OptionBuilder()
+
 // https://stackoverflow.com/q/33882995
 let flip f x y = f y x
 let curry f a b = f (a, b)
@@ -78,6 +86,32 @@ let secondaryMagic = 2035498713
 // four byte-aligned struct
 let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset) = (4, 8, 12, 16, 20)
 
+type LuigiItem = { item: item; integrity: int }
+let itemIntegrityOffset = 4
+
+type LuigiEntity =
+    { entity: entity
+      integrity: int
+      faction: int
+      entityActiveState: int
+      exposure: int
+      energy: int
+      matter: int
+      heat: int
+      corruption: int
+      speed: int }
+
+let (entityIntegrityOffset,
+     entityFactionOffset,
+     entityActiveStateOffset,
+     entityExposureOffset,
+     entityEnergyOffset,
+     entityMatterOffset,
+     entityHeatOffset,
+     entityCorruptionOffset,
+     entitySpeedOffset) =
+    (4, 8, 12, 16, 20, 24, 28, 32, 36)
+
 type LuigiTile =
     { x: int
       y: int
@@ -85,7 +119,7 @@ type LuigiTile =
       cell: cell
       lastFov: int
       propPointer: int option
-      entity: int option
+      entity: LuigiEntity option
       item: item option }
 
 let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPointerOffset, itemPointerOffset) =
@@ -129,10 +163,44 @@ let seekMagic: MagicResult =
                 else
                     seekNext (offset + 4)
 
+        let unwrapPointer =
+            function
+            | value when value > 0 -> readInt value processHandle |> Some
+            | _ -> None
+
         let unwrapItem pointer : item =
             readInt pointer processHandle |> enum<item>
 
-        let arrayResult =
+        let unwrapEntityId pointer : entity =
+            readInt pointer processHandle |> enum<entity>
+
+        let unwrapEntity pointer : LuigiEntity option =
+            opt {
+                let entity = pointer |> unwrapEntityId
+                let! integrity = pointer + entityIntegrityOffset |> unwrapPointer
+                let! faction = pointer + entityFactionOffset |> unwrapPointer
+                let! entityActiveState = pointer + entityActiveStateOffset |> unwrapPointer
+                let! exposure = pointer + entityExposureOffset |> unwrapPointer
+                let! energy = pointer + entityEnergyOffset |> unwrapPointer
+                let! matter = pointer + entityMatterOffset |> unwrapPointer
+                let! heat = pointer + entityHeatOffset |> unwrapPointer
+                let! corruption = pointer + entityCorruptionOffset |> unwrapPointer
+                let! speed = pointer + entitySpeedOffset |> unwrapPointer
+
+                return
+                    { entity = entity
+                      integrity = integrity
+                      faction = faction
+                      entityActiveState = entityActiveState
+                      exposure = exposure
+                      energy = energy
+                      matter = matter
+                      heat = heat
+                      corruption = corruption
+                      speed = speed }
+            }
+
+        let result =
             match seekNext 4194304 with
             | Error message -> Error message
             | Ok luigiAi ->
@@ -141,22 +209,20 @@ let seekMagic: MagicResult =
                         (x * luigiAi.mapHeight + y) * 24
                         + luigiAi.tilePointer
 
-                    let pointerFilter =
-                        function
-                        | value when value > 0 -> Some value
-                        | _ -> None
 
-                    let propPointer =
+                    let prop =
                         readInt (offset + propPointerOffset) processHandle
-                        |> pointerFilter
+                        |> unwrapPointer
 
-                    let entityPointer =
+                    let entity =
                         readInt (offset + entityPointerOffset) processHandle
-                        |> pointerFilter
+                        |> unwrapEntity
 
-                    let itemPointer =
+                    let item =
                         readInt (offset + itemPointerOffset) processHandle
-                        |> pointerFilter
+                        |> function
+                            | value when value > 0 -> unwrapItem value |> Some
+                            | _ -> None
 
                     { x = x
                       y = y
@@ -165,9 +231,9 @@ let seekMagic: MagicResult =
                         readInt (offset + cellOffset) processHandle
                         |> enum<cell>
                       lastFov = readInt (offset + lastFovOffset) processHandle
-                      propPointer = propPointer
-                      entity = Option.map (fun x -> readInt x processHandle) entityPointer
-                      item = Option.map unwrapItem itemPointer }
+                      propPointer = prop
+                      entity = entity
+                      item = item }
 
                 let coordinates =
                     List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
@@ -178,4 +244,4 @@ let seekMagic: MagicResult =
                 Ok(luigiAi, List.map openTilePointer addressCoordinates)
 
         CloseHandle(processHandle) |> ignore
-        arrayResult
+        result
