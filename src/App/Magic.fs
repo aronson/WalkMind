@@ -201,12 +201,13 @@ let seekMagic: MagicResult =
             }
 
         let result =
+            // start at 4MB offset because it's a Win32 application
             match seekNext 4194304 with
             | Error message -> Error message
             | Ok luigiAi ->
                 let openTilePointer (AddressCoordinate (x, y)) =
                     let offset =
-                        (x * luigiAi.mapHeight + y) * 24
+                        (x * luigiAi.mapHeight + y) * 24 // length of struct
                         + luigiAi.tilePointer
 
 
