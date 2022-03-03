@@ -17,8 +17,8 @@ let main args =
 
                 printfn ""
 
-            printfn "LuigiAi: %A" luigiAi
-            printfn "Player state: %A" player
+            printfn "LuigiAi:\n%A" luigiAi
+            printfn "Player state:\n%A" player
 
         printfn "I'm walking here"
         0

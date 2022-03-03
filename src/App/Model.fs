@@ -1294,9 +1294,12 @@ let cellToChar (tile: LuigiTile) : string =
         | Some char ->
             match char with
             | " " ->
-                Option.map itemToChar tile.item
-                |> function
-                    | Some item -> item
+                match tile.item with
+                | Some item -> itemToChar item.item
+                | None ->
+                    match tile.entity with
+                    | Some entity when entity.entity = Domain.entity.Cogmind -> "@"
+                    | Some _ -> "b"
                     | None -> " "
             | _ -> char
         | None -> "?"

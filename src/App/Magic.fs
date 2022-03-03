@@ -123,7 +123,7 @@ type LuigiTile =
       lastFov: int
       propPointer: int option
       entity: LuigiEntity option
-      item: item option }
+      item: LuigiItem option }
 
 let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPointerOffset, itemPointerOffset) =
     (0, 4, 8, 12, 16, 20)
@@ -143,10 +143,10 @@ let rec seekMagicStart processHandle offset : Result<int, string> =
             // Sometimes we find the code pointer instead, we need to learn about regions to fix that
             printfn "Seek found first pointer at %d" offset
 
-            let value2 =
+            let nextValue =
                 readInt (offset + secondaryMagicOffset) processHandle
 
-            match (value2 = secondaryMagic) with
+            match (nextValue = secondaryMagic) with
             | true ->
                 printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
                 // Can now infer movement value
@@ -158,7 +158,6 @@ let rec seekMagicStart processHandle offset : Result<int, string> =
 
 let openMagicResult cogmindProcess : MagicResult =
     let processHandle = openProcess cogmindProcess
-
 
     let openMagic offset : LuigiAi =
         { magic1 = primaryMagic
@@ -229,7 +228,10 @@ let openMagicResult cogmindProcess : MagicResult =
             let item =
                 readInt (pointer + itemPointerOffset) processHandle
                 |> function
-                    | value when value > 0 -> unwrapItem value |> Some
+                    | itemOffset when itemOffset > 0 ->
+                        { item = unwrapItem itemOffset
+                          integrity = readInt (itemOffset + 4) processHandle }
+                        |> Some
                     | _ -> None
 
             return
