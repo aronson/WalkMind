@@ -1083,9 +1083,6 @@ let itemToCategory (item: item) : ItemCategory =
     | item.GammaRefractor -> Misc
     | _ -> Misc
 
-
-
-
 let itemToChar (item: item) : string =
     match itemToCategory item with
     | Propulsion _ -> "="
@@ -1099,7 +1096,6 @@ let itemToChar (item: item) : string =
         | Gun -> "["
         | Melee -> "/"
         | Special -> "~"
-
 
 let cellToChar (tile: LuigiTile) : string =
     match tile.cell with
