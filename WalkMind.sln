@@ -1,27 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2A74C4C-1E22-48DA-9220-121D34648266}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "App", "src\App\App.fsproj", "{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "App", "src\App\App.fsproj", "{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Galante", "src\OpenGL-Helpers\Galante\Galante.fsproj", "{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Galante.OpenGL", "src\OpenGL-Helpers\Galante.OpenGL\Galante.OpenGL.fsproj", "{07226285-E5BA-444C-A041-14A23EDF24A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07226285-E5BA-444C-A041-14A23EDF24A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07226285-E5BA-444C-A041-14A23EDF24A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07226285-E5BA-444C-A041-14A23EDF24A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07226285-E5BA-444C-A041-14A23EDF24A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{23A87ABE-038D-4AEE-A1CC-E75BC57651A9} = {D2A74C4C-1E22-48DA-9220-121D34648266}
+		{F2FA26D5-4AEB-41A4-B6A5-956D6AB37628} = {D2A74C4C-1E22-48DA-9220-121D34648266}
+		{07226285-E5BA-444C-A041-14A23EDF24A8} = {D2A74C4C-1E22-48DA-9220-121D34648266}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F767407-253D-46E3-9B26-6A9A0595AD61}
 	EndGlobalSection
 EndGlobal

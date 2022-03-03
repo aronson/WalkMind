@@ -1299,7 +1299,7 @@ let cellToChar (tile: LuigiTile) : string =
                 | None ->
                     match tile.entity with
                     | Some entity when entity.entity = Domain.entity.Cogmind -> "@"
-                    | Some _ -> "b"
+                    | Some _ -> "g"
                     | None -> " "
             | _ -> char
         | None -> "?"

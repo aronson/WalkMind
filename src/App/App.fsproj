@@ -1,19 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Domain.fs" />
     <Compile Include="Magic.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="GLWin.fs" />
+    <Compile Include="GL.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.2.7" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     <PackageReference Include="Silk.NET" Version="2.13.0" />
+    <PackageReference Include="Silk.NET.Input" Version="2.13.0" />
+    <PackageReference Include="Silk.NET.Input.Common" Version="2.13.0" />
     <PackageReference Include="Silk.NET.OpenGL" Version="2.13.0" />
+    <PackageReference Include="Silk.NET.OpenGL.Extensions.ImGui" Version="2.13.0" />
     <PackageReference Include="Silk.NET.Windowing" Version="2.13.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGL-Helpers\Galante.OpenGL\Galante.OpenGL.fsproj" />
   </ItemGroup>
 </Project>
