@@ -3,6 +3,7 @@ module Magic
 open System.Diagnostics
 open System.Runtime.InteropServices
 open System
+open FsToolkit.ErrorHandling
 open Domain
 
 type OptionBuilder() =
@@ -79,12 +80,14 @@ type LuigiAi =
       actionReady: int
       mapWidth: int
       mapHeight: int
-      tilePointer: int }
+      tilePointer: int
+      playerEntityPointer: int }
 
 let primaryMagic = 1689123404
 let secondaryMagic = 2035498713
 // four byte-aligned struct
-let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset) = (4, 8, 12, 16, 20)
+let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset, playerEntityPointerOffset) =
+    (4, 8, 12, 16, 20, 24)
 
 type LuigiItem = { item: item; integrity: int }
 let itemIntegrityOffset = 4
@@ -127,65 +130,77 @@ let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPoint
 
 type AddressCoordinate = AddressCoordinate of (int * int)
 
-type MagicResult = Result<LuigiAi * LuigiTile list, string>
+type MagicResult = Result<LuigiAi * LuigiEntity * LuigiTile list, string>
 
-let seekMagic: MagicResult =
-    match seekCogmindProcess with
-    | Error message -> Error message
-    | Ok cogmindProcess ->
-        let processHandle = openProcess cogmindProcess
+let rec seekMagicStart processHandle offset : Result<int, string> =
+    if (offset >= 210346304) then
+        Error "magic not found before 250 MiB"
+    else
+        let value = readInt offset processHandle
 
-        let rec seekNext offset : Result<LuigiAi, string> =
-            if (offset >= 210346304) then
-                Error "magic not found before 250 MiB"
-            else
-                let value = readInt offset processHandle
+        match value = primaryMagic with
+        | true ->
+            // Sometimes we find the code pointer instead, we need to learn about regions to fix that
+            printfn "Seek found first pointer at %d" offset
 
-                if (value = (primaryMagic)) then
-                    // Sometimes we find the code pointer instead, we need to learn about regions to fix that
-                    printfn "Seek found first pointer at %d" offset
+            let value2 =
+                readInt (offset + secondaryMagicOffset) processHandle
 
-                    let value2 =
-                        readInt (offset + secondaryMagicOffset) processHandle
+            match (value2 = secondaryMagic) with
+            | true ->
+                printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
+                // Can now infer movement value
+                Ok offset
+            | false ->
+                printfn "... was code pointer"
+                seekMagicStart processHandle (offset + 4)
+        | false -> seekMagicStart processHandle (offset + 4)
 
-                    if (value2 = secondaryMagic) then
-                        printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
-                        // Can now infer movement value
-                        Ok
-                            { magic1 = primaryMagic
-                              magic2 = secondaryMagic
-                              actionReady = readInt (offset + actionReadyOffset) processHandle
-                              mapWidth = readInt (offset + mapWidthOffset) processHandle
-                              mapHeight = readInt (offset + mapHeightOffset) processHandle
-                              tilePointer = readInt (offset + mapDataOffset) processHandle }
-                    else
-                        seekNext (offset + 4)
-                else
-                    seekNext (offset + 4)
+let openMagicResult cogmindProcess : MagicResult =
+    let processHandle = openProcess cogmindProcess
 
-        let unwrapPointer =
-            function
-            | value when value > 0 -> readInt value processHandle |> Some
-            | _ -> None
 
-        let unwrapItem pointer : item =
-            readInt pointer processHandle |> enum<item>
+    let openMagic offset : LuigiAi =
+        { magic1 = primaryMagic
+          magic2 = secondaryMagic
+          actionReady = readInt (offset + actionReadyOffset) processHandle
+          mapWidth = readInt (offset + mapWidthOffset) processHandle
+          mapHeight = readInt (offset + mapHeightOffset) processHandle
+          tilePointer = readInt (offset + mapDataOffset) processHandle
+          playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle }
 
-        let unwrapEntityId pointer : entity =
-            readInt pointer processHandle |> enum<entity>
+    let tryOpenPointer =
+        function
+        | value when value > 0 -> readInt value processHandle |> Some
+        | _ -> None
 
-        let unwrapEntity pointer : LuigiEntity option =
+    let unwrapItem pointer : item =
+        readInt pointer processHandle |> enum<item>
+
+    let unwrapEntityId pointer : entity =
+        readInt pointer processHandle |> enum<entity>
+
+    let unwrapCell pointer : cell =
+        readInt pointer processHandle |> enum<cell>
+
+    let tryUnwrapEntity =
+        function
+        | pointer when pointer > 0 ->
             opt {
                 let entity = pointer |> unwrapEntityId
-                let! integrity = pointer + entityIntegrityOffset |> unwrapPointer
-                let! faction = pointer + entityFactionOffset |> unwrapPointer
-                let! entityActiveState = pointer + entityActiveStateOffset |> unwrapPointer
-                let! exposure = pointer + entityExposureOffset |> unwrapPointer
-                let! energy = pointer + entityEnergyOffset |> unwrapPointer
-                let! matter = pointer + entityMatterOffset |> unwrapPointer
-                let! heat = pointer + entityHeatOffset |> unwrapPointer
-                let! corruption = pointer + entityCorruptionOffset |> unwrapPointer
-                let! speed = pointer + entitySpeedOffset |> unwrapPointer
+                let! integrity = pointer + entityIntegrityOffset |> tryOpenPointer
+                let! faction = pointer + entityFactionOffset |> tryOpenPointer
+
+                let! entityActiveState =
+                    pointer + entityActiveStateOffset
+                    |> tryOpenPointer
+
+                let! exposure = pointer + entityExposureOffset |> tryOpenPointer
+                let! energy = pointer + entityEnergyOffset |> tryOpenPointer
+                let! matter = pointer + entityMatterOffset |> tryOpenPointer
+                let! heat = pointer + entityHeatOffset |> tryOpenPointer
+                let! corruption = pointer + entityCorruptionOffset |> tryOpenPointer
+                let! speed = pointer + entitySpeedOffset |> tryOpenPointer
 
                 return
                     { entity = entity
@@ -199,50 +214,71 @@ let seekMagic: MagicResult =
                       corruption = corruption
                       speed = speed }
             }
+        | _ -> None
 
-        let result =
-            // start at 4MB offset because it's a Win32 application
-            match seekNext 4194304 with
-            | Error message -> Error message
-            | Ok luigiAi ->
-                let openTilePointer (AddressCoordinate (x, y)) =
-                    let offset =
-                        (x * luigiAi.mapHeight + y) * 24 // length of struct
-                        + luigiAi.tilePointer
+    let tryUnwrapTile pointer (x, y) : Result<LuigiTile, string> =
+        opt {
+            let prop =
+                readInt (pointer + propPointerOffset) processHandle
+                |> tryOpenPointer
 
+            let entity =
+                readInt (pointer + entityPointerOffset) processHandle
+                |> tryUnwrapEntity
 
-                    let prop =
-                        readInt (offset + propPointerOffset) processHandle
-                        |> unwrapPointer
+            let item =
+                readInt (pointer + itemPointerOffset) processHandle
+                |> function
+                    | value when value > 0 -> unwrapItem value |> Some
+                    | _ -> None
 
-                    let entity =
-                        readInt (offset + entityPointerOffset) processHandle
-                        |> unwrapEntity
+            return
+                { x = x
+                  y = y
+                  lastAction = readInt pointer processHandle
+                  cell = unwrapCell (pointer + cellOffset)
+                  lastFov = readInt (pointer + lastFovOffset) processHandle
+                  propPointer = prop
+                  entity = entity
+                  item = item }
+        }
+        |> function
+            | Some result -> Ok result
+            | None ->
+                sprintf "failed to unwrap tile data at address %d" pointer
+                |> Error
 
-                    let item =
-                        readInt (offset + itemPointerOffset) processHandle
-                        |> function
-                            | value when value > 0 -> unwrapItem value |> Some
-                            | _ -> None
+    let result =
+        // start at 4MB offset because it's a Win32 application
+        match seekMagicStart processHandle 4194304 with
+        | Error message -> Error message
+        | Ok magicOffset ->
+            let luigiAi = openMagic magicOffset
 
-                    { x = x
-                      y = y
-                      lastAction = readInt offset processHandle
-                      cell =
-                        readInt (offset + cellOffset) processHandle
-                        |> enum<cell>
-                      lastFov = readInt (offset + lastFovOffset) processHandle
-                      propPointer = prop
-                      entity = entity
-                      item = item }
+            let openTilePointer (AddressCoordinate (x, y)) =
+                let offset =
+                    (x * luigiAi.mapHeight + y) * 24 // length of struct
+                    + luigiAi.tilePointer
 
-                let coordinates =
-                    List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
+                tryUnwrapTile offset (x, y)
 
-                let addressCoordinates: AddressCoordinate list =
-                    coordinates |> List.map AddressCoordinate
+            let coordinates =
+                List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
 
-                Ok(luigiAi, List.map openTilePointer addressCoordinates)
+            let addressCoordinates: AddressCoordinate list =
+                coordinates |> List.map AddressCoordinate
 
-        CloseHandle(processHandle) |> ignore
-        result
+            let tileResults =
+                List.map openTilePointer addressCoordinates
+                |> List.sequenceResultM
+
+            let playerEntity =
+                tryUnwrapEntity luigiAi.playerEntityPointer
+
+            match tileResults, playerEntity with
+            | Ok results, Some player -> Ok(luigiAi, player, results)
+            | _, None -> Error "entity data for player corrupt"
+            | Error message, _ -> Error message
+
+    CloseHandle(processHandle) |> ignore
+    result

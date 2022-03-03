@@ -5,16 +5,23 @@ open Model
 
 [<EntryPoint>]
 let main args =
-    match Magic.seekMagic with
-    | Error message -> printfn "Seek failed... '%s'" message
-    | Ok (luigiAi, tiles) ->
-        printfn "LuigiAi: %A" luigiAi
+    match seekCogmindProcess with
+    | Ok cogmindProcess ->
+        match openMagicResult cogmindProcess with
+        | Error message -> printfn "Seek failed... '%s'" message
+        | Ok (luigiAi, player, tiles) ->
 
-        for x in 0 .. luigiAi.mapHeight - 1 do
-            for y in 0 .. luigiAi.mapWidth - 1 do
-                printf "%s" (cellToChar tiles.[y * luigiAi.mapHeight + x])
+            for x in 0 .. luigiAi.mapHeight - 1 do
+                for y in 0 .. luigiAi.mapWidth - 1 do
+                    printf "%s" (cellToChar tiles.[y * luigiAi.mapHeight + x])
 
-            printfn ""
+                printfn ""
 
-    printfn "I'm walking here"
-    0
+            printfn "LuigiAi: %A" luigiAi
+            printfn "Player state: %A" player
+
+        printfn "I'm walking here"
+        0
+    | Error message ->
+        printfn "Process seek error: %s" message
+        1
