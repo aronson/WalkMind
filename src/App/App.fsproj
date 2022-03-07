@@ -4,13 +4,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="State.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Magic.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="Simulator\Types.fs" />
+    <Compile Include="Simulator\Calculator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.2.7" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+    <PackageReference Include="InputSimulator" Version="1.0.4" />
   </ItemGroup>
 </Project>

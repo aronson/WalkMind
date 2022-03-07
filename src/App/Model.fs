@@ -29,10 +29,11 @@ type ItemCategory =
     | Utility of Utility
     | Weapon of Weapon
     | Misc
+    | Matter
 
 let itemToCategory (item: item) : ItemCategory =
     match item with
-    | item.Matter
+    | item.Matter -> Matter
     | item.DataCore
     | item.DerelictLog
     | item.SchematicArchive
@@ -1085,6 +1086,7 @@ let itemToCategory (item: item) : ItemCategory =
 
 let itemToChar (item: item) : string =
     match itemToCategory item with
+    | Matter -> "%"
     | Propulsion _ -> "="
     | Power -> "*"
     | Misc -> "~"
@@ -1097,7 +1099,7 @@ let itemToChar (item: item) : string =
         | Melee -> "/"
         | Special -> "~"
 
-let cellToChar (tile: LuigiTile) : string =
+let cellToChar (tile: Tile) : string =
     match tile.cell with
     | cell.SEALED_DOOR
     | cell.DOOR_SAN
@@ -1299,3 +1301,9 @@ let cellToChar (tile: LuigiTile) : string =
                     | None -> " "
             | _ -> char
         | None -> "?"
+    |> function
+        | " " ->
+            match tile.propPointer with
+            | Some pointer -> "X"
+            | None -> " "
+        | char -> char
