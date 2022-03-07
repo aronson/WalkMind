@@ -4,7 +4,7 @@ open Types
 open State
 
 let random = new System.Random()
-let randomInt min max = (random.Next() % (max + 1 - min)) + min
+let randomInt min max = random.Next(min, max)
 
 let minAccuracy = 10
 let maxRangedAccuracy = 95
@@ -32,9 +32,8 @@ type DamageChunk =
       realDamage: int
       spectrum: int }
 
-let applyDamage
+let rec applyDamage
     (state: SimulatorState)
-    (botState: BotState)
     (damage: int)
     (critical: Critical option)
     (armorAnalyzed: bool)
@@ -44,6 +43,8 @@ let applyDamage
     (canOverflow: bool)
     (damageType: DamageType)
     =
+    let botState = state.botState
+
     let damageChunks =
         match damageType with
         | Explosive ->
@@ -78,7 +79,18 @@ let applyDamage
                       spectrum = spectrum }
             }
 
-    let getHitPart (botState: BotState) (damageType: DamageType) (isOverflow: bool) (forceCore: bool) =
+    let rec getHitPart (isOverflow: bool) (forceCore: bool) =
+        let rec seekCoverageHit index remainingCoverage =
+            let part = botState.parts.Item index
+
+            match remainingCoverage - part.coverage with
+            | hit when hit < 0 -> Some part
+            | miss ->
+                if index + 1 = botState.parts.Length then
+                    None // core hit, can't hit anything else
+                else
+                    seekCoverageHit (index + 1) miss
+
         match forceCore with
         | true -> None
         | false ->
@@ -87,29 +99,28 @@ let applyDamage
                 match randomInt 0 botState.parts.Length with
                 | coverageHit when coverageHit < botState.parts.Length -> Some(botState.parts.Item coverageHit)
                 | _ -> None
-            | _ when isOverflow -> None // TODO: handle overflow protection part selection
+            | _ when isOverflow ->
+                let protectionParts =
+                    botState.parts
+                    |> List.filter (fun part -> part.coverage > 0 && part.protection)
+                // Handle overflow damage specifically when there's armor
+                // overflow into a random armor piece based on coverage
+                match protectionParts with
+                | [] -> getHitPart false false
+                | _ ->
+                    let coverageHit =
+                        randomInt
+                            0
+                            (protectionParts
+                             |> List.map (fun part -> part.coverage)
+                             |> List.sum)
+
+                    seekCoverageHit coverageHit 0
             | _ ->
                 let coverageHit = randomInt 0 (botState.totalCoverage - 1)
-
-                let rec seekCoverageHit index remainingCoverage =
-                    let part = botState.parts.Item index
-
-                    match remainingCoverage - part.coverage with
-                    | hit when hit < 0 -> Some part
-                    | miss ->
-                        if index + 1 = botState.parts.Length then
-                            None // core hit, can't hit anything else
-                        else
-                            seekCoverageHit (index + 1) miss
-
                 seekCoverageHit coverageHit 0
 
-    let applyChunkDamageToPart
-        (botState: BotState)
-        (damage: int)
-        (critical: Critical option)
-        (part: SimulatorPart option)
-        =
+    let applyChunkDamageToPart (damage: int) (part: SimulatorPart option) =
         let doesCritDestroyPart =
             function
             | Some critical ->
@@ -148,30 +159,22 @@ let applyDamage
                         damagedPart
                         :: (botState.parts |> List.except (seq { part })) }
 
-    let applyDamageChunk
-        (botState: BotState)
-        (damage: int)
-        (critical: Critical option)
-        (damageType: DamageType)
-        (isOverflow: bool)
-        (forceCore: bool)
-        =
-        let part =
-            getHitPart botState damageType isOverflow forceCore
+    let applyDamageChunk (damage: int) (isOverflow: bool) (forceCore: bool) =
+        let part = getHitPart isOverflow forceCore
 
-        applyChunkDamageToPart botState damage critical part, part
+        applyChunkDamageToPart damage part, part
 
-    let mutable state = botState
+    let mutable mutState = botState
 
     for chunk in damageChunks do
         let (nextState, destroyedPart) =
-            applyDamageChunk state chunk.originalDamage critical damageType false false
+            applyDamageChunk chunk.originalDamage false false
 
         match destroyedPart with
-        | None -> state <- nextState
-        | Some part -> state <- nextState // need to update accuracy in simulation
+        | None -> mutState <- nextState
+        | Some part -> mutState <- nextState // need to update accuracy in simulation
 
-    state
+    { state with botState = mutState }
 
 let updateWeaponsAccuracy (state: SimulatorState) =
     let offensiveState = state.offensiveState
@@ -233,4 +236,70 @@ let updateWeaponsAccuracy (state: SimulatorState) =
     { state with weapons = state.weapons |> List.map updateWeaponAccuracy }
 
 
-let rec simulateCombat (state: SimulatorState) (volleys: int) (oldTus: int) = ()
+let simulateWeapon (state: SimulatorState) (weapon: SimulatorWeapon) =
+    let offensiveState = state.offensiveState
+
+    match offensiveState.ramming with
+    | true ->
+        let speedPercent =
+            (100.0 / (float offensiveState.speed)) * 100.0
+
+        let damageMax =
+            min
+                ((((10.0 + (float weapon.def.mass)) / 5.0 + 1.0)
+                  * (speedPercent / 100.0)
+                  * (max (float offensiveState.momentum.current) 1.0)))
+                100.0
+
+        let damage = max (randomInt 0 (int damageMax)) 0
+        applyDamage state damage None false false weapon.disruption weapon.spectrum weapon.overflow DamageType.Impact
+    | false ->
+        [ 0 .. weapon.numProjectiles - 1 ]
+        |> List.fold
+            (fun currentState i ->
+                // TODO: Handle antimissle
+                match randomInt 0 99 < weapon.accuracy with
+                | false -> currentState
+                | true when Option.isSome weapon.damageType ->
+                    let damage =
+                        randomInt weapon.damageMin weapon.damageMax
+
+                    let didCritical =
+                        if randomInt 0 99 < weapon.criticalChance then
+                            weapon.criticalType
+                        else
+                            None
+
+                    applyDamage
+                        currentState
+                        damage
+                        didCritical
+                        false
+                        false
+                        weapon.disruption
+                        weapon.spectrum
+                        weapon.overflow
+                        (Option.get weapon.damageType)
+                | _ -> currentState)
+            state
+
+type CombatEndState =
+    | Death of SimulatorState
+    | Timeout of SimulatorState
+
+let rec simulateCombat (state: SimulatorState) (volleys: int) (maxTurns: int) =
+    // Check exit conditions first
+    match state.botState.coreIntegrity with
+    | death when death <= 0 -> Death state
+    | _ when maxTurns <= state.timeUnits / 100 -> Timeout state
+    | _ ->
+        let accurateState = updateWeaponsAccuracy state
+
+        let postVolleyState =
+            List.fold simulateWeapon accurateState accurateState.weapons
+
+        let timeElapsedState =
+            { postVolleyState with timeUnits = state.timeUnits + state.offensiveState.volleyTime }
+        // TODO: Handle siege mode transitions
+        // TODO: Handle regen
+        simulateCombat timeElapsedState (volleys + 1) maxTurns

@@ -280,6 +280,7 @@ type WeaponItem =
       explosionType: DamageType
       explosionHeatTransfer: HeatTransfer
       arc: int
+      mass: int
       waypoints: string
       explosionSpectrum: Spectrum
       explosionDisruption: int
