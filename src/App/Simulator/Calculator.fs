@@ -1,7 +1,6 @@
 module Simulator.Calculator
 
 open Types
-open State
 
 let random = new System.Random()
 let randomInt min max = random.Next(min, max)
