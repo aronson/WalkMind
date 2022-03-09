@@ -120,7 +120,7 @@ let bestStep openList score =
     | [] -> None
     | list -> bestStep4 list score None 0
 
-let neighborNodes (magic: Magic) (x: LuigiTile) =
+let neighborNodes (map: Map<int * int, LuigiTile>) (x: LuigiTile) =
     // There are only up to eight neighbors
     seq {
         yield (x.row, x.col + 1)
@@ -132,9 +132,7 @@ let neighborNodes (magic: Magic) (x: LuigiTile) =
         yield (x.row, x.col - 1)
         yield (x.row - 1, x.col)
     }
-    |> Seq.collect (fun (row, col) ->
-        magic.tiles
-        |> Array.filter (fun tile -> tile.row = row && tile.col = col))
+    |> Seq.map (fun (row, col) -> Map.find (row, col) map)
     |> Seq.toList
 
 let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =

@@ -26,12 +26,18 @@ let main args =
                     | Some entity when entity.entity = Domain.entity.Cogmind -> true
                     | _ -> false)
 
-            let goals =
-                List.filter (fun tile -> tile.cell = Domain.cell.NO_CELL) tiles
+            let coordinateMap =
+                let coords =
+                    Array.toList magic.tiles
+                    |> List.map (fun x -> (x.row, x.col), x)
+
+                Map.ofList coords
+
+            let goals = neighborNodes coordinateMap playerTile
 
             let victories =
-                (List.map (fun x -> aStar magic playerTile x) goals)
-                |> List.filter (Option.isSome)
+                (List.map (fun x -> aStar coordinateMap playerTile x) goals)
+                |> List.find (Option.isSome)
 
             printfn "Victories: %A" victories
 
