@@ -89,7 +89,7 @@ let secondaryMagic = 2035498713
 let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset, playerEntityPointerOffset) =
     (4, 8, 12, 16, 20, 24)
 
-type LuigiItem = { item: item; integrity: int }
+type LuigiItem = { item: Item; integrity: int }
 let itemIntegrityOffset = 4
 
 type LuigiEntity =
@@ -116,8 +116,8 @@ let (entityIntegrityOffset,
     (4, 8, 12, 16, 20, 24, 28, 32, 36)
 
 type LuigiTile =
-    { x: int
-      y: int
+    { row: int
+      col: int
       lastAction: int
       cell: cell
       lastFov: int
@@ -173,8 +173,7 @@ let openMagicResult cogmindProcess : MagicResult =
         | value when value > 0 -> readInt value processHandle |> Some
         | _ -> None
 
-    let unwrapItem pointer : item =
-        readInt pointer processHandle |> enum<item>
+    let unwrapItem pointer : Item = readInt pointer processHandle |> itemId
 
     let unwrapEntityId pointer : entity =
         readInt pointer processHandle |> enum<entity>
@@ -235,8 +234,8 @@ let openMagicResult cogmindProcess : MagicResult =
                     | _ -> None
 
             return
-                { x = x
-                  y = y
+                { row = x
+                  col = y
                   lastAction = readInt pointer processHandle
                   cell = unwrapCell (pointer + cellOffset)
                   lastFov = readInt (pointer + lastFovOffset) processHandle

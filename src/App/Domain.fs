@@ -1,6 +1,7 @@
 module Domain
 
 type cell =
+    | NO_CELL = -1
     | EARTH = 0
     | EARTH_EXC = 1
     | GROUND = 2
@@ -259,1057 +260,2113 @@ type cell =
     | STAIRS_DSF_OPEN = 255
     | STAIRS_SHORTCUT = 256
 
+type Item =
+    | Matter
+    | DataCore
+    | DerelictLog
+    | SchematicArchive
+    | ImprinterDataCore
+    | A2DataCore
+    | A7DataCore
+    | MaincDataCore
+    | ArchitectDataCore
+    | Scrap
+    | Protomatter
+    | IonEngine
+    | LgtIonEngine
+    | BackupPowerI
+    | ImpIonEngine
+    | RnfIonEngine
+    | HvyIonEngine
+    | CldIonEngine
+    | DeuteriumEngine
+    | LgtDeuteriumEngine
+    | BackupPowerIii
+    | NuclearCore
+    | LgtNuclearCore
+    | ImpDeuteriumEngine
+    | RnfDeuteriumEngine
+    | HybDeuteriumEngine
+    | HvyDeuteriumEngine
+    | CldDeuteriumEngine
+    | EnhNuclearCore
+    | MicNuclearCore
+    | MakPowerSource
+    | AngularMomentumEngine
+    | LgtAngularMomentumEngine
+    | FcellEngine
+    | FissionCore
+    | LgtFissionCore
+    | HybFissionCore
+    | FusionCompressor
+    | ColdFusionReactor
+    | NeutrinoCore
+    | LgtNeutrinoCore
+    | RnfFissionCore
+    | EnhFissionCore
+    | CldFissionCore
+    | MicFissionCore
+    | FusionReactor
+    | AntimatterReactor
+    | LgtAntimatterReactor
+    | RnfAntimatterReactor
+    | HybAntimatterReactor
+    | BackupPowerVii
+    | HvyAntimatterReactor
+    | MniFusionReactor
+    | ImpFusionCompressor
+    | MicNeutrinoCore
+    | ZioLightDmReactor
+    | ZioHeavyDmReactor
+    | ParticleReactor
+    | LgtParticleReactor
+    | MicAntimatterReactor
+    | ComParticleReactor
+    | CldAntimatterReactor
+    | GravitonReactor
+    | AsbFluxGenerator
+    | QuantumReactor
+    | LgtQuantumReactor
+    | RnfQuantumReactor
+    | ImpQuantumReactor
+    | ZeropointReactor
+    | VortexChainReactor
+    | SingularityReactor
+    | MatterDrive
+    | LgtTreads
+    | ImpTreads
+    | SpkTreads
+    | ArmTreads
+    | AdvTreads
+    | MedTreads
+    | ImpMediumTreads
+    | SpkMediumTreads
+    | ArmMediumTreads
+    | HvyTreads
+    | AdvMediumTreads
+    | EnhArmoredMediumTreads
+    | ImpHeavyTreads
+    | HvySiegeTreads
+    | SpkHeavyTreads
+    | BiometalMediumTreads
+    | ArmHeavyTreads
+    | AdvHeavyTreads
+    | ImpHeavySiegeTreads
+    | CentriumHeavyTreads
+    | Megatreads
+    | BiometalHeavyTreads
+    | ExpBiometalHeavyTreads
+    | EnhArmoredHeavyTreads
+    | AdvHeavySiegeTreads
+    | HdnCentriumHeavyTreads
+    | ExpBiometalMediumTreads
+    | AluminumLeg
+    | ImpAluminumLeg
+    | CarbonfiberLeg
+    | TitaniumLeg
+    | VssLeg
+    | ImpCarbonfiberLeg
+    | ImpTitaniumLeg
+    | MakLeg
+    | FlexicarbonLeg
+    | ArmLeg
+    | ImpVssLeg
+    | ZioCompositeLegI
+    | EnhFlexicarbonLeg
+    | EnhArmoredLeg
+    | MyomerLeg
+    | AdvVssLeg
+    | AdvMyomerLeg
+    | ExpFlexicarbonLeg
+    | ZioCompositeLegIi
+    | EtherialTendrils
+    | BiometalLeg
+    | EnhBiometalLeg
+    | ExpMyomerLeg
+    | TrollExoskeleton
+    | AsbAlloyLeg
+    | CentriumLeg
+    | HdnCentriumLeg
+    | ExpBiometalLeg
+    | SigixExoskeleton
+    | ZioSupercompositeLeg
+    | PotentialLeg
+    | MyomerExoskeleton
+    | Wheel
+    | ComWheel
+    | ArmWheel
+    | ArmHugeWheel
+    | CentriumWheel
+    | HdnCentriumWheel
+    | HoverUnit
+    | BackupPropulsionI
+    | ImpHoverUnit
+    | Airjet
+    | AerolevUnit
+    | AsbHoverUnit
+    | BackupPropulsionIii
+    | GravmagSystem
+    | AsbHoverSystem
+    | ImpAirjet
+    | CldAirjet
+    | ImpGravmagSystem
+    | CldAerolevUnit
+    | CmbAirjet
+    | GravmagArray
+    | MakHoverUnit
+    | ZioGlidesysI
+    | AntigravSystem
+    | GyrokineticInverter
+    | LinearGravjet
+    | CldGravmagSystem
+    | CmbGravmagSystem
+    | ImpAntigravSystem
+    | ImpGyrokineticInverter
+    | ImpLinearGravjet
+    | BackupPropulsionVii
+    | ZioGlidesysIi
+    | CldAntigravSystem
+    | CmbAntigravSystem
+    | AntigravArray
+    | ExpGyrokineticInverter
+    | CldLinearGravjet
+    | CmbLinearGravjet
+    | FlightUnit
+    | VtolModule
+    | ImpFlightUnit
+    | CesiumionThruster
+    | SurgeThruster
+    | ImpVtolModule
+    | XenonBombardmentThruster
+    | ImpCesiumionThruster
+    | CldVtolModule
+    | MakFlightUnit
+    | NuclearPulseThruster
+    | ImpSurgeThruster
+    | MniNuclearPulseThruster
+    | CldCesiumionThruster
+    | BiomechanicalWings
+    | FieldPropulsionDrive
+    | CldNuclearPulseThruster
+    | ExpCesiumionThruster
+    | NuclearPulseArray
+    | MakMicrothruster
+    | ImpulseThruster
+    | AdvSurgeThruster
+    | CldFieldPropulsionDrive
+    | FieldPropulsionArray
+    | DiametricDrive
+    | FlyingFortressV7
+    | Tthruster
+    | IntegratedTrackerDrive
+    | EtherialPropulsion
+    | Qthruster
+    | ElectronDiverter
+    | ImpDiametricDrive
+    | CldImpulseThruster
+    | ImpulseThrusterArray
+    | ImpQthruster
+    | CldQthruster
+    | ExpQthruster
+    | Desublimator
+    | PowerAmplifier
+    | AdvPowerAmplifier
+    | ExpPowerAmplifier
+    | ThermalGenerator
+    | ImpThermalGenerator
+    | AdvThermalGenerator
+    | ExpThermalGenerator
+    | CryofiberWeb
+    | ImpCryofiberWeb
+    | AdvCryofiberWeb
+    | HeatSink
+    | ImpHeatSink
+    | AdvHeatSink
+    | ExpHeatSink
+    | CoolingSystem
+    | ImpCoolingSystem
+    | AdvCoolingSystem
+    | ExpCoolingSystem
+    | CoolantNetwork
+    | AsbNanovents
+    | FrostArray
+    | DisposableHeatSink
+    | CoolantInjector
+    | ImpCoolantInjector
+    | AdvCoolantInjector
+    | ExpCoolantInjector
+    | SmlStorageUnit
+    | MedStorageUnit
+    | LrgStorageUnit
+    | HcpStorageUnit
+    | HugeStorageUnit
+    | CargoStorageUnit
+    | Humpback
+    | Lightpack20
+    | SmlBattery
+    | MedBattery
+    | LrgBattery
+    | HcpBattery
+    | ComBattery
+    | EnergyWell
+    | ImpEnergyWell
+    | AdvEnergyWell
+    | ExpEnergyWell
+    | ZioBiocell
+    | AsbBiocellArray
+    | ZioBiocellArray
+    | Superbattery
+    | SmlMatterPod
+    | MedMatterPod
+    | LrgMatterPod
+    | HcpMatterPod
+    | ComMatterPod
+    | MatterCompressor
+    | ImpMatterCompressor
+    | AdvMatterCompressor
+    | ExpMatterCompressor
+    | Yiuf0sBottomlessMatterPit
+    | WeightRedistSystem
+    | AdvWeightRedistSystem
+    | GravityNeutralizer
+    | AdvGravityNeutralizer
+    | QuantumShadingMachine
+    | AsbSuspensionFrame
+    | AdvQuantumShadingMachine
+    | AsbMetafiberNetwork
+    | ZioMetafieldGenerator
+    | StFieldCompressor
+    | StructuralScanner
+    | TrapScanner
+    | ImpTrapScanner
+    | MakTrapScanner
+    | AdvTrapScanner
+    | MachineAnalyzer
+    | Triangulator
+    | VisualProcessingUnit
+    | AdvVisualProcessingUnit
+    | EnhOpticalArray
+    | ExpOpticalArray
+    | SpectralAnalyzer
+    | SensorArray
+    | ImpSensorArray
+    | AdvSensorArray
+    | LrnSensorArray
+    | MakSensorArray
+    | ExpSensorArray
+    | SignalInterpreter
+    | ImpSignalInterpreter
+    | AdvSignalInterpreter
+    | ExpSignalInterpreter
+    | ActiveSensorSuite
+    | TerrainScanner
+    | ImpTerrainScanner
+    | AdvTerrainScanner
+    | MakTerrainScanner
+    | LrnTerrainScanner
+    | ExpTerrainScanner
+    | Surveybot24Scanner
+    | TerrainScanProcessor
+    | ImpTerrainScanProcessor
+    | MakTerrainScanProcessor
+    | AdvTerrainScanProcessor
+    | ExpTerrainScanProcessor
+    | Surveybot24Chip
+    | SeismicDetector
+    | TransportNetworkCoupler
+    | ModifiedTnc
+    | B10DecoderChipgeneric
+    | B10DecoderChiplooter
+    | B10DecoderChipscout
+    | B10DecoderChipskirmisher
+    | B10AlertChip
+    | SalvageTargetingComputer
+    | ImpSalvageTargetingComputer
+    | MakSalvageTargetingComputer
+    | AdvSalvageTargetingComputer
+    | AsbCombatSuite
+    | TargetingComputer
+    | ImpTargetingComputer
+    | AdvTargetingComputer
+    | ExpTargetingComputer
+    | TacticalCoordinationSuite
+    | MeleeAnalysisSuite
+    | ImpMeleeAnalysisSuite
+    | AdvMeleeAnalysisSuite
+    | ExpMeleeAnalysisSuite
+    | LauncherGuidanceComputer
+    | ImpLauncherGuidanceComputer
+    | AdvLauncherGuidanceComputer
+    | TargetAnalyzer
+    | ImpTargetAnalyzer
+    | AdvTargetAnalyzer
+    | ExpTargetAnalyzer
+    | CoreAnalyzer
+    | ExpCoreAnalyzer
+    | ArmorIntegrityAnalyzer
+    | ImpArmorIntegrityAnalyzer
+    | ExpArmorIntegrityAnalyzer
+    | RecoilStabilizer
+    | RecoilNullifier
+    | MatterFilter
+    | PrcMatterFilter
+    | EnergyFilter
+    | PrcEnergyFilter
+    | ParticleCharger
+    | ImpParticleCharger
+    | AdvParticleCharger
+    | ParticleAccelerator
+    | ImpParticleAccelerator
+    | AdvParticleAccelerator
+    | Kinecellerator
+    | ImpKinecellerator
+    | AdvKinecellerator
+    | LauncherLoader
+    | QuantumCapacitor
+    | WeaponCycler
+    | ImpWeaponCycler
+    | AdvWeaponCycler
+    | ExpWeaponCycler
+    | Microactuators
+    | Nanoactuators
+    | Femtoactuators
+    | ActuatorArray
+    | ImpActuatorArray
+    | AdvActuatorArray
+    | ExpActuatorArray
+    | ForceBooster
+    | ImpForceBooster
+    | AdvForceBooster
+    | StasisCanceller
+    | TransmissionJammer
+    | MakTransmissionJammer
+    | ImpTransmissionJammer
+    | AdvTransmissionJammer
+    | ExpTransmissionJammer
+    | EcmSuite
+    | MakEcmSuite
+    | AdvEcmSuite
+    | ExpEcmSuite
+    | ReactionControlSystem
+    | ImpReactionControlSystem
+    | AdvReactionControlSystem
+    | ExpReactionControlSystem
+    | PhaseShifter
+    | ImpPhaseShifter
+    | AdvPhaseShifter
+    | ExpPhaseShifter
+    | CloakingDevice
+    | MakCloakingDevice
+    | ImpCloakingDevice
+    | AdvCloakingDevice
+    | ExpCloakingDevice
+    | CloakOfProtection
+    | Shad0sCloak
+    | CoreShielding
+    | ImpCoreShielding
+    | ExpCoreShielding
+    | PowerShielding
+    | ImpPowerShielding
+    | ExpPowerShielding
+    | PropulsionShielding
+    | ImpPropulsionShielding
+    | ExpPropulsionShielding
+    | UtilityShielding
+    | ImpUtilityShielding
+    | ExpUtilityShielding
+    | WeaponShielding
+    | ImpWeaponShielding
+    | ExpWeaponShielding
+    | ZioWeaponCasing
+    | LgtArmorPlating
+    | MedArmorPlating
+    | HvyArmorPlating
+    | ZioLightCarapace
+    | ZioHeavyCarapace
+    | HrdLightArmorPlating
+    | HrdMediumArmorPlating
+    | HrdHeavyArmorPlating
+    | ImpLightArmorPlating
+    | ImpMediumArmorPlating
+    | ImpHeavyArmorPlating
+    | LyrLightArmorPlating
+    | MakArmorPlating
+    | LyrMediumArmorPlating
+    | LyrHeavyArmorPlating
+    | CentriumLightArmorPlating
+    | CentriumMediumArmorPlating
+    | CentriumHeavyArmorPlating
+    | CentriumLinkedPlating
+    | ReactivePlating
+    | MedReactivePlating
+    | MakKineticPlating
+    | HvyReactivePlating
+    | ReflectivePlating
+    | MedReflectivePlating
+    | MakThermalPlating
+    | HvyReflectivePlating
+    | BrawnsArmorth
+    | BrawnsArmorex
+    | InsulatedPlating
+    | MedInsulatedPlating
+    | HvyInsulatedPlating
+    | DamperPlating
+    | ZioShadeCarapace
+    | ZioShadeArmor
+    | AsbAlloyArmor
+    | MakAblativeArmor
+    | ActiveCoolingArmor
+    | PoweredArmor
+    | ImpPoweredArmor
+    | AdvPoweredArmor
+    | ExpPoweredArmor
+    | IcutusBuckler
+    | LgtRegenerativePlating
+    | MedRegenerativePlating
+    | HvyRegenerativePlating
+    | ShellArmor
+    | PhaseArmor
+    | GrapheneBrace
+    | FocalShield
+    | ImpFocalShield
+    | AdvFocalShield
+    | ExpFocalShield
+    | ThermalShield
+    | ImpThermalShield
+    | AdvThermalShield
+    | ExpThermalShield
+    | ThermalBarrier
+    | BeamSplitter
+    | ThermalDefenseSuite
+    | ImpThermalDefenseSuite
+    | AdvThermalDefenseSuite
+    | ExpThermalDefenseSuite
+    | ShockAbsorptionSystem
+    | ImpShockAbsorptionSystem
+    | ExpShockAbsorptionSystem
+    | EmDisruptionField
+    | AdvEmDisruptionField
+    | ExpEmDisruptionField
+    | MerlnsChromaticScreen
+    | HardlightGenerator
+    | ImpHardlightGenerator
+    | AdvHardlightGenerator
+    | ExpHardlightGenerator
+    | ShieldGenerator
+    | ImpShieldGenerator
+    | AdvShieldGenerator
+    | ExpShieldGenerator
+    | ForceField
+    | ImpForceField
+    | AdvForceField
+    | ExpForceField
+    | TvrtlsUltimateField
+    | VortexFieldProjector
+    | RemoteShield
+    | ImpRemoteShield
+    | AdvRemoteShield
+    | RemoteForceField
+    | ImpRemoteForceField
+    | EnergyMantle
+    | ImpEnergyMantle
+    | AegisRemoteShield
+    | PhaseRedirector
+    | PointDefenseSystem
+    | PointDefenseArray
+    | AntimissileSystem
+    | ExChip1
+    | HackingSuite
+    | MakHackingSuite
+    | ImpHackingSuite
+    | AdvHackingSuite
+    | ExpHackingSuite
+    | SystemMapper
+    | DeepNetworkScanner
+    | ArchitectGodChipA
+    | ExChip2
+    | SystemShield
+    | MakSystemShield
+    | ImpSystemShield
+    | AdvSystemShield
+    | ExpSystemShield
+    | GhostBarrier
+    | QuantumRouter
+    | ArchitectGodChipD
+    | Authchiprnc
+    | Authchiprcombat
+    | Authchippower
+    | Authchippropulsion
+    | Authchipdevice
+    | Authchipstorage
+    | Authchipprocessor
+    | Authchiparmor
+    | Authchipweapon
+    | RelayCouplernc
+    | RelayCouplerc
+    | RelayCouplerarc
+    | RelayCouplerswarmer
+    | RelayCouplercutter
+    | RelayCouplergrunt
+    | RelayCouplerbrawler
+    | RelayCouplerduelist
+    | RelayCouplersentry
+    | RelayCouplerdemolisher
+    | RelayCouplerspecialist
+    | RelayCouplerhunter
+    | RelayCouplerheavy
+    | RelayCouplerbehemoth
+    | RelayCouplerprogrammer
+    | SkeletonBox
+    | O1mtfsAutohacker
+    | ComponentAnalysisSuite
+    | ImpComponentAnalysisSuite
+    | AdvComponentAnalysisSuite
+    | DynamicInsulationSystem
+    | ImpDynamicInsulationSystem
+    | AdvDynamicInsulationSystem
+    | SystemGuard
+    | ImpSystemGuard
+    | ExpSystemGuard
+    | CorruptionScreen
+    | ImpCorruptionScreen
+    | AdvCorruptionScreen
+    | SystemRestorationModule
+    | MakSystemRestorationModule
+    | ImpSystemRestorationModule
+    | AdvSystemRestorationModule
+    | SystemPurifier
+    | ExpSystemPurifier
+    | TractorBeam
+    | HpwTractorBeam
+    | LrnTractorBeam
+    | MobileRefineryMkCclxvii
+    | TrapExtractor
+    | ImpTrapExtractor
+    | AdvTrapExtractor
+    | TrapReconfigurator
+    | Recalibrator
+    | ImpRecalibrator
+    | AdvRecalibrator
+    | FieldRecyclingUnit
+    | ImpFieldRecyclingUnit
+    | AdvFieldRecyclingUnit
+    | ExpFieldRecyclingUnit
+    | DroneBay
+    | ZdroneBay
+    | MniDroneBay
+    | MappingDroneBay
+    | AdvDroneBay
+    | BombDroneBay
+    | ThiefDroneBay
+    | DecoyDroneBay
+    | SpliceDroneBay
+    | CombatDroneBay
+    | AssaultDroneBay
+    | StealthDroneBay
+    | SwarmDroneBay
+    | SupersonicDroneBay
+    | SensorDroneBay
+    | HackingDroneBay
+    | MinesnifferDroneBay
+    | Armyinabox
+    | WardroneBay
+    | BombFactoryNo2
+    | MobileAssemblyUnit
+    | HeartOfSteel
+    | GolemUnit
+    | PsuRigger
+    | PhasingAfg
+    | AsneutralizerNo17b
+    | Chronowheel
+    | DimensionalNodeInitializer
+    | TransdimensionalReconstructor
+    | HpwTransdimensionalReconstructor
+    | CoreExpander
+    | CoreRegenerator
+    | IntegrityRedistributor
+    | IntegratedDissipator
+    | SuperchargedIntegratedDissipator
+    | IntegratedThermoelectricNetwork
+    | IntegratedReactor
+    | SuperchargedIntegratedReactor
+    | IntegratedMediator
+    | CoreMembrane
+    | NavigationEfficiencyMatrix
+    | CoreResetMatrix
+    | SubatomicReplicator
+    | Terrabomb
+    | CorePhysicsCalibrator
+    | SpacefoldActivator
+    | MicrowarpDrive
+    | LcCapacitor
+    | LrcArmor
+    | LrcStorage
+    | LrcEnergyWell
+    | LrcMatterCompressor
+    | LrcBoosters
+    | LrcInsulator
+    | EmPulseGun
+    | HvyEmPulseGun
+    | EmShotgun
+    | ImpEmShotgun
+    | ShockRifle
+    | RiotGun
+    | HvyEmShotgun
+    | LightningGun
+    | HvyRiotGun
+    | ArcProjector
+    | PrcShockRifle
+    | HpwShockRifle
+    | ArcThrower
+    | ImpLightningGun
+    | TeslaRifle
+    | ImpArcProjector
+    | HvyTeslaRifle
+    | HypEmGaussRifle
+    | ImpArcThrower
+    | O1mtfsShockpuncher
+    | GammaRifle
+    | TachyonDispersionRay
+    | Immobilizer
+    | ModifiedEmGaussRifle
+    | Awsexdec
+    | EnhGammaRifle
+    | MedLaser
+    | SmlLaser
+    | BackupLaserI
+    | BeamRifle
+    | ParticleGun
+    | SpreadLaser
+    | ImpMediumLaser
+    | FieldLaser
+    | PulseRifle
+    | BackupLaserIii
+    | HvyParticleGun
+    | PrcBeamRifle
+    | AdvBeamRifle
+    | HvyLaser
+    | GatlingLaser
+    | CldPulseRifle
+    | HpwFieldLaser
+    | ImpSpreadLaser
+    | MakLaser
+    | PlasmaRifle
+    | ThermicLaser
+    | Beamcaster
+    | ForceRifle
+    | ImpHeavyLaser
+    | StormLaser
+    | ZioLasers
+    | WaveGun
+    | VariableChargeGun
+    | HvyBeamcaster
+    | CldPlasmaRifle
+    | EnhForceRifle
+    | HvyGatlingLaser
+    | ZioPhasers
+    | PhaseGun
+    | DispersionRifle
+    | BackupLaserVii
+    | PlasmaStorm
+    | AdvPlasmaRifle
+    | HvyWaveGun
+    | AdvVariableChargeGun
+    | CldPhaseGun
+    | LrnGatlingLaser
+    | WarpGun
+    | VortexRifle
+    | ZioLaserm
+    | Awsthermal
+    | PdLaser
+    | QuantumRifle
+    | PrcPhaseGun
+    | HvyDispersionRifle
+    | VortexShotgun
+    | VortexRail
+    | ZioPhaserm
+    | EnhQuantumRifle
+    | ZioLaserh
+    | HvyQuantumRifle
+    | ZioPhaserh
+    | GatlingBeam
+    | SigixSheargun
+    | ModifiedSigixSheargun
+    | LgtEmPulseCannon
+    | EmPulseCannon
+    | ImpEmPulseCannon
+    | ProtonCannon
+    | LrnProtonCannon
+    | DisruptorCannon
+    | HvyProtonCannon
+    | HerfCannon
+    | HvyDisruptorCannon
+    | CldProtonCannon
+    | ProtonBurstCannon
+    | ComHerfCannon
+    | LatentEnergyStreamer
+    | Nk0lasTeslaDoomcannon
+    | Emds
+    | HpwDisruptorCannon
+    | BeamCannon
+    | ParticleCannon
+    | AdvBeamCannon
+    | HvyParticleCannon
+    | IonCannon
+    | PlasmaCannon
+    | HvyIonCannon
+    | CldParticleCannon
+    | PhaseCannon
+    | HvyPlasmaCannon
+    | CldPlasmaCannon
+    | ComIonCannon
+    | IonBurstCannon
+    | AdvPlasmaCannon
+    | HvyPhaseCannon
+    | NeutronCannon
+    | MatterNeutralizer
+    | HvyNeutronCannon
+    | LrnPhaseCannon
+    | CldPhaseCannon
+    | VortexCannon
+    | GuiPlasmaCannon
+    | NovaCannon
+    | ImpMatterNeutralizer
+    | VortexDriver
+    | ZioAlphaCannon
+    | AsbFocalCannon
+    | EnhNovaCannon
+    | Firepult
+    | YoloCannon
+    | PotentialCannon
+    | WarpCannon
+    | CldNovaCannon
+    | NullCannon
+    | ImpPotentialCannon
+    | Disintegrator
+    | CoreCannon
+    | SigixShearcannon
+    | DrainedLcannon
+    | Lcannon
+    | ZioAlphaCannonMkIi
+    | Bfg9kVortexEdition
+    | AssaultRifle
+    | AsbRifle
+    | LgtAssaultRifle
+    | HvyAssaultRifle
+    | Autogun
+    | Shotgun
+    | BattleRifle
+    | AsbHeavyRifle
+    | ImpAssaultRifle
+    | Minigun
+    | HpwShotgun
+    | AsbShotgun
+    | BarrageGun
+    | EnhAutogun
+    | GaussRifle
+    | AsbGaussRifle
+    | FlakGun
+    | PrcAssaultRifle
+    | HvyBattleRifle
+    | MakShrapnelGun
+    | CoilGun
+    | HypGaussRifle
+    | HvyMachineGun
+    | ImpHeavyMachineGun
+    | ComGaussRifle
+    | XlAutogunSubcomponent
+    | KePenetrator
+    | HypCoilGun
+    | ImpKePenetrator
+    | EnhCoilGun
+    | ComCoilGun
+    | Railgun
+    | AdvKePenetrator
+    | LinkedAutogun
+    | Awsgauss
+    | HypRailgun
+    | HelicalRailgun
+    | ComRailgun
+    | XlAutogunArray
+    | AshsBoomstick
+    | BrawnsBoregun
+    | Multirail
+    | HypMultirail
+    | Shad0sSniperRifle
+    | A3sSniperRifle
+    | LgtCannon
+    | ImpLightCannon
+    | BattleCannon
+    | AssaultCannon
+    | HvyAssaultCannon
+    | FlakCannon
+    | AdvAssaultCannon
+    | GaussCannon
+    | SlugCannon
+    | MniAssaultCannon
+    | MagneticAccelerationCannon
+    | HvyFlakCannon
+    | BoreCannon
+    | AntimatterCannon
+    | MassDriver
+    | HvyMassDriver
+    | EnhGaussCannon
+    | HypGaussCannon
+    | TrirailAccelerator
+    | HardcellCannon
+    | HvyGaussCannon
+    | HypMassDriver
+    | HvyAutocannon
+    | DasCannon
+    | LgtAntimatterCannon
+    | LinearAccelerator
+    | HvyLinearAccelerator
+    | ComMassDriver
+    | HvyHardcellCannon
+    | ComLinearAccelerator
+    | HypLinearAccelerator
+    | HclLinearAccelerator
+    | GravitonCannon
+    | BlastCannon
+    | P13cesGatlingFlakker
+    | Awsautocannon
+    | Perforator
+    | OmegaCannon
+    | EmpBlaster
+    | ShockBombLauncher
+    | AdvEmpBlaster
+    | ProtonMissileLauncher
+    | ImpProtonMissileLauncher
+    | GuiEmpBlaster
+    | HvyShockBombLauncher
+    | TeslaBombLauncher
+    | HvyProtonMissileLauncher
+    | ComTeslaBombLauncher
+    | GammaBombArray
+    | EnhGammaBombArray
+    | GrenadeLauncher
+    | RocketLauncher
+    | MniGrenadeLauncher
+    | ImpGrenadeLauncher
+    | MissileLauncher
+    | ConcussiveRpg
+    | Yiuf0sDoublenader
+    | HvyRocketLauncher
+    | HvyMissileLauncher
+    | GuiMissileLauncher
+    | PrcGrenadeLauncher
+    | RocketArray
+    | LrnMissileLauncher
+    | ImpConcussiveRpg
+    | PrcRocketLauncher
+    | ScatterRocketArray
+    | SmartbombLauncher
+    | MniSmartbombLauncher
+    | TiamatMissileLauncher
+    | Thermoblaster
+    | MicronukeLauncher
+    | AdvConcussiveRpg
+    | NeutronMissileLauncher
+    | FusionBombLauncher
+    | HellfireMissileLauncher
+    | AdvMicronukeLauncher
+    | TacticalQuantumWarhead
+    | VortexCatalystActivator
+    | ChainMissileLauncher
+    | RagnarokMissileLauncher
+    | PointSingularityLauncher
+    | GuiMicronukeLauncher
+    | NinteyNineTntsNukerbomber
+    | ZbombDeliverySystem
+    | SigixTerminator
+    | SuperchargedSigixTerminator
+    | ContainmentFacilitator
+    | Detonator
+    | DirtyDatajack
+    | SpliceInjector
+    | Datajack
+    | ImpDatajack
+    | AdvDatajack
+    | RemoteDatajack
+    | ImpRemoteDatajack
+    | AdvRemoteDatajack
+    | ExpRemoteDatajack
+    | GuiRemoteDatajack
+    | MerlnsWand
+    | FieldLobotomyKit
+    | MiningLaser
+    | WeldingTorch
+    | PlasmaCutter
+    | ImpPlasmaCutter
+    | Flamer
+    | AsbFtorch
+    | EnhFlamer
+    | PlasmaFlamer
+    | AsbPtorch
+    | Run14sThrowingClaymores
+    | Run14sThrowingClaymoresV3
+    | Ad0rfsMagmablaster
+    | StasisBeam
+    | StasisProjector
+    | ExpStasisProjector
+    | MolecularDeconstructor
+    | Hammer
+    | Mace
+    | Flail
+    | Maul
+    | AsbMaul
+    | HvyHammer
+    | HvyMace
+    | HvyFlail
+    | GreatMaul
+    | PoweredHammer
+    | MakHammer
+    | PowerMaul
+    | AsbPmaul
+    | ImpactMace
+    | ShockMaul
+    | ThunderHammer
+    | Compactor
+    | GravityFlail
+    | ClanksMallet
+    | CoreStripper
+    | MiningClaw
+    | Ec_1
+    | Katana
+    | AsbBlade
+    | Scythe
+    | Axe
+    | BladeSaw
+    | Ec_3
+    | Chainsword
+    | Ripper
+    | MakAxe
+    | MakSword
+    | GreatAxe
+    | Greatsword
+    | PowerSword
+    | AsbPsword
+    | Falx
+    | CarbideSaw
+    | Segregator
+    | Tearclaws
+    | Ec_5
+    | PhasingSabre
+    | PlasmaSword
+    | IonicAxe
+    | MniTearclaws
+    | DualbladeSaw
+    | Vibroblade
+    | MolecularScythe
+    | CentriumGreatsword
+    | MasterTearclaws
+    | Longsword1
+    | Ec_7
+    | Nanosword
+    | ParticleCleaver
+    | CentriumClaws
+    | IcutusSwordlootmaker
+    | IcutusSwordchoppy
+    | VortexShredder
+    | Ec_9
+    | SigixBroadsword
+    | Spear
+    | MakSpear
+    | Cra16sPointyStick
+    | HvyPick
+    | Lance
+    | KineticSpear
+    | ForceLance
+    | PlasmaLance
+    | EnhForceLance
+    | VortexLance
+    | Cra16sBehemothSlayer
+    | BladeTrap
+    | SegregatorTrap
+    | ExplosiveTrap
+    | HeavyExplosiveTrap
+    | TiamatBombTrap
+    | FusionBombTrap
+    | HellfireTrap
+    | ArmageddonTrap
+    | DirtyBombTrap
+    | EmpTrap
+    | ProtonBombTrap
+    | TeslaBombTrap
+    | GammaBombTrap
+    | ShockTrap
+    | EmSurgeTrap
+    | FireTrap
+    | StasisTrap
+    | SignalGenerator
+    | SelfdestructInterrupter
+    | SapperCharge
+    | Deployasentry
+    | GalModule
+    | PortableAfg
+    | SgempPrototype
+    | TerrabombDerivative
+    | SigixContainmentPod
+    | SigixCorpse
+    | Meganuke
+    | GammaRefractor
 
-type item =
-    | Matter = 0
-    | DataCore = 1
-    | DerelictLog = 2
-    | SchematicArchive = 3
-    | ImprinterDataCore = 4
-    | A2DataCore = 5
-    | A7DataCore = 6
-    | MaincDataCore = 7
-    | ArchitectDataCore = 8
-    | Scrap = 9
-    | Protomatter = 10
-    | IonEngine = 11
-    | LgtIonEngine = 12
-    | BackupPowerI = 13
-    | ImpIonEngine = 14
-    | RnfIonEngine = 15
-    | HvyIonEngine = 16
-    | CldIonEngine = 17
-    | DeuteriumEngine = 18
-    | LgtDeuteriumEngine = 19
-    | BackupPowerIii = 20
-    | NuclearCore = 21
-    | LgtNuclearCore = 22
-    | ImpDeuteriumEngine = 23
-    | RnfDeuteriumEngine = 24
-    | HybDeuteriumEngine = 25
-    | HvyDeuteriumEngine = 26
-    | CldDeuteriumEngine = 27
-    | EnhNuclearCore = 28
-    | MicNuclearCore = 29
-    | MakPowerSource = 30
-    | AngularMomentumEngine = 31
-    | LgtAngularMomentumEngine = 32
-    | FcellEngine = 33
-    | FissionCore = 34
-    | LgtFissionCore = 35
-    | HybFissionCore = 36
-    | FusionCompressor = 37
-    | ColdFusionReactor = 38
-    | NeutrinoCore = 39
-    | LgtNeutrinoCore = 40
-    | RnfFissionCore = 41
-    | EnhFissionCore = 42
-    | CldFissionCore = 43
-    | MicFissionCore = 44
-    | FusionReactor = 45
-    | AntimatterReactor = 46
-    | LgtAntimatterReactor = 47
-    | RnfAntimatterReactor = 48
-    | HybAntimatterReactor = 49
-    | BackupPowerVii = 50
-    | HvyAntimatterReactor = 51
-    | MniFusionReactor = 52
-    | ImpFusionCompressor = 53
-    | MicNeutrinoCore = 54
-    | ZioLightDmReactor = 55
-    | ZioHeavyDmReactor = 56
-    | ParticleReactor = 57
-    | LgtParticleReactor = 58
-    | MicAntimatterReactor = 59
-    | ComParticleReactor = 60
-    | CldAntimatterReactor = 61
-    | GravitonReactor = 62
-    | AsbFluxGenerator = 63
-    | QuantumReactor = 64
-    | LgtQuantumReactor = 65
-    | RnfQuantumReactor = 66
-    | ImpQuantumReactor = 67
-    | ZeropointReactor = 68
-    | VortexChainReactor = 69
-    | SingularityReactor = 70
-    | MatterDrive = 71
-    | LgtTreads = 72
-    | ImpTreads = 73
-    | SpkTreads = 74
-    | ArmTreads = 75
-    | AdvTreads = 76
-    | MedTreads = 77
-    | ImpMediumTreads = 78
-    | SpkMediumTreads = 79
-    | ArmMediumTreads = 80
-    | HvyTreads = 81
-    | AdvMediumTreads = 82
-    | EnhArmoredMediumTreads = 83
-    | ImpHeavyTreads = 84
-    | HvySiegeTreads = 85
-    | SpkHeavyTreads = 86
-    | BiometalMediumTreads = 87
-    | ArmHeavyTreads = 88
-    | AdvHeavyTreads = 89
-    | ImpHeavySiegeTreads = 90
-    | CentriumHeavyTreads = 91
-    | Megatreads = 92
-    | BiometalHeavyTreads = 93
-    | ExpBiometalHeavyTreads = 94
-    | EnhArmoredHeavyTreads = 95
-    | AdvHeavySiegeTreads = 96
-    | HdnCentriumHeavyTreads = 97
-    | ExpBiometalMediumTreads = 98
-    | AluminumLeg = 99
-    | ImpAluminumLeg = 100
-    | CarbonfiberLeg = 101
-    | TitaniumLeg = 102
-    | VssLeg = 103
-    | ImpCarbonfiberLeg = 104
-    | ImpTitaniumLeg = 105
-    | MakLeg = 106
-    | FlexicarbonLeg = 107
-    | ArmLeg = 108
-    | ImpVssLeg = 109
-    | ZioCompositeLegI = 110
-    | EnhFlexicarbonLeg = 111
-    | EnhArmoredLeg = 112
-    | MyomerLeg = 113
-    | AdvVssLeg = 114
-    | AdvMyomerLeg = 115
-    | ExpFlexicarbonLeg = 116
-    | ZioCompositeLegIi = 117
-    | EtherialTendrils = 118
-    | BiometalLeg = 119
-    | EnhBiometalLeg = 120
-    | ExpMyomerLeg = 121
-    | TrollExoskeleton = 122
-    | AsbAlloyLeg = 123
-    | CentriumLeg = 124
-    | HdnCentriumLeg = 125
-    | ExpBiometalLeg = 126
-    | SigixExoskeleton = 127
-    | ZioSupercompositeLeg = 128
-    | PotentialLeg = 129
-    | MyomerExoskeleton = 130
-    | Wheel = 131
-    | ComWheel = 132
-    | ArmWheel = 133
-    | ArmHugeWheel = 134
-    | CentriumWheel = 135
-    | HdnCentriumWheel = 136
-    | HoverUnit = 137
-    | BackupPropulsionI = 138
-    | ImpHoverUnit = 139
-    | Airjet = 140
-    | AerolevUnit = 141
-    | AsbHoverUnit = 142
-    | BackupPropulsionIii = 143
-    | GravmagSystem = 144
-    | AsbHoverSystem = 145
-    | ImpAirjet = 146
-    | CldAirjet = 147
-    | ImpGravmagSystem = 148
-    | CldAerolevUnit = 149
-    | CmbAirjet = 150
-    | GravmagArray = 151
-    | MakHoverUnit = 152
-    | ZioGlidesysI = 153
-    | AntigravSystem = 154
-    | GyrokineticInverter = 155
-    | LinearGravjet = 156
-    | CldGravmagSystem = 157
-    | CmbGravmagSystem = 158
-    | ImpAntigravSystem = 159
-    | ImpGyrokineticInverter = 160
-    | ImpLinearGravjet = 161
-    | BackupPropulsionVii = 162
-    | ZioGlidesysIi = 163
-    | CldAntigravSystem = 164
-    | CmbAntigravSystem = 165
-    | AntigravArray = 166
-    | ExpGyrokineticInverter = 167
-    | CldLinearGravjet = 168
-    | CmbLinearGravjet = 169
-    | FlightUnit = 170
-    | VtolModule = 171
-    | ImpFlightUnit = 172
-    | CesiumionThruster = 173
-    | SurgeThruster = 174
-    | ImpVtolModule = 175
-    | XenonBombardmentThruster = 176
-    | ImpCesiumionThruster = 177
-    | CldVtolModule = 178
-    | MakFlightUnit = 179
-    | NuclearPulseThruster = 180
-    | ImpSurgeThruster = 181
-    | MniNuclearPulseThruster = 182
-    | CldCesiumionThruster = 183
-    | BiomechanicalWings = 184
-    | FieldPropulsionDrive = 185
-    | CldNuclearPulseThruster = 186
-    | ExpCesiumionThruster = 187
-    | NuclearPulseArray = 188
-    | MakMicrothruster = 189
-    | ImpulseThruster = 190
-    | AdvSurgeThruster = 191
-    | CldFieldPropulsionDrive = 192
-    | FieldPropulsionArray = 193
-    | DiametricDrive = 194
-    | FlyingFortressV7 = 195
-    | Tthruster = 196
-    | IntegratedTrackerDrive = 197
-    | EtherialPropulsion = 198
-    | Qthruster = 199
-    | ElectronDiverter = 200
-    | ImpDiametricDrive = 201
-    | CldImpulseThruster = 202
-    | ImpulseThrusterArray = 203
-    | ImpQthruster = 204
-    | CldQthruster = 205
-    | ExpQthruster = 206
-    | Desublimator = 207
-    | PowerAmplifier = 208
-    | AdvPowerAmplifier = 209
-    | ExpPowerAmplifier = 210
-    | ThermalGenerator = 211
-    | ImpThermalGenerator = 212
-    | AdvThermalGenerator = 213
-    | ExpThermalGenerator = 214
-    | CryofiberWeb = 215
-    | ImpCryofiberWeb = 216
-    | AdvCryofiberWeb = 217
-    | HeatSink = 218
-    | ImpHeatSink = 219
-    | AdvHeatSink = 220
-    | ExpHeatSink = 221
-    | CoolingSystem = 222
-    | ImpCoolingSystem = 223
-    | AdvCoolingSystem = 224
-    | ExpCoolingSystem = 225
-    | CoolantNetwork = 226
-    | AsbNanovents = 227
-    | FrostArray = 2282
-    | DisposableHeatSink = 229
-    | CoolantInjector = 230
-    | ImpCoolantInjector = 231
-    | AdvCoolantInjector = 232
-    | ExpCoolantInjector = 233
-    | SmlStorageUnit = 234
-    | MedStorageUnit = 235
-    | LrgStorageUnit = 236
-    | HcpStorageUnit = 237
-    | HugeStorageUnit = 238
-    | CargoStorageUnit = 239
-    | Humpback = 240
-    | Lightpack20 = 241
-    | SmlBattery = 242
-    | MedBattery = 243
-    | LrgBattery = 244
-    | HcpBattery = 245
-    | ComBattery = 246
-    | EnergyWell = 247
-    | ImpEnergyWell = 248
-    | AdvEnergyWell = 249
-    | ExpEnergyWell = 250
-    | ZioBiocell = 251
-    | AsbBiocellArray = 252
-    | ZioBiocellArray = 253
-    | Superbattery = 254
-    | SmlMatterPod = 255
-    | MedMatterPod = 256
-    | LrgMatterPod = 257
-    | HcpMatterPod = 258
-    | ComMatterPod = 259
-    | MatterCompressor = 260
-    | ImpMatterCompressor = 261
-    | AdvMatterCompressor = 262
-    | ExpMatterCompressor = 263
-    | Yiuf0sBottomlessMatterPit = 264
-    | WeightRedistSystem = 265
-    | AdvWeightRedistSystem = 266
-    | GravityNeutralizer = 267
-    | AdvGravityNeutralizer = 268
-    | QuantumShadingMachine = 269
-    | AsbSuspensionFrame = 270
-    | AdvQuantumShadingMachine = 271
-    | AsbMetafiberNetwork = 272
-    | ZioMetafieldGenerator = 273
-    | StFieldCompressor = 274
-    | StructuralScanner = 275
-    | TrapScanner = 276
-    | ImpTrapScanner = 277
-    | MakTrapScanner = 278
-    | AdvTrapScanner = 279
-    | MachineAnalyzer = 280
-    | Triangulator = 281
-    | VisualProcessingUnit = 282
-    | AdvVisualProcessingUnit = 283
-    | EnhOpticalArray = 284
-    | ExpOpticalArray = 285
-    | SpectralAnalyzer = 286
-    | SensorArray = 287
-    | ImpSensorArray = 288
-    | AdvSensorArray = 289
-    | LrnSensorArray = 290
-    | MakSensorArray = 291
-    | ExpSensorArray = 292
-    | SignalInterpreter = 293
-    | ImpSignalInterpreter = 294
-    | AdvSignalInterpreter = 295
-    | ExpSignalInterpreter = 296
-    | ActiveSensorSuite = 297
-    | TerrainScanner = 298
-    | ImpTerrainScanner = 299
-    | AdvTerrainScanner = 300
-    | MakTerrainScanner = 301
-    | LrnTerrainScanner = 302
-    | ExpTerrainScanner = 303
-    | Surveybot24Scanner = 304
-    | TerrainScanProcessor = 305
-    | ImpTerrainScanProcessor = 306
-    | MakTerrainScanProcessor = 307
-    | AdvTerrainScanProcessor = 308
-    | ExpTerrainScanProcessor = 309
-    | Surveybot24Chip = 310
-    | SeismicDetector = 311
-    | TransportNetworkCoupler = 312
-    | ModifiedTnc = 313
-    | b10DecoderChipgeneric = 3140
-    | b10DecoderChiplooter = 3150
-    | b10DecoderChipscout = 3160
-    | b10DecoderChipskirmisher = 3170
-    | b10AlertChip = 3180
-    | SalvageTargetingComputer = 319
-    | ImpSalvageTargetingComputer = 320
-    | MakSalvageTargetingComputer = 321
-    | AdvSalvageTargetingComputer = 322
-    | AsbCombatSuite = 323
-    | TargetingComputer = 324
-    | ImpTargetingComputer = 325
-    | AdvTargetingComputer = 326
-    | ExpTargetingComputer = 327
-    | TacticalCoordinationSuite = 328
-    | MeleeAnalysisSuite = 329
-    | ImpMeleeAnalysisSuite = 330
-    | AdvMeleeAnalysisSuite = 331
-    | ExpMeleeAnalysisSuite = 332
-    | LauncherGuidanceComputer = 333
-    | ImpLauncherGuidanceComputer = 334
-    | AdvLauncherGuidanceComputer = 335
-    | TargetAnalyzer = 336
-    | ImpTargetAnalyzer = 337
-    | AdvTargetAnalyzer = 338
-    | ExpTargetAnalyzer = 339
-    | CoreAnalyzer = 340
-    | ExpCoreAnalyzer = 341
-    | ArmorIntegrityAnalyzer = 342
-    | ImpArmorIntegrityAnalyzer = 343
-    | ExpArmorIntegrityAnalyzer = 344
-    | RecoilStabilizer = 345
-    | RecoilNullifier = 346
-    | MatterFilter = 347
-    | PrcMatterFilter = 348
-    | EnergyFilter = 349
-    | PrcEnergyFilter = 350
-    | ParticleCharger = 351
-    | ImpParticleCharger = 352
-    | AdvParticleCharger = 353
-    | ParticleAccelerator = 354
-    | ImpParticleAccelerator = 355
-    | AdvParticleAccelerator = 356
-    | Kinecellerator = 357
-    | ImpKinecellerator = 358
-    | AdvKinecellerator = 359
-    | LauncherLoader = 360
-    | QuantumCapacitor = 361
-    | WeaponCycler = 362
-    | ImpWeaponCycler = 363
-    | AdvWeaponCycler = 364
-    | ExpWeaponCycler = 365
-    | Microactuators = 366
-    | Nanoactuators = 367
-    | Femtoactuators = 368
-    | ActuatorArray = 369
-    | ImpActuatorArray = 370
-    | AdvActuatorArray = 371
-    | ExpActuatorArray = 372
-    | ForceBooster = 373
-    | ImpForceBooster = 374
-    | AdvForceBooster = 375
-    | StasisCanceller = 376
-    | TransmissionJammer = 377
-    | MakTransmissionJammer = 378
-    | ImpTransmissionJammer = 379
-    | AdvTransmissionJammer = 380
-    | ExpTransmissionJammer = 381
-    | EcmSuite = 382
-    | MakEcmSuite = 383
-    | AdvEcmSuite = 384
-    | ExpEcmSuite = 385
-    | ReactionControlSystem = 386
-    | ImpReactionControlSystem = 387
-    | AdvReactionControlSystem = 388
-    | ExpReactionControlSystem = 389
-    | PhaseShifter = 390
-    | ImpPhaseShifter = 391
-    | AdvPhaseShifter = 392
-    | ExpPhaseShifter = 393
-    | CloakingDevice = 394
-    | MakCloakingDevice = 395
-    | ImpCloakingDevice = 396
-    | AdvCloakingDevice = 397
-    | ExpCloakingDevice = 398
-    | CloakOfProtection = 399
-    | had0sCloak = 4005
-    | CoreShielding = 401
-    | ImpCoreShielding = 402
-    | ExpCoreShielding = 403
-    | PowerShielding = 404
-    | ImpPowerShielding = 405
-    | ExpPowerShielding = 406
-    | PropulsionShielding = 407
-    | ImpPropulsionShielding = 408
-    | ExpPropulsionShielding = 409
-    | UtilityShielding = 410
-    | ImpUtilityShielding = 411
-    | ExpUtilityShielding = 412
-    | WeaponShielding = 413
-    | ImpWeaponShielding = 414
-    | ExpWeaponShielding = 415
-    | ZioWeaponCasing = 416
-    | LgtArmorPlating = 417
-    | MedArmorPlating = 418
-    | HvyArmorPlating = 419
-    | ZioLightCarapace = 420
-    | ZioHeavyCarapace = 421
-    | HrdLightArmorPlating = 422
-    | HrdMediumArmorPlating = 423
-    | HrdHeavyArmorPlating = 424
-    | ImpLightArmorPlating = 425
-    | ImpMediumArmorPlating = 426
-    | ImpHeavyArmorPlating = 427
-    | LyrLightArmorPlating = 428
-    | MakArmorPlating = 429
-    | LyrMediumArmorPlating = 430
-    | LyrHeavyArmorPlating = 431
-    | CentriumLightArmorPlating = 432
-    | CentriumMediumArmorPlating = 433
-    | CentriumHeavyArmorPlating = 434
-    | CentriumLinkedPlating = 435
-    | ReactivePlating = 436
-    | MedReactivePlating = 437
-    | MakKineticPlating = 438
-    | HvyReactivePlating = 439
-    | ReflectivePlating = 440
-    | MedReflectivePlating = 441
-    | MakThermalPlating = 442
-    | HvyReflectivePlating = 443
-    | rawnsArmorth = 4448
-    | rawnsArmorex = 4458
-    | InsulatedPlating = 446
-    | MedInsulatedPlating = 447
-    | HvyInsulatedPlating = 448
-    | DamperPlating = 449
-    | ZioShadeCarapace = 450
-    | ZioShadeArmor = 451
-    | AsbAlloyArmor = 452
-    | MakAblativeArmor = 453
-    | ActiveCoolingArmor = 454
-    | PoweredArmor = 455
-    | ImpPoweredArmor = 456
-    | AdvPoweredArmor = 457
-    | ExpPoweredArmor = 458
-    | cutusBuckler = 4591
-    | LgtRegenerativePlating = 460
-    | MedRegenerativePlating = 461
-    | HvyRegenerativePlating = 462
-    | ShellArmor = 463
-    | PhaseArmor = 464
-    | GrapheneBrace = 465
-    | FocalShield = 466
-    | ImpFocalShield = 467
-    | AdvFocalShield = 468
-    | ExpFocalShield = 469
-    | ThermalShield = 470
-    | ImpThermalShield = 471
-    | AdvThermalShield = 472
-    | ExpThermalShield = 473
-    | ThermalBarrier = 474
-    | BeamSplitter = 475
-    | ThermalDefenseSuite = 476
-    | ImpThermalDefenseSuite = 477
-    | AdvThermalDefenseSuite = 478
-    | ExpThermalDefenseSuite = 479
-    | ShockAbsorptionSystem = 480
-    | ImpShockAbsorptionSystem = 481
-    | ExpShockAbsorptionSystem = 482
-    | EmDisruptionField = 483
-    | AdvEmDisruptionField = 484
-    | ExpEmDisruptionField = 485
-    | MerlnsChromaticScreen = 486
-    | HardlightGenerator = 487
-    | ImpHardlightGenerator = 488
-    | AdvHardlightGenerator = 489
-    | ExpHardlightGenerator = 490
-    | ShieldGenerator = 491
-    | ImpShieldGenerator = 492
-    | AdvShieldGenerator = 493
-    | ExpShieldGenerator = 494
-    | ForceField = 495
-    | ImpForceField = 496
-    | AdvForceField = 497
-    | ExpForceField = 498
-    | vrtlsUltimateField = 4997
-    | VortexFieldProjector = 500
-    | RemoteShield = 501
-    | ImpRemoteShield = 502
-    | AdvRemoteShield = 503
-    | RemoteForceField = 504
-    | ImpRemoteForceField = 505
-    | EnergyMantle = 506
-    | ImpEnergyMantle = 507
-    | AegisRemoteShield = 508
-    | PhaseRedirector = 509
-    | PointDefenseSystem = 510
-    | PointDefenseArray = 511
-    | AntimissileSystem = 512
-    | ExChip1 = 513
-    | HackingSuite = 514
-    | MakHackingSuite = 515
-    | ImpHackingSuite = 516
-    | AdvHackingSuite = 517
-    | ExpHackingSuite = 518
-    | SystemMapper = 519
-    | DeepNetworkScanner = 520
-    | ArchitectGodChipA = 521
-    | ExChip2 = 522
-    | SystemShield = 523
-    | MakSystemShield = 524
-    | ImpSystemShield = 525
-    | AdvSystemShield = 526
-    | ExpSystemShield = 527
-    | GhostBarrier = 528
-    | QuantumRouter = 529
-    | ArchitectGodChipD = 530
-    | Authchiprnc = 531
-    | Authchiprcombat = 532
-    | Authchippower = 533
-    | Authchippropulsion = 534
-    | Authchipdevice = 535
-    | Authchipstorage = 536
-    | Authchipprocessor = 537
-    | Authchiparmor = 538
-    | Authchipweapon = 539
-    | RelayCouplernc = 540
-    | RelayCouplerc = 541
-    | RelayCouplerarc = 542
-    | RelayCouplerswarmer = 543
-    | RelayCouplercutter = 544
-    | RelayCouplergrunt = 545
-    | RelayCouplerbrawler = 546
-    | RelayCouplerduelist = 547
-    | RelayCouplersentry = 548
-    | RelayCouplerdemolisher = 549
-    | RelayCouplerspecialist = 550
-    | RelayCouplerhunter = 551
-    | RelayCouplerheavy = 552
-    | RelayCouplerbehemoth = 553
-    | RelayCouplerprogrammer = 554
-    | SkeletonBox = 555
-    | mtfsAutohacker = 55601
-    | ComponentAnalysisSuite = 557
-    | ImpComponentAnalysisSuite = 558
-    | AdvComponentAnalysisSuite = 559
-    | DynamicInsulationSystem = 560
-    | ImpDynamicInsulationSystem = 561
-    | AdvDynamicInsulationSystem = 562
-    | SystemGuard = 563
-    | ImpSystemGuard = 564
-    | ExpSystemGuard = 565
-    | CorruptionScreen = 566
-    | ImpCorruptionScreen = 567
-    | AdvCorruptionScreen = 568
-    | SystemRestorationModule = 569
-    | MakSystemRestorationModule = 570
-    | ImpSystemRestorationModule = 571
-    | AdvSystemRestorationModule = 572
-    | SystemPurifier = 573
-    | ExpSystemPurifier = 574
-    | TractorBeam = 575
-    | HpwTractorBeam = 576
-    | LrnTractorBeam = 577
-    | MobileRefineryMkCclxvii = 578
-    | TrapExtractor = 579
-    | ImpTrapExtractor = 580
-    | AdvTrapExtractor = 581
-    | TrapReconfigurator = 582
-    | Recalibrator = 583
-    | ImpRecalibrator = 584
-    | AdvRecalibrator = 585
-    | FieldRecyclingUnit = 586
-    | ImpFieldRecyclingUnit = 587
-    | AdvFieldRecyclingUnit = 588
-    | ExpFieldRecyclingUnit = 589
-    | DroneBay = 590
-    | ZdroneBay = 591
-    | MniDroneBay = 592
-    | MappingDroneBay = 593
-    | AdvDroneBay = 594
-    | BombDroneBay = 595
-    | ThiefDroneBay = 596
-    | DecoyDroneBay = 597
-    | SpliceDroneBay = 598
-    | CombatDroneBay = 599
-    | AssaultDroneBay = 600
-    | StealthDroneBay = 601
-    | SwarmDroneBay = 602
-    | SupersonicDroneBay = 603
-    | SensorDroneBay = 604
-    | HackingDroneBay = 605
-    | MinesnifferDroneBay = 606
-    | Armyinabox = 607
-    | WardroneBay = 608
-    | BombFactoryNo2 = 609
-    | MobileAssemblyUnit = 610
-    | HeartOfSteel = 611
-    | GolemUnit = 612
-    | PsuRigger = 613
-    | PhasingAfg = 614
-    | AsneutralizerNo17b = 615
-    | Chronowheel = 616
-    | DimensionalNodeInitializer = 617
-    | TransdimensionalReconstructor = 618
-    | HpwTransdimensionalReconstructor = 619
-    | CoreExpander = 620
-    | CoreRegenerator = 621
-    | IntegrityRedistributor = 622
-    | IntegratedDissipator = 623
-    | SuperchargedIntegratedDissipator = 624
-    | IntegratedThermoelectricNetwork = 625
-    | IntegratedReactor = 626
-    | SuperchargedIntegratedReactor = 627
-    | IntegratedMediator = 628
-    | CoreMembrane = 629
-    | NavigationEfficiencyMatrix = 630
-    | CoreResetMatrix = 631
-    | SubatomicReplicator = 632
-    | Terrabomb = 633
-    | CorePhysicsCalibrator = 634
-    | SpacefoldActivator = 635
-    | MicrowarpDrive = 636
-    | LcCapacitor = 637
-    | LrcArmor = 638
-    | LrcStorage = 639
-    | LrcEnergyWell = 640
-    | LrcMatterCompressor = 641
-    | LrcBoosters = 642
-    | LrcInsulator = 643
-    | EmPulseGun = 644
-    | HvyEmPulseGun = 645
-    | EmShotgun = 646
-    | ImpEmShotgun = 647
-    | ShockRifle = 648
-    | RiotGun = 649
-    | HvyEmShotgun = 650
-    | LightningGun = 651
-    | HvyRiotGun = 652
-    | ArcProjector = 653
-    | PrcShockRifle = 654
-    | HpwShockRifle = 655
-    | ArcThrower = 656
-    | ImpLightningGun = 657
-    | TeslaRifle = 658
-    | ImpArcProjector = 659
-    | HvyTeslaRifle = 660
-    | HypEmGaussRifle = 661
-    | ImpArcThrower = 662
-    | mtfsShockpuncher = 66301
-    | GammaRifle = 664
-    | TachyonDispersionRay = 665
-    | Immobilizer = 666
-    | ModifiedEmGaussRifle = 667
-    | Awsexdec = 668
-    | EnhGammaRifle = 669
-    | MedLaser = 670
-    | SmlLaser = 671
-    | BackupLaserI = 672
-    | BeamRifle = 673
-    | ParticleGun = 674
-    | SpreadLaser = 675
-    | ImpMediumLaser = 676
-    | FieldLaser = 677
-    | PulseRifle = 678
-    | BackupLaserIii = 679
-    | HvyParticleGun = 680
-    | PrcBeamRifle = 681
-    | AdvBeamRifle = 682
-    | HvyLaser = 683
-    | GatlingLaser = 684
-    | CldPulseRifle = 685
-    | HpwFieldLaser = 686
-    | ImpSpreadLaser = 687
-    | MakLaser = 688
-    | PlasmaRifle = 689
-    | ThermicLaser = 690
-    | Beamcaster = 691
-    | ForceRifle = 692
-    | ImpHeavyLaser = 693
-    | StormLaser = 694
-    | ZioLasers = 695
-    | WaveGun = 696
-    | VariableChargeGun = 697
-    | HvyBeamcaster = 698
-    | CldPlasmaRifle = 699
-    | EnhForceRifle = 700
-    | HvyGatlingLaser = 701
-    | ZioPhasers = 702
-    | PhaseGun = 703
-    | DispersionRifle = 704
-    | BackupLaserVii = 705
-    | PlasmaStorm = 706
-    | AdvPlasmaRifle = 707
-    | HvyWaveGun = 708
-    | AdvVariableChargeGun = 709
-    | CldPhaseGun = 710
-    | LrnGatlingLaser = 711
-    | WarpGun = 712
-    | VortexRifle = 713
-    | ZioLaserm = 714
-    | Awsthermal = 715
-    | PdLaser = 716
-    | QuantumRifle = 717
-    | PrcPhaseGun = 718
-    | HvyDispersionRifle = 719
-    | VortexShotgun = 720
-    | VortexRail = 721
-    | ZioPhaserm = 722
-    | EnhQuantumRifle = 723
-    | ZioLaserh = 724
-    | HvyQuantumRifle = 725
-    | ZioPhaserh = 726
-    | GatlingBeam = 727
-    | SigixSheargun = 728
-    | ModifiedSigixSheargun = 729
-    | LgtEmPulseCannon = 730
-    | EmPulseCannon = 731
-    | ImpEmPulseCannon = 732
-    | ProtonCannon = 733
-    | LrnProtonCannon = 734
-    | DisruptorCannon = 735
-    | HvyProtonCannon = 736
-    | HerfCannon = 737
-    | HvyDisruptorCannon = 738
-    | CldProtonCannon = 739
-    | ProtonBurstCannon = 740
-    | ComHerfCannon = 741
-    | LatentEnergyStreamer = 742
-    | Nk0lasTeslaDoomcannon = 743
-    | Emds = 744
-    | HpwDisruptorCannon = 745
-    | BeamCannon = 746
-    | ParticleCannon = 747
-    | AdvBeamCannon = 748
-    | HvyParticleCannon = 749
-    | IonCannon = 750
-    | PlasmaCannon = 751
-    | HvyIonCannon = 752
-    | CldParticleCannon = 753
-    | PhaseCannon = 754
-    | HvyPlasmaCannon = 755
-    | CldPlasmaCannon = 756
-    | ComIonCannon = 757
-    | IonBurstCannon = 758
-    | AdvPlasmaCannon = 759
-    | HvyPhaseCannon = 760
-    | NeutronCannon = 761
-    | MatterNeutralizer = 762
-    | HvyNeutronCannon = 763
-    | LrnPhaseCannon = 764
-    | CldPhaseCannon = 765
-    | VortexCannon = 766
-    | GuiPlasmaCannon = 767
-    | NovaCannon = 768
-    | ImpMatterNeutralizer = 769
-    | VortexDriver = 770
-    | ZioAlphaCannon = 771
-    | AsbFocalCannon = 772
-    | EnhNovaCannon = 773
-    | Firepult = 774
-    | YoloCannon = 775
-    | PotentialCannon = 776
-    | WarpCannon = 777
-    | CldNovaCannon = 778
-    | NullCannon = 779
-    | ImpPotentialCannon = 780
-    | Disintegrator = 781
-    | CoreCannon = 782
-    | SigixShearcannon = 783
-    | DrainedLcannon = 784
-    | Lcannon = 785
-    | ZioAlphaCannonMkIi = 786
-    | Bfg9kVortexEdition = 787
-    | AssaultRifle = 788
-    | AsbRifle = 789
-    | LgtAssaultRifle = 790
-    | HvyAssaultRifle = 791
-    | Autogun = 792
-    | Shotgun = 793
-    | BattleRifle = 794
-    | AsbHeavyRifle = 795
-    | ImpAssaultRifle = 796
-    | Minigun = 797
-    | HpwShotgun = 798
-    | AsbShotgun = 799
-    | BarrageGun = 800
-    | EnhAutogun = 801
-    | GaussRifle = 802
-    | AsbGaussRifle = 803
-    | FlakGun = 804
-    | PrcAssaultRifle = 805
-    | HvyBattleRifle = 806
-    | MakShrapnelGun = 807
-    | CoilGun = 808
-    | HypGaussRifle = 809
-    | HvyMachineGun = 810
-    | ImpHeavyMachineGun = 811
-    | ComGaussRifle = 812
-    | XlAutogunSubcomponent = 813
-    | KePenetrator = 814
-    | HypCoilGun = 815
-    | ImpKePenetrator = 816
-    | EnhCoilGun = 817
-    | ComCoilGun = 818
-    | Railgun = 819
-    | AdvKePenetrator = 820
-    | LinkedAutogun = 821
-    | Awsgauss = 822
-    | HypRailgun = 823
-    | HelicalRailgun = 824
-    | ComRailgun = 825
-    | XlAutogunArray = 826
-    | ashsBoomstick = 82712
-    | rawnsBoregun = 8288
-    | Multirail = 829
-    | HypMultirail = 830
-    | had0sSniperRifle = 8315
-    | A3sSniperRifle = 832
-    | LgtCannon = 833
-    | ImpLightCannon = 834
-    | BattleCannon = 835
-    | AssaultCannon = 836
-    | HvyAssaultCannon = 837
-    | FlakCannon = 838
-    | AdvAssaultCannon = 839
-    | GaussCannon = 840
-    | SlugCannon = 841
-    | MniAssaultCannon = 842
-    | MagneticAccelerationCannon = 843
-    | HvyFlakCannon = 844
-    | BoreCannon = 845
-    | AntimatterCannon = 846
-    | MassDriver = 847
-    | HvyMassDriver = 848
-    | EnhGaussCannon = 849
-    | HypGaussCannon = 850
-    | TrirailAccelerator = 851
-    | HardcellCannon = 852
-    | HvyGaussCannon = 853
-    | HypMassDriver = 854
-    | HvyAutocannon = 855
-    | DasCannon = 856
-    | LgtAntimatterCannon = 857
-    | LinearAccelerator = 858
-    | HvyLinearAccelerator = 859
-    | ComMassDriver = 860
-    | HvyHardcellCannon = 861
-    | ComLinearAccelerator = 862
-    | HypLinearAccelerator = 863
-    | HclLinearAccelerator = 864
-    | GravitonCannon = 865
-    | BlastCannon = 866
-    | P13cesGatlingFlakker = 867
-    | Awsautocannon = 868
-    | Perforator = 869
-    | OmegaCannon = 870
-    | EmpBlaster = 871
-    | ShockBombLauncher = 872
-    | AdvEmpBlaster = 873
-    | ProtonMissileLauncher = 874
-    | ImpProtonMissileLauncher = 875
-    | GuiEmpBlaster = 876
-    | HvyShockBombLauncher = 877
-    | TeslaBombLauncher = 878
-    | HvyProtonMissileLauncher = 879
-    | ComTeslaBombLauncher = 880
-    | GammaBombArray = 881
-    | EnhGammaBombArray = 882
-    | GrenadeLauncher = 883
-    | RocketLauncher = 884
-    | MniGrenadeLauncher = 885
-    | ImpGrenadeLauncher = 886
-    | MissileLauncher = 887
-    | ConcussiveRpg = 888
-    | Yiuf0sDoublenader = 889
-    | HvyRocketLauncher = 890
-    | HvyMissileLauncher = 891
-    | GuiMissileLauncher = 892
-    | PrcGrenadeLauncher = 893
-    | RocketArray = 894
-    | LrnMissileLauncher = 895
-    | ImpConcussiveRpg = 896
-    | PrcRocketLauncher = 897
-    | ScatterRocketArray = 898
-    | SmartbombLauncher = 899
-    | MniSmartbombLauncher = 900
-    | TiamatMissileLauncher = 901
-    | Thermoblaster = 902
-    | MicronukeLauncher = 903
-    | AdvConcussiveRpg = 904
-    | NeutronMissileLauncher = 905
-    | FusionBombLauncher = 906
-    | HellfireMissileLauncher = 907
-    | AdvMicronukeLauncher = 908
-    | TacticalQuantumWarhead = 909
-    | VortexCatalystActivator = 910
-    | ChainMissileLauncher = 911
-    | RagnarokMissileLauncher = 912
-    | PointSingularityLauncher = 913
-    | GuiMicronukeLauncher = 914
-    | tntsNukerbomber = 91599
-    | ZbombDeliverySystem = 916
-    | SigixTerminator = 917
-    | SuperchargedSigixTerminator = 918
-    | ContainmentFacilitator = 919
-    | Detonator = 920
-    | DirtyDatajack = 921
-    | SpliceInjector = 922
-    | Datajack = 923
-    | ImpDatajack = 924
-    | AdvDatajack = 925
-    | RemoteDatajack = 926
-    | ImpRemoteDatajack = 927
-    | AdvRemoteDatajack = 928
-    | ExpRemoteDatajack = 929
-    | GuiRemoteDatajack = 930
-    | MerlnsWand = 931
-    | FieldLobotomyKit = 932
-    | MiningLaser = 933
-    | WeldingTorch = 934
-    | PlasmaCutter = 935
-    | ImpPlasmaCutter = 936
-    | Flamer = 937
-    | AsbFtorch = 938
-    | EnhFlamer = 939
-    | PlasmaFlamer = 940
-    | AsbPtorch = 941
-    | Run14sThrowingClaymores = 942
-    | Run14sThrowingClaymoresV3 = 943
-    | Ad0rfsMagmablaster = 944
-    | StasisBeam = 945
-    | StasisProjector = 946
-    | ExpStasisProjector = 947
-    | MolecularDeconstructor = 948
-    | Hammer = 949
-    | Mace = 950
-    | Flail = 951
-    | Maul = 952
-    | AsbMaul = 953
-    | HvyHammer = 954
-    | HvyMace = 955
-    | HvyFlail = 956
-    | GreatMaul = 957
-    | PoweredHammer = 958
-    | MakHammer = 959
-    | PowerMaul = 960
-    | AsbPmaul = 961
-    | ImpactMace = 962
-    | ShockMaul = 963
-    | ThunderHammer = 964
-    | Compactor = 965
-    | GravityFlail = 966
-    | ClanksMallet = 967
-    | CoreStripper = 968
-    | MiningClaw = 969
-    | Ec_1 = 970
-    | Katana = 971
-    | AsbBlade = 972
-    | Scythe = 973
-    | Axe = 974
-    | BladeSaw = 975
-    | Ec_3 = 976
-    | Chainsword = 977
-    | Ripper = 978
-    | MakAxe = 979
-    | MakSword = 980
-    | GreatAxe = 981
-    | Greatsword = 982
-    | PowerSword = 983
-    | AsbPsword = 984
-    | Falx = 985
-    | CarbideSaw = 986
-    | Segregator = 987
-    | Tearclaws = 988
-    | Ec_5 = 989
-    | PhasingSabre = 990
-    | PlasmaSword = 991
-    | IonicAxe = 992
-    | MniTearclaws = 993
-    | DualbladeSaw = 994
-    | Vibroblade = 995
-    | MolecularScythe = 996
-    | CentriumGreatsword = 997
-    | MasterTearclaws = 998
-    | Longsword1 = 999
-    | Ec_7 = 1000
-    | Nanosword = 1001
-    | ParticleCleaver = 1002
-    | CentriumClaws = 1003
-    | cutusSwordlootmaker = 10041
-    | cutusSwordchoppy = 10051
-    | VortexShredder = 1006
-    | Ec_9 = 1007
-    | SigixBroadsword = 1008
-    | Spear = 1009
-    | MakSpear = 1010
-    | Cra16sPointyStick = 1011
-    | HvyPick = 1012
-    | Lance = 1013
-    | KineticSpear = 1014
-    | ForceLance = 1015
-    | PlasmaLance = 1016
-    | EnhForceLance = 1017
-    | VortexLance = 1018
-    | Cra16sBehemothSlayer = 1019
-    | BladeTrap = 1020
-    | SegregatorTrap = 1021
-    | ExplosiveTrap = 1022
-    | HeavyExplosiveTrap = 1023
-    | TiamatBombTrap = 1024
-    | FusionBombTrap = 1025
-    | HellfireTrap = 1026
-    | ArmageddonTrap = 1027
-    | DirtyBombTrap = 1028
-    | EmpTrap = 1029
-    | ProtonBombTrap = 1030
-    | TeslaBombTrap = 1031
-    | GammaBombTrap = 1032
-    | ShockTrap = 1033
-    | EmSurgeTrap = 1034
-    | FireTrap = 1035
-    | StasisTrap = 1036
-    | SignalGenerator = 1037
-    | SelfdestructInterrupter = 1038
-    | SapperCharge = 1039
-    | Deployasentry = 1040
-    | GalModule = 1041
-    | PortableAfg = 1042
-    | SgempPrototype = 1043
-    | TerrabombDerivative = 1044
-    | SigixContainmentPod = 1045
-    | SigixCorpse = 1046
-    | Meganuke = 1047
-    | GammaRefractor = 1048
+let itemId =
+    function
+    | 0 -> Matter
+    | 1 -> DataCore
+    | 2 -> DerelictLog
+    | 3 -> SchematicArchive
+    | 4 -> ImprinterDataCore
+    | 5 -> A2DataCore
+    | 6 -> A7DataCore
+    | 7 -> MaincDataCore
+    | 8 -> ArchitectDataCore
+    | 9 -> Scrap
+    | 10 -> Protomatter
+    | 11 -> IonEngine
+    | 12 -> LgtIonEngine
+    | 13 -> BackupPowerI
+    | 14 -> ImpIonEngine
+    | 15 -> RnfIonEngine
+    | 16 -> HvyIonEngine
+    | 17 -> CldIonEngine
+    | 18 -> DeuteriumEngine
+    | 19 -> LgtDeuteriumEngine
+    | 20 -> BackupPowerIii
+    | 21 -> NuclearCore
+    | 22 -> LgtNuclearCore
+    | 23 -> ImpDeuteriumEngine
+    | 24 -> RnfDeuteriumEngine
+    | 25 -> HybDeuteriumEngine
+    | 26 -> HvyDeuteriumEngine
+    | 27 -> CldDeuteriumEngine
+    | 28 -> EnhNuclearCore
+    | 29 -> MicNuclearCore
+    | 30 -> MakPowerSource
+    | 31 -> AngularMomentumEngine
+    | 32 -> LgtAngularMomentumEngine
+    | 33 -> FcellEngine
+    | 34 -> FissionCore
+    | 35 -> LgtFissionCore
+    | 36 -> HybFissionCore
+    | 37 -> FusionCompressor
+    | 38 -> ColdFusionReactor
+    | 39 -> NeutrinoCore
+    | 40 -> LgtNeutrinoCore
+    | 41 -> RnfFissionCore
+    | 42 -> EnhFissionCore
+    | 43 -> CldFissionCore
+    | 44 -> MicFissionCore
+    | 45 -> FusionReactor
+    | 46 -> AntimatterReactor
+    | 47 -> LgtAntimatterReactor
+    | 48 -> RnfAntimatterReactor
+    | 49 -> HybAntimatterReactor
+    | 50 -> BackupPowerVii
+    | 51 -> HvyAntimatterReactor
+    | 52 -> MniFusionReactor
+    | 53 -> ImpFusionCompressor
+    | 54 -> MicNeutrinoCore
+    | 55 -> ZioLightDmReactor
+    | 56 -> ZioHeavyDmReactor
+    | 57 -> ParticleReactor
+    | 58 -> LgtParticleReactor
+    | 59 -> MicAntimatterReactor
+    | 60 -> ComParticleReactor
+    | 61 -> CldAntimatterReactor
+    | 62 -> GravitonReactor
+    | 63 -> AsbFluxGenerator
+    | 64 -> QuantumReactor
+    | 65 -> LgtQuantumReactor
+    | 66 -> RnfQuantumReactor
+    | 67 -> ImpQuantumReactor
+    | 68 -> ZeropointReactor
+    | 69 -> VortexChainReactor
+    | 70 -> SingularityReactor
+    | 71 -> MatterDrive
+    | 72 -> LgtTreads
+    | 73 -> ImpTreads
+    | 74 -> SpkTreads
+    | 75 -> ArmTreads
+    | 76 -> AdvTreads
+    | 77 -> MedTreads
+    | 78 -> ImpMediumTreads
+    | 79 -> SpkMediumTreads
+    | 80 -> ArmMediumTreads
+    | 81 -> HvyTreads
+    | 82 -> AdvMediumTreads
+    | 83 -> EnhArmoredMediumTreads
+    | 84 -> ImpHeavyTreads
+    | 85 -> HvySiegeTreads
+    | 86 -> SpkHeavyTreads
+    | 87 -> BiometalMediumTreads
+    | 88 -> ArmHeavyTreads
+    | 89 -> AdvHeavyTreads
+    | 90 -> ImpHeavySiegeTreads
+    | 91 -> CentriumHeavyTreads
+    | 92 -> Megatreads
+    | 93 -> BiometalHeavyTreads
+    | 94 -> ExpBiometalHeavyTreads
+    | 95 -> EnhArmoredHeavyTreads
+    | 96 -> AdvHeavySiegeTreads
+    | 97 -> HdnCentriumHeavyTreads
+    | 98 -> ExpBiometalMediumTreads
+    | 99 -> AluminumLeg
+    | 100 -> ImpAluminumLeg
+    | 101 -> CarbonfiberLeg
+    | 102 -> TitaniumLeg
+    | 103 -> VssLeg
+    | 104 -> ImpCarbonfiberLeg
+    | 105 -> ImpTitaniumLeg
+    | 106 -> MakLeg
+    | 107 -> FlexicarbonLeg
+    | 108 -> ArmLeg
+    | 109 -> ImpVssLeg
+    | 110 -> ZioCompositeLegI
+    | 111 -> EnhFlexicarbonLeg
+    | 112 -> EnhArmoredLeg
+    | 113 -> MyomerLeg
+    | 114 -> AdvVssLeg
+    | 115 -> AdvMyomerLeg
+    | 116 -> ExpFlexicarbonLeg
+    | 117 -> ZioCompositeLegIi
+    | 118 -> EtherialTendrils
+    | 119 -> BiometalLeg
+    | 120 -> EnhBiometalLeg
+    | 121 -> ExpMyomerLeg
+    | 122 -> TrollExoskeleton
+    | 123 -> AsbAlloyLeg
+    | 124 -> CentriumLeg
+    | 125 -> HdnCentriumLeg
+    | 126 -> ExpBiometalLeg
+    | 127 -> SigixExoskeleton
+    | 128 -> ZioSupercompositeLeg
+    | 129 -> PotentialLeg
+    | 130 -> MyomerExoskeleton
+    | 131 -> Wheel
+    | 132 -> ComWheel
+    | 133 -> ArmWheel
+    | 134 -> ArmHugeWheel
+    | 135 -> CentriumWheel
+    | 136 -> HdnCentriumWheel
+    | 137 -> HoverUnit
+    | 138 -> BackupPropulsionI
+    | 139 -> ImpHoverUnit
+    | 140 -> Airjet
+    | 141 -> AerolevUnit
+    | 142 -> AsbHoverUnit
+    | 143 -> BackupPropulsionIii
+    | 144 -> GravmagSystem
+    | 145 -> AsbHoverSystem
+    | 146 -> ImpAirjet
+    | 147 -> CldAirjet
+    | 148 -> ImpGravmagSystem
+    | 149 -> CldAerolevUnit
+    | 150 -> CmbAirjet
+    | 151 -> GravmagArray
+    | 152 -> MakHoverUnit
+    | 153 -> ZioGlidesysI
+    | 154 -> AntigravSystem
+    | 155 -> GyrokineticInverter
+    | 156 -> LinearGravjet
+    | 157 -> CldGravmagSystem
+    | 158 -> CmbGravmagSystem
+    | 159 -> ImpAntigravSystem
+    | 160 -> ImpGyrokineticInverter
+    | 161 -> ImpLinearGravjet
+    | 162 -> BackupPropulsionVii
+    | 163 -> ZioGlidesysIi
+    | 164 -> CldAntigravSystem
+    | 165 -> CmbAntigravSystem
+    | 166 -> AntigravArray
+    | 167 -> ExpGyrokineticInverter
+    | 168 -> CldLinearGravjet
+    | 169 -> CmbLinearGravjet
+    | 170 -> FlightUnit
+    | 171 -> VtolModule
+    | 172 -> ImpFlightUnit
+    | 173 -> CesiumionThruster
+    | 174 -> SurgeThruster
+    | 175 -> ImpVtolModule
+    | 176 -> XenonBombardmentThruster
+    | 177 -> ImpCesiumionThruster
+    | 178 -> CldVtolModule
+    | 179 -> MakFlightUnit
+    | 180 -> NuclearPulseThruster
+    | 181 -> ImpSurgeThruster
+    | 182 -> MniNuclearPulseThruster
+    | 183 -> CldCesiumionThruster
+    | 184 -> BiomechanicalWings
+    | 185 -> FieldPropulsionDrive
+    | 186 -> CldNuclearPulseThruster
+    | 187 -> ExpCesiumionThruster
+    | 188 -> NuclearPulseArray
+    | 189 -> MakMicrothruster
+    | 190 -> ImpulseThruster
+    | 191 -> AdvSurgeThruster
+    | 192 -> CldFieldPropulsionDrive
+    | 193 -> FieldPropulsionArray
+    | 194 -> DiametricDrive
+    | 195 -> FlyingFortressV7
+    | 196 -> Tthruster
+    | 197 -> IntegratedTrackerDrive
+    | 198 -> EtherialPropulsion
+    | 199 -> Qthruster
+    | 200 -> ElectronDiverter
+    | 201 -> ImpDiametricDrive
+    | 202 -> CldImpulseThruster
+    | 203 -> ImpulseThrusterArray
+    | 204 -> ImpQthruster
+    | 205 -> CldQthruster
+    | 206 -> ExpQthruster
+    | 207 -> Desublimator
+    | 208 -> PowerAmplifier
+    | 209 -> AdvPowerAmplifier
+    | 210 -> ExpPowerAmplifier
+    | 211 -> ThermalGenerator
+    | 212 -> ImpThermalGenerator
+    | 213 -> AdvThermalGenerator
+    | 214 -> ExpThermalGenerator
+    | 215 -> CryofiberWeb
+    | 216 -> ImpCryofiberWeb
+    | 217 -> AdvCryofiberWeb
+    | 218 -> HeatSink
+    | 219 -> ImpHeatSink
+    | 220 -> AdvHeatSink
+    | 221 -> ExpHeatSink
+    | 222 -> CoolingSystem
+    | 223 -> ImpCoolingSystem
+    | 224 -> AdvCoolingSystem
+    | 225 -> ExpCoolingSystem
+    | 226 -> CoolantNetwork
+    | 227 -> AsbNanovents
+    | 228 -> FrostArray
+    | 229 -> DisposableHeatSink
+    | 230 -> CoolantInjector
+    | 231 -> ImpCoolantInjector
+    | 232 -> AdvCoolantInjector
+    | 233 -> ExpCoolantInjector
+    | 234 -> SmlStorageUnit
+    | 235 -> MedStorageUnit
+    | 236 -> LrgStorageUnit
+    | 237 -> HcpStorageUnit
+    | 238 -> HugeStorageUnit
+    | 239 -> CargoStorageUnit
+    | 240 -> Humpback
+    | 241 -> Lightpack20
+    | 242 -> SmlBattery
+    | 243 -> MedBattery
+    | 244 -> LrgBattery
+    | 245 -> HcpBattery
+    | 246 -> ComBattery
+    | 247 -> EnergyWell
+    | 248 -> ImpEnergyWell
+    | 249 -> AdvEnergyWell
+    | 250 -> ExpEnergyWell
+    | 251 -> ZioBiocell
+    | 252 -> AsbBiocellArray
+    | 253 -> ZioBiocellArray
+    | 254 -> Superbattery
+    | 255 -> SmlMatterPod
+    | 256 -> MedMatterPod
+    | 257 -> LrgMatterPod
+    | 258 -> HcpMatterPod
+    | 259 -> ComMatterPod
+    | 260 -> MatterCompressor
+    | 261 -> ImpMatterCompressor
+    | 262 -> AdvMatterCompressor
+    | 263 -> ExpMatterCompressor
+    | 264 -> Yiuf0sBottomlessMatterPit
+    | 265 -> WeightRedistSystem
+    | 266 -> AdvWeightRedistSystem
+    | 267 -> GravityNeutralizer
+    | 268 -> AdvGravityNeutralizer
+    | 269 -> QuantumShadingMachine
+    | 270 -> AsbSuspensionFrame
+    | 271 -> AdvQuantumShadingMachine
+    | 272 -> AsbMetafiberNetwork
+    | 273 -> ZioMetafieldGenerator
+    | 274 -> StFieldCompressor
+    | 275 -> StructuralScanner
+    | 276 -> TrapScanner
+    | 277 -> ImpTrapScanner
+    | 278 -> MakTrapScanner
+    | 279 -> AdvTrapScanner
+    | 280 -> MachineAnalyzer
+    | 281 -> Triangulator
+    | 282 -> VisualProcessingUnit
+    | 283 -> AdvVisualProcessingUnit
+    | 284 -> EnhOpticalArray
+    | 285 -> ExpOpticalArray
+    | 286 -> SpectralAnalyzer
+    | 287 -> SensorArray
+    | 288 -> ImpSensorArray
+    | 289 -> AdvSensorArray
+    | 290 -> LrnSensorArray
+    | 291 -> MakSensorArray
+    | 292 -> ExpSensorArray
+    | 293 -> SignalInterpreter
+    | 294 -> ImpSignalInterpreter
+    | 295 -> AdvSignalInterpreter
+    | 296 -> ExpSignalInterpreter
+    | 297 -> ActiveSensorSuite
+    | 298 -> TerrainScanner
+    | 299 -> ImpTerrainScanner
+    | 300 -> AdvTerrainScanner
+    | 301 -> MakTerrainScanner
+    | 302 -> LrnTerrainScanner
+    | 303 -> ExpTerrainScanner
+    | 304 -> Surveybot24Scanner
+    | 305 -> TerrainScanProcessor
+    | 306 -> ImpTerrainScanProcessor
+    | 307 -> MakTerrainScanProcessor
+    | 308 -> AdvTerrainScanProcessor
+    | 309 -> ExpTerrainScanProcessor
+    | 310 -> Surveybot24Chip
+    | 311 -> SeismicDetector
+    | 312 -> TransportNetworkCoupler
+    | 313 -> ModifiedTnc
+    | 314 -> B10DecoderChipgeneric
+    | 315 -> B10DecoderChiplooter
+    | 316 -> B10DecoderChipscout
+    | 317 -> B10DecoderChipskirmisher
+    | 318 -> B10AlertChip
+    | 319 -> SalvageTargetingComputer
+    | 320 -> ImpSalvageTargetingComputer
+    | 321 -> MakSalvageTargetingComputer
+    | 322 -> AdvSalvageTargetingComputer
+    | 323 -> AsbCombatSuite
+    | 324 -> TargetingComputer
+    | 325 -> ImpTargetingComputer
+    | 326 -> AdvTargetingComputer
+    | 327 -> ExpTargetingComputer
+    | 328 -> TacticalCoordinationSuite
+    | 329 -> MeleeAnalysisSuite
+    | 330 -> ImpMeleeAnalysisSuite
+    | 331 -> AdvMeleeAnalysisSuite
+    | 332 -> ExpMeleeAnalysisSuite
+    | 333 -> LauncherGuidanceComputer
+    | 334 -> ImpLauncherGuidanceComputer
+    | 335 -> AdvLauncherGuidanceComputer
+    | 336 -> TargetAnalyzer
+    | 337 -> ImpTargetAnalyzer
+    | 338 -> AdvTargetAnalyzer
+    | 339 -> ExpTargetAnalyzer
+    | 340 -> CoreAnalyzer
+    | 341 -> ExpCoreAnalyzer
+    | 342 -> ArmorIntegrityAnalyzer
+    | 343 -> ImpArmorIntegrityAnalyzer
+    | 344 -> ExpArmorIntegrityAnalyzer
+    | 345 -> RecoilStabilizer
+    | 346 -> RecoilNullifier
+    | 347 -> MatterFilter
+    | 348 -> PrcMatterFilter
+    | 349 -> EnergyFilter
+    | 350 -> PrcEnergyFilter
+    | 351 -> ParticleCharger
+    | 352 -> ImpParticleCharger
+    | 353 -> AdvParticleCharger
+    | 354 -> ParticleAccelerator
+    | 355 -> ImpParticleAccelerator
+    | 356 -> AdvParticleAccelerator
+    | 357 -> Kinecellerator
+    | 358 -> ImpKinecellerator
+    | 359 -> AdvKinecellerator
+    | 360 -> LauncherLoader
+    | 361 -> QuantumCapacitor
+    | 362 -> WeaponCycler
+    | 363 -> ImpWeaponCycler
+    | 364 -> AdvWeaponCycler
+    | 365 -> ExpWeaponCycler
+    | 366 -> Microactuators
+    | 367 -> Nanoactuators
+    | 368 -> Femtoactuators
+    | 369 -> ActuatorArray
+    | 370 -> ImpActuatorArray
+    | 371 -> AdvActuatorArray
+    | 372 -> ExpActuatorArray
+    | 373 -> ForceBooster
+    | 374 -> ImpForceBooster
+    | 375 -> AdvForceBooster
+    | 376 -> StasisCanceller
+    | 377 -> TransmissionJammer
+    | 378 -> MakTransmissionJammer
+    | 379 -> ImpTransmissionJammer
+    | 380 -> AdvTransmissionJammer
+    | 381 -> ExpTransmissionJammer
+    | 382 -> EcmSuite
+    | 383 -> MakEcmSuite
+    | 384 -> AdvEcmSuite
+    | 385 -> ExpEcmSuite
+    | 386 -> ReactionControlSystem
+    | 387 -> ImpReactionControlSystem
+    | 388 -> AdvReactionControlSystem
+    | 389 -> ExpReactionControlSystem
+    | 390 -> PhaseShifter
+    | 391 -> ImpPhaseShifter
+    | 392 -> AdvPhaseShifter
+    | 393 -> ExpPhaseShifter
+    | 394 -> CloakingDevice
+    | 395 -> MakCloakingDevice
+    | 396 -> ImpCloakingDevice
+    | 397 -> AdvCloakingDevice
+    | 398 -> ExpCloakingDevice
+    | 399 -> CloakOfProtection
+    | 400 -> Shad0sCloak
+    | 401 -> CoreShielding
+    | 402 -> ImpCoreShielding
+    | 403 -> ExpCoreShielding
+    | 404 -> PowerShielding
+    | 405 -> ImpPowerShielding
+    | 406 -> ExpPowerShielding
+    | 407 -> PropulsionShielding
+    | 408 -> ImpPropulsionShielding
+    | 409 -> ExpPropulsionShielding
+    | 410 -> UtilityShielding
+    | 411 -> ImpUtilityShielding
+    | 412 -> ExpUtilityShielding
+    | 413 -> WeaponShielding
+    | 414 -> ImpWeaponShielding
+    | 415 -> ExpWeaponShielding
+    | 416 -> ZioWeaponCasing
+    | 417 -> LgtArmorPlating
+    | 418 -> MedArmorPlating
+    | 419 -> HvyArmorPlating
+    | 420 -> ZioLightCarapace
+    | 421 -> ZioHeavyCarapace
+    | 422 -> HrdLightArmorPlating
+    | 423 -> HrdMediumArmorPlating
+    | 424 -> HrdHeavyArmorPlating
+    | 425 -> ImpLightArmorPlating
+    | 426 -> ImpMediumArmorPlating
+    | 427 -> ImpHeavyArmorPlating
+    | 428 -> LyrLightArmorPlating
+    | 429 -> MakArmorPlating
+    | 430 -> LyrMediumArmorPlating
+    | 431 -> LyrHeavyArmorPlating
+    | 432 -> CentriumLightArmorPlating
+    | 433 -> CentriumMediumArmorPlating
+    | 434 -> CentriumHeavyArmorPlating
+    | 435 -> CentriumLinkedPlating
+    | 436 -> ReactivePlating
+    | 437 -> MedReactivePlating
+    | 438 -> MakKineticPlating
+    | 439 -> HvyReactivePlating
+    | 440 -> ReflectivePlating
+    | 441 -> MedReflectivePlating
+    | 442 -> MakThermalPlating
+    | 443 -> HvyReflectivePlating
+    | 444 -> BrawnsArmorth
+    | 445 -> BrawnsArmorex
+    | 446 -> InsulatedPlating
+    | 447 -> MedInsulatedPlating
+    | 448 -> HvyInsulatedPlating
+    | 449 -> DamperPlating
+    | 450 -> ZioShadeCarapace
+    | 451 -> ZioShadeArmor
+    | 452 -> AsbAlloyArmor
+    | 453 -> MakAblativeArmor
+    | 454 -> ActiveCoolingArmor
+    | 455 -> PoweredArmor
+    | 456 -> ImpPoweredArmor
+    | 457 -> AdvPoweredArmor
+    | 458 -> ExpPoweredArmor
+    | 459 -> IcutusBuckler
+    | 460 -> LgtRegenerativePlating
+    | 461 -> MedRegenerativePlating
+    | 462 -> HvyRegenerativePlating
+    | 463 -> ShellArmor
+    | 464 -> PhaseArmor
+    | 465 -> GrapheneBrace
+    | 466 -> FocalShield
+    | 467 -> ImpFocalShield
+    | 468 -> AdvFocalShield
+    | 469 -> ExpFocalShield
+    | 470 -> ThermalShield
+    | 471 -> ImpThermalShield
+    | 472 -> AdvThermalShield
+    | 473 -> ExpThermalShield
+    | 474 -> ThermalBarrier
+    | 475 -> BeamSplitter
+    | 476 -> ThermalDefenseSuite
+    | 477 -> ImpThermalDefenseSuite
+    | 478 -> AdvThermalDefenseSuite
+    | 479 -> ExpThermalDefenseSuite
+    | 480 -> ShockAbsorptionSystem
+    | 481 -> ImpShockAbsorptionSystem
+    | 482 -> ExpShockAbsorptionSystem
+    | 483 -> EmDisruptionField
+    | 484 -> AdvEmDisruptionField
+    | 485 -> ExpEmDisruptionField
+    | 486 -> MerlnsChromaticScreen
+    | 487 -> HardlightGenerator
+    | 488 -> ImpHardlightGenerator
+    | 489 -> AdvHardlightGenerator
+    | 490 -> ExpHardlightGenerator
+    | 491 -> ShieldGenerator
+    | 492 -> ImpShieldGenerator
+    | 493 -> AdvShieldGenerator
+    | 494 -> ExpShieldGenerator
+    | 495 -> ForceField
+    | 496 -> ImpForceField
+    | 497 -> AdvForceField
+    | 498 -> ExpForceField
+    | 499 -> TvrtlsUltimateField
+    | 500 -> VortexFieldProjector
+    | 501 -> RemoteShield
+    | 502 -> ImpRemoteShield
+    | 503 -> AdvRemoteShield
+    | 504 -> RemoteForceField
+    | 505 -> ImpRemoteForceField
+    | 506 -> EnergyMantle
+    | 507 -> ImpEnergyMantle
+    | 508 -> AegisRemoteShield
+    | 509 -> PhaseRedirector
+    | 510 -> PointDefenseSystem
+    | 511 -> PointDefenseArray
+    | 512 -> AntimissileSystem
+    | 513 -> ExChip1
+    | 514 -> HackingSuite
+    | 515 -> MakHackingSuite
+    | 516 -> ImpHackingSuite
+    | 517 -> AdvHackingSuite
+    | 518 -> ExpHackingSuite
+    | 519 -> SystemMapper
+    | 520 -> DeepNetworkScanner
+    | 521 -> ArchitectGodChipA
+    | 522 -> ExChip2
+    | 523 -> SystemShield
+    | 524 -> MakSystemShield
+    | 525 -> ImpSystemShield
+    | 526 -> AdvSystemShield
+    | 527 -> ExpSystemShield
+    | 528 -> GhostBarrier
+    | 529 -> QuantumRouter
+    | 530 -> ArchitectGodChipD
+    | 531 -> Authchiprnc
+    | 532 -> Authchiprcombat
+    | 533 -> Authchippower
+    | 534 -> Authchippropulsion
+    | 535 -> Authchipdevice
+    | 536 -> Authchipstorage
+    | 537 -> Authchipprocessor
+    | 538 -> Authchiparmor
+    | 539 -> Authchipweapon
+    | 540 -> RelayCouplernc
+    | 541 -> RelayCouplerc
+    | 542 -> RelayCouplerarc
+    | 543 -> RelayCouplerswarmer
+    | 544 -> RelayCouplercutter
+    | 545 -> RelayCouplergrunt
+    | 546 -> RelayCouplerbrawler
+    | 547 -> RelayCouplerduelist
+    | 548 -> RelayCouplersentry
+    | 549 -> RelayCouplerdemolisher
+    | 550 -> RelayCouplerspecialist
+    | 551 -> RelayCouplerhunter
+    | 552 -> RelayCouplerheavy
+    | 553 -> RelayCouplerbehemoth
+    | 554 -> RelayCouplerprogrammer
+    | 555 -> SkeletonBox
+    | 556 -> O1mtfsAutohacker
+    | 557 -> ComponentAnalysisSuite
+    | 558 -> ImpComponentAnalysisSuite
+    | 559 -> AdvComponentAnalysisSuite
+    | 560 -> DynamicInsulationSystem
+    | 561 -> ImpDynamicInsulationSystem
+    | 562 -> AdvDynamicInsulationSystem
+    | 563 -> SystemGuard
+    | 564 -> ImpSystemGuard
+    | 565 -> ExpSystemGuard
+    | 566 -> CorruptionScreen
+    | 567 -> ImpCorruptionScreen
+    | 568 -> AdvCorruptionScreen
+    | 569 -> SystemRestorationModule
+    | 570 -> MakSystemRestorationModule
+    | 571 -> ImpSystemRestorationModule
+    | 572 -> AdvSystemRestorationModule
+    | 573 -> SystemPurifier
+    | 574 -> ExpSystemPurifier
+    | 575 -> TractorBeam
+    | 576 -> HpwTractorBeam
+    | 577 -> LrnTractorBeam
+    | 578 -> MobileRefineryMkCclxvii
+    | 579 -> TrapExtractor
+    | 580 -> ImpTrapExtractor
+    | 581 -> AdvTrapExtractor
+    | 582 -> TrapReconfigurator
+    | 583 -> Recalibrator
+    | 584 -> ImpRecalibrator
+    | 585 -> AdvRecalibrator
+    | 586 -> FieldRecyclingUnit
+    | 587 -> ImpFieldRecyclingUnit
+    | 588 -> AdvFieldRecyclingUnit
+    | 589 -> ExpFieldRecyclingUnit
+    | 590 -> DroneBay
+    | 591 -> ZdroneBay
+    | 592 -> MniDroneBay
+    | 593 -> MappingDroneBay
+    | 594 -> AdvDroneBay
+    | 595 -> BombDroneBay
+    | 596 -> ThiefDroneBay
+    | 597 -> DecoyDroneBay
+    | 598 -> SpliceDroneBay
+    | 599 -> CombatDroneBay
+    | 600 -> AssaultDroneBay
+    | 601 -> StealthDroneBay
+    | 602 -> SwarmDroneBay
+    | 603 -> SupersonicDroneBay
+    | 604 -> SensorDroneBay
+    | 605 -> HackingDroneBay
+    | 606 -> MinesnifferDroneBay
+    | 607 -> Armyinabox
+    | 608 -> WardroneBay
+    | 609 -> BombFactoryNo2
+    | 610 -> MobileAssemblyUnit
+    | 611 -> HeartOfSteel
+    | 612 -> GolemUnit
+    | 613 -> PsuRigger
+    | 614 -> PhasingAfg
+    | 615 -> AsneutralizerNo17b
+    | 616 -> Chronowheel
+    | 617 -> DimensionalNodeInitializer
+    | 618 -> TransdimensionalReconstructor
+    | 619 -> HpwTransdimensionalReconstructor
+    | 620 -> CoreExpander
+    | 621 -> CoreRegenerator
+    | 622 -> IntegrityRedistributor
+    | 623 -> IntegratedDissipator
+    | 624 -> SuperchargedIntegratedDissipator
+    | 625 -> IntegratedThermoelectricNetwork
+    | 626 -> IntegratedReactor
+    | 627 -> SuperchargedIntegratedReactor
+    | 628 -> IntegratedMediator
+    | 629 -> CoreMembrane
+    | 630 -> NavigationEfficiencyMatrix
+    | 631 -> CoreResetMatrix
+    | 632 -> SubatomicReplicator
+    | 633 -> Terrabomb
+    | 634 -> CorePhysicsCalibrator
+    | 635 -> SpacefoldActivator
+    | 636 -> MicrowarpDrive
+    | 637 -> LcCapacitor
+    | 638 -> LrcArmor
+    | 639 -> LrcStorage
+    | 640 -> LrcEnergyWell
+    | 641 -> LrcMatterCompressor
+    | 642 -> LrcBoosters
+    | 643 -> LrcInsulator
+    | 644 -> EmPulseGun
+    | 645 -> HvyEmPulseGun
+    | 646 -> EmShotgun
+    | 647 -> ImpEmShotgun
+    | 648 -> ShockRifle
+    | 649 -> RiotGun
+    | 650 -> HvyEmShotgun
+    | 651 -> LightningGun
+    | 652 -> HvyRiotGun
+    | 653 -> ArcProjector
+    | 654 -> PrcShockRifle
+    | 655 -> HpwShockRifle
+    | 656 -> ArcThrower
+    | 657 -> ImpLightningGun
+    | 658 -> TeslaRifle
+    | 659 -> ImpArcProjector
+    | 660 -> HvyTeslaRifle
+    | 661 -> HypEmGaussRifle
+    | 662 -> ImpArcThrower
+    | 663 -> O1mtfsShockpuncher
+    | 664 -> GammaRifle
+    | 665 -> TachyonDispersionRay
+    | 666 -> Immobilizer
+    | 667 -> ModifiedEmGaussRifle
+    | 668 -> Awsexdec
+    | 669 -> EnhGammaRifle
+    | 670 -> MedLaser
+    | 671 -> SmlLaser
+    | 672 -> BackupLaserI
+    | 673 -> BeamRifle
+    | 674 -> ParticleGun
+    | 675 -> SpreadLaser
+    | 676 -> ImpMediumLaser
+    | 677 -> FieldLaser
+    | 678 -> PulseRifle
+    | 679 -> BackupLaserIii
+    | 680 -> HvyParticleGun
+    | 681 -> PrcBeamRifle
+    | 682 -> AdvBeamRifle
+    | 683 -> HvyLaser
+    | 684 -> GatlingLaser
+    | 685 -> CldPulseRifle
+    | 686 -> HpwFieldLaser
+    | 687 -> ImpSpreadLaser
+    | 688 -> MakLaser
+    | 689 -> PlasmaRifle
+    | 690 -> ThermicLaser
+    | 691 -> Beamcaster
+    | 692 -> ForceRifle
+    | 693 -> ImpHeavyLaser
+    | 694 -> StormLaser
+    | 695 -> ZioLasers
+    | 696 -> WaveGun
+    | 697 -> VariableChargeGun
+    | 698 -> HvyBeamcaster
+    | 699 -> CldPlasmaRifle
+    | 700 -> EnhForceRifle
+    | 701 -> HvyGatlingLaser
+    | 702 -> ZioPhasers
+    | 703 -> PhaseGun
+    | 704 -> DispersionRifle
+    | 705 -> BackupLaserVii
+    | 706 -> PlasmaStorm
+    | 707 -> AdvPlasmaRifle
+    | 708 -> HvyWaveGun
+    | 709 -> AdvVariableChargeGun
+    | 710 -> CldPhaseGun
+    | 711 -> LrnGatlingLaser
+    | 712 -> WarpGun
+    | 713 -> VortexRifle
+    | 714 -> ZioLaserm
+    | 715 -> Awsthermal
+    | 716 -> PdLaser
+    | 717 -> QuantumRifle
+    | 718 -> PrcPhaseGun
+    | 719 -> HvyDispersionRifle
+    | 720 -> VortexShotgun
+    | 721 -> VortexRail
+    | 722 -> ZioPhaserm
+    | 723 -> EnhQuantumRifle
+    | 724 -> ZioLaserh
+    | 725 -> HvyQuantumRifle
+    | 726 -> ZioPhaserh
+    | 727 -> GatlingBeam
+    | 728 -> SigixSheargun
+    | 729 -> ModifiedSigixSheargun
+    | 730 -> LgtEmPulseCannon
+    | 731 -> EmPulseCannon
+    | 732 -> ImpEmPulseCannon
+    | 733 -> ProtonCannon
+    | 734 -> LrnProtonCannon
+    | 735 -> DisruptorCannon
+    | 736 -> HvyProtonCannon
+    | 737 -> HerfCannon
+    | 738 -> HvyDisruptorCannon
+    | 739 -> CldProtonCannon
+    | 740 -> ProtonBurstCannon
+    | 741 -> ComHerfCannon
+    | 742 -> LatentEnergyStreamer
+    | 743 -> Nk0lasTeslaDoomcannon
+    | 744 -> Emds
+    | 745 -> HpwDisruptorCannon
+    | 746 -> BeamCannon
+    | 747 -> ParticleCannon
+    | 748 -> AdvBeamCannon
+    | 749 -> HvyParticleCannon
+    | 750 -> IonCannon
+    | 751 -> PlasmaCannon
+    | 752 -> HvyIonCannon
+    | 753 -> CldParticleCannon
+    | 754 -> PhaseCannon
+    | 755 -> HvyPlasmaCannon
+    | 756 -> CldPlasmaCannon
+    | 757 -> ComIonCannon
+    | 758 -> IonBurstCannon
+    | 759 -> AdvPlasmaCannon
+    | 760 -> HvyPhaseCannon
+    | 761 -> NeutronCannon
+    | 762 -> MatterNeutralizer
+    | 763 -> HvyNeutronCannon
+    | 764 -> LrnPhaseCannon
+    | 765 -> CldPhaseCannon
+    | 766 -> VortexCannon
+    | 767 -> GuiPlasmaCannon
+    | 768 -> NovaCannon
+    | 769 -> ImpMatterNeutralizer
+    | 770 -> VortexDriver
+    | 771 -> ZioAlphaCannon
+    | 772 -> AsbFocalCannon
+    | 773 -> EnhNovaCannon
+    | 774 -> Firepult
+    | 775 -> YoloCannon
+    | 776 -> PotentialCannon
+    | 777 -> WarpCannon
+    | 778 -> CldNovaCannon
+    | 779 -> NullCannon
+    | 780 -> ImpPotentialCannon
+    | 781 -> Disintegrator
+    | 782 -> CoreCannon
+    | 783 -> SigixShearcannon
+    | 784 -> DrainedLcannon
+    | 785 -> Lcannon
+    | 786 -> ZioAlphaCannonMkIi
+    | 787 -> Bfg9kVortexEdition
+    | 788 -> AssaultRifle
+    | 789 -> AsbRifle
+    | 790 -> LgtAssaultRifle
+    | 791 -> HvyAssaultRifle
+    | 792 -> Autogun
+    | 793 -> Shotgun
+    | 794 -> BattleRifle
+    | 795 -> AsbHeavyRifle
+    | 796 -> ImpAssaultRifle
+    | 797 -> Minigun
+    | 798 -> HpwShotgun
+    | 799 -> AsbShotgun
+    | 800 -> BarrageGun
+    | 801 -> EnhAutogun
+    | 802 -> GaussRifle
+    | 803 -> AsbGaussRifle
+    | 804 -> FlakGun
+    | 805 -> PrcAssaultRifle
+    | 806 -> HvyBattleRifle
+    | 807 -> MakShrapnelGun
+    | 808 -> CoilGun
+    | 809 -> HypGaussRifle
+    | 810 -> HvyMachineGun
+    | 811 -> ImpHeavyMachineGun
+    | 812 -> ComGaussRifle
+    | 813 -> XlAutogunSubcomponent
+    | 814 -> KePenetrator
+    | 815 -> HypCoilGun
+    | 816 -> ImpKePenetrator
+    | 817 -> EnhCoilGun
+    | 818 -> ComCoilGun
+    | 819 -> Railgun
+    | 820 -> AdvKePenetrator
+    | 821 -> LinkedAutogun
+    | 822 -> Awsgauss
+    | 823 -> HypRailgun
+    | 824 -> HelicalRailgun
+    | 825 -> ComRailgun
+    | 826 -> XlAutogunArray
+    | 827 -> AshsBoomstick
+    | 828 -> BrawnsBoregun
+    | 829 -> Multirail
+    | 830 -> HypMultirail
+    | 831 -> Shad0sSniperRifle
+    | 832 -> A3sSniperRifle
+    | 833 -> LgtCannon
+    | 834 -> ImpLightCannon
+    | 835 -> BattleCannon
+    | 836 -> AssaultCannon
+    | 837 -> HvyAssaultCannon
+    | 838 -> FlakCannon
+    | 839 -> AdvAssaultCannon
+    | 840 -> GaussCannon
+    | 841 -> SlugCannon
+    | 842 -> MniAssaultCannon
+    | 843 -> MagneticAccelerationCannon
+    | 844 -> HvyFlakCannon
+    | 845 -> BoreCannon
+    | 846 -> AntimatterCannon
+    | 847 -> MassDriver
+    | 848 -> HvyMassDriver
+    | 849 -> EnhGaussCannon
+    | 850 -> HypGaussCannon
+    | 851 -> TrirailAccelerator
+    | 852 -> HardcellCannon
+    | 853 -> HvyGaussCannon
+    | 854 -> HypMassDriver
+    | 855 -> HvyAutocannon
+    | 856 -> DasCannon
+    | 857 -> LgtAntimatterCannon
+    | 858 -> LinearAccelerator
+    | 859 -> HvyLinearAccelerator
+    | 860 -> ComMassDriver
+    | 861 -> HvyHardcellCannon
+    | 862 -> ComLinearAccelerator
+    | 863 -> HypLinearAccelerator
+    | 864 -> HclLinearAccelerator
+    | 865 -> GravitonCannon
+    | 866 -> BlastCannon
+    | 867 -> P13cesGatlingFlakker
+    | 868 -> Awsautocannon
+    | 869 -> Perforator
+    | 870 -> OmegaCannon
+    | 871 -> EmpBlaster
+    | 872 -> ShockBombLauncher
+    | 873 -> AdvEmpBlaster
+    | 874 -> ProtonMissileLauncher
+    | 875 -> ImpProtonMissileLauncher
+    | 876 -> GuiEmpBlaster
+    | 877 -> HvyShockBombLauncher
+    | 878 -> TeslaBombLauncher
+    | 879 -> HvyProtonMissileLauncher
+    | 880 -> ComTeslaBombLauncher
+    | 881 -> GammaBombArray
+    | 882 -> EnhGammaBombArray
+    | 883 -> GrenadeLauncher
+    | 884 -> RocketLauncher
+    | 885 -> MniGrenadeLauncher
+    | 886 -> ImpGrenadeLauncher
+    | 887 -> MissileLauncher
+    | 888 -> ConcussiveRpg
+    | 889 -> Yiuf0sDoublenader
+    | 890 -> HvyRocketLauncher
+    | 891 -> HvyMissileLauncher
+    | 892 -> GuiMissileLauncher
+    | 893 -> PrcGrenadeLauncher
+    | 894 -> RocketArray
+    | 895 -> LrnMissileLauncher
+    | 896 -> ImpConcussiveRpg
+    | 897 -> PrcRocketLauncher
+    | 898 -> ScatterRocketArray
+    | 899 -> SmartbombLauncher
+    | 900 -> MniSmartbombLauncher
+    | 901 -> TiamatMissileLauncher
+    | 902 -> Thermoblaster
+    | 903 -> MicronukeLauncher
+    | 904 -> AdvConcussiveRpg
+    | 905 -> NeutronMissileLauncher
+    | 906 -> FusionBombLauncher
+    | 907 -> HellfireMissileLauncher
+    | 908 -> AdvMicronukeLauncher
+    | 909 -> TacticalQuantumWarhead
+    | 910 -> VortexCatalystActivator
+    | 911 -> ChainMissileLauncher
+    | 912 -> RagnarokMissileLauncher
+    | 913 -> PointSingularityLauncher
+    | 914 -> GuiMicronukeLauncher
+    | 915 -> NinteyNineTntsNukerbomber
+    | 916 -> ZbombDeliverySystem
+    | 917 -> SigixTerminator
+    | 918 -> SuperchargedSigixTerminator
+    | 919 -> ContainmentFacilitator
+    | 920 -> Detonator
+    | 921 -> DirtyDatajack
+    | 922 -> SpliceInjector
+    | 923 -> Datajack
+    | 924 -> ImpDatajack
+    | 925 -> AdvDatajack
+    | 926 -> RemoteDatajack
+    | 927 -> ImpRemoteDatajack
+    | 928 -> AdvRemoteDatajack
+    | 929 -> ExpRemoteDatajack
+    | 930 -> GuiRemoteDatajack
+    | 931 -> MerlnsWand
+    | 932 -> FieldLobotomyKit
+    | 933 -> MiningLaser
+    | 934 -> WeldingTorch
+    | 935 -> PlasmaCutter
+    | 936 -> ImpPlasmaCutter
+    | 937 -> Flamer
+    | 938 -> AsbFtorch
+    | 939 -> EnhFlamer
+    | 940 -> PlasmaFlamer
+    | 941 -> AsbPtorch
+    | 942 -> Run14sThrowingClaymores
+    | 943 -> Run14sThrowingClaymoresV3
+    | 944 -> Ad0rfsMagmablaster
+    | 945 -> StasisBeam
+    | 946 -> StasisProjector
+    | 947 -> ExpStasisProjector
+    | 948 -> MolecularDeconstructor
+    | 949 -> Hammer
+    | 950 -> Mace
+    | 951 -> Flail
+    | 952 -> Maul
+    | 953 -> AsbMaul
+    | 954 -> HvyHammer
+    | 955 -> HvyMace
+    | 956 -> HvyFlail
+    | 957 -> GreatMaul
+    | 958 -> PoweredHammer
+    | 959 -> MakHammer
+    | 960 -> PowerMaul
+    | 961 -> AsbPmaul
+    | 962 -> ImpactMace
+    | 963 -> ShockMaul
+    | 964 -> ThunderHammer
+    | 965 -> Compactor
+    | 966 -> GravityFlail
+    | 967 -> ClanksMallet
+    | 968 -> CoreStripper
+    | 969 -> MiningClaw
+    | 970 -> Ec_1
+    | 971 -> Katana
+    | 972 -> AsbBlade
+    | 973 -> Scythe
+    | 974 -> Axe
+    | 975 -> BladeSaw
+    | 976 -> Ec_3
+    | 977 -> Chainsword
+    | 978 -> Ripper
+    | 979 -> MakAxe
+    | 980 -> MakSword
+    | 981 -> GreatAxe
+    | 982 -> Greatsword
+    | 983 -> PowerSword
+    | 984 -> AsbPsword
+    | 985 -> Falx
+    | 986 -> CarbideSaw
+    | 987 -> Segregator
+    | 988 -> Tearclaws
+    | 989 -> Ec_5
+    | 990 -> PhasingSabre
+    | 991 -> PlasmaSword
+    | 992 -> IonicAxe
+    | 993 -> MniTearclaws
+    | 994 -> DualbladeSaw
+    | 995 -> Vibroblade
+    | 996 -> MolecularScythe
+    | 997 -> CentriumGreatsword
+    | 998 -> MasterTearclaws
+    | 999 -> Longsword1
+    | 1000 -> Ec_7
+    | 1001 -> Nanosword
+    | 1002 -> ParticleCleaver
+    | 1003 -> CentriumClaws
+    | 1004 -> IcutusSwordlootmaker
+    | 1005 -> IcutusSwordchoppy
+    | 1006 -> VortexShredder
+    | 1007 -> Ec_9
+    | 1008 -> SigixBroadsword
+    | 1009 -> Spear
+    | 1010 -> MakSpear
+    | 1011 -> Cra16sPointyStick
+    | 1012 -> HvyPick
+    | 1013 -> Lance
+    | 1014 -> KineticSpear
+    | 1015 -> ForceLance
+    | 1016 -> PlasmaLance
+    | 1017 -> EnhForceLance
+    | 1018 -> VortexLance
+    | 1019 -> Cra16sBehemothSlayer
+    | 1020 -> BladeTrap
+    | 1021 -> SegregatorTrap
+    | 1022 -> ExplosiveTrap
+    | 1023 -> HeavyExplosiveTrap
+    | 1024 -> TiamatBombTrap
+    | 1025 -> FusionBombTrap
+    | 1026 -> HellfireTrap
+    | 1027 -> ArmageddonTrap
+    | 1028 -> DirtyBombTrap
+    | 1029 -> EmpTrap
+    | 1030 -> ProtonBombTrap
+    | 1031 -> TeslaBombTrap
+    | 1032 -> GammaBombTrap
+    | 1033 -> ShockTrap
+    | 1034 -> EmSurgeTrap
+    | 1035 -> FireTrap
+    | 1036 -> StasisTrap
+    | 1037 -> SignalGenerator
+    | 1038 -> SelfdestructInterrupter
+    | 1039 -> SapperCharge
+    | 1040 -> Deployasentry
+    | 1041 -> GalModule
+    | 1042 -> PortableAfg
+    | 1043 -> SgempPrototype
+    | 1044 -> TerrabombDerivative
+    | 1045 -> SigixContainmentPod
+    | 1046 -> SigixCorpse
+    | 1047 -> Meganuke
+    | 1048 -> GammaRefractor
+    | _ -> raise (System.ArgumentException("Invalid item id!"))
+
+type Part =
+    | Component of Item
+    | Weapon of Item
 
 type entity =
     | Cogmind = 0

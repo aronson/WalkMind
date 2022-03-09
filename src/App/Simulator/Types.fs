@@ -1,7 +1,7 @@
 module Simulator.Types
 
 open FSharp.Data
-open Magic
+open Domain
 
 type BotSize =
     | Huge
@@ -22,14 +22,9 @@ type BotResistances =
 type ItemOption = { name: string; number: int option }
 
 type BotPart =
-    { name: string
-      number: int
+    { part: Part
       coverage: int
       integrity: int }
-
-type Armament =
-    | Armament of string
-    | ItemOptions of ItemOption array
 
 type Movement =
     | Hovering
@@ -40,33 +35,15 @@ type Movement =
     | Rolling
 
 type Bot =
-    { armament: Armament array
-      armamentData: BotPart list
-      armamentString: string
-      ``class``: string
-      components: Armament array
-      componentData: BotPart list
-      componentOptionData: BotPart list list
-      componentsString: string
+    { components: BotPart list
       coreCoverage: int
       coreExposure: int
       coreIntegrity: int
-      description: string
-      memory: string
       movement: Movement
       name: string
       botSize: BotSize
-      profile: string
-      rating: string
       resistances: BotResistances
-      spotPercent: string
-      threat: string
-      tier: string
-      totalCoverage: int
-      traits: string list
-      traitsString: string
-      value: int
-      visualRange: int }
+      totalCoverage: int }
 
 type DamageType =
     | Electromagnetic
@@ -371,20 +348,19 @@ type OffensiveState =
 type SimulatorState =
     { botState: BotState
       initialBotState: BotState
-      killTus: (int * int) list
-      killVolleys: (int * int) list
       timeUnits: int
       offensiveState: OffensiveState
       weapons: SimulatorWeapon list }
 
 [<Literal>]
-let botSchemaFile = "./robots_export_b11.csv"
+let botDataFile =
+    "https://raw.githubusercontent.com/noemica/cog-minder/master/src/json/bots_b11.json"
 
 [<Literal>]
 let itemSchemaFile = "./gallery_export_b11.csv"
 
-type BotProvider = CsvProvider<botSchemaFile>
+type BotProvider = JsonProvider<botDataFile>
 type ItemProvider = CsvProvider<itemSchemaFile>
 
-let botData = BotProvider.Load botSchemaFile
+let botData = BotProvider.Load botDataFile
 let itemData = ItemProvider.Load itemSchemaFile
