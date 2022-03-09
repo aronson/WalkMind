@@ -1,8 +1,6 @@
-﻿open System
-open System.IO
-open Magic
-open Domain
+﻿open Magic
 open Movement
+open AStar
 
 [<EntryPoint>]
 let main args =
@@ -14,11 +12,6 @@ let main args =
             printfn "LuigiAi:\n%A" luigiAi
             printfn "Player state:\n%A" player
 
-            let magic =
-                { ai = luigiAi
-                  player = player
-                  tiles = List.toArray tiles }
-
             let playerTile =
                 tiles
                 |> List.find (fun tile ->
@@ -28,21 +21,24 @@ let main args =
 
             let coordinateMap =
                 let coords =
-                    Array.toList magic.tiles
-                    |> List.map (fun x -> (x.row, x.col), x)
+                    tiles |> List.map (fun x -> (x.row, x.col), x)
 
                 Map.ofList coords
 
-            let goals = neighborNodes coordinateMap playerTile
+            let goal = Map.find (41, 58) coordinateMap
 
-            let victories =
-                (List.map (fun x -> aStar coordinateMap playerTile x) goals)
-                |> List.find (Option.isSome)
+            printfn "Goal %A" goal
+
+            let victories = aStar coordinateMap playerTile goal
 
             printfn "Victories: %A" victories
 
         printfn "I'm walking here"
+        printfn "Press any key to exit..."
+        System.Console.ReadKey() |> ignore
         0
     | Error message ->
         printfn "Process seek error: %s" message
+        printfn "Press any key to exit..."
+        System.Console.ReadKey() |> ignore
         1
