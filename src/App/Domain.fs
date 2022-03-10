@@ -2362,7 +2362,7 @@ let itemId =
     | 1046 -> SigixCorpse
     | 1047 -> Meganuke
     | 1048 -> GammaRefractor
-    | _ -> raise (System.ArgumentException("Invalid item id!"))
+    | x -> raise (System.ArgumentException(sprintf "Invalid item id! %A" x))
 
 type Part =
     | Component of Item
