@@ -1,11 +1,19 @@
 ﻿open Magic
-open Movement
+open System.Runtime.InteropServices
 open AStar
+
+[<DllImport("user32.dll")>]
+extern int SetForegroundWindow(int hwnd)
+
 
 [<EntryPoint>]
 let main args =
     match seekCogmindProcess with
     | Ok cogmindProcess ->
+        let activateCogmindWindow () =
+            SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
+            |> ignore
+
         match openMagicResult cogmindProcess with
         | Error message -> printfn "Seek failed... '%s'" message
         | Ok (luigiAi, player, tiles) ->
@@ -40,17 +48,17 @@ let main args =
 
             printfn "Goal :\n%A" goal
 
-            let victories = aStar coordinateMap playerTile goal
+            let path = aStar coordinateMap playerTile goal
 
-            printfn "Victory:\n%A" victories
+            printfn "Path:\n%A" path
 
-            let victory = Option.get victories |> List.choose id
+            let victoryLap = Option.get path |> List.choose id
 
             for col in 0 .. luigiAi.mapWidth - 1 do
                 for row in 0 .. luigiAi.mapHeight - 1 do
                     let tile = tiles.[row * luigiAi.mapHeight + col]
 
-                    if List.contains tile victory then
+                    if List.contains tile victoryLap then
                         match tile.entity with
                         | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
                         | _ when tile = goal -> printf "@"
@@ -59,6 +67,20 @@ let main args =
                         printf "%s" (Model.cellToChar tile)
 
                 printfn ""
+
+            printfn "Beginning walk process... Press any key to step"
+
+            let pathForward = List.rev victoryLap
+
+            List.pairwise pathForward
+            |> List.map (fun (step, next) ->
+                System.Console.ReadKey() |> ignore
+                activateCogmindWindow ()
+                let nextDirection = Movement.getDirection step next
+                Movement.walkDirection nextDirection |> ignore
+                printfn "Press any key to step...")
+            |> ignore
+
 
         printfn "I'm walking here"
         printfn "Press any key to exit..."
