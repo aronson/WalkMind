@@ -1,6 +1,7 @@
 ﻿open Magic
 open System.Runtime.InteropServices
 open AStar
+open Goalfinding
 
 [<DllImport("user32.dll")>]
 extern int SetForegroundWindow(int hwnd)
@@ -67,16 +68,28 @@ let main args =
                 let coordinateMap = coordinateMap tiles
 
                 match exits tiles with
-                | [ exit ] -> exit
-                | exit :: _ -> exit
+                | [ exit ] -> Some exit
+                | exit :: _ -> Some exit
                 | [] ->
-                    Goalfinding.seekEdge coordinateMap playerTile
-                    |> Option.get
+                    let x =
+                        seekEdge coordinateMap playerTile |> Option.get
 
-            printfn "Goal :\n%A" goal
+                    match neighborNodes coordinateMap Set.empty x with
+                    | Goal goal -> Some goal
+                    | Neighbors neighbors ->
+                        List.find
+                            (fun x ->
+                                match Model.mapTileOccupancy x with
+                                | Model.Occupancy.Occupied _ -> true
+                                | Model.Occupancy.Vacant -> true
+                                | Model.Occupancy.Obstructed -> false)
+                            neighbors
+                        |> Some
+
+
 
             let path tiles =
-                let goal = goal tiles
+                let goal = goal tiles |> Option.get
                 let playerTile = playerTile tiles
                 let coordinateMap = coordinateMap tiles
 
@@ -89,15 +102,22 @@ let main args =
 
             printfn "Beginning walk process... Press any key to step"
 
+            let mutable loopBuster = 0
+
             let rec waitActionReady lastAction nextDirection =
                 nextDirection ()
 
                 match openMagicResult cogmindProcess (Some magicOffset) with
                 | Error message -> raise (System.Exception(message))
-                | Ok (luigiAi, _, _, _) when luigiAi.actionReady > lastAction ->
+                | Ok (luigiAi, _, _, _) when
+                    luigiAi.actionReady > lastAction
+                    || loopBuster > 2
+                    ->
+                    loopBuster <- 0
                     // we moved!
                     luigiAi.actionReady
                 | _ ->
+                    loopBuster <- loopBuster + 1
                     System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
                     waitActionReady lastAction nextDirection
 
