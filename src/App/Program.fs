@@ -14,11 +14,28 @@ let main args =
             SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
             |> ignore
 
-        match openMagicResult cogmindProcess with
+        match openMagicResult cogmindProcess None with
         | Error message -> printfn "Seek failed... '%s'" message
-        | Ok (luigiAi, player, tiles) ->
-            printfn "LuigiAi:\n%A" luigiAi
-            printfn "Player state:\n%A" player
+        | Ok (luigiAi, player, tiles, magicOffset) ->
+
+            let printPath path goal =
+                for col in 0 .. luigiAi.mapWidth - 1 do
+                    for row in 0 .. luigiAi.mapHeight - 1 do
+                        let tile = tiles.[row * luigiAi.mapHeight + col]
+
+                        if List.contains tile path then
+                            match tile.entity with
+                            | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
+                            | _ when tile = goal -> printf "@"
+                            | _ -> printf "+"
+                        else
+                            printf "%s" (Model.cellToChar tile)
+
+                    printfn ""
+
+            let printState luigiAi player =
+                printfn "LuigiAi:\n%A" luigiAi
+                printfn "Player state:\n%A" player
 
             let playerTile =
                 tiles
@@ -34,7 +51,6 @@ let main args =
                     | Some entity when entity.entity <> Domain.entity.Cogmind -> true
                     | _ -> false)
 
-
             printfn "Player tile:\n%A" playerTile
             printfn "Mob tile(s):\n%A" mobs
 
@@ -44,7 +60,9 @@ let main args =
 
                 Map.ofList coords
 
-            let goal = Map.find (53, 50) coordinateMap
+            let goal =
+                Goalfinding.seekEdge coordinateMap playerTile
+                |> Option.get
 
             printfn "Goal :\n%A" goal
 
@@ -54,31 +72,27 @@ let main args =
 
             let victoryLap = Option.get path |> List.choose id
 
-            for col in 0 .. luigiAi.mapWidth - 1 do
-                for row in 0 .. luigiAi.mapHeight - 1 do
-                    let tile = tiles.[row * luigiAi.mapHeight + col]
-
-                    if List.contains tile victoryLap then
-                        match tile.entity with
-                        | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
-                        | _ when tile = goal -> printf "@"
-                        | _ -> printf "+"
-                    else
-                        printf "%s" (Model.cellToChar tile)
-
-                printfn ""
-
             printfn "Beginning walk process... Press any key to step"
 
             let pathForward = List.rev victoryLap
 
-            List.pairwise pathForward
-            |> List.map (fun (step, next) ->
-                System.Console.ReadKey() |> ignore
-                activateCogmindWindow ()
+            let rec waitActionReady lastAction =
+                match openMagicResult cogmindProcess (Some magicOffset) with
+                | Error message -> raise (System.Exception(message))
+                | Ok (luigiAi, _, _, _) when luigiAi.actionReady > lastAction -> luigiAi.actionReady
+                | _ ->
+                    System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
+                    waitActionReady lastAction
+
+            let doWalkLoop lastAction (step, next) =
                 let nextDirection = Movement.getDirection step next
                 Movement.walkDirection nextDirection |> ignore
-                printfn "Press any key to step...")
+                waitActionReady lastAction
+
+            activateCogmindWindow ()
+
+            List.pairwise pathForward
+            |> List.fold doWalkLoop luigiAi.actionReady
             |> ignore
 
 

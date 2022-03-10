@@ -130,7 +130,7 @@ let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPoint
 
 type AddressCoordinate = AddressCoordinate of (int * int)
 
-type MagicResult = Result<LuigiAi * LuigiEntity * LuigiTile list, string>
+type MagicResult = Result<LuigiAi * LuigiEntity * LuigiTile list * int, string>
 
 let rec seekMagicStart processHandle offset : Result<int, string> =
     if (offset >= 210346304) then
@@ -156,7 +156,7 @@ let rec seekMagicStart processHandle offset : Result<int, string> =
                 seekMagicStart processHandle (offset + 4)
         | false -> seekMagicStart processHandle (offset + 4)
 
-let openMagicResult cogmindProcess : MagicResult =
+let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
     let processHandle = openProcess cogmindProcess
 
     let openMagic offset : LuigiAi =
@@ -250,8 +250,13 @@ let openMagicResult cogmindProcess : MagicResult =
                 |> Error
 
     let result =
-        // start at 4MB offset because it's a Win32 application
-        match seekMagicStart processHandle 4194304 with
+        let offset =
+            match magicOffset with
+            | Some offset -> offset |> Ok
+            // start at 4MB offset because it's a Win32 application
+            | None -> seekMagicStart processHandle 4194304
+
+        match offset with
         | Error message -> Error message
         | Ok magicOffset ->
             let luigiAi = openMagic magicOffset
@@ -277,7 +282,7 @@ let openMagicResult cogmindProcess : MagicResult =
                 tryUnwrapEntity luigiAi.playerEntityPointer
 
             match tileResults, playerEntity with
-            | Ok results, Some player -> Ok(luigiAi, player, results)
+            | Ok results, Some player -> Ok(luigiAi, player, results, magicOffset)
             | _, None -> Error "entity data for player corrupt"
             | Error message, _ -> Error message
 

@@ -9,6 +9,7 @@
     <Compile Include="Magic.fs" />
     <Compile Include="Model.fs" />
     <Compile Include="AStar.fs" />
+    <Compile Include="Goalfinding.fs" />
     <Compile Include="Simulator\Types.fs" />
     <Compile Include="Simulator\Entities.fs" />
     <Compile Include="Simulator\Calculator.fs" />
