@@ -10,11 +10,7 @@ let rec reconstructPath cameFrom node =
 let heuristic node = 1
 
 let distanceBetween (x: LuigiTile) (y: LuigiTile) =
-    sqrt (
-        (x.row - y.row |> float) ** 2.0
-        + (x.col - y.col |> float) ** 2.0
-    )
-    |> int
+    max (x.row - y.row |> abs) (x.col - y.col |> abs)
 
 let rec update x y oldF oldG oldFrom gValue =
     let keyF = Map.containsKey y oldF
@@ -77,19 +73,21 @@ let bestStep openList score =
     | [] -> None
     | list -> bestStep4 list score None 0
 
-let neighborNodes (map: Map<int * int, LuigiTile>) (x: LuigiTile) =
+let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x: LuigiTile) =
     // There are only up to eight neighbors
     seq {
-        yield (x.row - 1, x.col - 1)
-        yield (x.row + 1, x.col - 1)
-        yield (x.row - 1, x.col + 1)
-        yield (x.row + 1, x.col + 1)
-        yield (x.row, x.col + 1)
-        yield (x.row + 1, x.col)
-        yield (x.row, x.col - 1)
-        yield (x.row - 1, x.col)
+        yield (x.col - 1, x.row - 1)
+        yield (x.col + 1, x.row - 1)
+        yield (x.col - 1, x.row + 1)
+        yield (x.col + 1, x.row + 1)
+        yield (x.col, x.row + 1)
+        yield (x.col + 1, x.row)
+        yield (x.col, x.row - 1)
+        yield (x.col - 1, x.row)
     }
-    |> Seq.map (fun (row, col) -> Map.find (row, col) map)
+    |> Seq.map (fun (col, row) -> Map.tryFind (col, row) map)
+    |> Seq.choose id
+    |> Seq.except closedSet
     |> Seq.filter (fun tile ->
         match Model.mapTileOccupancy tile with
         | Model.Occupancy.Vacant -> true
@@ -112,7 +110,10 @@ let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
             | Some x ->
                 let nextOpen = Set.remove x openSet
                 let nextClosed = Set.add x closedSet
-                let neighbors = neighborNodes magic x
+
+                let neighbors =
+                    neighborNodes magic (Set.toSeq nextClosed) x
+
 
                 let (newOpen, newF, newG, newFrom) =
                     scan x neighbors nextOpen nextClosed fScore gScore cameFrom

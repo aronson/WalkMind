@@ -116,8 +116,8 @@ let (entityIntegrityOffset,
     (4, 8, 12, 16, 20, 24, 28, 32, 36)
 
 type LuigiTile =
-    { row: int
-      col: int
+    { col: int
+      row: int
       lastAction: int
       cell: cell
       lastFov: int
@@ -234,8 +234,8 @@ let openMagicResult cogmindProcess : MagicResult =
                     | _ -> None
 
             return
-                { row = x
-                  col = y
+                { col = x
+                  row = y
                   lastAction = readInt pointer processHandle
                   cell = unwrapCell (pointer + cellOffset)
                   lastFov = readInt (pointer + lastFovOffset) processHandle
