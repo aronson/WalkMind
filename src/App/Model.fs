@@ -1302,6 +1302,19 @@ let mapTileOccupancy (tile: LuigiTile) =
             | Some entity when entity.entity <> Domain.entity.Cogmind -> Occupied entity
             | _ -> Vacant
 
+    |> function
+        | Vacant ->
+            // check if prop is blocking
+            match tile.propPointer with
+            | Some prop ->
+                let prop = Domain.getProp prop
+
+                match Domain.propToOcclusion prop with
+                | Domain.PropOcclusion.Obstructed -> Obstructed
+                | _ -> Vacant
+            | None -> Vacant
+        | x -> x
+
 
 let cellToChar (tile: LuigiTile) : string =
     match tile.cell with
@@ -1511,3 +1524,32 @@ let cellToChar (tile: LuigiTile) : string =
             | Some pointer -> "X"
             | None -> " "
         | char -> char
+
+let printPath path goal (mapWidth, mapHeight) (tiles: LuigiTile list) =
+    for col in 0 .. mapWidth - 1 do
+        for row in 0 .. mapHeight - 1 do
+            let tile = tiles.[row * mapHeight + col]
+
+            if List.contains tile path then
+                match tile.entity with
+                | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
+                | _ when tile = goal -> printf "@"
+                | _ -> printf "+"
+            else
+                printf "%s" (cellToChar tile)
+
+        printfn ""
+
+let playerTile tiles =
+    tiles
+    |> List.find (fun tile ->
+        match tile.entity with
+        | Some entity when entity.entity = Domain.entity.Cogmind -> true
+        | _ -> false)
+
+let mobs tiles =
+    tiles
+    |> List.find (fun tile ->
+        match tile.entity with
+        | Some entity when entity.entity <> Domain.entity.Cogmind -> true
+        | _ -> false)

@@ -100,6 +100,7 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
         |> Seq.filter (fun tile ->
             match Model.mapTileOccupancy tile with
             | Model.Occupancy.Vacant -> true
+            | Model.Occupancy.Occupied _ -> true
             | _ -> false)
         |> Seq.toList
 

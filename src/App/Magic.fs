@@ -5,6 +5,7 @@ open System.Runtime.InteropServices
 open System
 open FsToolkit.ErrorHandling
 open Domain
+open FSharpx.State
 
 type OptionBuilder() =
     member x.Bind(v, f) = Option.bind f v
@@ -156,17 +157,17 @@ let rec seekMagicStart processHandle offset : Result<int, string> =
                 seekMagicStart processHandle (offset + 4)
         | false -> seekMagicStart processHandle (offset + 4)
 
+let openMagic processHandle offset : LuigiAi =
+    { magic1 = primaryMagic
+      magic2 = secondaryMagic
+      actionReady = readInt (offset + actionReadyOffset) processHandle
+      mapWidth = readInt (offset + mapWidthOffset) processHandle
+      mapHeight = readInt (offset + mapHeightOffset) processHandle
+      tilePointer = readInt (offset + mapDataOffset) processHandle
+      playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle }
+
 let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
     let processHandle = openProcess cogmindProcess
-
-    let openMagic offset : LuigiAi =
-        { magic1 = primaryMagic
-          magic2 = secondaryMagic
-          actionReady = readInt (offset + actionReadyOffset) processHandle
-          mapWidth = readInt (offset + mapWidthOffset) processHandle
-          mapHeight = readInt (offset + mapHeightOffset) processHandle
-          tilePointer = readInt (offset + mapDataOffset) processHandle
-          playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle }
 
     let tryOpenPointer =
         function
@@ -259,7 +260,7 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
         match offset with
         | Error message -> Error message
         | Ok magicOffset ->
-            let luigiAi = openMagic magicOffset
+            let luigiAi = openMagic processHandle magicOffset
 
             let openTilePointer (AddressCoordinate (x, y)) =
                 let offset =
@@ -282,9 +283,38 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
                 tryUnwrapEntity luigiAi.playerEntityPointer
 
             match tileResults, playerEntity with
-            | Ok results, Some player -> Ok(luigiAi, player, results, magicOffset)
+            | Ok tiles, Some player -> Ok(luigiAi, player, tiles, magicOffset)
             | _, None -> Error "entity data for player corrupt"
             | Error message, _ -> Error message
 
     CloseHandle(processHandle) |> ignore
     result
+
+type Magic = LuigiAi * LuigiEntity * LuigiTile list * int
+type MagicReader = unit -> Magic
+
+let readMagic cogmindProcess =
+    state {
+        let! (offset: int) = getState
+
+        try
+            let result =
+                match openMagicResult cogmindProcess (Some offset) with
+                | Error message -> raise (InvalidOperationException(message))
+                | Ok (luigiAi, player, tiles, offset) ->
+                    (putState offset) () |> ignore
+                    Magic(luigiAi, player, tiles, offset)
+
+            return result
+        with
+        | _ ->
+            let waitInterval = 10000 // ten seconds
+            Threading.Thread.Sleep(waitInterval)
+
+            return
+                match openMagicResult cogmindProcess (Some offset) with
+                | Error message -> raise (InvalidOperationException(message))
+                | Ok (luigiAi, player, tiles, offset) ->
+                    (putState offset) () |> ignore
+                    Magic(luigiAi, player, tiles, offset)
+    }

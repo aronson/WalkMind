@@ -9,7 +9,6 @@ let rec reconstructPath cameFrom node =
     | None -> node :: []
     | value -> node :: reconstructPath cameFrom value
 
-
 let distanceBetween (x: LuigiTile) (y: LuigiTile) =
     max (x.row - y.row |> abs) (x.col - y.col |> abs)
 
@@ -26,7 +25,7 @@ let rec update x y oldF oldG oldFrom gValue =
         let newFrom = Map.add (Some y) (Some x) oldFrom
         let newG = Map.add y gValue oldG
         // Estimated total distance
-        let newF = Map.add y (gValue + 1) oldF
+        let newF = Map.add y (gValue) oldF
 
         (newF, newG, newFrom)
 
@@ -101,6 +100,7 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
         |> Seq.filter (fun tile ->
             match Model.mapTileOccupancy tile with
             | Model.Occupancy.Vacant -> true
+            | Model.Occupancy.Occupied _ -> true
             | _ -> false)
         |> Seq.toList
         |> Neighbors

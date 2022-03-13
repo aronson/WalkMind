@@ -2364,6 +2364,1082 @@ let itemId =
     | 1048 -> GammaRefractor
     | x -> raise (System.ArgumentException(sprintf "Invalid item id! %A" x))
 
+type Prop =
+    | ``Concrete Rubble``
+    | ``Metal Rubble``
+    | GENERIC_MACHINE_10
+    | GENERIC_MACHINE_9
+    | GENERIC_MACHINE_8
+    | GENERIC_MACHINE_7
+    | GENERIC_MACHINE_6
+    | GENERIC_MACHINE_5
+    | GENERIC_MACHINE_4
+    | GENERIC_MACHINE_3
+    | GENERIC_MACHINE_2
+    | GENERIC_MACHINE_1
+    | ``Terminal vFe01a``
+    | ``Terminal vNi03a``
+    | ``Terminal vCu03a``
+    | ``Terminal vZn06a``
+    | ``Terminal vAg06a``
+    | ``Terminal vTi06n``
+    | ``Terminal vCo08n``
+    | ``Terminal vMn10n``
+    | ``Terminal vMo07n``
+    | ``Terminal vPd10n``
+    | ``Terminal vCd08n``
+    | ``Terminal vZr10n``
+    | ``Terminal vY10n``
+    | ``Terminal vW10x``
+    | ``Terminal vIr12x``
+    | ``Terminal vPt12x``
+    | ``Terminal vAu13x``
+    | ``Terminal vHg20x``
+    | ``Terminal vRh10x``
+    | ``Fabricator vLi07a``
+    | ``Fabricator vNa07a``
+    | ``Fabricator vK08a``
+    | ``Fabricator vCs10n``
+    | ``Fabricator vBe12n``
+    | ``Fabricator vMg13n``
+    | ``Fabricator vCa14x``
+    | ``Fabricator vSr14x``
+    | ``Fabricator vBa16x``
+    | ``Fabricator vRa19x``
+    | ``Repair vAl08a``
+    | ``Repair vGa08a``
+    | ``Repair vIn08a``
+    | ``Repair vSn08n``
+    | ``Repair vTl10n``
+    | ``Repair vPb11n``
+    | ``Repair vBi12x``
+    | ``Repair vPo13x``
+    | ``Recycling vH06a``
+    | ``Recycling vN06a``
+    | ``Recycling vO08n``
+    | ``Recycling vF08n``
+    | ``Recycling vP10x``
+    | ``Recycling vI14x``
+    | ``Scanalyzer vHe07a``
+    | ``Scanalyzer vNe13n``
+    | ``Scanalyzer vAr15x``
+    | ``Scanalyzer vXe13x``
+    | ``Garrison vCe6a``
+    | ``Garrison vPr8a``
+    | ``Garrison vNd9n``
+    | ``Garrison vPm7n``
+    | ``Garrison vSm13x``
+    | ``Garrison vEu9x``
+    | T1
+    | ``Core Extractor``
+    | Pulverizer
+    | ``Laser Drill``
+    | ``Plasma Injector``
+    | ``Seismic Survey Station``
+    | ``Matter Pump``
+    | ``Pressure Siphon``
+    | ``Nuclear Reactor``
+    | ``Neutrino Reactor``
+    | ``Fusion Modulator``
+    | ``Quantum Generator``
+    | ``Dark Matter Chamber``
+    | ``Hypermatter Reactor``
+    | ``Compression Vault``
+    | ``Component Storage``
+    | ``Holding Depot``
+    | ``Packing Station``
+    | ``Arsenal Racks``
+    | ``Extraspacial Lockers``
+    | ``Energy Cycler``
+    | ``Transport Mainframe``
+    | ``Transfer Shaft``
+    | ``Hadron Collector``
+    | ``Electrolysis Chamber``
+    | ``Processing Tank``
+    | ``Atomic Centrifuge``
+    | ``Purification Channel``
+    | ``Integration Channel``
+    | ``Material Processor``
+    | ``Material Compactor``
+    | ``Matter Filter``
+    | ``Manufacturing Mainframe``
+    | ``Construction Platform``
+    | ``Assembly Bed``
+    | Megafabricator
+    | ``Subcomponent Replicator``
+    | ``Power Conduit``
+    | ``Research Mainframe``
+    | ``Antiparticle Reservoir``
+    | ``Reaction Chamber``
+    | ``Vacuum Chamber``
+    | ``Subatomic Condenser``
+    | Catalytron
+    | ``Meson Extractor``
+    | ``Antimatter Diverter``
+    | ``Field Manipulator``
+    | ``Particle Synthesizer``
+    | ``Quantum Separator``
+    | ``Wave Intensifier``
+    | ``Proton Scatter Basin``
+    | ``Ion Accelerator``
+    | ``Magnetic Photon System``
+    | Hypercollider
+    | ``Graviton Restrictor``
+    | ``Potential Refractor``
+    | ``Prototyping Station``
+    | ``Engineering Station``
+    | ``Biostasis Chamber``
+    | ``Organic Neutralizer``
+    | ``Containment Shield``
+    | ``Testing Mainframe``
+    | ``Sonic Impulse Analyzer``
+    | ``Field Warper``
+    | ``Gravity Sphere``
+    | ``Quantum Transformer``
+    | Focalizer
+    | ``Phase Constrictor``
+    | ``Resonance Scanner``
+    | ``Tau Charger``
+    | ``Harmonic Fracturing Unit``
+    | ``Antiparticle Suffusor``
+    | ``Thermocompressor Array``
+    | ``Cryocooling Duct``
+    | ``Artifact Storage``
+    | ``Cryopreservation Unit``
+    | ``Biostim Tank``
+    | ``Quarantine Pod``
+    | ``Aeration Cycler``
+    | ``Deconstruction Unit``
+    | Anatomizer
+    | ``Cloning Tubes``
+    | ``Cell Assembler``
+    | ``Molecular Binding Bank``
+    | ``Anti-Ion Cluster``
+    | ``Deuterium Array``
+    | Mainframe
+    | Storage
+    | ``Retrofitting Station``
+    | ``Signal Jammer``
+    | ``Cloak Generator``
+    | ``Decryption Engine``
+    | ``Backup Mainframe``
+    | ``Archive Unit``
+    | ``Control Node``
+    | ``Operations Mainframe``
+    | ``Quantum Router``
+    | ``Hyperwave Decoder``
+    | ``Sealed Freight Elevator``
+    | ``Radio-Gravity Array``
+    | ``Anti-Orbital Battery``
+    | ``Spectral Interrupter``
+    | ``Wave Collapse Detector``
+    | ``Signal Shield``
+    | ``Longscan Aggregator``
+    | ``Blade Trap``
+    | ``Segregator Trap``
+    | ``Explosive Trap``
+    | ``Heavy Explosive Trap``
+    | ``Tiamat Bomb Trap``
+    | ``Fusion Bomb Trap``
+    | ``Hellfire Trap``
+    | ``Armageddon Trap``
+    | ``Dirty Bomb Trap``
+    | ``EMP Trap``
+    | ``Proton Bomb Trap``
+    | ``Tesla Bomb Trap``
+    | ``Gamma Bomb Trap``
+    | ``Shock Trap``
+    | ``EM Surge Trap``
+    | ``Fire Trap``
+    | ``Stasis Trap``
+    | ``Alarm Trap``
+    | ``Ambush Trap``
+    | ``Chute Trap``
+    | ``Collapsed Tunnel``
+    | ``Door Terminal``
+    | ``DSF Access``
+    | ``Broken Shaft Lining``
+    | XXX_Blast_Door_Open
+    | XXX_Blast_Door_Hackable
+    | ACC_Door_Shootable_SUR
+    | ACC_Door_Shootable_COM
+    | ACC_Door_Hackable
+    | ACC_Shell_Shootable
+    | ``Main Access Lift``
+    | STO_Door_Open
+    | STO_Door_Hackable
+    | STO_Shell_Shootable
+    | GAR_Door_Shootable
+    | GAR_Relay
+    | GAR_Generator
+    | SHOPSys
+    | MIN_Door_Hackable_Weak
+    | ``Assembled Analyzer``
+    | Components
+    | ``Testing Chamber Shield``
+    | ``Testing Apparatus``
+    | ``EX-Generator``
+    | ``BIN's Workstation``
+    | ``DEC's Workstation``
+    | ``HEX's Workstation``
+    | ``BIN's Terminal``
+    | ``DEC's Terminal``
+    | ``HEX's Terminal``
+    | EXI_Farcom
+    | ``EX-Vault Access``
+    | ``EX-Prototypes Database``
+    | ``EX-Message Board``
+    | WARSys
+    | ``Prototyping Terminal``
+    | CAV_Door_Hackable
+    | ``Outpost Terminal``
+    | CAV_Base_Generator
+    | CAV_Junk_Machine
+    | CAV_Reinforcement
+    | CAV_Door_Shootable
+    | CAV_Door_No_Terminal
+    | Private
+    | CAV_Thief_Den
+    | ``W-Fans Enter Here``
+    | LOW_Warlord_Fan_Stuff
+    | PRO_Base_Generator
+    | PRO_Target_Dispatcher
+    | PRO_Test_Aggregator
+    | PRO_Data_Receptor
+    | GAR_RIF_Installer
+    | ``Matter Repository``
+    | ``Twisting Tunnel``
+    | DAT_Data_Conduit
+    | ``ORACLE Interface``
+    | ZHI_Cloak_Generator
+    | ZHI_Main_Door
+    | ``Zhirov's Terminal``
+    | ``Quantum Analyzer``
+    | ``Zhirov's Workstation``
+    | WAR_Door_Hackable
+    | ``Vortex Lab Terminal``
+    | ``Hacking Lab Terminal``
+    | ``Relay Lab Terminal``
+    | ``Fabnet Lab Terminal``
+    | ``Intel Room Terminal``
+    | WAR_Staging_Area
+    | RES_Staging_Area
+    | WAR_Mainc_Tunnel
+    | ZIO_Machinery
+    | ``Deep Containment System``
+    | ZIOWAR_Quarantine_Array
+    | ZIO_Cloak_Generator
+    | ZIO_Stockpile_Wall
+    | ZIO_Prototype_Hold
+    | ZIO_Lab_Wall
+    | ZIO_Repair_Shop_Wall
+    | ``Zion Terminal``
+    | ZIO_Machinery_Fake
+    | ``Conduit Teleporter``
+    | ZIO_Memory_Banks
+    | ZIO_Imprinter
+    | DEE_Z_Facility
+    | ``Z-Power``
+    | DEE_Sigix_Wall
+    | DEE_Sigix_Gate
+    | DEE_Wall_Chamber
+    | DEE_Survey_Way_Station
+    | EXT_Door_Hackable
+    | EXT_Transfer_Station
+    | ``Cetus Terminal``
+    | ``Cetus Manufacturing Controls``
+    | CET_Door_Hackable
+    | Doors
+    | Bed
+    | Lockers
+    | Table
+    | ``Lab Station``
+    | ``Research Interface``
+    | ``Cetus Mainframe``
+    | ``Cetus Manufacturing Module``
+    | ``Archive Terminal``
+    | ``Archive Hub``
+    | HUB_Transfer_Station
+    | HUB_Network_Hub
+    | ARM_Door_Hackable
+    | ARM_Shell_Shootable
+    | ARM_Dimension_Slip_Node
+    | ``NO ENTRY``
+    | LAB_Door_Hackable
+    | ``Active System Cloaker``
+    | ``A0 Command``
+    | ``HN 3sDk7Qc``
+    | ``A0 Storage 04-B``
+    | ``UC xVqbSdU M7q4``
+    | ``Suspension Chamber``
+    | TES_Door_Hackable
+    | TES_Shell_Shootable
+    | ``Regeneration Lab``
+    | TES_Terrabomb
+    | QUA_Door_Hackable
+    | QUA_Door_Hackable_Hard
+    | ``Sigix Lab``
+    | ``Sigix Quarantine Controls``
+    | ``Sigix Quarantine Chamber``
+    | ``Teleportation Lab``
+    | ``Autopsy Lab``
+    | ``Research Terminal``
+    | SEC_Door_Hackable
+    | ``L2 Monitoring Station``
+    | ``Power Cell Monitoring``
+    | Thrusters
+    | SEC_L2_Power_Cell
+    | ``Wing Frame``
+    | ``FTL Facilitator``
+    | ``Core Housing``
+    | Hull
+    | ``Armor Plating``
+    | Navigation
+    | ``Construction Supplies``
+    | ``L2 Fabricator``
+    | ``Exoskeleton Controls``
+    | ``Cave Seal Controls``
+    | COM_Cave_Spawn
+    | COM_Shell_Shootable
+    | ``Access Lift``
+    | COM_Teleport_Inhibitor
+    | COM_Door_Hackable
+    | COM_0b10_Conduit
+    | COM_Alternative_Access
+    | COM_Cache_Door
+    | AC0_Singularity_Gate
+    | ``Gate Controls``
+    | AC0_Subspace_Node
+    | AC0_Subspace_Node_Mid
+    | AC0_Architect_Shell
+    | ``Architect Logs``
+    | AC0_Abandoned_Machinery
+    | AC0_Shell_Shootable
+    | ``Analysis Chamber``
+    | AC0_Workstation
+    | SCR_Black_Space
+    | SCR_New_Year_City
+
+let getProp =
+    function
+    | 0 -> ``Concrete Rubble``
+    | 1 -> ``Metal Rubble``
+    | 2 -> GENERIC_MACHINE_10
+    | 3 -> GENERIC_MACHINE_9
+    | 4 -> GENERIC_MACHINE_8
+    | 5 -> GENERIC_MACHINE_7
+    | 6 -> GENERIC_MACHINE_6
+    | 7 -> GENERIC_MACHINE_5
+    | 8 -> GENERIC_MACHINE_4
+    | 9 -> GENERIC_MACHINE_3
+    | 10 -> GENERIC_MACHINE_2
+    | 11 -> GENERIC_MACHINE_1
+    | 12 -> ``Terminal vFe01a``
+    | 13 -> ``Terminal vNi03a``
+    | 14 -> ``Terminal vCu03a``
+    | 15 -> ``Terminal vZn06a``
+    | 16 -> ``Terminal vAg06a``
+    | 17 -> ``Terminal vTi06n``
+    | 18 -> ``Terminal vCo08n``
+    | 19 -> ``Terminal vMn10n``
+    | 20 -> ``Terminal vMo07n``
+    | 21 -> ``Terminal vPd10n``
+    | 22 -> ``Terminal vCd08n``
+    | 23 -> ``Terminal vZr10n``
+    | 24 -> ``Terminal vY10n``
+    | 25 -> ``Terminal vW10x``
+    | 26 -> ``Terminal vIr12x``
+    | 27 -> ``Terminal vPt12x``
+    | 28 -> ``Terminal vAu13x``
+    | 29 -> ``Terminal vHg20x``
+    | 30 -> ``Terminal vRh10x``
+    | 31 -> ``Fabricator vLi07a``
+    | 32 -> ``Fabricator vNa07a``
+    | 33 -> ``Fabricator vK08a``
+    | 34 -> ``Fabricator vCs10n``
+    | 35 -> ``Fabricator vBe12n``
+    | 36 -> ``Fabricator vMg13n``
+    | 37 -> ``Fabricator vCa14x``
+    | 38 -> ``Fabricator vSr14x``
+    | 39 -> ``Fabricator vBa16x``
+    | 40 -> ``Fabricator vRa19x``
+    | 41 -> ``Repair vAl08a``
+    | 42 -> ``Repair vGa08a``
+    | 43 -> ``Repair vIn08a``
+    | 44 -> ``Repair vSn08n``
+    | 45 -> ``Repair vTl10n``
+    | 46 -> ``Repair vPb11n``
+    | 47 -> ``Repair vBi12x``
+    | 48 -> ``Repair vPo13x``
+    | 49 -> ``Recycling vH06a``
+    | 50 -> ``Recycling vN06a``
+    | 51 -> ``Recycling vO08n``
+    | 52 -> ``Recycling vF08n``
+    | 53 -> ``Recycling vP10x``
+    | 54 -> ``Recycling vI14x``
+    | 55 -> ``Scanalyzer vHe07a``
+    | 56 -> ``Scanalyzer vNe13n``
+    | 57 -> ``Scanalyzer vAr15x``
+    | 58 -> ``Scanalyzer vXe13x``
+    | 59 -> ``Garrison vCe6a``
+    | 60 -> ``Garrison vPr8a``
+    | 61 -> ``Garrison vNd9n``
+    | 62 -> ``Garrison vPm7n``
+    | 63 -> ``Garrison vSm13x``
+    | 64 -> ``Garrison vEu9x``
+    | 65 -> T1
+    | 66 -> ``Core Extractor``
+    | 67 -> Pulverizer
+    | 68 -> ``Laser Drill``
+    | 69 -> ``Plasma Injector``
+    | 70 -> ``Seismic Survey Station``
+    | 71 -> ``Matter Pump``
+    | 72 -> ``Pressure Siphon``
+    | 73 -> ``Nuclear Reactor``
+    | 74 -> ``Neutrino Reactor``
+    | 75 -> ``Fusion Modulator``
+    | 76 -> ``Quantum Generator``
+    | 77 -> ``Dark Matter Chamber``
+    | 78 -> ``Hypermatter Reactor``
+    | 79 -> ``Compression Vault``
+    | 80 -> ``Component Storage``
+    | 81 -> ``Holding Depot``
+    | 82 -> ``Packing Station``
+    | 83 -> ``Arsenal Racks``
+    | 84 -> ``Extraspacial Lockers``
+    | 85 -> ``Energy Cycler``
+    | 86 -> ``Transport Mainframe``
+    | 87 -> ``Transfer Shaft``
+    | 88 -> ``Hadron Collector``
+    | 89 -> ``Electrolysis Chamber``
+    | 90 -> ``Processing Tank``
+    | 91 -> ``Atomic Centrifuge``
+    | 92 -> ``Purification Channel``
+    | 93 -> ``Integration Channel``
+    | 94 -> ``Material Processor``
+    | 95 -> ``Material Compactor``
+    | 96 -> ``Matter Filter``
+    | 97 -> ``Manufacturing Mainframe``
+    | 98 -> ``Construction Platform``
+    | 99 -> ``Assembly Bed``
+    | 100 -> Megafabricator
+    | 101 -> ``Subcomponent Replicator``
+    | 102 -> ``Power Conduit``
+    | 103 -> ``Research Mainframe``
+    | 104 -> ``Antiparticle Reservoir``
+    | 105 -> ``Reaction Chamber``
+    | 106 -> ``Vacuum Chamber``
+    | 107 -> ``Subatomic Condenser``
+    | 108 -> Catalytron
+    | 109 -> ``Meson Extractor``
+    | 110 -> ``Antimatter Diverter``
+    | 111 -> ``Field Manipulator``
+    | 112 -> ``Particle Synthesizer``
+    | 113 -> ``Quantum Separator``
+    | 114 -> ``Wave Intensifier``
+    | 115 -> ``Proton Scatter Basin``
+    | 116 -> ``Ion Accelerator``
+    | 117 -> ``Magnetic Photon System``
+    | 118 -> Hypercollider
+    | 119 -> ``Graviton Restrictor``
+    | 120 -> ``Potential Refractor``
+    | 121 -> ``Prototyping Station``
+    | 122 -> ``Engineering Station``
+    | 123 -> ``Biostasis Chamber``
+    | 124 -> ``Organic Neutralizer``
+    | 125 -> ``Containment Shield``
+    | 126 -> ``Testing Mainframe``
+    | 127 -> ``Sonic Impulse Analyzer``
+    | 128 -> ``Field Warper``
+    | 129 -> ``Gravity Sphere``
+    | 130 -> ``Quantum Transformer``
+    | 131 -> Focalizer
+    | 132 -> ``Phase Constrictor``
+    | 133 -> ``Resonance Scanner``
+    | 134 -> ``Tau Charger``
+    | 135 -> ``Harmonic Fracturing Unit``
+    | 136 -> ``Antiparticle Suffusor``
+    | 137 -> ``Thermocompressor Array``
+    | 138 -> ``Cryocooling Duct``
+    | 139 -> ``Artifact Storage``
+    | 140 -> ``Cryopreservation Unit``
+    | 141 -> ``Biostim Tank``
+    | 142 -> ``Quarantine Pod``
+    | 143 -> ``Aeration Cycler``
+    | 144 -> ``Deconstruction Unit``
+    | 145 -> Anatomizer
+    | 146 -> ``Cloning Tubes``
+    | 147 -> ``Cell Assembler``
+    | 148 -> ``Molecular Binding Bank``
+    | 149 -> ``Anti-Ion Cluster``
+    | 150 -> ``Deuterium Array``
+    | 151 -> Mainframe
+    | 152 -> Storage
+    | 153 -> ``Retrofitting Station``
+    | 154 -> ``Signal Jammer``
+    | 155 -> ``Cloak Generator``
+    | 156 -> ``Decryption Engine``
+    | 157 -> ``Backup Mainframe``
+    | 158 -> ``Archive Unit``
+    | 159 -> ``Control Node``
+    | 160 -> ``Operations Mainframe``
+    | 161 -> ``Quantum Router``
+    | 162 -> ``Hyperwave Decoder``
+    | 163 -> ``Sealed Freight Elevator``
+    | 164 -> ``Radio-Gravity Array``
+    | 165 -> ``Anti-Orbital Battery``
+    | 166 -> ``Spectral Interrupter``
+    | 167 -> ``Wave Collapse Detector``
+    | 168 -> ``Signal Shield``
+    | 169 -> ``Longscan Aggregator``
+    | 170 -> ``Blade Trap``
+    | 171 -> ``Segregator Trap``
+    | 172 -> ``Explosive Trap``
+    | 173 -> ``Heavy Explosive Trap``
+    | 174 -> ``Tiamat Bomb Trap``
+    | 175 -> ``Fusion Bomb Trap``
+    | 176 -> ``Hellfire Trap``
+    | 177 -> ``Armageddon Trap``
+    | 178 -> ``Dirty Bomb Trap``
+    | 179 -> ``EMP Trap``
+    | 180 -> ``Proton Bomb Trap``
+    | 181 -> ``Tesla Bomb Trap``
+    | 182 -> ``Gamma Bomb Trap``
+    | 183 -> ``Shock Trap``
+    | 184 -> ``EM Surge Trap``
+    | 185 -> ``Fire Trap``
+    | 186 -> ``Stasis Trap``
+    | 187 -> ``Alarm Trap``
+    | 188 -> ``Ambush Trap``
+    | 189 -> ``Chute Trap``
+    | 195 -> ``Collapsed Tunnel``
+    | 213 -> ``Door Terminal``
+    | 214 -> ``DSF Access``
+    | 215 -> ``Broken Shaft Lining``
+    | 216 -> XXX_Blast_Door_Open
+    | 217 -> XXX_Blast_Door_Hackable
+    | 218 -> ACC_Door_Shootable_SUR
+    | 219 -> ACC_Door_Shootable_COM
+    | 220 -> ACC_Door_Hackable
+    | 221 -> ACC_Shell_Shootable
+    | 222 -> ``Main Access Lift``
+    | 224 -> STO_Door_Open
+    | 225 -> STO_Door_Hackable
+    | 226 -> STO_Shell_Shootable
+    | 227 -> GAR_Door_Shootable
+    | 228 -> GAR_Relay
+    | 229 -> GAR_Generator
+    | 230 -> SHOPSys
+    | 231 -> MIN_Door_Hackable_Weak
+    | 232 -> ``Assembled Analyzer``
+    | 233 -> Components
+    | 234 -> ``Testing Chamber Shield``
+    | 235 -> ``Testing Apparatus``
+    | 236 -> ``EX-Generator``
+    | 237 -> ``BIN's Workstation``
+    | 238 -> ``DEC's Workstation``
+    | 239 -> ``HEX's Workstation``
+    | 240 -> ``BIN's Terminal``
+    | 241 -> ``DEC's Terminal``
+    | 242 -> ``HEX's Terminal``
+    | 243 -> EXI_Farcom
+    | 244 -> ``EX-Vault Access``
+    | 245 -> ``EX-Prototypes Database``
+    | 246 -> ``EX-Message Board``
+    | 247 -> WARSys
+    | 248 -> ``Prototyping Terminal``
+    | 249 -> CAV_Door_Hackable
+    | 250 -> ``Outpost Terminal``
+    | 251 -> CAV_Base_Generator
+    | 252 -> CAV_Junk_Machine
+    | 253 -> CAV_Reinforcement
+    | 254 -> CAV_Door_Shootable
+    | 255 -> CAV_Door_No_Terminal
+    | 256 -> Private
+    | 257 -> CAV_Thief_Den
+    | 258 -> ``W-Fans Enter Here``
+    | 259 -> LOW_Warlord_Fan_Stuff
+    | 260 -> PRO_Base_Generator
+    | 261 -> PRO_Target_Dispatcher
+    | 262 -> PRO_Test_Aggregator
+    | 263 -> PRO_Data_Receptor
+    | 264 -> GAR_RIF_Installer
+    | 265 -> ``Matter Repository``
+    | 266 -> ``Twisting Tunnel``
+    | 267 -> DAT_Data_Conduit
+    | 268 -> ``ORACLE Interface``
+    | 269 -> ZHI_Cloak_Generator
+    | 271 -> ZHI_Main_Door
+    | 272 -> ``Zhirov's Terminal``
+    | 273 -> ``Quantum Analyzer``
+    | 274 -> ``Zhirov's Workstation``
+    | 275 -> WAR_Door_Hackable
+    | 276 -> ``Vortex Lab Terminal``
+    | 277 -> ``Hacking Lab Terminal``
+    | 278 -> ``Relay Lab Terminal``
+    | 279 -> ``Fabnet Lab Terminal``
+    | 280 -> ``Intel Room Terminal``
+    | 281 -> WAR_Staging_Area
+    | 282 -> RES_Staging_Area
+    | 283 -> WAR_Mainc_Tunnel
+    | 284 -> ZIO_Machinery
+    | 285 -> ``Deep Containment System``
+    | 286 -> ZIOWAR_Quarantine_Array
+    | 287 -> ZIO_Cloak_Generator
+    | 288 -> ZIO_Stockpile_Wall
+    | 289 -> ZIO_Prototype_Hold
+    | 290 -> ZIO_Lab_Wall
+    | 291 -> ZIO_Repair_Shop_Wall
+    | 292 -> ``Zion Terminal``
+    | 293 -> ZIO_Machinery_Fake
+    | 294 -> ``Conduit Teleporter``
+    | 295 -> ZIO_Memory_Banks
+    | 296 -> ZIO_Imprinter
+    | 297 -> DEE_Z_Facility
+    | 298 -> ``Z-Power``
+    | 300 -> DEE_Sigix_Wall
+    | 301 -> DEE_Sigix_Gate
+    | 302 -> DEE_Wall_Chamber
+    | 303 -> DEE_Survey_Way_Station
+    | 304 -> EXT_Door_Hackable
+    | 306 -> EXT_Transfer_Station
+    | 307 -> ``Cetus Terminal``
+    | 308 -> ``Cetus Manufacturing Controls``
+    | 309 -> CET_Door_Hackable
+    | 310 -> Doors
+    | 311 -> Bed
+    | 312 -> Lockers
+    | 313 -> Table
+    | 314 -> ``Lab Station``
+    | 315 -> ``Research Interface``
+    | 316 -> ``Cetus Mainframe``
+    | 317 -> ``Cetus Manufacturing Module``
+    | 318 -> ``Archive Terminal``
+    | 319 -> ``Archive Hub``
+    | 320 -> HUB_Transfer_Station
+    | 321 -> HUB_Network_Hub
+    | 322 -> ARM_Door_Hackable
+    | 323 -> ARM_Shell_Shootable
+    | 324 -> ARM_Dimension_Slip_Node
+    | 325 -> ``NO ENTRY``
+    | 326 -> LAB_Door_Hackable
+    | 327 -> ``Active System Cloaker``
+    | 328 -> ``A0 Command``
+    | 329 -> ``HN 3sDk7Qc``
+    | 330 -> ``A0 Storage 04-B``
+    | 331 -> ``UC xVqbSdU M7q4``
+    | 332 -> ``Suspension Chamber``
+    | 334 -> TES_Door_Hackable
+    | 335 -> TES_Shell_Shootable
+    | 336 -> ``Regeneration Lab``
+    | 337 -> TES_Terrabomb
+    | 338 -> QUA_Door_Hackable
+    | 339 -> QUA_Door_Hackable_Hard
+    | 340 -> ``Sigix Lab``
+    | 341 -> ``Sigix Quarantine Controls``
+    | 342 -> ``Sigix Quarantine Chamber``
+    | 343 -> ``Teleportation Lab``
+    | 344 -> ``Autopsy Lab``
+    | 345 -> ``Research Terminal``
+    | 346 -> SEC_Door_Hackable
+    | 347 -> ``L2 Monitoring Station``
+    | 348 -> ``Power Cell Monitoring``
+    | 349 -> Thrusters
+    | 350 -> SEC_L2_Power_Cell
+    | 351 -> ``Wing Frame``
+    | 352 -> ``FTL Facilitator``
+    | 353 -> ``Core Housing``
+    | 354 -> Hull
+    | 355 -> ``Armor Plating``
+    | 356 -> Navigation
+    | 357 -> ``Construction Supplies``
+    | 358 -> ``L2 Fabricator``
+    | 359 -> ``Exoskeleton Controls``
+    | 360 -> ``Cave Seal Controls``
+    | 361 -> COM_Cave_Spawn
+    | 362 -> COM_Shell_Shootable
+    | 363 -> ``Access Lift``
+    | 364 -> COM_Teleport_Inhibitor
+    | 365 -> COM_Door_Hackable
+    | 366 -> COM_0b10_Conduit
+    | 367 -> COM_Alternative_Access
+    | 369 -> COM_Cache_Door
+    | 370 -> AC0_Singularity_Gate
+    | 371 -> ``Gate Controls``
+    | 373 -> AC0_Subspace_Node
+    | 374 -> AC0_Subspace_Node_Mid
+    | 375 -> AC0_Architect_Shell
+    | 376 -> ``Architect Logs``
+    | 377 -> AC0_Abandoned_Machinery
+    | 378 -> AC0_Shell_Shootable
+    | 379 -> ``Analysis Chamber``
+    | 380 -> AC0_Workstation
+    | 381 -> SCR_Black_Space
+    | 382 -> SCR_New_Year_City
+    | x -> raise (System.ArgumentException(sprintf "Invalid value for prop type: %A" x))
+
+type PropOcclusion =
+    | Obstructed
+    | Dangerous
+    | Vacant
+
+let propToOcclusion =
+    function
+    | ``Concrete Rubble``
+    | ``Metal Rubble`` -> Vacant
+    | GENERIC_MACHINE_10
+    | GENERIC_MACHINE_9
+    | GENERIC_MACHINE_8
+    | GENERIC_MACHINE_7
+    | GENERIC_MACHINE_6
+    | GENERIC_MACHINE_5
+    | GENERIC_MACHINE_4
+    | GENERIC_MACHINE_3
+    | GENERIC_MACHINE_2
+    | GENERIC_MACHINE_1
+    | ``Terminal vFe01a``
+    | ``Terminal vNi03a``
+    | ``Terminal vCu03a``
+    | ``Terminal vZn06a``
+    | ``Terminal vAg06a``
+    | ``Terminal vTi06n``
+    | ``Terminal vCo08n``
+    | ``Terminal vMn10n``
+    | ``Terminal vMo07n``
+    | ``Terminal vPd10n``
+    | ``Terminal vCd08n``
+    | ``Terminal vZr10n``
+    | ``Terminal vY10n``
+    | ``Terminal vW10x``
+    | ``Terminal vIr12x``
+    | ``Terminal vPt12x``
+    | ``Terminal vAu13x``
+    | ``Terminal vHg20x``
+    | ``Terminal vRh10x``
+    | ``Fabricator vLi07a``
+    | ``Fabricator vNa07a``
+    | ``Fabricator vK08a``
+    | ``Fabricator vCs10n``
+    | ``Fabricator vBe12n``
+    | ``Fabricator vMg13n``
+    | ``Fabricator vCa14x``
+    | ``Fabricator vSr14x``
+    | ``Fabricator vBa16x``
+    | ``Fabricator vRa19x``
+    | ``Repair vAl08a``
+    | ``Repair vGa08a``
+    | ``Repair vIn08a``
+    | ``Repair vSn08n``
+    | ``Repair vTl10n``
+    | ``Repair vPb11n``
+    | ``Repair vBi12x``
+    | ``Repair vPo13x``
+    | ``Recycling vH06a``
+    | ``Recycling vN06a``
+    | ``Recycling vO08n``
+    | ``Recycling vF08n``
+    | ``Recycling vP10x``
+    | ``Recycling vI14x``
+    | ``Scanalyzer vHe07a``
+    | ``Scanalyzer vNe13n``
+    | ``Scanalyzer vAr15x``
+    | ``Scanalyzer vXe13x``
+    | ``Garrison vCe6a``
+    | ``Garrison vPr8a``
+    | ``Garrison vNd9n``
+    | ``Garrison vPm7n``
+    | ``Garrison vSm13x``
+    | ``Garrison vEu9x``
+    | T1
+    | ``Core Extractor``
+    | Pulverizer
+    | ``Laser Drill``
+    | ``Plasma Injector``
+    | ``Seismic Survey Station``
+    | ``Matter Pump``
+    | ``Pressure Siphon``
+    | ``Nuclear Reactor``
+    | ``Neutrino Reactor``
+    | ``Fusion Modulator``
+    | ``Quantum Generator``
+    | ``Dark Matter Chamber``
+    | ``Hypermatter Reactor``
+    | ``Compression Vault``
+    | ``Component Storage``
+    | ``Holding Depot``
+    | ``Packing Station``
+    | ``Arsenal Racks``
+    | ``Extraspacial Lockers``
+    | ``Energy Cycler``
+    | ``Transport Mainframe``
+    | ``Transfer Shaft``
+    | ``Hadron Collector``
+    | ``Electrolysis Chamber``
+    | ``Processing Tank``
+    | ``Atomic Centrifuge``
+    | ``Purification Channel``
+    | ``Integration Channel``
+    | ``Material Processor``
+    | ``Material Compactor``
+    | ``Matter Filter``
+    | ``Manufacturing Mainframe``
+    | ``Construction Platform``
+    | ``Assembly Bed``
+    | Megafabricator
+    | ``Subcomponent Replicator``
+    | ``Power Conduit``
+    | ``Research Mainframe``
+    | ``Antiparticle Reservoir``
+    | ``Reaction Chamber``
+    | ``Vacuum Chamber``
+    | ``Subatomic Condenser``
+    | Catalytron
+    | ``Meson Extractor``
+    | ``Antimatter Diverter``
+    | ``Field Manipulator``
+    | ``Particle Synthesizer``
+    | ``Quantum Separator``
+    | ``Wave Intensifier``
+    | ``Proton Scatter Basin``
+    | ``Ion Accelerator``
+    | ``Magnetic Photon System``
+    | Hypercollider
+    | ``Graviton Restrictor``
+    | ``Potential Refractor``
+    | ``Prototyping Station``
+    | ``Engineering Station``
+    | ``Biostasis Chamber``
+    | ``Organic Neutralizer``
+    | ``Containment Shield``
+    | ``Testing Mainframe``
+    | ``Sonic Impulse Analyzer``
+    | ``Field Warper``
+    | ``Gravity Sphere``
+    | ``Quantum Transformer``
+    | Focalizer
+    | ``Phase Constrictor``
+    | ``Resonance Scanner``
+    | ``Tau Charger``
+    | ``Harmonic Fracturing Unit``
+    | ``Antiparticle Suffusor``
+    | ``Thermocompressor Array``
+    | ``Cryocooling Duct``
+    | ``Artifact Storage``
+    | ``Cryopreservation Unit``
+    | ``Biostim Tank``
+    | ``Quarantine Pod``
+    | ``Aeration Cycler``
+    | ``Deconstruction Unit``
+    | Anatomizer
+    | ``Cloning Tubes``
+    | ``Cell Assembler``
+    | ``Molecular Binding Bank``
+    | ``Anti-Ion Cluster``
+    | ``Deuterium Array``
+    | Mainframe
+    | Storage
+    | ``Retrofitting Station``
+    | ``Signal Jammer``
+    | ``Cloak Generator``
+    | ``Decryption Engine``
+    | ``Backup Mainframe``
+    | ``Archive Unit``
+    | ``Control Node``
+    | ``Operations Mainframe``
+    | ``Quantum Router``
+    | ``Hyperwave Decoder``
+    | ``Sealed Freight Elevator``
+    | ``Radio-Gravity Array``
+    | ``Anti-Orbital Battery``
+    | ``Spectral Interrupter``
+    | ``Wave Collapse Detector``
+    | ``Signal Shield``
+    | ``Longscan Aggregator`` -> Obstructed
+    | ``Blade Trap``
+    | ``Segregator Trap``
+    | ``Explosive Trap``
+    | ``Heavy Explosive Trap``
+    | ``Tiamat Bomb Trap``
+    | ``Fusion Bomb Trap``
+    | ``Hellfire Trap``
+    | ``Armageddon Trap``
+    | ``Dirty Bomb Trap``
+    | ``EMP Trap``
+    | ``Proton Bomb Trap``
+    | ``Tesla Bomb Trap``
+    | ``Gamma Bomb Trap``
+    | ``Shock Trap``
+    | ``EM Surge Trap``
+    | ``Fire Trap``
+    | ``Stasis Trap``
+    | ``Alarm Trap``
+    | ``Ambush Trap``
+    | ``Chute Trap`` -> Dangerous
+    | ``Collapsed Tunnel``
+    | ``Door Terminal``
+    | ``DSF Access``
+    | ``Broken Shaft Lining`` -> Obstructed
+    | XXX_Blast_Door_Open -> Vacant
+    | XXX_Blast_Door_Hackable
+    | ACC_Door_Shootable_SUR
+    | ACC_Door_Shootable_COM
+    | ACC_Door_Hackable
+    | ACC_Shell_Shootable
+    | ``Main Access Lift`` -> Obstructed
+    | STO_Door_Open -> Vacant
+    | STO_Door_Hackable
+    | STO_Shell_Shootable
+    | GAR_Door_Shootable
+    | GAR_Relay
+    | GAR_Generator
+    | SHOPSys
+    | MIN_Door_Hackable_Weak
+    | ``Assembled Analyzer``
+    | Components
+    | ``Testing Chamber Shield``
+    | ``Testing Apparatus``
+    | ``EX-Generator``
+    | ``BIN's Workstation``
+    | ``DEC's Workstation``
+    | ``HEX's Workstation``
+    | ``BIN's Terminal``
+    | ``DEC's Terminal``
+    | ``HEX's Terminal``
+    | EXI_Farcom
+    | ``EX-Vault Access``
+    | ``EX-Prototypes Database``
+    | ``EX-Message Board``
+    | WARSys
+    | ``Prototyping Terminal``
+    | CAV_Door_Hackable
+    | ``Outpost Terminal``
+    | CAV_Base_Generator
+    | CAV_Junk_Machine
+    | CAV_Reinforcement
+    | CAV_Door_Shootable
+    | CAV_Door_No_Terminal
+    | Private
+    | CAV_Thief_Den
+    | ``W-Fans Enter Here``
+    | LOW_Warlord_Fan_Stuff
+    | PRO_Base_Generator
+    | PRO_Target_Dispatcher
+    | PRO_Test_Aggregator
+    | PRO_Data_Receptor
+    | GAR_RIF_Installer
+    | ``Matter Repository``
+    | ``Twisting Tunnel``
+    | DAT_Data_Conduit
+    | ``ORACLE Interface``
+    | ZHI_Cloak_Generator
+    | ZHI_Main_Door
+    | ``Zhirov's Terminal``
+    | ``Quantum Analyzer``
+    | ``Zhirov's Workstation``
+    | WAR_Door_Hackable
+    | ``Vortex Lab Terminal``
+    | ``Hacking Lab Terminal``
+    | ``Relay Lab Terminal``
+    | ``Fabnet Lab Terminal``
+    | ``Intel Room Terminal``
+    | WAR_Staging_Area
+    | RES_Staging_Area
+    | WAR_Mainc_Tunnel
+    | ZIO_Machinery
+    | ``Deep Containment System``
+    | ZIOWAR_Quarantine_Array
+    | ZIO_Cloak_Generator
+    | ZIO_Stockpile_Wall
+    | ZIO_Prototype_Hold
+    | ZIO_Lab_Wall
+    | ZIO_Repair_Shop_Wall
+    | ``Zion Terminal``
+    | ZIO_Machinery_Fake
+    | ``Conduit Teleporter``
+    | ZIO_Memory_Banks
+    | ZIO_Imprinter
+    | DEE_Z_Facility
+    | ``Z-Power``
+    | DEE_Sigix_Wall
+    | DEE_Sigix_Gate
+    | DEE_Wall_Chamber
+    | DEE_Survey_Way_Station
+    | EXT_Door_Hackable
+    | EXT_Transfer_Station
+    | ``Cetus Terminal``
+    | ``Cetus Manufacturing Controls``
+    | CET_Door_Hackable
+    | Doors
+    | Bed
+    | Lockers
+    | Table
+    | ``Lab Station``
+    | ``Research Interface``
+    | ``Cetus Mainframe``
+    | ``Cetus Manufacturing Module``
+    | ``Archive Terminal``
+    | ``Archive Hub``
+    | HUB_Transfer_Station
+    | HUB_Network_Hub
+    | ARM_Door_Hackable
+    | ARM_Shell_Shootable
+    | ARM_Dimension_Slip_Node
+    | ``NO ENTRY``
+    | LAB_Door_Hackable
+    | ``Active System Cloaker``
+    | ``A0 Command``
+    | ``HN 3sDk7Qc``
+    | ``A0 Storage 04-B``
+    | ``UC xVqbSdU M7q4``
+    | ``Suspension Chamber``
+    | TES_Door_Hackable
+    | TES_Shell_Shootable
+    | ``Regeneration Lab``
+    | TES_Terrabomb
+    | QUA_Door_Hackable
+    | QUA_Door_Hackable_Hard
+    | ``Sigix Lab``
+    | ``Sigix Quarantine Controls``
+    | ``Sigix Quarantine Chamber``
+    | ``Teleportation Lab``
+    | ``Autopsy Lab``
+    | ``Research Terminal``
+    | SEC_Door_Hackable
+    | ``L2 Monitoring Station``
+    | ``Power Cell Monitoring``
+    | Thrusters
+    | SEC_L2_Power_Cell
+    | ``Wing Frame``
+    | ``FTL Facilitator``
+    | ``Core Housing``
+    | Hull
+    | ``Armor Plating``
+    | Navigation
+    | ``Construction Supplies``
+    | ``L2 Fabricator``
+    | ``Exoskeleton Controls``
+    | ``Cave Seal Controls``
+    | COM_Cave_Spawn
+    | COM_Shell_Shootable
+    | ``Access Lift``
+    | COM_Teleport_Inhibitor
+    | COM_Door_Hackable
+    | COM_0b10_Conduit
+    | COM_Alternative_Access
+    | COM_Cache_Door
+    | AC0_Singularity_Gate
+    | ``Gate Controls``
+    | AC0_Subspace_Node
+    | AC0_Subspace_Node_Mid
+    | AC0_Architect_Shell
+    | ``Architect Logs``
+    | AC0_Abandoned_Machinery
+    | AC0_Shell_Shootable
+    | ``Analysis Chamber``
+    | AC0_Workstation
+    | SCR_Black_Space
+    | SCR_New_Year_City -> Obstructed
+
 type Part =
     | Component of Item
     | Weapon of Item

@@ -2,54 +2,49 @@
 open System.Runtime.InteropServices
 open AStar
 open Goalfinding
+open FSharpx.State
+open FSharpx.Collections
+open Model
 
 [<DllImport("user32.dll")>]
 extern int SetForegroundWindow(int hwnd)
 
+type PathEnd =
+    | Unexplored of LuigiTile
+    | Stairs of LuigiTile
+
+type WaitLoopState =
+    { loopBuster: int
+      magicOffset: int
+      thisStep: LuigiTile
+      nextStep: LuigiTile }
+
+let getNextMagicOrThrow cogmindProcess =
+    match openMagicResult cogmindProcess None with
+    | Error message -> raise (System.InvalidOperationException(sprintf "Failed to unpack Cogmind data:\n%A" message))
+    | Ok (luigiAi, playerEntity, tiles, magicOffset) -> (luigiAi, playerEntity, tiles, magicOffset)
+
+let getNextMagic cogmindProcess offset =
+    match openMagicResult cogmindProcess (Some offset) with
+    | Error message -> raise (System.InvalidOperationException(sprintf "Failed to unpack Cogmind data:\n%A" message))
+    | Ok (luigiAi, playerEntity, tiles, magicOffset) -> (luigiAi, playerEntity, tiles, magicOffset)
+
+type WalkResult =
+    | Moved
+    | Blocked
 
 [<EntryPoint>]
 let main args =
     match seekCogmindProcess with
     | Ok cogmindProcess ->
-        let activateCogmindWindow () =
-            SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
-            |> ignore
+        match seekMagicStart cogmindProcess.Handle 4194304 with
+        | Error message -> 1
+        | Ok initialOffset ->
+            let mutable magicOffset = initialOffset
 
-        match openMagicResult cogmindProcess None with
-        | Error message -> printfn "Seek failed... '%s'" message
-        | Ok (luigiAi, _, _, magicOffset) ->
-
-            let printPath path goal (tiles: LuigiTile list) =
-                for col in 0 .. luigiAi.mapWidth - 1 do
-                    for row in 0 .. luigiAi.mapHeight - 1 do
-                        let tile = tiles.[row * luigiAi.mapHeight + col]
-
-                        if List.contains tile path then
-                            match tile.entity with
-                            | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
-                            | _ when tile = goal -> printf "@"
-                            | _ -> printf "+"
-                        else
-                            printf "%s" (Model.cellToChar tile)
-
-                    printfn ""
-
-            let playerTile tiles =
-                tiles
-                |> List.find (fun tile ->
-                    match tile.entity with
-                    | Some entity when entity.entity = Domain.entity.Cogmind -> true
-                    | _ -> false)
-
-            let mobs tiles =
-                tiles
-                |> List.find (fun tile ->
-                    match tile.entity with
-                    | Some entity when entity.entity <> Domain.entity.Cogmind -> true
-                    | _ -> false)
-
-            printfn "Player tile:\n%A" playerTile
-            printfn "Mob tile(s):\n%A" mobs
+            let activateCogmindWindow () =
+                SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
+                |> ignore
 
             let coordinateMap tiles =
                 let coords =
@@ -60,105 +55,169 @@ let main args =
             let exits (tiles: LuigiTile list) =
                 tiles
                 |> List.filter (function
-                    | exit when Model.cellToChar exit = ">" -> true
+                    | exit when cellToChar exit = ">" -> true
                     | _ -> false)
 
-            let goal tiles =
-                let playerTile = playerTile tiles
+            let goal tiles : PathEnd =
+                let playerTile = Model.playerTile tiles
                 let coordinateMap = coordinateMap tiles
 
                 match exits tiles with
-                | [ exit ] -> Some exit
-                | exit :: _ -> Some exit
+                | [ exit ] -> Stairs exit
+                | exit :: _ -> Stairs exit
                 | [] ->
+                    // No exits, seek nearest Unexplored tile
                     let x =
                         seekEdge coordinateMap playerTile |> Option.get
 
                     match neighborNodes coordinateMap Set.empty x with
-                    | Goal goal -> Some goal
+                    | Goal goal -> Unexplored goal
                     | Neighbors neighbors ->
                         List.find
                             (fun x ->
-                                match Model.mapTileOccupancy x with
-                                | Model.Occupancy.Occupied _ -> true
-                                | Model.Occupancy.Vacant -> true
-                                | Model.Occupancy.Obstructed -> false)
+                                match mapTileOccupancy x with
+                                | Occupied _ -> true
+                                | Vacant -> true
+                                | Obstructed -> false)
                             neighbors
-                        |> Some
-
-
+                        |> Unexplored
 
             let path tiles =
-                let goal = goal tiles |> Option.get
-                let playerTile = playerTile tiles
-                let coordinateMap = coordinateMap tiles
+                let result = goal tiles
 
-                match aStar coordinateMap playerTile goal with
-                | None -> Error "no path found to goal"
-                | Some path -> List.choose id path |> Ok
+                match result with
+                | Unexplored goal
+                | Stairs goal ->
+                    let playerTile = Model.playerTile tiles
+                    let coordinateMap = coordinateMap tiles
 
+                    match aStar coordinateMap playerTile goal with
+                    | None -> Error "no path found to goal"
+                    | Some path -> (List.choose id path, result) |> Ok
 
-            printfn "Path:\n%A" path
+            /// Put steps in a queue, peek the queue, try to step, pop the queue, that sort of thing
+            /// Model steps as their own type with an executor I think
+            let getNewStepQueueToGoal tiles =
+                match path tiles with
+                | Error message -> Error message
+                | Ok (path, goal) ->
+                    let queue =
+                        List.rev path |> List.pairwise |> Queue.ofList
 
-            printfn "Beginning walk process... Press any key to step"
+                    Ok(queue, goal)
 
-            let mutable loopBuster = 0
+            let isStairs tile =
+                match tile.cell with
+                | Domain.cell.STAIRS_SCR
+                | Domain.cell.STAIRS_MAT
+                | Domain.cell.STAIRS_MIN
+                | Domain.cell.STAIRS_STO -> true
+                | _ -> false
 
-            let rec waitActionReady lastAction nextDirection =
-                nextDirection ()
+            let walkOneStepTestBlocked (step: LuigiTile) (next: LuigiTile) =
+                let luigiAi =
+                    openMagic cogmindProcess.Handle magicOffset
 
-                match openMagicResult cogmindProcess (Some magicOffset) with
-                | Error message -> raise (System.Exception(message))
-                | Ok (luigiAi, _, _, _) when
-                    luigiAi.actionReady > lastAction
-                    || loopBuster > 2
-                    ->
-                    loopBuster <- 0
-                    // we moved!
-                    luigiAi.actionReady
+                let lastActionReady = luigiAi.actionReady
+                // Try to walk with input simulator
+                Movement.takeStep step next |> ignore
+                System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
+
+                // Don't check yet, it might throw
+                let compareActionReady () =
+                    let ((nextLuigiAi, _, _, _), nextOffset) = readMagic cogmindProcess magicOffset
+                    magicOffset <- nextOffset
+
+                    match lastActionReady = nextLuigiAi.actionReady with
+                    | true ->
+                        System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
+                        Blocked
+                    | false -> Moved
+
+                match isStairs next with
+                | true ->
+                    // Dangerous to check magic now
+                    try
+                        compareActionReady ()
+                    with
+                    // if we threw, we're on a transition or evolve screen
+                    | _ -> Moved
+                // if we throw here we should probably stop sending inputs
+                | false -> compareActionReady ()
+
+            let rec tryStepTwice state : WalkResult =
+                match walkOneStepTestBlocked state.thisStep state.nextStep with
+                | Moved -> Moved
+                | Blocked when state.loopBuster > 1 -> Blocked
                 | _ ->
-                    loopBuster <- loopBuster + 1
-                    System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
-                    waitActionReady lastAction nextDirection
+                    System.Threading.Thread.Sleep(17)
+                    tryStepTwice { state with loopBuster = state.loopBuster + 1 }
 
-            let doWalkLoop lastAction (step, next) =
-                let nextDirection () =
-                    Movement.getDirection step next
-                    |> Movement.walkDirection
-                    |> ignore
-                // check if we actually moved
-                waitActionReady lastAction nextDirection
+            let stepTwice (stepQueue: Queue<LuigiTile * LuigiTile>) =
+                if Queue.length stepQueue = 0 then
+                    Ok()
+                else
+                    let (step, next) = stepQueue.Head
+                    // check if we actually moved
+                    match
+                        tryStepTwice
+                            { loopBuster = 0
+                              magicOffset = magicOffset
+                              thisStep = step
+                              nextStep = next }
+                        with
+                    | Blocked -> Error(step, next)
+                    | Moved -> Ok()
+
+
+            let rec goalStep stepQueue =
+                match stepTwice stepQueue with
+                | Ok () ->
+                    if Queue.length stepQueue = 0 then
+                        Ok()
+                    else
+                        let newQueue = Queue.tail stepQueue
+                        goalStep newQueue
+                | Error pair -> Error pair
+
+            let pathMapStep tiles =
+                let queue = getNewStepQueueToGoal tiles
+
+                match queue with
+                | Error message -> raise (System.InvalidOperationException(message))
+                | Ok (queue, goal) ->
+                    match goalStep queue with
+                    | Error pair -> Error pair
+                    | Ok () -> Ok goal
+
 
             activateCogmindWindow ()
 
-            let moveToNewGoal lastAction =
-                match openMagicResult cogmindProcess (Some magicOffset) with
-                | Error message -> raise (System.Exception(message))
-                | Ok (luigiAi, _, tiles, _) ->
-                    match path tiles with
-                    | Error message -> Error message
-                    | Ok path ->
-                        let pathForward = List.rev path
-
-                        List.pairwise pathForward
-                        |> List.fold doWalkLoop luigiAi.actionReady
-                        |> Ok
-
-            let mutable lastAction = luigiAi.actionReady
-
             while (true) do
-                match moveToNewGoal lastAction with
-                | Error _ -> ()
-                | Ok actionReady -> lastAction <- actionReady
+                let (luigiAi, _, tiles, _), nextOffset = readMagic cogmindProcess magicOffset
+                magicOffset <- nextOffset
+
+                match path tiles with
+                | Error message -> printfn "Error:%A" message
+                | Ok (path, goal) ->
+                    match goal with
+                    | Unexplored goal
+                    | Stairs goal ->
+                        printPath path goal (luigiAi.mapWidth, luigiAi.mapHeight) tiles
+
+                        match (getNewStepQueueToGoal tiles) with
+                        | Error message -> printfn "Error:%A" message
+                        | Ok (stepQueue, pathEnd) ->
+                            printfn "Step Queue:\n%A" stepQueue
+                            let (step, next) = Queue.head stepQueue
+                            printfn "Walk step:\n%A" (goalStep stepQueue)
 
             ()
 
-
-
-        printfn "I'm walking here"
-        printfn "Press any key to exit..."
-        System.Console.ReadKey() |> ignore
-        0
+            printfn "I'm walking here"
+            printfn "Press any key to exit..."
+            System.Console.ReadKey() |> ignore
+            0
     | Error message ->
         printfn "Process seek error: %s" message
         printfn "Press any key to exit..."

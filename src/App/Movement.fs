@@ -40,3 +40,5 @@ let getDirection (thisTile: LuigiTile) (neighbor: LuigiTile) =
     | (0, 1) -> Eight
     | (-1, 1) -> Nine
     | _ -> raise (System.ArgumentException("getDirection passed non neighbor tiles!"))
+
+let takeStep step next = getDirection step next |> walkDirection
