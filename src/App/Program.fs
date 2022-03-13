@@ -41,6 +41,7 @@ let main args =
         | Error message -> 1
         | Ok initialOffset ->
             let mutable magicOffset = initialOffset
+            let getMagicState () = MagicState(magicOffset, cogmindProcess)
 
             let activateCogmindWindow () =
                 SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
@@ -125,14 +126,24 @@ let main args =
 
                 // Don't check yet, it might throw
                 let compareActionReady () =
-                    let ((nextLuigiAi, _, _, _), nextOffset) = readMagic cogmindProcess magicOffset
+                    let ((nextLuigiAi, _, tiles, _), (nextOffset, _)) =
+                        readMagic (MagicState(magicOffset, cogmindProcess))
+
                     magicOffset <- nextOffset
 
-                    match lastActionReady = nextLuigiAi.actionReady with
-                    | true ->
-                        System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
-                        Blocked
-                    | false -> Moved
+                    let updatedNextTile =
+                        coordinateMap tiles
+                        |> Map.find (next.row, next.col)
+
+                    match mapTileOccupancy updatedNextTile with
+                    | Obstructed -> Blocked
+                    | _ ->
+                        match lastActionReady = nextLuigiAi.actionReady with
+                        | true ->
+                            System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
+                            Blocked
+                        | false -> Moved
+
 
                 match isStairs next with
                 | true ->
@@ -194,7 +205,8 @@ let main args =
             activateCogmindWindow ()
 
             while (true) do
-                let (luigiAi, _, tiles, _), nextOffset = readMagic cogmindProcess magicOffset
+                let (luigiAi, _, tiles, _), (nextOffset, _) = getMagicState () |> readMagic
+
                 magicOffset <- nextOffset
 
                 match path tiles with

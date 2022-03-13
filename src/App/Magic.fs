@@ -292,10 +292,11 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
 
 type Magic = LuigiAi * LuigiEntity * LuigiTile list * int
 type MagicReader = unit -> Magic
+type MagicState = int * Process
 
-let readMagic cogmindProcess =
+let readMagic: State<Magic, MagicState> =
     state {
-        let! (offset: int) = getState
+        let! (offset, cogmindProcess) = getState
 
         try
             let result =
