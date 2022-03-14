@@ -15,7 +15,6 @@ type PathEnd =
 
 type WaitLoopState =
     { loopBuster: int
-      magicOffset: int
       thisStep: LuigiTile
       nextStep: LuigiTile }
 
@@ -68,20 +67,10 @@ let main args =
                 | exit :: _ -> Stairs exit
                 | [] ->
                     // No exits, seek nearest Unexplored tile
-                    let x =
-                        seekEdge coordinateMap playerTile |> Option.get
+                    seekEdge coordinateMap playerTile
+                    |> Option.get
+                    |> Unexplored
 
-                    match neighborNodes coordinateMap Set.empty x with
-                    | Goal goal -> Unexplored goal
-                    | Neighbors neighbors ->
-                        List.find
-                            (fun x ->
-                                match mapTileOccupancy x with
-                                | Occupied _ -> true
-                                | Vacant -> true
-                                | Obstructed -> false)
-                            neighbors
-                        |> Unexplored
 
             let path tiles =
                 let result = goal tiles
@@ -173,7 +162,6 @@ let main args =
                     match
                         tryStepTwice
                             { loopBuster = 0
-                              magicOffset = magicOffset
                               thisStep = step
                               nextStep = next }
                         with
