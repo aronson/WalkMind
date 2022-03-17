@@ -9,6 +9,9 @@ open Model
 [<DllImport("user32.dll")>]
 extern int SetForegroundWindow(int hwnd)
 
+[<DllImport("user32")>]
+extern int GetForegroundWindow()
+
 /// We need to wait a little bit before checking magic data if we exited
 type PathEnd =
     | Unexplored of LuigiTile
@@ -54,10 +57,14 @@ let main args =
             let mutable magicOffset = initialOffset
             // Helper function for the future magic reader
             let getMagicState () = MagicState(magicOffset, cogmindProcess)
-            // This is for later
+            // These are for later
             let activateCogmindWindow () =
                 SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
                 |> ignore
+
+            let isCogmindForegroundWindow () =
+                cogmindProcess.MainWindowHandle |> int = GetForegroundWindow()
+
             /// It's easier to pull coordinates out in a functional way with a map of (col, row)
             let coordinateMap tiles =
                 let coords =
@@ -120,11 +127,11 @@ let main args =
                 let luigiAi =
                     openMagic cogmindProcess.Handle magicOffset
 
-                let lastActionReady = luigiAi.actionReady
                 // Try to walk with input simulator
                 Movement.takeStep step next |> ignore
                 System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
 
+                let lastActionReady = luigiAi.actionReady
                 // Don't check yet, it might throw
                 let compareActionReady () =
                     let ((nextLuigiAi, _, tiles, _), (nextOffset, _)) =
@@ -204,6 +211,13 @@ let main args =
             activateCogmindWindow ()
 
             while (true) do
+                // Before walking, make sure we have focus
+                if isCogmindForegroundWindow () then
+                    printfn "Lost focus to window, waiting for user input..."
+                    System.Console.ReadKey() |> ignore
+                    activateCogmindWindow ()
+                    System.Threading.Thread.Sleep(1)
+
                 let (luigiAi, _, tiles, _), (nextOffset, _) = getMagicState () |> readMagic
 
                 magicOffset <- nextOffset
