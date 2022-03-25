@@ -212,11 +212,11 @@ let main args =
 
             while (true) do
                 // Before walking, make sure we have focus
-                if isCogmindForegroundWindow () then
+                if not (isCogmindForegroundWindow ()) then
                     printfn "Lost focus to window, waiting for user input..."
                     System.Console.ReadKey() |> ignore
                     activateCogmindWindow ()
-                    System.Threading.Thread.Sleep(1)
+                    System.Threading.Thread.Sleep(500)
 
                 let (luigiAi, _, tiles, _), (nextOffset, _) = getMagicState () |> readMagic
 

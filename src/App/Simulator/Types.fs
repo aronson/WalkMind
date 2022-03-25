@@ -353,14 +353,8 @@ type SimulatorState =
       weapons: SimulatorWeapon list }
 
 [<Literal>]
-let botDataFile =
-    "https://raw.githubusercontent.com/noemica/cog-minder/master/src/json/bots_b11.json"
-
-[<Literal>]
 let itemSchemaFile = "./gallery_export_b11.csv"
 
-type BotProvider = JsonProvider<botDataFile>
 type ItemProvider = CsvProvider<itemSchemaFile>
 
-let botData = BotProvider.Load botDataFile
 let itemData = ItemProvider.Load itemSchemaFile
