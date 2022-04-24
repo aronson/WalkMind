@@ -81,14 +81,27 @@ type LuigiAi =
       actionReady: int
       mapWidth: int
       mapHeight: int
+      depth: int
+      mapType: MapType
       tilePointer: int
-      playerEntityPointer: int }
+      mapCursorIndex: int
+      playerEntityPointer: int
+      machineHackingPointer: int }
 
 let primaryMagic = 1689123404
 let secondaryMagic = 2035498713
 // four byte-aligned struct
-let (secondaryMagicOffset, actionReadyOffset, mapWidthOffset, mapHeightOffset, mapDataOffset, playerEntityPointerOffset) =
-    (4, 8, 12, 16, 20, 24)
+let (secondaryMagicOffset,
+     actionReadyOffset,
+     mapWidthOffset,
+     mapHeightOffset,
+     depthOffset,
+     mapTypeOffset,
+     mapDataOffset,
+     mapCursorOffset,
+     playerEntityPointerOffset,
+     machineHackingOffset) =
+    (4, 8, 12, 16, 20, 24, 28, 32, 36, 40)
 
 type LuigiItem = { item: Item; integrity: int }
 let itemIntegrityOffset = 4
@@ -121,13 +134,20 @@ type LuigiTile =
       row: int
       lastAction: int
       cell: cell
+      doorOpen: bool
       lastFov: int
       propPointer: int option
       entity: LuigiEntity option
       item: LuigiItem option }
 
-let (lastActionOffset, cellOffset, lastFovOffset, propPointerOffset, entityPointerOffset, itemPointerOffset) =
-    (0, 4, 8, 12, 16, 20)
+let (lastActionOffset,
+     lastFovOffset,
+     cellOffset,
+     doorOpenOffset,
+     propPointerOffset,
+     entityPointerOffset,
+     itemPointerOffset) =
+    (0, 4, 8, 12, 16, 20, 24)
 
 type AddressCoordinate = AddressCoordinate of (int * int)
 
@@ -144,8 +164,7 @@ let rec seekMagicStart processHandle offset : Result<int, string> =
             // Sometimes we find the code pointer instead, we need to learn about regions to fix that
             printfn "Seek found first pointer at %d" offset
 
-            let nextValue =
-                readInt (offset + secondaryMagicOffset) processHandle
+            let nextValue = readInt (offset + secondaryMagicOffset) processHandle
 
             match (nextValue = secondaryMagic) with
             | true ->
@@ -164,7 +183,13 @@ let openMagic processHandle offset : LuigiAi =
       mapWidth = readInt (offset + mapWidthOffset) processHandle
       mapHeight = readInt (offset + mapHeightOffset) processHandle
       tilePointer = readInt (offset + mapDataOffset) processHandle
-      playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle }
+      playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle
+      mapType =
+        liftMapType
+        <| readInt (offset + mapTypeOffset) processHandle
+      depth = readInt (offset + depthOffset) processHandle
+      mapCursorIndex = readInt (offset + mapCursorOffset) processHandle
+      machineHackingPointer = readInt (offset + machineHackingOffset) processHandle }
 
 let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
     let processHandle = openProcess cogmindProcess
@@ -228,7 +253,7 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
             let item =
                 readInt (pointer + itemPointerOffset) processHandle
                 |> function
-                    | itemOffset when itemOffset > 0 ->
+                    | itemOffset when itemOffset > 4096 ->
                         { item = unwrapItem itemOffset
                           integrity = readInt (itemOffset + 4) processHandle }
                         |> Some
@@ -239,6 +264,7 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
                   row = y
                   lastAction = readInt pointer processHandle
                   cell = unwrapCell (pointer + cellOffset)
+                  doorOpen = readBoolean (pointer + doorOpenOffset) processHandle
                   lastFov = readInt (pointer + lastFovOffset) processHandle
                   propPointer = prop
                   entity = entity
@@ -270,7 +296,9 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
                 tryUnwrapTile offset (x, y)
 
             let coordinates =
-                List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [ 0 .. luigiAi.mapWidth - 1 ]
+                List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [
+                    0 .. luigiAi.mapWidth - 1
+                ]
 
             let addressCoordinates: AddressCoordinate list =
                 coordinates |> List.map AddressCoordinate
@@ -279,8 +307,7 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
                 List.map openTilePointer addressCoordinates
                 |> List.sequenceResultM
 
-            let playerEntity =
-                tryUnwrapEntity luigiAi.playerEntityPointer
+            let playerEntity = tryUnwrapEntity luigiAi.playerEntityPointer
 
             match tileResults, playerEntity with
             | Ok tiles, Some player -> Ok(luigiAi, player, tiles, magicOffset)

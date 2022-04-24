@@ -14,6 +14,7 @@
     <Compile Include="Simulator\Entities.fs" />
     <Compile Include="Simulator\Calculator.fs" />
     <Compile Include="Movement.fs" />
+    <Compile Include="World.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

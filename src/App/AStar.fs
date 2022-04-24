@@ -84,7 +84,7 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
     | Domain.cell.NO_CELL -> []
     | _ ->
         // There are only up to eight neighbors
-        seq {
+        [
             yield (x.col - 1, x.row - 1)
             yield (x.col + 1, x.row - 1)
             yield (x.col - 1, x.row + 1)
@@ -93,16 +93,15 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
             yield (x.col + 1, x.row)
             yield (x.col, x.row - 1)
             yield (x.col - 1, x.row)
-        }
-        |> Seq.map (fun (col, row) -> Map.tryFind (col, row) map)
-        |> Seq.choose id
-        |> Seq.except closedSet
-        |> Seq.filter (fun tile ->
+        ]
+        |> List.map (fun (col, row) -> Map.tryFind (col, row) map)
+        |> List.choose id
+        |> List.except closedSet
+        |> List.filter (fun tile ->
             match Model.mapTileOccupancy tile with
             | Model.Occupancy.Vacant -> true
             | Model.Occupancy.Occupied _ -> true
             | _ -> false)
-        |> Seq.toList
 
 let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
     match Set.count openSet with
