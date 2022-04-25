@@ -13,12 +13,6 @@ extern int SetForegroundWindow(int hwnd)
 [<DllImport("user32")>]
 extern int GetForegroundWindow()
 
-type OptionBuilder() =
-    member x.Bind(v, f) = Option.bind f v
-    member x.Return v = Some v
-    member x.ReturnFrom o = o
-    member x.Zero() = None
-
 let opt = OptionBuilder()
 
 // https://stackoverflow.com/q/33882995
@@ -161,8 +155,6 @@ let (lastActionOffset,
     (0, 4, 8, 12, 16, 20, 24)
 
 type AddressCoordinate = AddressCoordinate of (int * int)
-
-type MagicResult = Result<LuigiAi * LuigiEntity * LuigiTile list * int, string>
 
 type Magic() =
     let cogmindProcess =
