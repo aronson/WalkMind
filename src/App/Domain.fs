@@ -3742,9 +3742,9 @@ type MapType =
     | MAP_W06 = 1006
     | MAP_W07 = 1007
     | MAP_W08 = 1008
-    
-let liftMapType  =
-    function 
+
+let liftMapType =
+    function
     | 1 -> MapType.MAP_SAN
     | 2 -> MapType.MAP_SCR
     | 3 -> MapType.MAP_MAT

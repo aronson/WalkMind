@@ -1,7 +1,6 @@
 module Simulator.Entities
 
 open Simulator.Types
-open Domain
 open Magic
 
 let liftPlayerToBot (player: LuigiEntity) : Bot =

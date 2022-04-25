@@ -116,7 +116,9 @@ let rec applyDamage
 
                     seekCoverageHit coverageHit 0
             | _ ->
-                let coverageHit = randomInt 0 (botState.totalCoverage - 1)
+                let coverageHit =
+                    randomInt 0 (botState.totalCoverage - 1)
+
                 seekCoverageHit coverageHit 0
 
     let applyChunkDamageToPart (damage: int) (part: SimulatorPart option) =
@@ -222,7 +224,8 @@ let updateWeaponsAccuracy (state: SimulatorState) =
             { weapon with accuracy = 100 }
         else
             // TODO: handle recoil
-            let baseAccuracy = weapon.baseAccuracy + fullBonus
+            let baseAccuracy =
+                weapon.baseAccuracy + fullBonus
             // Cap accuracy
             let maxAccuracy =
                 if offensiveState.melee then
@@ -250,7 +253,9 @@ let simulateWeapon (state: SimulatorState) (weapon: SimulatorWeapon) =
                   * (max (float offensiveState.momentum.current) 1.0)))
                 100.0
 
-        let damage = max (randomInt 0 (int damageMax)) 0
+        let damage =
+            max (randomInt 0 (int damageMax)) 0
+
         applyDamage state damage None false false weapon.disruption weapon.spectrum weapon.overflow DamageType.Impact
     | false ->
         [ 0 .. weapon.numProjectiles - 1 ]
@@ -292,7 +297,8 @@ let rec simulateCombat (state: SimulatorState) (volleys: int) (maxTurns: int) =
     | death when death <= 0 -> Death state
     | _ when maxTurns <= state.timeUnits / 100 -> Timeout state
     | _ ->
-        let accurateState = updateWeaponsAccuracy state
+        let accurateState =
+            updateWeaponsAccuracy state
 
         let postVolleyState =
             List.fold simulateWeapon accurateState accurateState.weapons

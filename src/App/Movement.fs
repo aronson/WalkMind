@@ -29,7 +29,7 @@ let walkDirection =
     | Nine -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD9)
 
 let getDirection (thisTile: LuigiTile) (neighbor: LuigiTile) =
-    match (thisTile.col - neighbor.col, thisTile.row - neighbor.row) with
+    match (thisTile.row - neighbor.row, thisTile.col - neighbor.col) with
     | (1, -1) -> One
     | (0, -1) -> Two
     | (-1, -1) -> Three

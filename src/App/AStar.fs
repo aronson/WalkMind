@@ -18,14 +18,18 @@ let heuristic (node: LuigiTile) (goal: LuigiTile) = distanceBetween node goal
 let rec update x y oldF oldG oldFrom gValue goal =
     let keyF = Map.containsKey y oldF
     let keyG = Map.containsKey y oldG
-    let keyFrom = Map.containsKey (Some y) oldFrom
+
+    let keyFrom =
+        Map.containsKey (Some y) oldFrom
 
     match (keyF, keyG, keyFrom) with
     | (true, _, _) -> update x y (Map.remove y oldF) oldG oldFrom gValue goal
     | (_, true, _) -> update x y oldF (Map.remove y oldG) oldFrom gValue goal
     | (_, _, true) -> update x y oldF oldG (Map.remove (Some y) oldFrom) gValue goal
     | _ ->
-        let newFrom = Map.add (Some y) (Some x) oldFrom
+        let newFrom =
+            Map.add (Some y) (Some x) oldFrom
+
         let newG = Map.add y gValue oldG
         // Estimated total distance
         let newF =
@@ -47,13 +51,18 @@ let rec scan x neighbors openSet closedSet f g from goal =
                 let oldG = Map.find y g
 
                 if trialG < oldG then
-                    let (newF, newG, newFrom) = update x y f g from trialG goal
+                    let (newF, newG, newFrom) =
+                        update x y f g from trialG goal
+
                     scan x n openSet closedSet newF newG newFrom goal
                 else
                     scan x n openSet closedSet f g from goal
             else
                 let newOpen = Set.add y openSet
-                let (newF, newG, newFrom) = update x y f g from trialG goal
+
+                let (newF, newG, newFrom) =
+                    update x y f g from trialG goal
+
                 scan x n newOpen closedSet newF newG newFrom goal
 
 let bestStep openList score =
@@ -84,16 +93,14 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
     | Domain.cell.NO_CELL -> []
     | _ ->
         // There are only up to eight neighbors
-        [
-            yield (x.col - 1, x.row - 1)
-            yield (x.col + 1, x.row - 1)
-            yield (x.col - 1, x.row + 1)
-            yield (x.col + 1, x.row + 1)
-            yield (x.col, x.row + 1)
-            yield (x.col + 1, x.row)
-            yield (x.col, x.row - 1)
-            yield (x.col - 1, x.row)
-        ]
+        [ yield (x.col - 1, x.row - 1)
+          yield (x.col + 1, x.row - 1)
+          yield (x.col - 1, x.row + 1)
+          yield (x.col + 1, x.row + 1)
+          yield (x.col, x.row + 1)
+          yield (x.col + 1, x.row)
+          yield (x.col, x.row - 1)
+          yield (x.col - 1, x.row) ]
         |> List.map (fun (col, row) -> Map.tryFind (col, row) map)
         |> List.choose id
         |> List.except closedSet
@@ -111,7 +118,9 @@ let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
         let pt = bestStep l fScore
 
         if (Some goal) = pt then
-            let path = reconstructPath cameFrom (Some goal)
+            let path =
+                reconstructPath cameFrom (Some goal)
+
             Some path
         else
             match pt with
@@ -140,6 +149,7 @@ let aStar magic start goal =
 
     let gScore = Map.add start 0 Map.empty
 
-    let cameFrom = Map.add (Some start) None Map.empty
+    let cameFrom =
+        Map.add (Some start) None Map.empty
 
     aStarStep magic goal closedSet openSet fScore gScore cameFrom

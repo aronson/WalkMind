@@ -5,7 +5,13 @@ open System.Runtime.InteropServices
 open System
 open FsToolkit.ErrorHandling
 open Domain
-open FSharpx.State
+
+/// Used to set focus to cogmind for input
+[<DllImport("user32.dll")>]
+extern int SetForegroundWindow(int hwnd)
+
+[<DllImport("user32")>]
+extern int GetForegroundWindow()
 
 type OptionBuilder() =
     member x.Bind(v, f) = Option.bind f v
@@ -59,19 +65,24 @@ let readMemory<'a>
 let bitConverter func =
     func |> curry |> flip <| 0 |> readMemory
 
-let intIO = bitConverter BitConverter.ToInt32 4
-let booleanIO = bitConverter BitConverter.ToBoolean 1
-let charIO = bitConverter BitConverter.ToChar 1
+let intIO =
+    bitConverter BitConverter.ToInt32 4
+
+let booleanIO =
+    bitConverter BitConverter.ToBoolean 1
+
+let charIO =
+    bitConverter BitConverter.ToChar 1
 
 let readInt = intIO ReadMemory
 let readBoolean = booleanIO ReadMemory
 let readChar = charIO ReadMemory
 
 let seekCogmindProcess: Result<Process, string> =
-    let cogmindProcessCandidates = Process.GetProcessesByName("Cogmind")
+    let cogmindProcessCandidates =
+        Process.GetProcessesByName("Cogmind")
 
     match cogmindProcessCandidates with
-    | [||] -> Error "Cogmind not launched"
     | [| cogmindProcess |] -> Ok cogmindProcess
     | _ -> Error "Multiple processes found for Cogmind"
 
@@ -153,50 +164,46 @@ type AddressCoordinate = AddressCoordinate of (int * int)
 
 type MagicResult = Result<LuigiAi * LuigiEntity * LuigiTile list * int, string>
 
-let rec seekMagicStart processHandle offset : Result<int, string> =
-    if (offset >= 210346304) then
-        Error "magic not found before 250 MiB"
-    else
-        let value = readInt offset processHandle
+type Magic() =
+    let cogmindProcess =
+        match seekCogmindProcess with
+        | Error message -> raise (Exception message)
+        | Ok cogmindProcess -> cogmindProcess
 
-        match value = primaryMagic with
-        | true ->
-            // Sometimes we find the code pointer instead, we need to learn about regions to fix that
-            printfn "Seek found first pointer at %d" offset
+    let processHandle = cogmindProcess.Handle
 
-            let nextValue = readInt (offset + secondaryMagicOffset) processHandle
+    let rec seekMagicStart offset : Result<int, string> =
+        if (offset >= 210346304) then
+            Error "magic not found before 250 MiB"
+        else
+            let value = readInt offset processHandle
 
-            match (nextValue = secondaryMagic) with
+            match value = primaryMagic with
             | true ->
-                printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
-                // Can now infer movement value
-                Ok offset
-            | false ->
-                printfn "... was code pointer"
-                seekMagicStart processHandle (offset + 4)
-        | false -> seekMagicStart processHandle (offset + 4)
+                // Sometimes we find the code pointer instead, we need to learn about regions to fix that
+                printfn "Seek found first pointer at %d" offset
 
-let openMagic processHandle offset : LuigiAi =
-    { magic1 = primaryMagic
-      magic2 = secondaryMagic
-      actionReady = readInt (offset + actionReadyOffset) processHandle
-      mapWidth = readInt (offset + mapWidthOffset) processHandle
-      mapHeight = readInt (offset + mapHeightOffset) processHandle
-      tilePointer = readInt (offset + mapDataOffset) processHandle
-      playerEntityPointer = readInt (offset + playerEntityPointerOffset) processHandle
-      mapType =
-        liftMapType
-        <| readInt (offset + mapTypeOffset) processHandle
-      depth = readInt (offset + depthOffset) processHandle
-      mapCursorIndex = readInt (offset + mapCursorOffset) processHandle
-      machineHackingPointer = readInt (offset + machineHackingOffset) processHandle }
+                let nextValue =
+                    readInt (offset + secondaryMagicOffset) processHandle
 
-let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
-    let processHandle = openProcess cogmindProcess
+                match (nextValue = secondaryMagic) with
+                | true ->
+                    printfn "Seek found second pointer at %d" (offset + secondaryMagicOffset)
+                    // Can now infer movement value
+                    Ok offset
+                | false ->
+                    printfn "... was code pointer"
+                    seekMagicStart (offset + 4)
+            | false -> seekMagicStart (offset + 4)
+
+    let magicPointer =
+        match seekMagicStart 4096000 with
+        | Error message -> raise (Exception message)
+        | Ok pointer -> pointer
 
     let tryOpenPointer =
         function
-        | value when value > 0 -> readInt value processHandle |> Some
+        | value when value <> int IntPtr.Zero -> readInt value processHandle |> Some
         | _ -> None
 
     let unwrapItem pointer : Item = readInt pointer processHandle |> itemId
@@ -209,7 +216,7 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
 
     let tryUnwrapEntity =
         function
-        | pointer when pointer > 0 ->
+        | pointer when pointer <> int IntPtr.Zero ->
             opt {
                 let entity = pointer |> unwrapEntityId
                 let! integrity = pointer + entityIntegrityOffset |> tryOpenPointer
@@ -240,109 +247,81 @@ let openMagicResult cogmindProcess (magicOffset: int option) : MagicResult =
             }
         | _ -> None
 
-    let tryUnwrapTile pointer (x, y) : Result<LuigiTile, string> =
-        opt {
+    member _.actionReadyValue =
+        readInt (magicPointer + actionReadyOffset) processHandle
+
+    member _.mapType =
+        liftMapType
+        <| readInt (magicPointer + mapTypeOffset) processHandle
+
+    member _.mapWidth =
+        readInt (magicPointer + mapWidthOffset) processHandle
+
+    member _.mapHeight =
+        readInt (magicPointer + mapHeightOffset) processHandle
+
+    member _.startTilePointer =
+        readInt (magicPointer + mapDataOffset) processHandle
+
+    member this.tiles =
+        List.allPairs [ 0 .. this.mapWidth - 1 ] [
+            0 .. this.mapHeight - 1
+        ]
+        |> List.map(fun (row, col) -> col, row)
+        |> List.map AddressCoordinate
+        |> List.map (fun coord -> this.tile coord)
+
+    member this.tile
+        with get (AddressCoordinate (col, row)) =
+
+            let offset =
+                (row * this.mapHeight + col) * 28 // length of struct
+                + this.startTilePointer
+
             let prop =
-                readInt (pointer + propPointerOffset) processHandle
+                readInt (offset + propPointerOffset) processHandle
                 |> tryOpenPointer
 
             let entity =
-                readInt (pointer + entityPointerOffset) processHandle
+                readInt (offset + entityPointerOffset) processHandle
                 |> tryUnwrapEntity
 
             let item =
-                readInt (pointer + itemPointerOffset) processHandle
+                readInt (offset + itemPointerOffset) processHandle
                 |> function
-                    | itemOffset when itemOffset > 4096 ->
+                    | itemOffset when itemOffset <> int IntPtr.Zero ->
                         { item = unwrapItem itemOffset
                           integrity = readInt (itemOffset + 4) processHandle }
                         |> Some
                     | _ -> None
 
-            return
-                { col = x
-                  row = y
-                  lastAction = readInt pointer processHandle
-                  cell = unwrapCell (pointer + cellOffset)
-                  doorOpen = readBoolean (pointer + doorOpenOffset) processHandle
-                  lastFov = readInt (pointer + lastFovOffset) processHandle
-                  propPointer = prop
-                  entity = entity
-                  item = item }
-        }
-        |> function
-            | Some result -> Ok result
-            | None ->
-                sprintf "failed to unwrap tile data at address %d" pointer
-                |> Error
+            { col = col
+              row = row
+              lastAction = readInt offset processHandle
+              cell = unwrapCell (offset + cellOffset)
+              doorOpen = readBoolean (offset + doorOpenOffset) processHandle
+              lastFov = readInt (offset + lastFovOffset) processHandle
+              propPointer = prop
+              entity = entity
+              item = item }
 
-    let result =
-        let offset =
-            match magicOffset with
-            | Some offset -> offset |> Ok
-            // start at 4MB offset because it's a Win32 application
-            | None -> seekMagicStart processHandle 4194304
+    member _.depth =
+        readInt (magicPointer + depthOffset) processHandle
 
-        match offset with
-        | Error message -> Error message
-        | Ok magicOffset ->
-            let luigiAi = openMagic processHandle magicOffset
+    member _.mapCursorIndex =
+        readInt (magicPointer + mapCursorOffset) processHandle
 
-            let openTilePointer (AddressCoordinate (x, y)) =
-                let offset =
-                    (x * luigiAi.mapHeight + y) * 24 // length of struct
-                    + luigiAi.tilePointer
+    member this.player =
+        let filterCogmindTile tile =
+            match tile.entity with
+            | Some entity when entity.entity = Domain.entity.Cogmind -> true
+            | _ -> false
 
-                tryUnwrapTile offset (x, y)
+        this.tiles |> List.find filterCogmindTile
 
-            let coordinates =
-                List.allPairs [ 0 .. luigiAi.mapHeight - 1 ] [
-                    0 .. luigiAi.mapWidth - 1
-                ]
+    member _.activateCogmindWindow() =
+        SetForegroundWindow(cogmindProcess.MainWindowHandle |> int)
+        |> ignore
 
-            let addressCoordinates: AddressCoordinate list =
-                coordinates |> List.map AddressCoordinate
-
-            let tileResults =
-                List.map openTilePointer addressCoordinates
-                |> List.sequenceResultM
-
-            let playerEntity = tryUnwrapEntity luigiAi.playerEntityPointer
-
-            match tileResults, playerEntity with
-            | Ok tiles, Some player -> Ok(luigiAi, player, tiles, magicOffset)
-            | _, None -> Error "entity data for player corrupt"
-            | Error message, _ -> Error message
-
-    CloseHandle(processHandle) |> ignore
-    result
-
-type Magic = LuigiAi * LuigiEntity * LuigiTile list * int
-type MagicReader = unit -> Magic
-type MagicState = int * Process
-
-let readMagic: State<Magic, MagicState> =
-    state {
-        let! (offset, cogmindProcess) = getState
-
-        try
-            let result =
-                match openMagicResult cogmindProcess (Some offset) with
-                | Error message -> raise (InvalidOperationException(message))
-                | Ok (luigiAi, player, tiles, offset) ->
-                    (putState offset) () |> ignore
-                    Magic(luigiAi, player, tiles, offset)
-
-            return result
-        with
-        | _ ->
-            let waitInterval = 10000 // ten seconds
-            Threading.Thread.Sleep(waitInterval)
-
-            return
-                match openMagicResult cogmindProcess (Some offset) with
-                | Error message -> raise (InvalidOperationException(message))
-                | Ok (luigiAi, player, tiles, offset) ->
-                    (putState offset) () |> ignore
-                    Magic(luigiAi, player, tiles, offset)
-    }
+    member _.isCogmindForegroundWindow() =
+        cogmindProcess.MainWindowHandle |> int = GetForegroundWindow()

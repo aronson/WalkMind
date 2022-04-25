@@ -15,14 +15,18 @@ let distanceBetween (x: LuigiTile) (y: LuigiTile) =
 let rec update x y oldF oldG oldFrom gValue =
     let keyF = Map.containsKey y oldF
     let keyG = Map.containsKey y oldG
-    let keyFrom = Map.containsKey (Some y) oldFrom
+
+    let keyFrom =
+        Map.containsKey (Some y) oldFrom
 
     match (keyF, keyG, keyFrom) with
     | (true, _, _) -> update x y (Map.remove y oldF) oldG oldFrom gValue
     | (_, true, _) -> update x y oldF (Map.remove y oldG) oldFrom gValue
     | (_, _, true) -> update x y oldF oldG (Map.remove (Some y) oldFrom) gValue
     | _ ->
-        let newFrom = Map.add (Some y) (Some x) oldFrom
+        let newFrom =
+            Map.add (Some y) (Some x) oldFrom
+
         let newG = Map.add y gValue oldG
         // Estimated total distance
         let newF = Map.add y (gValue) oldF
@@ -43,13 +47,18 @@ let rec scan x neighbors openSet closedSet f g from =
                 let oldG = Map.find y g
 
                 if trialG < oldG then
-                    let (newF, newG, newFrom) = update x y f g from trialG
+                    let (newF, newG, newFrom) =
+                        update x y f g from trialG
+
                     scan x n openSet closedSet newF newG newFrom
                 else
                     scan x n openSet closedSet f g from
             else
                 let newOpen = Set.add y openSet
-                let (newF, newG, newFrom) = update x y f g from trialG
+
+                let (newF, newG, newFrom) =
+                    update x y f g from trialG
+
                 scan x n newOpen closedSet newF newG newFrom
 
 let bestStep openList score =
@@ -137,6 +146,7 @@ let seekEdge magic start =
 
     let gScore = Map.add start 0 Map.empty
 
-    let cameFrom = Map.add (Some start) None Map.empty
+    let cameFrom =
+        Map.add (Some start) None Map.empty
 
     dijkstraStep magic closedSet openSet fScore gScore cameFrom

@@ -187,7 +187,7 @@ type SpecialPropertyType =
 
 type SpecialItemProperty =
     { active: SpecialPropertyActive
-      ``trait``: SpecialPropertyType }
+      trait: SpecialPropertyType }
 
 type BaseItem =
     { slot: ItemSlot
@@ -353,8 +353,10 @@ type SimulatorState =
       weapons: SimulatorWeapon list }
 
 [<Literal>]
-let itemSchemaFile = "./gallery_export_b11.csv"
+let itemSchemaFile =
+    "./gallery_export_b11.csv"
 
 type ItemProvider = CsvProvider<itemSchemaFile>
 
-let itemData = ItemProvider.Load itemSchemaFile
+let itemData =
+    ItemProvider.Load itemSchemaFile
