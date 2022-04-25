@@ -1,5 +1,13 @@
 # WalkMind
 
+## TODO:
+- Support equipping parts
+- Initialize combat simulator with initial values
+- Fight robots
+- Remove imperative process for handling level transitions and replace with level-aware collection producer
+- Support machine hacking for exit location
+- Support pathfinding outside of materials depths
+
 ## License notes
 Parts of Magic.fs are licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
