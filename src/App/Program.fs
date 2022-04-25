@@ -49,6 +49,7 @@ let main args =
         | [] ->
             // No exits, seek nearest Unexplored tile
             seekEdge coordinateMap playerTile
+            // note: may explode
             |> Option.get
             |> Unexplored
 
@@ -76,7 +77,7 @@ let main args =
 
             Ok(queue, goal)
 
-    /// Filters a tile for if it it's stairs interesting in Materials
+    /// Filters a tile for if it's stairs interesting in Materials
     let isStairs tile =
         match tile.cell with
         | Domain.cell.STAIRS_SCR
@@ -87,22 +88,24 @@ let main args =
 
     /// A complicated function with side effects, it tries to press a button and tests if it that did anything in-game.
     /// If it didn't, it will try to move once more, then return that it's Blocked.
-    /// If it did move, it happy returns that it Moved.
+    /// If it did move, it happily returns that it Moved.
     let walkOneStepTestBlocked (step: LuigiTile) (next: LuigiTile) =
+        let lastActionReady = magic.actionReadyValue
         // Try to walk with input simulator
         Movement.takeStep step next |> ignore
         System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
 
-        let lastActionReady = magic.actionReadyValue
-        // Don't check yet, it might throw
+        // Don't check yet, it might throw, hence the unit ()
         let compareActionReady () =
             let updatedNextTile =
                 coordinateMap magic.tiles
                 |> Map.find (next.row, next.col)
 
             match mapTileOccupancy updatedNextTile with
+            // stop bumping into walls, cogmind!
             | Obstructed -> Blocked
             | _ ->
+                // magic.actionReadyValue is always fresh
                 match lastActionReady = magic.actionReadyValue with
                 | true ->
                     System.Threading.Thread.Sleep(17) // 16.66666... ms is one frame at 60 FPS
@@ -112,7 +115,7 @@ let main args =
 
         match isStairs next with
         | true ->
-            // Dangerous to check magic now
+            // Dangerous to check magic now, can't check between level transitions cleanly
             try
                 compareActionReady ()
             with
@@ -157,6 +160,7 @@ let main args =
                 goalStep newQueue
         | Error pair -> Error pair
 
+    // Unused, could be nice once day
     let pathMapStep tiles =
         let queue = getNewStepQueueToGoal tiles
 
@@ -167,10 +171,12 @@ let main args =
             | Error pair -> Error pair
             | Ok () -> Ok goal
 
-
+    // We are LIVE; no more setup functions, this is where the program DOES stuff!
     magic.activateCogmindWindow ()
+    // Wait for window to activate (20 ms is probably fine but eh...)
     System.Threading.Thread.Sleep(150)
 
+    // loop forever until we win for now
     while (true) do
         // Before walking, make sure we have focus
         if not (magic.isCogmindForegroundWindow ()) then
