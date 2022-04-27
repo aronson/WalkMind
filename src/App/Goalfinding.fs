@@ -105,7 +105,7 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
         }
         |> Seq.map (fun (col, row) -> Map.tryFind (col, row) map)
         |> Seq.choose id
-        |> Seq.except closedSet
+        //|> Seq.except closedSet
         |> Seq.filter (fun tile ->
             match Model.mapTileOccupancy tile with
             | Model.Occupancy.Vacant -> true

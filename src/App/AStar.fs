@@ -19,21 +19,18 @@ let rec update x y oldF oldG oldFrom gValue goal =
     let keyF = Map.containsKey y oldF
     let keyG = Map.containsKey y oldG
 
-    let keyFrom =
-        Map.containsKey (Some y) oldFrom
+    let keyFrom = Map.containsKey (Some y) oldFrom
 
     match (keyF, keyG, keyFrom) with
     | (true, _, _) -> update x y (Map.remove y oldF) oldG oldFrom gValue goal
     | (_, true, _) -> update x y oldF (Map.remove y oldG) oldFrom gValue goal
     | (_, _, true) -> update x y oldF oldG (Map.remove (Some y) oldFrom) gValue goal
     | _ ->
-        let newFrom =
-            Map.add (Some y) (Some x) oldFrom
+        let newFrom = Map.add (Some y) (Some x) oldFrom
 
         let newG = Map.add y gValue oldG
         // Estimated total distance
-        let newF =
-            Map.add y (gValue + (heuristic y goal)) oldF
+        let newF = Map.add y (gValue + (heuristic y goal)) oldF
 
         (newF, newG, newFrom)
 
@@ -51,8 +48,7 @@ let rec scan x neighbors openSet closedSet f g from goal =
                 let oldG = Map.find y g
 
                 if trialG < oldG then
-                    let (newF, newG, newFrom) =
-                        update x y f g from trialG goal
+                    let (newF, newG, newFrom) = update x y f g from trialG goal
 
                     scan x n openSet closedSet newF newG newFrom goal
                 else
@@ -60,8 +56,7 @@ let rec scan x neighbors openSet closedSet f g from goal =
             else
                 let newOpen = Set.add y openSet
 
-                let (newF, newG, newFrom) =
-                    update x y f g from trialG goal
+                let (newF, newG, newFrom) = update x y f g from trialG goal
 
                 scan x n newOpen closedSet newF newG newFrom goal
 
@@ -103,7 +98,7 @@ let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x
           yield (x.col - 1, x.row) ]
         |> List.map (fun (col, row) -> Map.tryFind (col, row) map)
         |> List.choose id
-        |> List.except closedSet
+        //|> List.except closedSet
         |> List.filter (fun tile ->
             match Model.mapTileOccupancy tile with
             | Model.Occupancy.Vacant -> true
@@ -118,8 +113,7 @@ let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
         let pt = bestStep l fScore
 
         if (Some goal) = pt then
-            let path =
-                reconstructPath cameFrom (Some goal)
+            let path = reconstructPath cameFrom (Some goal)
 
             Some path
         else
@@ -129,8 +123,7 @@ let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
                 let nextOpen = Set.remove x openSet
                 let nextClosed = Set.add x closedSet
 
-                let neighbors =
-                    neighborNodes magic (Set.toSeq closedSet) x
+                let neighbors = neighborNodes magic (Set.toSeq closedSet) x
 
 
                 let (newOpen, newF, newG, newFrom) =
@@ -144,12 +137,10 @@ let aStar magic start goal =
     // The set of nodes to explore
     let openSet = Set.add start Set.empty
 
-    let fScore =
-        Map.add start (heuristic start goal) Map.empty
+    let fScore = Map.add start (heuristic start goal) Map.empty
 
     let gScore = Map.add start 0 Map.empty
 
-    let cameFrom =
-        Map.add (Some start) None Map.empty
+    let cameFrom = Map.add (Some start) None Map.empty
 
     aStarStep magic goal closedSet openSet fScore gScore cameFrom

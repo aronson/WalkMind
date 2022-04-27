@@ -1,5 +1,8 @@
+/// This module represents the raw data types present in cogmind memory, and exposed
+/// through the -luigiAi structures Cogmind creates when first launched with the param.
 module Domain
 
+/// A cell enum represents the base type of a tile as generated on a map
 type cell =
     | NO_CELL = -1
     | EARTH = 0
@@ -260,6 +263,7 @@ type cell =
     | STAIRS_DSF_OPEN = 255
     | STAIRS_SHORTCUT = 256
 
+/// A discriminated Union representing any kind of item that can be found on the floor
 type Item =
     | Matter
     | DataCore
@@ -1311,6 +1315,7 @@ type Item =
     | Meganuke
     | GammaRefractor
 
+///  A function to convert Cogmind's raw memory in a tile to the corresponding item within
 let itemId =
     function
     | 0 -> Matter
@@ -2364,6 +2369,9 @@ let itemId =
     | 1048 -> GammaRefractor
     | x -> raise (System.ArgumentException(sprintf "Invalid item id! %A" x))
 
+/// Prop are various things littered throughout the complex that can be interesting or
+/// benign. Traps are included within this and need to be modeled at a later time.
+// TODO: Model the danger behind traps
 type Prop =
     | ``Concrete Rubble``
     | ``Metal Rubble``
@@ -2720,6 +2728,7 @@ type Prop =
     | SCR_Black_Space
     | SCR_New_Year_City
 
+/// A function to convert Cogmind's raw tile data in memory to prop data with meaning
 let getProp =
     function
     | 0 -> ``Concrete Rubble``
@@ -3078,11 +3087,13 @@ let getProp =
     | 382 -> SCR_New_Year_City
     | x -> raise (System.ArgumentException(sprintf "Invalid value for prop type: %A" x))
 
+/// A type that partitions prop into those we cannot walk through, traps, and decorations
 type PropOcclusion =
     | Obstructed
     | Dangerous
     | Vacant
 
+/// A function to map the prop sum type to occlusion
 let propToOcclusion =
     function
     | ``Concrete Rubble``
@@ -3440,10 +3451,12 @@ let propToOcclusion =
     | SCR_Black_Space
     | SCR_New_Year_City -> Obstructed
 
+/// Future use in combat simulator
 type Part =
     | Component of Item
     | Weapon of Item
 
+/// Represents the raw memory in Cogmind's tile data for NPCs and the player character
 type entity =
     | Cogmind = 0
     | Drone = 1
@@ -3696,6 +3709,7 @@ type entity =
     | MAINC_B = 248
     | Architect = 249
 
+/// Represents the location in-world
 type MapType =
     | MAP_NONE = 0
     | MAP_SAN = 1
@@ -3743,6 +3757,7 @@ type MapType =
     | MAP_W07 = 1007
     | MAP_W08 = 1008
 
+/// Converts raw Cogmind memory to in-world location data
 let liftMapType =
     function
     | 1 -> MapType.MAP_SAN

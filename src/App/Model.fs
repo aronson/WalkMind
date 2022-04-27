@@ -1,5 +1,6 @@
 module Model
 
+open System.Text
 open Magic
 open Domain
 
@@ -1524,6 +1525,16 @@ let cellToChar (tile: LuigiTile) : string =
             | Some pointer -> "X"
             | None -> " "
         | char -> char
+
+let printMap (mapWidth, mapHeight) (tiles: LuigiTile list) =
+    let sb = StringBuilder()
+    for col in 0 .. mapWidth - 1 do
+        for row in 0 .. mapHeight - 1 do
+            let tile = tiles.[row * mapHeight + col]
+            sb.Append(sprintf "%s" (cellToChar tile)) |> ignore
+
+        sb.Append("\n") |> ignore
+    sb.ToString()
 
 let printPath path goal (mapWidth, mapHeight) (tiles: LuigiTile list) =
     for col in 0 .. mapWidth - 1 do

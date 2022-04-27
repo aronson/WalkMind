@@ -4,24 +4,34 @@
         <TargetFramework>net6.0-windows</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Domain.fs"/>
-        <Compile Include="Magic.fs"/>
-        <Compile Include="Model.fs"/>
-        <Compile Include="AStar.fs"/>
-        <Compile Include="Goalfinding.fs"/>
-        <Compile Include="Bresenham.fs"/>
-        <Compile Include="Simulator\Types.fs"/>
-        <Compile Include="Simulator\Entities.fs"/>
-        <Compile Include="Simulator\Calculator.fs"/>
-        <Compile Include="Movement.fs"/>
-        <Compile Include="World.fs"/>
-        <Compile Include="Program.fs"/>
+        <Compile Include="Domain.fs" />
+        <Compile Include="Magic.fs" />
+        <Compile Include="Model.fs" />
+        <Compile Include="AStar.fs" />
+        <Compile Include="Goalfinding.fs" />
+        <Compile Include="Bresenham.fs" />
+        <Compile Include="Simulator\Types.fs" />
+        <Compile Include="Simulator\Entities.fs" />
+        <Compile Include="Simulator\Calculator.fs" />
+        <Compile Include="Movement.fs" />
+        <Compile Include="World.fs" />
+        <Compile Include="GuiState.fs" />
+        <Compile Include="Counter.fs" />
+        <Compile Include="About.fs" />
+        <Compile Include="Shell.fs" />
+        <Compile Include="Program.fs" />
+        <AvaloniaResource Include="Styles.xaml" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FSharp.Data" Version="4.2.7"/>
-        <PackageReference Include="FSharpx.Collections" Version="3.0.1"/>
-        <PackageReference Include="FSharpx.Extras" Version="3.1.0"/>
-        <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0"/>
-        <PackageReference Include="InputSimulatorPlus" Version="1.0.7"/>
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.13" />
+        <PackageReference Include="FSharp.Data" Version="4.2.7" />
+        <PackageReference Include="FSharpx.Collections" Version="3.0.1" />
+        <PackageReference Include="FSharpx.Extras" Version="3.1.0" />
+        <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+        <PackageReference Include="InputSimulatorPlus" Version="1.0.7" />
+        <PackageReference Include="JaggerJo.Avalonia.FuncUI" Version="0.5.0" />
+        <PackageReference Include="JaggerJo.Avalonia.FuncUI.DSL" Version="0.5.0" />
+        <PackageReference Include="JaggerJo.Avalonia.FuncUI.Elmish" Version="0.5.0" />
     </ItemGroup>
 </Project>
