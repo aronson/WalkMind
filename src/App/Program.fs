@@ -4,23 +4,6 @@ open AStar
 open Goalfinding
 open FSharpx.Collections
 open Model
-open Avalonia
-open Avalonia.Controls.ApplicationLifetimes
-open Avalonia.FuncUI
-open Avalonia.Themes.Fluent
-
-type App() =
-    inherit Application()
-
-    override this.Initialize() =
-        this.Styles.Add(FluentTheme(baseUri = null, Mode = FluentThemeMode.Dark))
-        this.Styles.Load "avares://App/Styles.xaml"
-
-    override this.OnFrameworkInitializationCompleted() =
-        match this.ApplicationLifetime with
-        | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime ->
-            desktopLifetime.MainWindow <- App.Shell.MainWindow()
-        | _ -> ()
 
 /// We need to wait a little bit before checking magic data if we exited
 type PathEnd =
@@ -120,14 +103,6 @@ let main args =
             let steps = List.rev path |> List.pairwise
             refEquipmentCount.Value <- refEquipmentCount.Value + 1
             ())
-
-    // Initialize GUI
-//    AppBuilder
-//        .Configure<App>()
-//        .UsePlatformDetect()
-//        .UseSkia()
-//        .StartWithClassicDesktopLifetime(args)
-//    |> ignore
     
     // We are LIVE; no more setup functions, this is where the program DOES stuff!
     magic.activateCogmindWindow ()
