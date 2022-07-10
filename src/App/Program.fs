@@ -1,9 +1,11 @@
-﻿open App.Movement
+﻿open System
+open App.Movement
 open Magic
 open AStar
 open Goalfinding
 open FSharpx.Collections
 open Model
+open WindowsInput
 
 /// We need to wait a little bit before checking magic data if we exited
 type PathEnd =
@@ -107,46 +109,21 @@ let main args =
                 ())
 
     // We are LIVE; no more setup functions, this is where the program DOES stuff!
-    magic.activateCogmindWindow ()
     // Wait for window to activate (20 ms is probably fine but eh...)
     System.Threading.Thread.Sleep(150)
-
-    let action = ActionOrchestrator(magic)
-
+    
+    printfn "Reading bot memory... press any key to sample"
     // loop until we reach the surface
-    while (magic.depth <= -1) do
-        if (magic.depth = -11 && refEquipmentCount.Value < 5) then
-            scrapYardActions ()
-
-        try
-            let playerTile = Model.playerTile magic.tiles
-
-            let path =
-                formPath
-                    playerTile
-                    (goal magic.tiles
-                     |> function
-                         | Unexplored goal
-                         | Stairs goal -> goal)
-
-            match path with
-            | Error message ->
-                raise (
-                    System.Exception
-                    <| $"Error forming path :%A{message}"
-                )
-            | Ok (path, goal) ->
-                printPath path goal (magic.mapWidth, magic.mapHeight) magic.tiles
-
-                let stepPairs = List.rev path |> List.pairwise
-
-                let moveOne step = action.execute (Move step) |> ignore
-
-                List.iter moveOne stepPairs
-                ()
-        with
-        | _ -> System.Threading.Thread.Sleep(1000)
-
+    while true do
+        printfn $"{DateTime.Now}"
+        let occupiedTiles = magic.tiles |> List.where(
+            fun tile ->
+            match tile.entity with
+            | Some entity -> true
+            | None -> false)
+        occupiedTiles |> List.iter(fun tile -> printfn $"{tile}")
+        printfn "Press any key to sample..."
+        System.Console.ReadKey() |> ignore
     ()
 
     printfn "I'm walking here"
