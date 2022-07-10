@@ -17,6 +17,7 @@ type NumpadDirection =
 type Action =
     | Move of LuigiTile * LuigiTile
     | Attach
+    | Shoot of LuigiEntity
 
 type ParsedAction = Success | Failure
 
@@ -38,6 +39,14 @@ type ActionOrchestrator(magic: Magic) =
 
     let attachItem () =
         inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_A)
+        |> ignore
+        
+    let fire () =
+        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_F)
+        |> ignore
+        
+    let tab () =
+        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.TAB)
         |> ignore
 
     let getDirection (thisTile: LuigiTile) (neighbor: LuigiTile) =
@@ -106,5 +115,20 @@ type ActionOrchestrator(magic: Magic) =
                     if isStairs next then System.Threading.Thread.Sleep(10000)
                     Success
                 | Failure -> Failure
+            | Shoot entity ->
+                let enemyTile = magic.tiles |> List.find(fun tile ->
+                    match tile.entity with
+                    | Some otherEntity -> entity = otherEntity
+                    | None -> false)
+                fire()
+                System.Threading.Thread.Sleep(100)
+                let mutable reticuleTile = magic.tiles.[magic.mapCursorIndex]
+                while reticuleTile <> enemyTile do
+                   tab ()
+                   System.Threading.Thread.Sleep(100)
+                   reticuleTile <- magic.tiles.[magic.mapCursorIndex]
+                fire()
+                wasActionRegistered()
+                
         // get the next action
         performAction()

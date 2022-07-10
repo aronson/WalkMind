@@ -35,7 +35,8 @@ let main args =
     /// This function filters all tiles once in or in FOV to find those with exits using a bad hack
     let exits (tiles: LuigiTile list) =
         tiles
-        |> List.filter (function
+        |> List.filter
+            (function
             | exit when cellToChar exit = ">" -> true
             | _ -> false)
 
@@ -55,8 +56,7 @@ let main args =
             |> Unexplored
 
     let formPath start goal =
-        let coordinateMap =
-            coordinateMap magic.tiles
+        let coordinateMap = coordinateMap magic.tiles
 
         match aStar coordinateMap start goal with
         | None -> Error "no path found to goal"
@@ -77,7 +77,8 @@ let main args =
         // take the tiles
         magic.tiles
         // choose tiles with starting equipment
-        |> Seq.choose (function
+        |> Seq.choose
+            (function
             | TileWithItem Domain.LgtTreads tile
             | TileWithItem Domain.LgtAssaultRifle tile
             | TileWithItem Domain.MedLaser tile
@@ -88,22 +89,23 @@ let main args =
             | TileWithItem Domain.AssaultRifle tile -> Some tile
             | _ -> None)
         // Path to those tiles in a lazy sequence
-        |> Seq.map (fun itemTile ->
-            let playerTile =
-                Model.playerTile magic.tiles
+        |> Seq.map
+            (fun itemTile ->
+                let playerTile = Model.playerTile magic.tiles
 
-            let itemTile =
-                magic.tile (AddressCoordinate(itemTile.col, itemTile.row))
+                let itemTile =
+                    magic.tile (AddressCoordinate(itemTile.col, itemTile.row))
 
-            match formPath playerTile itemTile with
-            | Error message -> raise (System.Exception message)
-            | Ok (path, goal) -> path, goal)
+                match formPath playerTile itemTile with
+                | Error message -> raise (System.Exception message)
+                | Ok (path, goal) -> path, goal)
         // Start walking to those tiles
-        |> Seq.iter (fun (path, goal) ->
-            let steps = List.rev path |> List.pairwise
-            refEquipmentCount.Value <- refEquipmentCount.Value + 1
-            ())
-    
+        |> Seq.iter
+            (fun (path, goal) ->
+                let steps = List.rev path |> List.pairwise
+                refEquipmentCount.Value <- refEquipmentCount.Value + 1
+                ())
+
     // We are LIVE; no more setup functions, this is where the program DOES stuff!
     magic.activateCogmindWindow ()
     // Wait for window to activate (20 ms is probably fine but eh...)
@@ -115,22 +117,35 @@ let main args =
     while (magic.depth <= -1) do
         if (magic.depth = -11 && refEquipmentCount.Value < 5) then
             scrapYardActions ()
-            
-        let playerTile = Model.playerTile magic.tiles
-        
-        let path = formPath playerTile (goal magic.tiles|>function | Unexplored goal | Stairs goal -> goal)
 
-        match path with
-        | Error message -> raise(System.Exception <| $"Error forming path :%A{message}")
-        | Ok (path, goal) ->
-            printPath path goal (magic.mapWidth, magic.mapHeight) magic.tiles
-            
-            let stepPairs = List.rev path |> List.pairwise
-            
-            let moveOne step = action.execute(Move step)|>ignore
-            
-            List.iter moveOne stepPairs
-            ()
+        try
+            let playerTile = Model.playerTile magic.tiles
+
+            let path =
+                formPath
+                    playerTile
+                    (goal magic.tiles
+                     |> function
+                         | Unexplored goal
+                         | Stairs goal -> goal)
+
+            match path with
+            | Error message ->
+                raise (
+                    System.Exception
+                    <| $"Error forming path :%A{message}"
+                )
+            | Ok (path, goal) ->
+                printPath path goal (magic.mapWidth, magic.mapHeight) magic.tiles
+
+                let stepPairs = List.rev path |> List.pairwise
+
+                let moveOne step = action.execute (Move step) |> ignore
+
+                List.iter moveOne stepPairs
+                ()
+        with
+        | _ -> System.Threading.Thread.Sleep(1000)
 
     ()
 
