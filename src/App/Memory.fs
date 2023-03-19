@@ -215,7 +215,6 @@ type Memory() =
     let chunkSize = uint32 4096
 
     let findMagicNumbers hProcess startAddress =
-        let mutable foundAddress = None
         let mutable buffer = Array.zeroCreate<byte> (int chunkSize)
         let bufferHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned)
         let pBuffer = bufferHandle.AddrOfPinnedObject()
