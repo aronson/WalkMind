@@ -227,16 +227,20 @@ type Memory() =
                 NativeMethods.ReadProcessMemory(hProcess, startAddress, pBuffer, (UIntPtr chunkSize), &bytesRead)
 
             if result then
-                for i = 0 to (int chunkSize - 8) do
+                [ 0 .. int chunkSize - 8 ]
+                |> List.tryPick (fun i ->
                     let n1 = BitConverter.ToInt32(buffer, i)
                     let n2 = BitConverter.ToInt32(buffer, i + 4)
 
                     if n1 = primaryMagic && n2 = secondaryMagic then
-                        foundAddress <- Some(IntPtr.op_Addition (startAddress, int i))
+                        let pointer = IntPtr.op_Addition (startAddress, int i)
+                        Some pointer
+                    else
+                        None)
+            else
+                None
         finally
             bufferHandle.Free()
-
-        foundAddress
 
     let searchMemory (p: Process) baseAddress =
         let PROCESS_VM_READ = 0x0010
