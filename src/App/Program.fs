@@ -23,20 +23,18 @@ type WalkResult =
 
 [<EntryPoint>]
 let main args =
-    let magic = Magic()
+    let magic = Memory()
 
     /// It's easier to pull coordinates out in a functional way with a map of (col, row)
     let coordinateMap tiles =
-        let coords =
-            tiles |> List.map (fun x -> (x.col, x.row), x)
+        let coords = tiles |> List.map (fun x -> (x.col, x.row), x)
 
         Map.ofList coords
 
     /// This function filters all tiles once in or in FOV to find those with exits using a bad hack
     let exits (tiles: LuigiTile list) =
         tiles
-        |> List.filter
-            (function
+        |> List.filter (function
             | exit when cellToChar exit = ">" -> true
             | _ -> false)
 
@@ -65,11 +63,7 @@ let main args =
     let (|TileWithItem|_|) (item: Domain.Item) (tile: LuigiTile) =
         match tile.item with
         | None -> None
-        | Some tileItem ->
-            if tileItem.item = item then
-                Some tile
-            else
-                None
+        | Some tileItem -> if tileItem.item = item then Some tile else None
 
     let refEquipmentCount = ref 0
 
@@ -77,8 +71,7 @@ let main args =
         // take the tiles
         magic.tiles
         // choose tiles with starting equipment
-        |> Seq.choose
-            (function
+        |> Seq.choose (function
             | TileWithItem Domain.LgtTreads tile
             | TileWithItem Domain.LgtAssaultRifle tile
             | TileWithItem Domain.MedLaser tile
@@ -89,22 +82,19 @@ let main args =
             | TileWithItem Domain.AssaultRifle tile -> Some tile
             | _ -> None)
         // Path to those tiles in a lazy sequence
-        |> Seq.map
-            (fun itemTile ->
-                let playerTile = Model.playerTile magic.tiles
+        |> Seq.map (fun itemTile ->
+            let playerTile = Model.playerTile magic.tiles
 
-                let itemTile =
-                    magic.tile (AddressCoordinate(itemTile.col, itemTile.row))
+            let itemTile = magic.tile (AddressCoordinate(itemTile.col, itemTile.row))
 
-                match formPath playerTile itemTile with
-                | Error message -> raise (System.Exception message)
-                | Ok (path, goal) -> path, goal)
+            match formPath playerTile itemTile with
+            | Error message -> raise (System.Exception message)
+            | Ok(path, goal) -> path, goal)
         // Start walking to those tiles
-        |> Seq.iter
-            (fun (path, goal) ->
-                let steps = List.rev path |> List.pairwise
-                refEquipmentCount.Value <- refEquipmentCount.Value + 1
-                ())
+        |> Seq.iter (fun (path, goal) ->
+            let steps = List.rev path |> List.pairwise
+            refEquipmentCount.Value <- refEquipmentCount.Value + 1
+            ())
 
     // We are LIVE; no more setup functions, this is where the program DOES stuff!
     magic.activateCogmindWindow ()
@@ -130,12 +120,8 @@ let main args =
                          | Stairs goal -> goal)
 
             match path with
-            | Error message ->
-                raise (
-                    System.Exception
-                    <| $"Error forming path :%A{message}"
-                )
-            | Ok (path, goal) ->
+            | Error message -> raise (System.Exception <| $"Error forming path :%A{message}")
+            | Ok(path, goal) ->
                 printPath path goal (magic.mapWidth, magic.mapHeight) magic.tiles
 
                 let stepPairs = List.rev path |> List.pairwise
@@ -144,8 +130,8 @@ let main args =
 
                 List.iter moveOne stepPairs
                 ()
-        with
-        | _ -> System.Threading.Thread.Sleep(1000)
+        with _ ->
+            System.Threading.Thread.Sleep(1000)
 
     ()
 

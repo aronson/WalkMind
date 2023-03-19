@@ -19,9 +19,11 @@ type Action =
     | Attach
     | Shoot of LuigiEntity
 
-type ParsedAction = Success | Failure
+type ParsedAction =
+    | Success
+    | Failure
 
-type ActionOrchestrator(magic: Magic) =
+type ActionOrchestrator(magic: Memory) =
     let inputSimulator = new InputSimulator()
 
     let walkDirection =
@@ -38,16 +40,13 @@ type ActionOrchestrator(magic: Magic) =
         >> ignore
 
     let attachItem () =
-        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_A)
-        |> ignore
-        
+        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_A) |> ignore
+
     let fire () =
-        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_F)
-        |> ignore
-        
+        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_F) |> ignore
+
     let tab () =
-        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.TAB)
-        |> ignore
+        inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.TAB) |> ignore
 
     let getDirection (thisTile: LuigiTile) (neighbor: LuigiTile) =
         match (thisTile.row - neighbor.row, thisTile.col - neighbor.col) with
@@ -64,7 +63,7 @@ type ActionOrchestrator(magic: Magic) =
 
 
     let takeStep step next = getDirection step next |> walkDirection
-    
+
     /// Filters a tile for if it's stairs interesting in Materials
     let isStairs tile =
         match tile.cell with
@@ -73,9 +72,9 @@ type ActionOrchestrator(magic: Magic) =
         | Domain.cell.STAIRS_MIN
         | Domain.cell.STAIRS_STO -> true
         | _ -> false
-    
+
     member _.execute(action) =
-        let performAction() =
+        let performAction () =
             // Before walking, make sure we have focus
             if not (magic.isCogmindForegroundWindow ()) then
                 printfn "Lost focus to window, waiting for user input..."
@@ -84,11 +83,12 @@ type ActionOrchestrator(magic: Magic) =
                 System.Threading.Thread.Sleep(150)
 
             let preActionReadyValue = magic.actionReadyValue
-            let wasActionRegistered() =
-               match preActionReadyValue <> magic.actionReadyValue with
-               | true -> Success
-               | false -> Failure
-            
+
+            let wasActionRegistered () =
+                match preActionReadyValue <> magic.actionReadyValue with
+                | true -> Success
+                | false -> Failure
+
             match action with
             | Attach ->
                 // try to attach item...
@@ -96,39 +96,45 @@ type ActionOrchestrator(magic: Magic) =
                 // wait for the game
                 System.Threading.Thread.Sleep(17)
                 wasActionRegistered ()
-            | Move (start, next) ->
+            | Move(start, next) ->
                 // try to step once...
                 takeStep start next
                 // wait for the game
                 System.Threading.Thread.Sleep(17)
                 // try to step again if it didn't work
-                match wasActionRegistered() with
+                match wasActionRegistered () with
                 | Success -> Success
                 | Failure ->
                     takeStep start next
                     System.Threading.Thread.Sleep(17)
                     wasActionRegistered ()
-                |>
-                function
-                | Success ->
-                    // Check if this was the stairs tile, and sleep 10s if it was
-                    if isStairs next then System.Threading.Thread.Sleep(10000)
-                    Success
-                | Failure -> Failure
+                |> function
+                    | Success ->
+                        // Check if this was the stairs tile, and sleep 10s if it was
+                        if isStairs next then
+                            System.Threading.Thread.Sleep(10000)
+
+                        Success
+                    | Failure -> Failure
             | Shoot entity ->
-                let enemyTile = magic.tiles |> List.find(fun tile ->
-                    match tile.entity with
-                    | Some otherEntity -> entity = otherEntity
-                    | None -> false)
-                fire()
+                let enemyTile =
+                    magic.tiles
+                    |> List.find (fun tile ->
+                        match tile.entity with
+                        | Some otherEntity -> entity = otherEntity
+                        | None -> false)
+
+                fire ()
                 System.Threading.Thread.Sleep(100)
                 let mutable reticuleTile = magic.tiles.[magic.mapCursorIndex]
+
                 while reticuleTile <> enemyTile do
-                   tab ()
-                   System.Threading.Thread.Sleep(100)
-                   reticuleTile <- magic.tiles.[magic.mapCursorIndex]
-                fire()
-                wasActionRegistered()
-                
+                    tab ()
+                    System.Threading.Thread.Sleep(100)
+                    reticuleTile <- magic.tiles.[magic.mapCursorIndex]
+
+                fire ()
+                wasActionRegistered ()
+
         // get the next action
-        performAction()
+        performAction ()
