@@ -1306,11 +1306,9 @@ let mapTileOccupancy (tile: LuigiTile) =
     |> function
         | Vacant ->
             // check if prop is blocking
-            match tile.propPointer with
+            match tile.prop with
             | Some prop ->
-                let prop = Domain.getProp prop
-
-                match Domain.propToOcclusion prop with
+                match Domain.propToOcclusion prop.prop with
                 | Domain.PropOcclusion.Obstructed -> Obstructed
                 | _ -> Vacant
             | None -> Vacant
@@ -1521,8 +1519,8 @@ let cellToChar (tile: LuigiTile) : string =
         | None -> "?"
     |> function
         | " " ->
-            match tile.propPointer with
-            | Some pointer -> "X"
+            match tile.prop with
+            | Some _ -> "X"
             | None -> " "
         | char -> char
 

@@ -161,6 +161,20 @@ type LuigiEntity =
       speed: int }
 
 [<StructLayout(LayoutKind.Sequential)>]
+type LuigiPropData =
+    struct
+        [<field: MarshalAs(UnmanagedType.I4)>]
+        val PropId: int
+
+        [<field: MarshalAs(UnmanagedType.Bool)>]
+        val InteractivePiece: bool
+    end
+
+type LuigiProp =
+    { prop: Prop 
+      interactivePiece: bool }
+
+[<StructLayout(LayoutKind.Sequential)>]
 type LuigiTileData =
     struct
         [<field: MarshalAs(UnmanagedType.I4)>]
@@ -193,7 +207,7 @@ type LuigiTile =
       cell: cell
       doorOpen: bool
       lastFov: int
-      propPointer: int option
+      prop: LuigiProp option
       entity: LuigiEntity option
       item: LuigiItem option }
 
@@ -266,10 +280,10 @@ type Memory() =
         | Error message -> raise (Exception message)
         | Ok pointer -> pointer
 
-    let liftLuigiEntity (pointer) : LuigiEntity option =
-        if pointer = IntPtr.Zero then
-            None
-        else
+    let liftLuigiEntity =
+        function
+        | pointer when pointer = IntPtr.Zero -> None
+        | pointer ->
             let bufferSize = uint32 (40)
             let buffer = Marshal.AllocHGlobal(int bufferSize)
             let mutable bytesRead = 0
@@ -295,10 +309,10 @@ type Memory() =
               speed = entityData.Speed }
             |> Some
 
-    let liftLuigiItem pointer =
-        if pointer = IntPtr.Zero then
-            None
-        else
+    let liftLuigiItem =
+        function
+        | pointer when pointer = IntPtr.Zero -> None
+        | pointer ->
             let bufferSize = uint32 (8)
             let buffer = Marshal.AllocHGlobal(int bufferSize)
 
@@ -317,6 +331,29 @@ type Memory() =
               integrity = itemData.Integrity }
             |> Some
 
+    let liftLuigiProp =
+        function
+        | pointer when pointer = IntPtr.Zero -> None
+        | pointer ->
+            let bufferSize = uint32 (8)
+            let buffer = Marshal.AllocHGlobal(int bufferSize)
+
+            let mutable bytesRead = 0
+
+            let result =
+                NativeMethods.ReadProcessMemory(processHandle, pointer, buffer, (UIntPtr bufferSize), &bytesRead)
+
+            if not result then
+                failwith "Failed to read process memory."
+
+            let propData = Marshal.PtrToStructure<LuigiPropData>(buffer)
+            Marshal.FreeHGlobal(buffer)
+
+            { prop = Domain.getProp propData.PropId 
+              interactivePiece = propData.InteractivePiece }
+            |> Some
+            
+
     let convertLuigiTileData (tileData: LuigiTileData) (AddressCoordinate(col, row)) : LuigiTile =
         { col = col
           row = row
@@ -324,11 +361,7 @@ type Memory() =
           cell = enum<cell> (tileData.Cell)
           doorOpen = tileData.DoorOpen
           lastFov = tileData.LastFov
-          propPointer =
-            if tileData.PropPointer = 0 then
-                None
-            else
-                Some(int tileData.PropPointer)
+          prop = liftLuigiProp (int tileData.PropPointer)
           entity = liftLuigiEntity (int tileData.EntityPointer)
           item = liftLuigiItem (int tileData.ItemPointer) }
 
@@ -420,8 +453,8 @@ type Memory() =
     member this.tile
         with get (AddressCoordinate(col, row)) =
 
-            let offset = (row * this.mapHeight + col)
-            this.tiles.[offset]
+            let offset = (row * this.mapHeight + col) * 28 + this.startTilePointer
+            liftLuigiTile offset (AddressCoordinate(col, row))
 
 
     member _.depth = liftLuigiAi().depth
