@@ -113,6 +113,13 @@ let main args =
     while (magic.depth <= -1) do
         if (magic.depth = -11 && refEquipmentCount.Value < 5) then
             scrapYardActions action
+        elif (magic.depth = -11) then
+            let recycler = 
+                magic.tiles 
+                |> List.choose (fun t -> t.entity) 
+                |> List.find (fun e -> e.entity = Domain.entity.R06_Scavenger)
+            printfn "Action: %A" (action.execute(Shoot recycler))
+            ()
 
         try
             let playerTile = Model.playerTile magic.tiles

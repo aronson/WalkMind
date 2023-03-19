@@ -103,7 +103,7 @@ type ActionOrchestrator(magic: Memory) =
             let checkCompletion () = wasActionRegistered preActionReadyValue
             match action with
             | Attach ->
-                performAction 1 attachItem checkCompletion
+                performAction 2 attachItem checkCompletion
             | Move(start, next) ->
                 let result = performAction 2 (fun () -> takeStep start next) checkCompletion
                 match result with
