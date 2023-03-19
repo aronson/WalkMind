@@ -67,7 +67,7 @@ let main args =
 
     let refEquipmentCount = ref 0
 
-    let scrapYardActions () =
+    let scrapYardActions (action: ActionOrchestrator) =
         // take the tiles
         magic.tiles
         // choose tiles with starting equipment
@@ -93,6 +93,12 @@ let main args =
         // Start walking to those tiles
         |> Seq.iter (fun (path, goal) ->
             let steps = List.rev path |> List.pairwise
+            let stepPairs = List.rev path |> List.pairwise
+
+            let moveOne step = action.execute (Move step) |> ignore
+
+            List.iter moveOne stepPairs
+            action.execute (Attach) |> ignore
             refEquipmentCount.Value <- refEquipmentCount.Value + 1
             ())
 
@@ -106,7 +112,7 @@ let main args =
     // loop until we reach the surface
     while (magic.depth <= -1) do
         if (magic.depth = -11 && refEquipmentCount.Value < 5) then
-            scrapYardActions ()
+            scrapYardActions action
 
         try
             let playerTile = Model.playerTile magic.tiles

@@ -19,25 +19,27 @@ type Action =
     | Attach
     | Shoot of LuigiEntity
 
-type ParsedAction =
+type ActionResult =
     | Success
     | Failure
 
 type ActionOrchestrator(magic: Memory) =
     let inputSimulator = new InputSimulator()
 
-    let walkDirection =
-        function
-        | One -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD1)
-        | Two -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD2)
-        | Three -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD3)
-        | Four -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD4)
-        | Wait -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD5)
-        | Six -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD6)
-        | Seven -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD7)
-        | Eight -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD8)
-        | Nine -> inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.NUMPAD9)
-        >> ignore
+    let walkDirection direction =
+        let keyCode =
+            match direction with
+            | One -> Native.VirtualKeyCode.NUMPAD1
+            | Two -> Native.VirtualKeyCode.NUMPAD2
+            | Three -> Native.VirtualKeyCode.NUMPAD3
+            | Four -> Native.VirtualKeyCode.NUMPAD4
+            | Wait -> Native.VirtualKeyCode.NUMPAD5
+            | Six -> Native.VirtualKeyCode.NUMPAD6
+            | Seven -> Native.VirtualKeyCode.NUMPAD7
+            | Eight -> Native.VirtualKeyCode.NUMPAD8
+            | Nine -> Native.VirtualKeyCode.NUMPAD9
+        inputSimulator.Keyboard.KeyPress(keyCode)
+        |> ignore
 
     let attachItem () =
         inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_A) |> ignore
@@ -61,7 +63,6 @@ type ActionOrchestrator(magic: Memory) =
         | (-1, 1) -> Nine
         | _ -> raise (System.ArgumentException("getDirection passed non neighbor tiles!"))
 
-
     let takeStep step next = getDirection step next |> walkDirection
 
     /// Filters a tile for if it's stairs interesting in Materials
@@ -73,9 +74,24 @@ type ActionOrchestrator(magic: Memory) =
         | Domain.cell.STAIRS_STO -> true
         | _ -> false
 
+    let waitForAction (completionDelay: int) action =
+        action ()
+        System.Threading.Thread.Sleep(completionDelay)
+
+    let rec performAction retries action checkCompletion =
+        if retries <= 0 then Failure
+        else
+            waitForAction 50 action
+            match checkCompletion () with
+            | Success -> Success
+            | Failure -> performAction (retries - 1) action checkCompletion
+
     member _.execute(action) =
-        let performAction () =
-            // Before walking, make sure we have focus
+        let wasActionRegistered preActionReadyValue =
+            if preActionReadyValue <> magic.actionReadyValue then Success
+            else Failure
+
+        let performActionWithFocus () =
             if not (magic.isCogmindForegroundWindow ()) then
                 printfn "Lost focus to window, waiting for user input..."
                 System.Console.ReadKey() |> ignore
@@ -84,38 +100,18 @@ type ActionOrchestrator(magic: Memory) =
 
             let preActionReadyValue = magic.actionReadyValue
 
-            let wasActionRegistered () =
-                match preActionReadyValue <> magic.actionReadyValue with
-                | true -> Success
-                | false -> Failure
-
+            let checkCompletion () = wasActionRegistered preActionReadyValue
             match action with
             | Attach ->
-                // try to attach item...
-                attachItem ()
-                // wait for the game
-                System.Threading.Thread.Sleep(17)
-                wasActionRegistered ()
+                performAction 1 attachItem checkCompletion
             | Move(start, next) ->
-                // try to step once...
-                takeStep start next
-                // wait for the game
-                System.Threading.Thread.Sleep(17)
-                // try to step again if it didn't work
-                match wasActionRegistered () with
-                | Success -> Success
-                | Failure ->
-                    takeStep start next
-                    System.Threading.Thread.Sleep(17)
-                    wasActionRegistered ()
-                |> function
-                    | Success ->
-                        // Check if this was the stairs tile, and sleep 10s if it was
-                        if isStairs next then
-                            System.Threading.Thread.Sleep(10000)
-
-                        Success
-                    | Failure -> Failure
+                let result = performAction 2 (fun () -> takeStep start next) checkCompletion
+                match result with
+                | Success ->
+                    if isStairs next then
+                        System.Threading.Thread.Sleep(10000)
+                    Success
+                | Failure -> Failure
             | Shoot entity ->
                 let enemyTile =
                     magic.tiles
@@ -124,8 +120,8 @@ type ActionOrchestrator(magic: Memory) =
                         | Some otherEntity -> entity = otherEntity
                         | None -> false)
 
-                fire ()
-                System.Threading.Thread.Sleep(100)
+                let result = performAction 1 fire checkCompletion
+
                 let mutable reticuleTile = magic.tiles.[magic.mapCursorIndex]
 
                 while reticuleTile <> enemyTile do
@@ -133,8 +129,12 @@ type ActionOrchestrator(magic: Memory) =
                     System.Threading.Thread.Sleep(100)
                     reticuleTile <- magic.tiles.[magic.mapCursorIndex]
 
-                fire ()
-                wasActionRegistered ()
+                match result with
+                | Success ->
+                    performAction 1 fire checkCompletion
+                | Failure -> Failure
 
         // get the next action
-        performAction ()
+        performActionWithFocus ()
+
+           
