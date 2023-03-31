@@ -1,7 +1,8 @@
 module App.Movement
 
-open WindowsInput
-open Magic
+open GregsStack.InputSimulatorStandard
+open FSharp.Core
+open Memory
 
 type NumpadDirection =
     | One
@@ -38,8 +39,8 @@ type ActionOrchestrator(magic: Memory) =
             | Seven -> Native.VirtualKeyCode.NUMPAD7
             | Eight -> Native.VirtualKeyCode.NUMPAD8
             | Nine -> Native.VirtualKeyCode.NUMPAD9
-        inputSimulator.Keyboard.KeyPress(keyCode)
-        |> ignore
+
+        inputSimulator.Keyboard.KeyPress(keyCode) |> ignore
 
     let attachItem () =
         inputSimulator.Keyboard.KeyPress(Native.VirtualKeyCode.VK_A) |> ignore
@@ -79,17 +80,20 @@ type ActionOrchestrator(magic: Memory) =
         System.Threading.Thread.Sleep(completionDelay)
 
     let rec performAction retries action checkCompletion =
-        if retries <= 0 then Failure
+        if retries <= 0 then
+            Error "Retried a command too many times!"
         else
             waitForAction 50 action
-            match checkCompletion () with
-            | Success -> Success
-            | Failure -> performAction (retries - 1) action checkCompletion
+
+            checkCompletion ()
+            |> Result.bind (fun _ -> performAction (retries - 1) action checkCompletion)
 
     member _.execute(action) =
         let wasActionRegistered preActionReadyValue =
-            if preActionReadyValue <> magic.actionReadyValue then Success
-            else Failure
+            if preActionReadyValue <> magic.actionReadyValue then
+                Ok()
+            else
+                Error "ActionReady not triggered"
 
         let performActionWithFocus () =
             if not (magic.isCogmindForegroundWindow ()) then
@@ -101,17 +105,16 @@ type ActionOrchestrator(magic: Memory) =
             let preActionReadyValue = magic.actionReadyValue
 
             let checkCompletion () = wasActionRegistered preActionReadyValue
+
             match action with
-            | Attach ->
-                performAction 2 attachItem checkCompletion
+            | Attach -> performAction 2 attachItem checkCompletion
             | Move(start, next) ->
-                let result = performAction 2 (fun () -> takeStep start next) checkCompletion
-                match result with
-                | Success ->
+                performAction 2 (fun () -> takeStep start next) checkCompletion
+                |> Result.bind (fun _ ->
                     if isStairs next then
                         System.Threading.Thread.Sleep(10000)
-                    Success
-                | Failure -> Failure
+
+                    Ok())
             | Shoot entity ->
                 let enemyTile =
                     magic.tiles
@@ -129,12 +132,7 @@ type ActionOrchestrator(magic: Memory) =
                     System.Threading.Thread.Sleep(100)
                     reticuleTile <- magic.tiles.[magic.mapCursorIndex]
 
-                match result with
-                | Success ->
-                    performAction 1 fire checkCompletion
-                | Failure -> Failure
+                Result.bind (fun _ -> performAction 1 fire checkCompletion) result
 
         // get the next action
         performActionWithFocus ()
-
-           

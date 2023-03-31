@@ -1,146 +1,76 @@
+// https://github.com/ChrisPritchard/astar-search
 module AStar
 
-// https://stevegilham.blogspot.com/2008/10/thrice-is-charm-star-in-f.html
+type Config<'a> =
+    {
+        /// <summary>
+        /// A method that, given a source, will return its neighbours.
+        /// </summary>
+        neighbours: 'a -> seq<'a>
+        /// <summary>
+        /// Given two nodes that are next to each other, return the g cost between them.
+        /// The g cost is the cost of moving from one to the other directly.
+        /// </summary>
+        gCost: 'a -> 'a -> float
+        /// <summary>
+        /// Given two nodes, return the f cost between them. This is a heuristic score used from a given node to the goal.
+        /// Line-of-sight distance is an example of how this might be defined.
+        /// </summary>
+        fCost: 'a -> 'a -> float
+        /// <summary>
+        /// The maximum number of tiles to check - used to limit overly long searches when accuracy is not paramount
+        /// </summary>
+        maxIterations: int option
+    }
 
-open Magic
+let search<'a when 'a: comparison> start goal config : seq<'a> option =
 
-let rec reconstructPath cameFrom node =
-    match Map.find node cameFrom with
-    | None -> node :: []
-    | value -> node :: reconstructPath cameFrom value
+    let rec reconstructPath cameFrom current =
+        seq {
+            yield current
 
+            match Map.tryFind current cameFrom with
+            | None -> ()
+            | Some next -> yield! reconstructPath cameFrom next
+        }
 
-let distanceBetween (x: LuigiTile) (y: LuigiTile) =
-    max (x.row - y.row |> abs) (x.col - y.col |> abs)
+    let rec crawler closedSet (openSet, gScores, fScores, cameFrom) =
+        match config.maxIterations with
+        | Some n when n = Set.count closedSet -> None
+        | _ ->
+            match List.sortBy (fun n -> Map.find n fScores) openSet with
+            | current :: _ when current = goal -> Some <| reconstructPath cameFrom current
+            | current :: rest ->
+                let gScore = Map.find current gScores
 
-let heuristic (node: LuigiTile) (goal: LuigiTile) = distanceBetween node goal
+                let next =
+                    config.neighbours current
+                    |> Seq.filter (fun n -> closedSet |> Set.contains n |> not)
+                    |> Seq.fold
+                        (fun (openSet, gScores, fScores, cameFrom) neighbour ->
+                            let tentativeGScore = gScore + config.gCost current neighbour
 
-let rec update x y oldF oldG oldFrom gValue goal =
-    let keyF = Map.containsKey y oldF
-    let keyG = Map.containsKey y oldG
+                            if List.contains neighbour openSet && tentativeGScore >= Map.find neighbour gScores then
+                                (openSet, gScores, fScores, cameFrom)
+                            else
+                                let newOpenSet =
+                                    if List.contains neighbour openSet then
+                                        openSet
+                                    else
+                                        neighbour :: openSet
 
-    let keyFrom = Map.containsKey (Some y) oldFrom
+                                let newGScores = Map.add neighbour tentativeGScore gScores
 
-    match (keyF, keyG, keyFrom) with
-    | (true, _, _) -> update x y (Map.remove y oldF) oldG oldFrom gValue goal
-    | (_, true, _) -> update x y oldF (Map.remove y oldG) oldFrom gValue goal
-    | (_, _, true) -> update x y oldF oldG (Map.remove (Some y) oldFrom) gValue goal
-    | _ ->
-        let newFrom = Map.add (Some y) (Some x) oldFrom
+                                let newFScores =
+                                    Map.add neighbour (tentativeGScore + config.fCost neighbour goal) fScores
 
-        let newG = Map.add y gValue oldG
-        // Estimated total distance
-        let newF = Map.add y (gValue + (heuristic y goal)) oldF
+                                let newCameFrom = Map.add neighbour current cameFrom
+                                newOpenSet, newGScores, newFScores, newCameFrom)
+                        (rest, gScores, fScores, cameFrom)
 
-        (newF, newG, newFrom)
+                crawler (Set.add current closedSet) next
+            | _ -> None
 
-let rec scan x neighbors openSet closedSet f g from goal =
-    match neighbors with
-    | [] -> (openSet, f, g, from)
-    | y :: n ->
-        if Set.contains y closedSet then
-            scan x n openSet closedSet f g from goal
-        else
-            let g0 = Map.find x g
-            let trialG = g0 + distanceBetween x y
-
-            if Set.contains y closedSet then
-                let oldG = Map.find y g
-
-                if trialG < oldG then
-                    let (newF, newG, newFrom) = update x y f g from trialG goal
-
-                    scan x n openSet closedSet newF newG newFrom goal
-                else
-                    scan x n openSet closedSet f g from goal
-            else
-                let newOpen = Set.add y openSet
-
-                let (newF, newG, newFrom) = update x y f g from trialG goal
-
-                scan x n newOpen closedSet newF newG newFrom goal
-
-let bestStep openList score =
-    let choice score h best bestValue =
-        let v = Map.find h score
-
-        match best with
-        | None -> ((Some h), v)
-        | x when Some v < Some bestValue -> ((Some h), v)
-        | _ -> (best, bestValue)
-
-    let rec bestStep4 openList score best bestValue =
-        match openList with
-        | [] -> best
-        | head :: tail ->
-            let pair = choice score head best bestValue
-
-            match pair with
-            | (next, nextValue) -> bestStep4 tail score next nextValue
-
-    match openList with
-    | [] -> None
-    | list -> bestStep4 list score None 0
-
-let neighborNodes (map: Map<int * int, LuigiTile>) (closedSet: LuigiTile seq) (x: LuigiTile) =
-    // Empty cells may not have neighbors until seen
-    match x.cell with
-    | Domain.cell.NO_CELL -> []
-    | _ ->
-        // There are only up to eight neighbors
-        [ yield (x.col - 1, x.row - 1)
-          yield (x.col + 1, x.row - 1)
-          yield (x.col - 1, x.row + 1)
-          yield (x.col + 1, x.row + 1)
-          yield (x.col, x.row + 1)
-          yield (x.col + 1, x.row)
-          yield (x.col, x.row - 1)
-          yield (x.col - 1, x.row) ]
-        |> List.map (fun (col, row) -> Map.tryFind (col, row) map)
-        |> List.choose id
-        //|> List.except closedSet
-        |> List.filter (fun tile ->
-            match Model.mapTileOccupancy tile with
-            | Model.Occupancy.Vacant -> true
-            | Model.Occupancy.Occupied _ -> true
-            | _ -> false)
-
-let rec aStarStep magic goal closedSet openSet fScore gScore cameFrom =
-    match Set.count openSet with
-    | 0 -> None
-    | _ ->
-        let l = Set.toList openSet
-        let pt = bestStep l fScore
-
-        if (Some goal) = pt then
-            let path = reconstructPath cameFrom (Some goal)
-
-            Some path
-        else
-            match pt with
-            | None -> None
-            | Some x ->
-                let nextOpen = Set.remove x openSet
-                let nextClosed = Set.add x closedSet
-
-                let neighbors = neighborNodes magic (Set.toSeq closedSet) x
-
-
-                let (newOpen, newF, newG, newFrom) =
-                    scan x neighbors nextOpen nextClosed fScore gScore cameFrom goal
-
-                aStarStep magic goal nextClosed newOpen newF newG newFrom
-
-let aStar magic start goal =
-    // The set of explored nodes
-    let closedSet = Set.empty
-    // The set of nodes to explore
-    let openSet = Set.add start Set.empty
-
-    let fScore = Map.add start (heuristic start goal) Map.empty
-
-    let gScore = Map.add start 0 Map.empty
-
-    let cameFrom = Map.add (Some start) None Map.empty
-
-    aStarStep magic goal closedSet openSet fScore gScore cameFrom
+    let gScores = Map.ofList [ start, 0. ]
+    let fScores = Map.ofList [ start, config.fCost start goal ]
+    crawler Set.empty ([ start ], gScores, fScores, Map.empty)

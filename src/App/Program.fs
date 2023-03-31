@@ -1,5 +1,5 @@
 ﻿open App.Movement
-open Magic
+open Memory
 open AStar
 open Goalfinding
 open FSharpx.Collections
@@ -24,6 +24,40 @@ type WalkResult =
 [<EntryPoint>]
 let main args =
     let magic = Memory()
+
+    let distanceBetween (x: LuigiTile) (y: LuigiTile) =
+        max (x.row - y.row |> abs) (x.col - y.col |> abs)
+
+    let heuristic (node: LuigiTile) (goal: LuigiTile) = distanceBetween node goal |> float
+
+    let neighbours (x: LuigiTile) =
+        match x.cell with
+        | Domain.cell.NO_CELL -> Seq.empty
+        | _ ->
+            // There are only up to eight neighbors
+            seq {
+                yield (AddressCoordinate(x.col - 1, x.row - 1))
+                yield (AddressCoordinate(x.col + 1, x.row - 1))
+                yield (AddressCoordinate(x.col - 1, x.row + 1))
+                yield (AddressCoordinate(x.col + 1, x.row + 1))
+                yield (AddressCoordinate(x.col, x.row + 1))
+                yield (AddressCoordinate(x.col + 1, x.row))
+                yield (AddressCoordinate(x.col, x.row - 1))
+                yield (AddressCoordinate(x.col - 1, x.row))
+            }
+            |> Seq.map (fun x -> magic.tile x)
+            //|> Seq.except closedSet
+            |> Seq.filter (fun tile ->
+                match Model.mapTileOccupancy tile with
+                | Model.Occupancy.Vacant -> true
+                | Model.Occupancy.Occupied _ -> true
+                | _ -> false)
+
+    let config =
+        { neighbours = neighbours
+          gCost = (fun _ _ -> 1)
+          fCost = heuristic
+          maxIterations = None }
 
     /// It's easier to pull coordinates out in a functional way with a map of (col, row)
     let coordinateMap tiles =
@@ -56,9 +90,9 @@ let main args =
     let formPath start goal =
         let coordinateMap = coordinateMap magic.tiles
 
-        match aStar coordinateMap start goal with
+        match search start goal config with
         | None -> Error "no path found to goal"
-        | Some path -> (List.choose id path, goal) |> Ok
+        | Some path -> (Seq.toList path, goal) |> Ok
 
     let (|TileWithItem|_|) (item: Domain.Item) (tile: LuigiTile) =
         match tile.item with
@@ -111,15 +145,16 @@ let main args =
 
     // loop until we reach the surface
     while (magic.depth <= -1) do
-        if (magic.depth = -11 && refEquipmentCount.Value < 5) then
+        (*if (magic.depth = -11 && refEquipmentCount.Value < 5) then
             scrapYardActions action
         elif (magic.depth = -11) then
-            let recycler = 
-                magic.tiles 
-                |> List.choose (fun t -> t.entity) 
+            let recycler =
+                magic.tiles
+                |> List.choose (fun t -> t.entity)
                 |> List.find (fun e -> e.entity = Domain.entity.R06_Scavenger)
-            printfn "Action: %A" (action.execute(Shoot recycler))
-            ()
+
+            printfn "Action: %A" (action.execute (Shoot recycler))
+            ()*)
 
         try
             let playerTile = Model.playerTile magic.tiles

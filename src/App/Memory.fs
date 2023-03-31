@@ -1,5 +1,5 @@
 /// Encapsulate all reads to foreign memory in Cogmind within this helper module
-module Magic
+module Memory
 
 open System.Diagnostics
 open System.Runtime.InteropServices
@@ -170,9 +170,7 @@ type LuigiPropData =
         val InteractivePiece: bool
     end
 
-type LuigiProp =
-    { prop: Prop 
-      interactivePiece: bool }
+type LuigiProp = { prop: Prop; interactivePiece: bool }
 
 [<StructLayout(LayoutKind.Sequential)>]
 type LuigiTileData =
@@ -349,10 +347,10 @@ type Memory() =
             let propData = Marshal.PtrToStructure<LuigiPropData>(buffer)
             Marshal.FreeHGlobal(buffer)
 
-            { prop = Domain.getProp propData.PropId 
+            { prop = Domain.getProp propData.PropId
               interactivePiece = propData.InteractivePiece }
             |> Some
-            
+
 
     let convertLuigiTileData (tileData: LuigiTileData) (AddressCoordinate(col, row)) : LuigiTile =
         { col = col
