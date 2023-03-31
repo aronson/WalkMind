@@ -31,33 +31,39 @@ let main args =
     let heuristic (node: LuigiTile) (goal: LuigiTile) = distanceBetween node goal |> float
 
     let neighbours (x: LuigiTile) =
-        match x.cell with
-        | Domain.cell.NO_CELL -> Seq.empty
+        match Model.mapTileOccupancy x with
+        | Model.Occupancy.Occupied _
+        | Model.Occupancy.Obstructed -> Seq.empty
         | _ ->
-            // There are only up to eight neighbors
-            seq {
-                yield (AddressCoordinate(x.col - 1, x.row - 1))
-                yield (AddressCoordinate(x.col + 1, x.row - 1))
-                yield (AddressCoordinate(x.col - 1, x.row + 1))
-                yield (AddressCoordinate(x.col + 1, x.row + 1))
-                yield (AddressCoordinate(x.col, x.row + 1))
-                yield (AddressCoordinate(x.col + 1, x.row))
-                yield (AddressCoordinate(x.col, x.row - 1))
-                yield (AddressCoordinate(x.col - 1, x.row))
-            }
-            |> Seq.map (fun x -> magic.tile x)
-            //|> Seq.except closedSet
-            |> Seq.filter (fun tile ->
-                match Model.mapTileOccupancy tile with
-                | Model.Occupancy.Vacant -> true
-                | Model.Occupancy.Occupied _ -> true
-                | _ -> false)
+            match x.cell with
+            | Domain.cell.NO_CELL -> Seq.empty
+            | _ ->
+                // There are only up to eight neighbors
+                seq {
+                    yield (AddressCoordinate(x.col - 1, x.row - 1))
+                    yield (AddressCoordinate(x.col + 1, x.row - 1))
+                    yield (AddressCoordinate(x.col - 1, x.row + 1))
+                    yield (AddressCoordinate(x.col + 1, x.row + 1))
+                    yield (AddressCoordinate(x.col, x.row + 1))
+                    yield (AddressCoordinate(x.col + 1, x.row))
+                    yield (AddressCoordinate(x.col, x.row - 1))
+                    yield (AddressCoordinate(x.col - 1, x.row))
+                }
+                |> Seq.map (fun x -> magic.tile x)
+                //|> Seq.except closedSet
+                |> Seq.filter (fun tile ->
+                    match Model.mapTileOccupancy tile with
+                    | Model.Occupancy.Vacant -> true
+                    | Model.Occupancy.Occupied _ -> true
+                    | _ -> false)
 
-    let config =
+    let aStarConfig =
         { neighbours = neighbours
           gCost = (fun _ _ -> 1)
           fCost = heuristic
           maxIterations = None }
+
+    let bfsConfig = { neighbours = neighbours }
 
     /// It's easier to pull coordinates out in a functional way with a map of (col, row)
     let coordinateMap tiles =
@@ -82,15 +88,16 @@ let main args =
         | exit :: _ -> Stairs exit
         | [] ->
             // No exits, seek nearest Unexplored tile
-            seekEdge coordinateMap playerTile
+            seekEdge playerTile (fun tile -> tile.cell = Domain.cell.NO_CELL) bfsConfig
             // note: may explode
             |> Option.get
+            |> Seq.head
             |> Unexplored
 
     let formPath start goal =
         let coordinateMap = coordinateMap magic.tiles
 
-        match search start goal config with
+        match search start goal aStarConfig with
         | None -> Error "no path found to goal"
         | Some path -> (Seq.toList path, goal) |> Ok
 
