@@ -1,5 +1,5 @@
 /// Encapsulate all reads to foreign memory in Cogmind within this helper module
-module Memory
+module WalkMind.Memory
 
 open System.Diagnostics
 open System.Runtime.InteropServices
@@ -78,6 +78,9 @@ type LuigiAiData =
         val MachineHackingPointer: int
     end
 
+[<Literal>]
+let luigiAiByteLength = 44
+
 /// A record type that represents the raw memory Kyzrati provides in -luigiAi mode
 type LuigiAi =
     { magic1: int
@@ -147,6 +150,9 @@ type LuigiEntityData =
         val Speed: int
     end
 
+[<Literal>]
+let luigiEntityByteLength = 40
+
 /// These records in tile data are player and non-player characters with a set of stats
 type LuigiEntity =
     { entity: entity
@@ -196,6 +202,9 @@ type LuigiTileData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val ItemPointer: int
     end
+
+[<Literal>]
+let luigiTileByteLength = 28
 
 /// These records are the core tile data for what is in Cogmind's current and past field of view
 type LuigiTile =
@@ -282,7 +291,7 @@ type Memory() =
         function
         | pointer when pointer = IntPtr.Zero -> None
         | pointer ->
-            let bufferSize = uint32 (40)
+            let bufferSize = uint32 (luigiEntityByteLength)
             let buffer = Marshal.AllocHGlobal(int bufferSize)
             let mutable bytesRead = 0
 
@@ -364,7 +373,7 @@ type Memory() =
           item = liftLuigiItem (int tileData.ItemPointer) }
 
     let liftLuigiTile pointer (AddressCoordinate(col, row)) =
-        let bufferSize = uint32 (28)
+        let bufferSize = uint32 (luigiTileByteLength)
         let buffer = Marshal.AllocHGlobal(int bufferSize)
 
         let mutable bytesRead = 0
@@ -380,7 +389,7 @@ type Memory() =
         convertLuigiTileData tileData (AddressCoordinate(col, row))
 
     let liftLuigiTiles pointer mapWidth mapHeight =
-        let elementSize = uint32 (28)
+        let elementSize = uint32 (luigiTileByteLength)
         let length = mapWidth * mapHeight
         let bufferSize = uint32 (length * int elementSize)
         let buffer = Marshal.AllocHGlobal(int bufferSize)
@@ -406,7 +415,7 @@ type Memory() =
         |> List.map (fun (data, offset) -> convertLuigiTileData data offset)
 
     let liftLuigiAi () : LuigiAi =
-        let bufferSize = uint32 (44)
+        let bufferSize = uint32 (luigiAiByteLength)
         let buffer = Marshal.AllocHGlobal(int bufferSize)
 
         let mutable bytesRead = 0
@@ -449,9 +458,11 @@ type Memory() =
     member this.tiles = liftLuigiTiles this.startTilePointer this.mapWidth this.mapHeight
 
     member this.tile
-        with get (AddressCoordinate(col, row)) =
+        with get (col, row) =
 
-            let offset = (row * this.mapHeight + col) * 28 + this.startTilePointer
+            let offset =
+                (row * this.mapHeight + col) * luigiTileByteLength + this.startTilePointer
+
             liftLuigiTile offset (AddressCoordinate(col, row))
 
 

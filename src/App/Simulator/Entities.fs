@@ -1,7 +1,7 @@
 module Simulator.Entities
 
 open Simulator.Types
-open Memory
+open WalkMind.Memory
 
 let liftPlayerToBot (player: LuigiEntity) : Bot =
     let defaultResist =

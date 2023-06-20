@@ -1,7 +1,7 @@
 module Bresenham
 
 open FSharpx.State
-open Memory
+open WalkMind.Memory
 
 // http://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#F.23
 let inline bresenham (x0, y0) (x1, y1) =

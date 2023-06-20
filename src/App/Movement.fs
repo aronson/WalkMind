@@ -2,7 +2,7 @@ module App.Movement
 
 open GregsStack.InputSimulatorStandard
 open FSharp.Core
-open Memory
+open WalkMind.Memory
 
 type NumpadDirection =
     | One
@@ -69,10 +69,10 @@ type ActionOrchestrator(magic: Memory) =
     /// Filters a tile for if it's stairs interesting in Materials
     let isStairs tile =
         match tile.cell with
-        | Domain.cell.STAIRS_SCR
-        | Domain.cell.STAIRS_MAT
-        | Domain.cell.STAIRS_MIN
-        | Domain.cell.STAIRS_STO -> true
+        | WalkMind.Domain.cell.STAIRS_SCR
+        | WalkMind.Domain.cell.STAIRS_MAT
+        | WalkMind.Domain.cell.STAIRS_MIN
+        | WalkMind.Domain.cell.STAIRS_STO -> true
         | _ -> false
 
     let waitForAction (completionDelay: int) action =

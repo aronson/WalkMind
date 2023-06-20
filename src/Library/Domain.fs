@@ -1,6 +1,6 @@
 /// This module represents the raw data types present in cogmind memory, and exposed
 /// through the -luigiAi structures Cogmind creates when first launched with the param.
-module Domain
+module WalkMind.Domain
 
 /// A cell enum represents the base type of a tile as generated on a map
 type cell =
@@ -16,7 +16,7 @@ type cell =
     | FLOOR_ACC = 8
     | FLOOR_SUR = 9
     | FLOOR_MIN = 10
-    | FLOOR_EXI = 11
+    | FLOOR_EXI = 13
     | FLOOR_STO = 12
     | FLOOR_REC = 13
     | FLOOR_WAS = 14

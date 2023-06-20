@@ -1,5 +1,5 @@
 ﻿open App.Movement
-open Memory
+open WalkMind.Memory
 open AStar
 open Goalfinding
 open FSharpx.Collections
@@ -36,20 +36,20 @@ let main args =
         | Model.Occupancy.Obstructed -> Seq.empty
         | _ ->
             match x.cell with
-            | Domain.cell.NO_CELL -> Seq.empty
+            | WalkMind.Domain.cell.NO_CELL -> Seq.empty
             | _ ->
                 // There are only up to eight neighbors
                 seq {
-                    yield (AddressCoordinate(x.col - 1, x.row - 1))
-                    yield (AddressCoordinate(x.col + 1, x.row - 1))
-                    yield (AddressCoordinate(x.col - 1, x.row + 1))
-                    yield (AddressCoordinate(x.col + 1, x.row + 1))
-                    yield (AddressCoordinate(x.col, x.row + 1))
-                    yield (AddressCoordinate(x.col + 1, x.row))
-                    yield (AddressCoordinate(x.col, x.row - 1))
-                    yield (AddressCoordinate(x.col - 1, x.row))
+                    yield (x.col - 1, x.row - 1)
+                    yield (x.col + 1, x.row - 1)
+                    yield (x.col - 1, x.row + 1)
+                    yield (x.col + 1, x.row + 1)
+                    yield (x.col, x.row + 1)
+                    yield (x.col + 1, x.row)
+                    yield (x.col, x.row - 1)
+                    yield (x.col - 1, x.row)
                 }
-                |> Seq.map (fun x -> magic.tile x)
+                |> Seq.map (fun coord -> magic.tile (fst coord, snd coord))
                 //|> Seq.except closedSet
                 |> Seq.filter (fun tile ->
                     match Model.mapTileOccupancy tile with
@@ -88,7 +88,7 @@ let main args =
         | exit :: _ -> Stairs exit
         | [] ->
             // No exits, seek nearest Unexplored tile
-            seekEdge playerTile (fun tile -> tile.cell = Domain.cell.NO_CELL) bfsConfig
+            seekEdge playerTile (fun tile -> tile.cell = WalkMind.Domain.cell.NO_CELL) bfsConfig
             // note: may explode
             |> Option.get
             |> Seq.head
@@ -101,7 +101,7 @@ let main args =
         | None -> Error "no path found to goal"
         | Some path -> (Seq.toList path, goal) |> Ok
 
-    let (|TileWithItem|_|) (item: Domain.Item) (tile: LuigiTile) =
+    let (|TileWithItem|_|) (item: WalkMind.Domain.Item) (tile: LuigiTile) =
         match tile.item with
         | None -> None
         | Some tileItem -> if tileItem.item = item then Some tile else None
@@ -113,20 +113,20 @@ let main args =
         magic.tiles
         // choose tiles with starting equipment
         |> Seq.choose (function
-            | TileWithItem Domain.LgtTreads tile
-            | TileWithItem Domain.LgtAssaultRifle tile
-            | TileWithItem Domain.MedLaser tile
-            | TileWithItem Domain.SmlLaser tile
-            | TileWithItem Domain.IonEngine tile
-            | TileWithItem Domain.LgtIonEngine tile
-            | TileWithItem Domain.EmPulseGun tile
-            | TileWithItem Domain.AssaultRifle tile -> Some tile
+            | TileWithItem WalkMind.Domain.LgtTreads tile
+            | TileWithItem WalkMind.Domain.LgtAssaultRifle tile
+            | TileWithItem WalkMind.Domain.MedLaser tile
+            | TileWithItem WalkMind.Domain.SmlLaser tile
+            | TileWithItem WalkMind.Domain.IonEngine tile
+            | TileWithItem WalkMind.Domain.LgtIonEngine tile
+            | TileWithItem WalkMind.Domain.EmPulseGun tile
+            | TileWithItem WalkMind.Domain.AssaultRifle tile -> Some tile
             | _ -> None)
         // Path to those tiles in a lazy sequence
         |> Seq.map (fun itemTile ->
             let playerTile = Model.playerTile magic.tiles
 
-            let itemTile = magic.tile (AddressCoordinate(itemTile.col, itemTile.row))
+            let itemTile = magic.tile (itemTile.col, itemTile.row)
 
             match formPath playerTile itemTile with
             | Error message -> raise (System.Exception message)

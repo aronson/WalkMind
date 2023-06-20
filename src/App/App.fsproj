@@ -4,8 +4,6 @@
     <TargetFramework>net7.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Domain.fs" />
-    <Compile Include="Memory.fs" />
     <Compile Include="Model.fs" />
     <Compile Include="AStar.fs" />
     <Compile Include="Goalfinding.fs" />
@@ -24,5 +22,8 @@
     <PackageReference Include="FSharpx.Extras" Version="3.1.0" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
     <PackageReference Include="GregsStack.InputSimulatorStandard" Version="1.3.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\Library.fsproj" />
   </ItemGroup>
 </Project>

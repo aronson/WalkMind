@@ -1,8 +1,8 @@
 module Model
 
 open System.Text
-open Memory
-open Domain
+open WalkMind.Memory
+open WalkMind.Domain
 
 type Propulsion =
     | Flight
@@ -1300,7 +1300,7 @@ let mapTileOccupancy (tile: LuigiTile) =
         | Vacant ->
             // check if entity is present
             match tile.entity with
-            | Some entity when entity.entity <> Domain.entity.Cogmind -> Occupied entity
+            | Some entity when entity.entity <> WalkMind.Domain.entity.Cogmind -> Occupied entity
             | _ -> Vacant
 
     |> function
@@ -1308,8 +1308,8 @@ let mapTileOccupancy (tile: LuigiTile) =
             // check if prop is blocking
             match tile.prop with
             | Some prop ->
-                match Domain.propToOcclusion prop.prop with
-                | Domain.PropOcclusion.Obstructed -> Obstructed
+                match propToOcclusion prop.prop with
+                | PropOcclusion.Obstructed -> Obstructed
                 | _ -> Vacant
             | None -> Vacant
         | x -> x
@@ -1512,7 +1512,7 @@ let cellToChar (tile: LuigiTile) : string =
                 | Some item -> itemToChar item.item
                 | None ->
                     match tile.entity with
-                    | Some entity when entity.entity = Domain.entity.Cogmind -> "@"
+                    | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> "@"
                     | Some _ -> "r"
                     | None -> " "
             | _ -> char
@@ -1543,7 +1543,7 @@ let printPath path goal (mapWidth, mapHeight) (tiles: LuigiTile list) =
 
             if List.contains tile path then
                 match tile.entity with
-                | Some entity when entity.entity = Domain.entity.Cogmind -> printf "@"
+                | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> printf "@"
                 | _ when tile = goal -> printf "@"
                 | _ -> printf "+"
             else
@@ -1555,12 +1555,12 @@ let playerTile tiles =
     tiles
     |> List.find (fun tile ->
         match tile.entity with
-        | Some entity when entity.entity = Domain.entity.Cogmind -> true
+        | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> true
         | _ -> false)
 
 let mobs tiles =
     tiles
     |> List.find (fun tile ->
         match tile.entity with
-        | Some entity when entity.entity <> Domain.entity.Cogmind -> true
+        | Some entity when entity.entity <> WalkMind.Domain.entity.Cogmind -> true
         | _ -> false)

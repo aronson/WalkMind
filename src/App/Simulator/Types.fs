@@ -1,7 +1,7 @@
 module Simulator.Types
 
 open FSharp.Data
-open Domain
+open WalkMind.Domain
 
 type BotSize =
     | Huge
@@ -353,10 +353,8 @@ type SimulatorState =
       weapons: SimulatorWeapon list }
 
 [<Literal>]
-let itemSchemaFile =
-    "./gallery_export_b11.csv"
+let itemSchemaFile = "./gallery_export_b11.csv"
 
 type ItemProvider = CsvProvider<itemSchemaFile>
 
-let itemData =
-    ItemProvider.Load itemSchemaFile
+let itemData = ItemProvider.Load itemSchemaFile
