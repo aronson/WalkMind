@@ -1,0 +1,370 @@
+  ID                          Tag  Name
+   0              Concrete Rubble  Concrete Rubble
+   1                 Metal Rubble  Metal Rubble
+   2           GENERIC_MACHINE_10  Machine
+   3            GENERIC_MACHINE_9  Machine
+   4            GENERIC_MACHINE_8  Machine
+   5            GENERIC_MACHINE_7  Machine
+   6            GENERIC_MACHINE_6  Machine
+   7            GENERIC_MACHINE_5  Machine
+   8            GENERIC_MACHINE_4  Machine
+   9            GENERIC_MACHINE_3  Machine
+  10            GENERIC_MACHINE_2  Machine
+  11            GENERIC_MACHINE_1  Machine
+  12             Terminal vFe.01a  Terminal
+  13             Terminal vNi.03a  Terminal
+  14             Terminal vCu.03a  Terminal
+  15             Terminal vZn.06a  Terminal
+  16             Terminal vAg.06a  Terminal
+  17             Terminal vTi.06n  Terminal
+  18             Terminal vCo.08n  Terminal
+  19             Terminal vMn.10n  Terminal
+  20             Terminal vMo.07n  Terminal
+  21             Terminal vPd.10n  Terminal
+  22             Terminal vCd.08n  Terminal
+  23             Terminal vZr.10n  Terminal
+  24              Terminal vY.10n  Terminal
+  25              Terminal vW.10x  Terminal
+  26             Terminal vIr.12x  Terminal
+  27             Terminal vPt.12x  Terminal
+  28             Terminal vAu.13x  Terminal
+  29             Terminal vHg.20x  Terminal
+  30             Terminal vRh.10x  Terminal
+  31           Fabricator vLi.07a  Fabricator
+  32           Fabricator vNa.07a  Fabricator
+  33            Fabricator vK.08a  Fabricator
+  34           Fabricator vCs.10n  Fabricator
+  35           Fabricator vBe.12n  Fabricator
+  36           Fabricator vMg.13n  Fabricator
+  37           Fabricator vCa.14x  Fabricator
+  38           Fabricator vSr.14x  Fabricator
+  39           Fabricator vBa.16x  Fabricator
+  40           Fabricator vRa.19x  Fabricator
+  41               Repair vAl.08a  Repair Station
+  42               Repair vGa.08a  Repair Station
+  43               Repair vIn.08a  Repair Station
+  44               Repair vSn.08n  Repair Station
+  45               Repair vTl.10n  Repair Station
+  46               Repair vPb.11n  Repair Station
+  47               Repair vBi.12x  Repair Station
+  48               Repair vPo.13x  Repair Station
+  49             Recycling vH.06a  Recycling Unit
+  50             Recycling vN.06a  Recycling Unit
+  51             Recycling vO.08n  Recycling Unit
+  52             Recycling vF.08n  Recycling Unit
+  53             Recycling vP.10x  Recycling Unit
+  54             Recycling vI.14x  Recycling Unit
+  55           Scanalyzer vHe.07a  Scanalyzer
+  56           Scanalyzer vNe.13n  Scanalyzer
+  57           Scanalyzer vAr.15x  Scanalyzer
+  58           Scanalyzer vXe.13x  Scanalyzer
+  59              Garrison vCe.6a  Garrison Access
+  60              Garrison vPr.8a  Garrison Access
+  61              Garrison vNd.9n  Garrison Access
+  62              Garrison vPm.7n  Garrison Access
+  63             Garrison vSm.13x  Garrison Access
+  64              Garrison vEu.9x  Garrison Access
+  65                           T1  Derelict Terminal
+  66               Core Extractor  Core Extractor
+  67                   Pulverizer  Pulverizer
+  68                  Laser Drill  Laser Drill
+  69              Plasma Injector  Plasma Injector
+  70       Seismic Survey Station  Seismic Survey Station
+  71                  Matter Pump  Matter Pump
+  72              Pressure Siphon  Pressure Siphon
+  73              Nuclear Reactor  Nuclear Reactor
+  74             Neutrino Reactor  Neutrino Reactor
+  75             Fusion Modulator  Fusion Modulator
+  76            Quantum Generator  Quantum Generator
+  77          Dark Matter Chamber  Dark Matter Chamber
+  78          Hypermatter Reactor  Hypermatter Reactor
+  79            Compression Vault  Compression Vault
+  80            Component Storage  Component Storage
+  81                Holding Depot  Holding Depot
+  82              Packing Station  Packing Station
+  83                Arsenal Racks  Arsenal Racks
+  84         Extraspacial Lockers  Extraspacial Lockers
+  85                Energy Cycler  Energy Cycler
+  86          Transport Mainframe  Transport Mainframe
+  87               Transfer Shaft  Transfer Shaft
+  88             Hadron Collector  Hadron Collector
+  89         Electrolysis Chamber  Electrolysis Chamber
+  90              Processing Tank  Processing Tank
+  91            Atomic Centrifuge  Atomic Centrifuge
+  92         Purification Channel  Purification Channel
+  93          Integration Channel  Integration Channel
+  94           Material Processor  Material Processor
+  95           Material Compactor  Material Compactor
+  96                Matter Filter  Matter Filter
+  97      Manufacturing Mainframe  Manufacturing Mainframe
+  98        Construction Platform  Construction Platform
+  99                 Assembly Bed  Assembly Bed
+ 100               Megafabricator  Megafabricator
+ 101      Subcomponent Replicator  Subcomponent Replicator
+ 102                Power Conduit  Power Conduit
+ 103           Research Mainframe  Research Mainframe
+ 104       Antiparticle Reservoir  Antiparticle Reservoir
+ 105             Reaction Chamber  Reaction Chamber
+ 106               Vacuum Chamber  Vacuum Chamber
+ 107          Subatomic Condenser  Subatomic Condenser
+ 108                   Catalytron  Catalytron
+ 109              Meson Extractor  Meson Extractor
+ 110          Antimatter Diverter  Antimatter Diverter
+ 111            Field Manipulator  Field Manipulator
+ 112         Particle Synthesizer  Particle Synthesizer
+ 113            Quantum Separator  Quantum Separator
+ 114             Wave Intensifier  Wave Intensifier
+ 115         Proton Scatter Basin  Proton Scatter Basin
+ 116              Ion Accelerator  Ion Accelerator
+ 117       Magnetic Photon System  Magnetic Photon System
+ 118                Hypercollider  Hypercollider
+ 119          Graviton Restrictor  Graviton Restrictor
+ 120          Potential Refractor  Potential Refractor
+ 121          Prototyping Station  Prototyping Station
+ 122          Engineering Station  Engineering Station
+ 123            Biostasis Chamber  Biostasis Chamber
+ 124          Organic Neutralizer  Organic Neutralizer
+ 125           Containment Shield  Containment Shield
+ 126            Testing Mainframe  Testing Mainframe
+ 127       Sonic Impulse Analyzer  Sonic Impulse Analyzer
+ 128                 Field Warper  Field Warper
+ 129               Gravity Sphere  Gravity Sphere
+ 130          Quantum Transformer  Quantum Transformer
+ 131                    Focalizer  Focalizer
+ 132            Phase Constrictor  Phase Constrictor
+ 133            Resonance Scanner  Resonance Scanner
+ 134                  Tau Charger  Tau Charger
+ 135     Harmonic Fracturing Unit  Harmonic Fracturing Unit
+ 136        Antiparticle Suffusor  Antiparticle Suffusor
+ 137       Thermocompressor Array  Thermocompressor Array
+ 138             Cryocooling Duct  Cryocooling Duct
+ 139             Artifact Storage  Artifact Storage
+ 140        Cryopreservation Unit  Cryopreservation Unit
+ 141                 Biostim Tank  Biostim Tank
+ 142               Quarantine Pod  Quarantine Pod
+ 143              Aeration Cycler  Aeration Cycler
+ 144          Deconstruction Unit  Deconstruction Unit
+ 145                   Anatomizer  Anatomizer
+ 146                Cloning Tubes  Cloning Tubes
+ 147               Cell Assembler  Cell Assembler
+ 148       Molecular Binding Bank  Molecular Binding Bank
+ 149             Anti-Ion Cluster  Anti-Ion Cluster
+ 150              Deuterium Array  Deuterium Array
+ 151                    Mainframe  Mainframe
+ 152                      Storage  Storage
+ 153         Retrofitting Station  Retrofitting Station
+ 154                Signal Jammer  Signal Jammer
+ 155              Cloak Generator  Cloak Generator
+ 156            Decryption Engine  Decryption Engine
+ 157             Backup Mainframe  Backup Mainframe
+ 158                 Archive Unit  Archive Unit
+ 159                 Control Node  Control Node
+ 160         Operations Mainframe  Operations Mainframe
+ 161               Quantum Router  Quantum Router
+ 162            Hyperwave Decoder  Hyperwave Decoder
+ 163      Sealed Freight Elevator  Sealed Freight Elevator
+ 164          Radio-Gravity Array  Radio-Gravity Array
+ 165         Anti-Orbital Battery  Anti-Orbital Battery
+ 166         Spectral Interrupter  Spectral Interrupter
+ 167       Wave Collapse Detector  Wave Collapse Detector
+ 168                Signal Shield  Signal Shield
+ 169          Longscan Aggregator  Longscan Aggregator
+ 170                   Blade Trap  Blade Trap
+ 171              Segregator Trap  Segregator Trap
+ 172               Explosive Trap  Explosive Trap
+ 173         Heavy Explosive Trap  Heavy Explosive Trap
+ 174             Tiamat Bomb Trap  Tiamat Bomb Trap
+ 175             Fusion Bomb Trap  Fusion Bomb Trap
+ 176                Hellfire Trap  Hellfire Trap
+ 177              Armageddon Trap  Armageddon Trap
+ 178              Dirty Bomb Trap  Dirty Bomb Trap
+ 179                     EMP Trap  EMP Trap
+ 180             Proton Bomb Trap  Proton Bomb Trap
+ 181              Tesla Bomb Trap  Tesla Bomb Trap
+ 182              Gamma Bomb Trap  Gamma Bomb Trap
+ 183                Shrapnel Trap  Shrapnel Trap
+ 184                Piercing Trap  Piercing Trap
+ 185                   Shock Trap  Shock Trap
+ 186                EM Surge Trap  EM Surge Trap
+ 187                    Fire Trap  Fire Trap
+ 188                  Stasis Trap  Stasis Trap
+ 189                   Alarm Trap  Alarm Trap
+ 190                  Ambush Trap  Ambush Trap
+ 191                   Chute Trap  Chute Trap
+ 197             Collapsed Tunnel  Collapsed Tunnel
+ 215                Door Terminal  Door Terminal
+ 216                   DSF Access  DSF Access
+ 217          Broken Shaft Lining  Broken Shaft Lining
+ 218          XXX_Blast_Door_Open  Blast Doors
+ 219      XXX_Blast_Door_Hackable  Sealed Blast Doors
+ 220       ACC_Door_Shootable_SUR  Sealed Heavy Doors
+ 221       ACC_Door_Shootable_COM  Sealed Heavy Doors
+ 222            ACC_Door_Hackable  Sealed Barrier
+ 223          ACC_Shell_Shootable  Main Access Shell
+ 224             Main Access Lift  Main Access Lift
+ 226                STO_Door_Open  Heavy Doors
+ 227            STO_Door_Hackable  Sealed Heavy Doors
+ 228          STO_Shell_Shootable  Storage Shell
+ 229           GAR_Door_Shootable  Garrison Door
+ 230                    GAR_Relay  Garrison Relay
+ 231                GAR_Generator  Phase Generator
+ 232            GAR_RIF_Installer  RIF Installer
+ 233            Garrison Terminal  Garrison Terminal
+ 234          GAR_Heavy_Assembler  H-XX Assembler
+ 235             GAR_QS_Assembler  QS Assembler
+ 236                     SHOP.Sys  SHOP.Sys
+ 237       MIN_Door_Hackable_Weak  Sealed Doors
+ 238           Assembled Analyzer  Assembled Analyzer
+ 239                   Components  Components
+ 240       Testing Chamber Shield  Testing Chamber Shield
+ 241            Testing Apparatus  Testing Apparatus
+ 242                 EX-Generator  EX-Generator
+ 243            BIN's Workstation  BIN's Workstation
+ 244            DEC's Workstation  DEC's Workstation
+ 245            HEX's Workstation  HEX's Workstation
+ 246               BIN's Terminal  BIN's Terminal
+ 247               DEC's Terminal  DEC's Terminal
+ 248               HEX's Terminal  HEX's Terminal
+ 249                   EXI_Farcom  FarCom Aligner
+ 250              EX-Vault Access  EX-Vault Access
+ 251       EX-Prototypes Database  EX-Prototypes Database
+ 252             EX-Message Board  EX-Message Board
+ 253           Repaired_Machine_T  Twisted Machinery
+ 254           Repaired_Machine_F  Twisted Machinery
+ 255           Repaired_Machine_R  Twisted Machinery
+ 256           Repaired_Machine_Y  Twisted Machinery
+ 257           Repaired_Machine_S  Twisted Machinery
+ 258              Testing Chamber  Testing Chamber
+ 259      4L-MR0's Prototype Logs  4L-MR0's Prototype Logs
+ 260                 SUB_Autodoor  Sealed Doors
+ 261                   Clippyterm  Clippyterm
+ 262     Triangle-emblazoned Door  Triangle-emblazoned Door
+ 263                      WAR.Sys  WAR.Sys
+ 264         Prototyping Terminal  Prototyping Terminal
+ 265            CAV_Door_Hackable  Sealed Heavy Doors
+ 266             Outpost Terminal  Outpost Terminal
+ 267           CAV_Base_Generator  Outpost Generator
+ 268             CAV_Junk_Machine  Abandoned Machinery
+ 269            CAV_Reinforcement  Wall Reinforcements
+ 270           CAV_Door_Shootable  Locked Door
+ 271         CAV_Door_No_Terminal  Sealed Doors
+ 272                      Private  Private
+ 273                CAV_Thief_Den  Junk
+ 274            W-Fans Enter Here  W-Fans Enter Here
+ 275        LOW_Warlord_Fan_Stuff  Fandom Paraphernelia
+ 276           PRO_Base_Generator  Base Generator
+ 277        PRO_Target_Dispatcher  Target Dispatcher
+ 278          PRO_Test_Aggregator  Test Aggregator
+ 279            PRO_Data_Receptor  Data Receptor
+ 280            Matter Repository  Matter Repository
+ 281              Twisting Tunnel  Twisting Tunnel
+ 282             DAT_Data_Conduit  Data Conduit
+ 283             ORACLE Interface  ORACLE Interface
+ 284          ZHI_Cloak_Generator  Cloak Generator
+ 286                ZHI_Main_Door  Sealed Heavy Doors
+ 287            Zhirov's Terminal  Zhirov's Terminal
+ 288             Quantum Analyzer  Quantum Analyzer
+ 289         Zhirov's Workstation  Zhirov's Workstation
+ 290            WAR_Door_Hackable  Sealed Heavy Doors
+ 291          Vortex Lab Terminal  Vortex Lab Terminal
+ 292         Hacking Lab Terminal  Hacking Lab Terminal
+ 293           Relay Lab Terminal  Relay Lab Terminal
+ 294          Fabnet Lab Terminal  Fabnet Lab Terminal
+ 295          Intel Room Terminal  Intel Room Terminal
+ 296             WAR_Staging_Area  Staging Area
+ 297             RES_Staging_Area  Staging Area
+ 298             WAR_Mainc_Tunnel  Fortified Tunnel
+ 299                ZIO_Machinery  Twisted Machinery
+ 300      Deep Containment System  Deep Containment System
+ 301      ZIOWAR_Quarantine_Array  System Quarantine Field Array
+ 302          ZIO_Cloak_Generator  Cloak Generator
+ 303           ZIO_Stockpile_Wall  Stockpile Wall
+ 304           ZIO_Prototype_Hold  Prototype Hold
+ 305                 ZIO_Lab_Wall  Lab Wall
+ 306         ZIO_Repair_Shop_Wall  Repair Shop Wall
+ 307                Zion Terminal  Zion Terminal
+ 308           ZIO_Machinery_Fake  Twisted Machinery
+ 309           Conduit Teleporter  Conduit Teleporter
+ 310             ZIO_Memory_Banks  Memory Banks
+ 311                ZIO_Imprinter  IMP:G-0014175/C-0630194
+ 312               DEE_Z_Facility  Z-Facility
+ 313                      Z-Power  Z-Power
+ 315               DEE_Sigix_Wall  Impregnable Wall
+ 316               DEE_Sigix_Gate  Impregnable Gate
+ 317             DEE_Wall_Chamber  Wall Chamber
+ 318       DEE_Survey_Way_Station  Survey Way Station
+ 319            EXT_Door_Hackable  Sealed Heavy Doors
+ 321         EXT_Transfer_Station  Transfer Station
+ 322               Cetus Terminal  Cetus Terminal
+ 323 Cetus Manufacturing Controls  Cetus Manufacturing Controls
+ 324            CET_Door_Hackable  Sealed Heavy Doors
+ 325                        Doors  Doors
+ 326                          Bed  Bed
+ 327                      Lockers  Lockers
+ 328                        Table  Table
+ 329                  Lab Station  Lab Station
+ 330           Research Interface  Research Interface
+ 331              Cetus Mainframe  Cetus Mainframe
+ 332   Cetus Manufacturing Module  Cetus Manufacturing Module
+ 333             Archive Terminal  Archive Terminal
+ 334                  Archive Hub  Archive Hub
+ 335         HUB_Transfer_Station  Transfer Station
+ 336              HUB_Network_Hub  Network Hub
+ 337            ARM_Door_Hackable  Sealed Heavy Doors
+ 338          ARM_Shell_Shootable  Reinforced Shell
+ 339      ARM_Dimension_Slip_Node  Dimensional Slip Node
+ 340                     NO ENTRY  NO ENTRY
+ 341            LAB_Door_Hackable  Sealed Barrier
+ 342        Active System Cloaker  Active System Cloaker
+ 343                   A0 Command  A0 Command
+ 344                   hN 3sDk7Qc  hN 3sDk7Qc
+ 345              A0 Storage 04-B  A0 Storage 04-B
+ 346              UC xVqbSdU M7q4  UC xVqbSdU M7q4
+ 347           Suspension Chamber  Suspension Chamber
+ 349            TES_Door_Hackable  Sealed Heavy Doors
+ 350          TES_Shell_Shootable  Reinforced Shell
+ 351             Regeneration Lab  Regeneration Lab
+ 352                TES_Terrabomb  TB3 Reconfiguration Apparatus
+ 353            QUA_Door_Hackable  Sealed Heavy Doors
+ 354       QUA_Door_Hackable_Hard  Sealed Barrier
+ 355                    Sigix Lab  Sigix Lab
+ 356    Sigix Quarantine Controls  Sigix Quarantine Controls
+ 357     Sigix Quarantine Chamber  Sigix Quarantine Chamber
+ 358            Teleportation Lab  Teleportation Lab
+ 359                  Autopsy Lab  Autopsy Lab
+ 360            Research Terminal  Research Terminal
+ 361            SEC_Door_Hackable  Sealed Heavy Doors
+ 362        L2 Monitoring Station  L2 Monitoring Station
+ 363        Power Cell Monitoring  Power Cell Monitoring
+ 364                    Thrusters  Thrusters
+ 365            SEC_L2_Power_Cell  Power Cell
+ 366                   Wing Frame  Wing Frame
+ 367              FTL Facilitator  FTL Facilitator
+ 368                 Core Housing  Core Housing
+ 369                         Hull  Hull
+ 370                Armor Plating  Armor Plating
+ 371                   Navigation  Navigation
+ 372        Construction Supplies  Construction Supplies
+ 373                L2 Fabricator  L2 Fabricator
+ 374         Exoskeleton Controls  Exoskeleton Controls
+ 375           Cave Seal Controls  Cave Seal Controls
+ 376               COM_Cave_Spawn  Dark Tunnel
+ 377          COM_Shell_Shootable  Access Shell
+ 378                  Access Lift  Access Lift
+ 379       COM_Teleport_Inhibitor  Wave Inhibitor
+ 380            COM_Door_Hackable  Sealed Barrier
+ 381             COM_0b10_Conduit  0b10 Conduit
+ 382       COM_Alternative_Access  Heavy Barrier
+ 384               COM_Cache_Door  Sealed Heavy Doors
+ 385         AC0_Singularity_Gate  Singularity Gate
+ 386                Gate Controls  Gate Controls
+ 388            AC0_Subspace_Node  Subspace Access Node
+ 389        AC0_Subspace_Node_Mid  Subspace Access Node
+ 390          AC0_Architect_Shell  Architect Shell
+ 391               Architect Logs  Architect Logs
+ 392      AC0_Abandoned_Machinery  Abandoned Machinery
+ 393          AC0_Shell_Shootable  Reinforced Shell
+ 394             Analysis Chamber  Analysis Chamber
+ 395              AC0_Workstation  Workstation
+ 396              JUN_Black_Space  Black Space
+ 397            JUN_New_Year_City  New Year City

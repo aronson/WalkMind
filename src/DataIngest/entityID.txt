@@ -1,0 +1,262 @@
+  ID                   Tag  Name
+   0               Cogmind  Cogmind
+   1                 Drone  Drone
+   2          Target Drone  Target Drone
+   3            Mini Drone  Mini Drone
+   4         Mapping Drone  Mapping Drone
+   5          Sensor Drone  Sensor Drone
+   6         Hacking Drone  Hacking Drone
+   7     Minesniffer Drone  Minesniffer Drone
+   8           Decoy Drone  Decoy Drone
+   9          Splice Drone  Splice Drone
+  10        Advanced Drone  Advanced Drone
+  11         Stealth Drone  Stealth Drone
+  12           Trailblazer  Trailblazer
+  13           Thief Drone  Thief Drone
+  14            Army Drone  Army Drone
+  15           Swarm Drone  Swarm Drone
+  16          Combat Drone  Combat Drone
+  17         Assault Drone  Assault Drone
+  18            Bomb Drone  Bomb Drone
+  19              Wardrone  Wardrone
+  20            DAS Turret  DAS Turret
+  21       Autobeam Turret  Autobeam Turret
+  22             K-01 Serf  K-01 Serf
+  23         U-05 Engineer  U-05 Engineer
+  24        T-07 Excavator  T-07 Excavator
+  25      A-02 Transporter  A-02 Transporter
+  26         A-15 Conveyor  A-15 Conveyor
+  27        A-27 Freighter  A-27 Freighter
+  28        R-06 Scavenger  R-06 Scavenger
+  29        R-10 Processor  R-10 Processor
+  30              C-30 ARC  C-30 ARC
+  31          M-14 Sweeper  M-14 Sweeper
+  32        M-22 Extractor  M-22 Extractor
+  33         M-30 Cleanser  M-30 Cleanser
+  34        M-13 Machinist  M-13 Machinist
+  35            M-28 Smith  M-28 Smith
+  36        M-36 Artificer  M-36 Artificer
+  37       O-16 Technician  O-16 Technician
+  38    O-24 Administrator  O-24 Administrator
+  39         O-32 Director  O-32 Director
+  40              N-00 Fly  N-00 Fly
+  41          N-01 Spotter  N-01 Spotter
+  42            W-16 Scout  W-16 Scout
+  43         W-25 Informer  W-25 Informer
+  44              W-44 Eye  W-44 Eye
+  45             S-10 Pest  S-10 Pest
+  46            S-27 Virus  S-27 Virus
+  47           S-43 Plague  S-43 Plague
+  48           C-17 Slicer  C-17 Slicer
+  49           C-35 Carver  C-35 Carver
+  50        C-57 Dissector  C-57 Dissector
+  51              E-15 Imp  E-15 Imp
+  52        G-34 Mercenary  G-34 Mercenary
+  53          G-47 Trooper  G-47 Trooper
+  54          G-50 Soldier  G-50 Soldier
+  55          G-67 Veteran  G-67 Veteran
+  56         G-73 Enforcer  G-73 Enforcer
+  57          B-36 Bruiser  B-36 Bruiser
+  58        B-48 Gladiator  B-48 Gladiator
+  59          B-60 Warrior  B-60 Warrior
+  60         B-74 Champion  B-74 Champion
+  61            L-31 Rogue  L-31 Rogue
+  62          L-41 Fighter  L-41 Fighter
+  63        L-61 Swordsman  L-61 Swordsman
+  64           I-25 Savior  I-25 Savior
+  65            I-36 Angel  I-36 Angel
+  66        I-47 Archangel  I-47 Archangel
+  67          C-55 Analyst  C-55 Analyst
+  68           C-65 Expert  C-65 Expert
+  69         Y-45 Defender  Y-45 Defender
+  70         Y-54 Guardian  Y-54 Guardian
+  71         Y-64 Sentinel  Y-64 Sentinel
+  72           Y-72 Warden  Y-72 Warden
+  73        D-53 Grenadier  D-53 Grenadier
+  74        D-63 Destroyer  D-63 Destroyer
+  75      D-83 Annihilator  D-83 Annihilator
+  76       X-57 Shotgunner  X-57 Shotgunner
+  77         X-62 Marksman  X-62 Marksman
+  78      X-67 Chaingunner  X-67 Chaingunner
+  79        X-72 Disruptor  X-72 Disruptor
+  80           X-77 Beamer  X-77 Beamer
+  81        X-82 Rainmaker  X-82 Rainmaker
+  82          X-87 Electro  X-87 Electro
+  83         H-55 Commando  H-55 Commando
+  84           H-66 Slayer  H-66 Slayer
+  85         H-77 Assassin  H-77 Assassin
+  86       H-88 Terminator  H-88 Terminator
+  87           P-60 Hacker  P-60 Hacker
+  88             P-70 Sage  P-70 Sage
+  89           P-80 Master  P-80 Master
+  90         H-61 Shepherd  H-61 Shepherd
+  91          H-71 Marshal  H-71 Marshal
+  92         H-81 Overseer  H-81 Overseer
+  93              Q-Series  Q-Series
+  94            B-75 Beast  B-75 Beast
+  95            B-86 Titan  B-86 Titan
+  96          B-90 Cyclops  B-90 Cyclops
+  97         B-99 Colossus  B-99 Colossus
+  98          C-40 Crusher  C-40 Crusher
+  99           Cetus Guard  Cetus Guard
+ 100      Quarantine Guard  Quarantine Guard
+ 101              S7 Guard  S7 Guard
+ 102               M Guard  M Guard
+ 103           M Shell/Atk  M Shell/Atk
+ 104           M Shell/Def  M Shell/Def
+ 105        Enhanced Grunt  Enhanced Grunt
+ 106       Enhanced Sentry  Enhanced Sentry
+ 107   Enhanced Demolisher  Enhanced Demolisher
+ 108       Enhanced Hunter  Enhanced Hunter
+ 109   Enhanced Programmer  Enhanced Programmer
+ 110     Enhanced Q-Series  Enhanced Q-Series
+ 111             Lightning  Lightning
+ 112               Tracker  Tracker
+ 113     Combat Programmer  Combat Programmer
+ 114          Investigator  Investigator
+ 115               Striker  Striker
+ 116           Executioner  Executioner
+ 117         Superbehemoth  Superbehemoth
+ 118               Alpha 7  Alpha 7
+ 119              Fortress  Fortress
+ 120                LRC-V4  LRC-V4
+ 121                LRC-V5  LRC-V5
+ 122                LRC-V6  LRC-V6
+ 123               P_Grunt  Protovariant G
+ 124             P_Duelist  Protovariant L
+ 125              P_Sentry  Protovariant Y
+ 126          P_Demolisher  Protovariant D
+ 127          P_Specialist  Protovariant X
+ 128              P_Hunter  Protovariant H
+ 129          P_Programmer  Protovariant P
+ 130               Artisan  Artisan
+ 131               Cobbler  Cobbler
+ 132            Subdweller  Subdweller
+ 133               Zionite  Zionite
+ 134          Z-Technician  Z-Technician
+ 135             Z_Courier  Z-Courier
+ 136               Z_Recon  Z-Drone
+ 137             Z_Light_5  Z-Light
+ 138             Z_Light_7  Z-Light
+ 139             Z_Light_9  Z-Light
+ 140             Z_Heavy_5  Z-Heavy
+ 141             Z_Heavy_7  Z-Heavy
+ 142             Z_Heavy_9  Z-Heavy
+ 143        Z_Experiment_8  Z-Experimental
+ 144       Z_Experiment_10  Z-Experimental
+ 145            Decomposer  Decomposer
+ 146               Packrat  Packrat
+ 147             Samaritan  Samaritan
+ 148              Tinkerer  Tinkerer
+ 149              Demented  Demented
+ 150               Furnace  Furnace
+ 151              Parasite  Parasite
+ 152               Thief_5  Thief
+ 153               Thief_7  Thief
+ 154             Assembler  Assembler
+ 155           Assembled_4  Assembled
+ 156           Assembled_7  Assembled
+ 157               Golem_8  Golem
+ 158               Golem_0  Golem
+ 159             Surgeon_4  Surgeon
+ 160             Surgeon_6  Surgeon
+ 161                Wasp_5  Wasp
+ 162                Wasp_7  Wasp
+ 163                Thug_5  Thug
+ 164                Thug_7  Thug
+ 165              Savage_5  Savage
+ 166              Savage_7  Savage
+ 167             Butcher_5  Butcher
+ 168             Butcher_7  Butcher
+ 169             Bouncer_7  Bouncer
+ 170              Martyr_5  Martyr
+ 171              Martyr_7  Martyr
+ 172            Guerilla_5  Guerrilla
+ 173            Guerilla_7  Guerrilla
+ 174              Wizard_5  Wizard
+ 175              Wizard_7  Wizard
+ 176            Marauder_6  Marauder
+ 177            Marauder_8  Marauder
+ 178             Fireman_5  Fireman
+ 179             Fireman_7  Fireman
+ 180              Mutant_5  Mutant
+ 181              Mutant_6  Mutant
+ 182              Mutant_7  Mutant
+ 183              Mutant_8  Mutant
+ 184         Infiltrator_6  Infiltrator
+ 185         Infiltrator_7  Infiltrator
+ 186         Infiltrator_8  Infiltrator
+ 187                Sapper  Sapper
+ 188             Commander  Commander
+ 189                Knight  Knight
+ 190                 Troll  Troll
+ 191                Dragon  Dragon
+ 192                 Hydra  Hydra
+ 193               Borebot  Borebot
+ 194              Revision  Revision
+ 195               Anomaly  Anomaly
+ 196    Lesser Abomination  Lesser Abomination
+ 197     Minor Abomination  Minor Abomination
+ 198   Greater Abomination  Greater Abomination
+ 199     Major Abomination  Major Abomination
+ 200  Ultimate Abomination  Ultimate Abomination
+ 201     Final Abomination  Final Abomination
+ 202                Player  Player
+ 203              Player 2  Player 2
+ 204                Sauler  Sauler
+ 205                   Elf  Elf
+ 206                YI-UF0  YI-UF0
+ 207                01-MTF  01-MTF
+ 208        Warlord Statue  Warlord Statue
+ 209                Warbot  Warbot
+ 210                5H-AD0  5H-AD0
+ 211          Surveybot 24  Surveybot 24
+ 212                AZ-K3N  AZ-K3N
+ 213                HV-R5K  HV-R5K
+ 214                7R-MNS  7R-MNS
+ 215                VL-GR5  VL-GR5
+ 216                8R-AWN  8R-AWN
+ 217                EX-BIN  EX-BIN
+ 218                EX-DEC  EX-DEC
+ 219                EX-HEX  EX-HEX
+ 220          Zion_Hero_01  CL-ANK
+ 221          Zion_Hero_02  1C-UTU
+ 222          Zion_Hero_03  AD-0RF
+ 223          Zion_Hero_04  7V-RTL
+ 224          Zion_Hero_05  P1-3CE
+ 225          Zion_Hero_06  12-ASH
+ 226          Zion_Hero_07  ME-RLN
+ 227          Zion_Hero_08  NK-0LA
+ 228          Zion_Hero_09  99-TNT
+ 229           Revision 17  Revision 17
+ 230         Revision 17++  Revision 17++
+ 231             Imprinter  Imprinter
+ 232           Z-Imprinter  Z-Imprinter
+ 233                    A8  A8
+ 234                    A7  A7
+ 235                    A6  A6
+ 236                    A5  A5
+ 237                    A4  A4
+ 238                    A3  A3
+ 239                    A2  A2
+ 240                Zhirov  Zhirov
+ 241                 Perun  Perun
+ 242                Svarog  Svarog
+ 243            Data Miner  Data Miner
+ 244         Fake_God_Mode  God Mode
+ 245              God_Mode  God Mode
+ 246               Warlord  Warlord
+ 247             Warlord_B  Warlord
+ 248        Warlord AM-PH4  Warlord AM-PH4
+ 249        Warlord MG-163  Warlord MG-163
+ 250        Warlord HL-1SK  Warlord HL-1SK
+ 251        Warlord SH-K8T  Warlord SH-K8T
+ 252        Warlord D3-CKR  Warlord D3-CKR
+ 253        Warlord 4Z-XS3  Warlord 4Z-XS3
+ 254        Warlord KY-Z71  Warlord KY-Z71
+ 255 Sigix Containment Pod  Sigix Containment Pod
+ 256     Sigix Exoskeleton  Sigix Exoskeleton
+ 257         Sigix Warrior  Sigix Warrior
+ 258               MAINC_A  MAIN.C
+ 259               MAINC_B  MAIN.C
+ 260             Architect  Architect

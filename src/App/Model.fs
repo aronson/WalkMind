@@ -31,1058 +31,1484 @@ type ItemCategory =
     | Weapon of Weapon
     | Misc
     | Matter
+    
+type PropOcclusion = | Obstructed | Vacant | Dangerous
+    
+let propToOcclusion =
+    function
+    | Prop.``Concrete Rubble``
+    | Prop.``Metal Rubble`` -> PropOcclusion.Vacant
+    | Prop.``GENERIC_MACHINE_10``
+    | Prop.``GENERIC_MACHINE_9``
+    | Prop.``GENERIC_MACHINE_8``
+    | Prop.``GENERIC_MACHINE_7``
+    | Prop.``GENERIC_MACHINE_6``
+    | Prop.``GENERIC_MACHINE_5``
+    | Prop.``GENERIC_MACHINE_4``
+    | Prop.``GENERIC_MACHINE_3``
+    | Prop.``GENERIC_MACHINE_2``
+    | Prop.``GENERIC_MACHINE_1``
+    | Prop.``Terminal vFe_01a``
+    | Prop.``Terminal vNi_03a``
+    | Prop.``Terminal vCu_03a``
+    | Prop.``Terminal vZn_06a``
+    | Prop.``Terminal vAg_06a``
+    | Prop.``Terminal vTi_06n``
+    | Prop.``Terminal vCo_08n``
+    | Prop.``Terminal vMn_10n``
+    | Prop.``Terminal vMo_07n``
+    | Prop.``Terminal vPd_10n``
+    | Prop.``Terminal vCd_08n``
+    | Prop.``Terminal vZr_10n``
+    | Prop.``Terminal vY_10n``
+    | Prop.``Terminal vW_10x``
+    | Prop.``Terminal vIr_12x``
+    | Prop.``Terminal vPt_12x``
+    | Prop.``Terminal vAu_13x``
+    | Prop.``Terminal vHg_20x``
+    | Prop.``Terminal vRh_10x``
+    | Prop.``Fabricator vLi_07a``
+    | Prop.``Fabricator vNa_07a``
+    | Prop.``Fabricator vK_08a``
+    | Prop.``Fabricator vCs_10n``
+    | Prop.``Fabricator vBe_12n``
+    | Prop.``Fabricator vMg_13n``
+    | Prop.``Fabricator vCa_14x``
+    | Prop.``Fabricator vSr_14x``
+    | Prop.``Fabricator vBa_16x``
+    | Prop.``Fabricator vRa_19x``
+    | Prop.``Repair vAl_08a``
+    | Prop.``Repair vGa_08a``
+    | Prop.``Repair vIn_08a``
+    | Prop.``Repair vSn_08n``
+    | Prop.``Repair vTl_10n``
+    | Prop.``Repair vPb_11n``
+    | Prop.``Repair vBi_12x``
+    | Prop.``Repair vPo_13x``
+    | Prop.``Recycling vH_06a``
+    | Prop.``Recycling vN_06a``
+    | Prop.``Recycling vO_08n``
+    | Prop.``Recycling vF_08n``
+    | Prop.``Recycling vP_10x``
+    | Prop.``Recycling vI_14x``
+    | Prop.``Scanalyzer vHe_07a``
+    | Prop.``Scanalyzer vNe_13n``
+    | Prop.``Scanalyzer vAr_15x``
+    | Prop.``Scanalyzer vXe_13x``
+    | Prop.``Garrison vCe_6a``
+    | Prop.``Garrison vPr_8a``
+    | Prop.``Garrison vNd_9n``
+    | Prop.``Garrison vPm_7n``
+    | Prop.``Garrison vSm_13x``
+    | Prop.``Garrison vEu_9x``
+    | Prop.``T1``
+    | Prop.``Core Extractor``
+    | Prop.``Pulverizer``
+    | Prop.``Laser Drill``
+    | Prop.``Plasma Injector``
+    | Prop.``Seismic Survey Station``
+    | Prop.``Matter Pump``
+    | Prop.``Pressure Siphon``
+    | Prop.``Nuclear Reactor``
+    | Prop.``Neutrino Reactor``
+    | Prop.``Fusion Modulator``
+    | Prop.``Quantum Generator``
+    | Prop.``Dark Matter Chamber``
+    | Prop.``Hypermatter Reactor``
+    | Prop.``Compression Vault``
+    | Prop.``Component Storage``
+    | Prop.``Holding Depot``
+    | Prop.``Packing Station``
+    | Prop.``Arsenal Racks``
+    | Prop.``Extraspacial Lockers``
+    | Prop.``Energy Cycler``
+    | Prop.``Transport Mainframe``
+    | Prop.``Transfer Shaft``
+    | Prop.``Hadron Collector``
+    | Prop.``Electrolysis Chamber``
+    | Prop.``Processing Tank``
+    | Prop.``Atomic Centrifuge``
+    | Prop.``Purification Channel``
+    | Prop.``Integration Channel``
+    | Prop.``Material Processor``
+    | Prop.``Material Compactor``
+    | Prop.``Matter Filter``
+    | Prop.``Manufacturing Mainframe``
+    | Prop.``Construction Platform``
+    | Prop.``Assembly Bed``
+    | Prop.``Megafabricator``
+    | Prop.``Subcomponent Replicator``
+    | Prop.``Power Conduit``
+    | Prop.``Research Mainframe``
+    | Prop.``Antiparticle Reservoir``
+    | Prop.``Reaction Chamber``
+    | Prop.``Vacuum Chamber``
+    | Prop.``Subatomic Condenser``
+    | Prop.``Catalytron``
+    | Prop.``Meson Extractor``
+    | Prop.``Antimatter Diverter``
+    | Prop.``Field Manipulator``
+    | Prop.``Particle Synthesizer``
+    | Prop.``Quantum Separator``
+    | Prop.``Wave Intensifier``
+    | Prop.``Proton Scatter Basin``
+    | Prop.``Ion Accelerator``
+    | Prop.``Magnetic Photon System``
+    | Prop.``Hypercollider``
+    | Prop.``Graviton Restrictor``
+    | Prop.``Potential Refractor``
+    | Prop.``Prototyping Station``
+    | Prop.``Engineering Station``
+    | Prop.``Biostasis Chamber``
+    | Prop.``Organic Neutralizer``
+    | Prop.``Containment Shield``
+    | Prop.``Testing Mainframe``
+    | Prop.``Sonic Impulse Analyzer``
+    | Prop.``Field Warper``
+    | Prop.``Gravity Sphere``
+    | Prop.``Quantum Transformer``
+    | Prop.``Focalizer``
+    | Prop.``Phase Constrictor``
+    | Prop.``Resonance Scanner``
+    | Prop.``Tau Charger``
+    | Prop.``Harmonic Fracturing Unit``
+    | Prop.``Antiparticle Suffusor``
+    | Prop.``Thermocompressor Array``
+    | Prop.``Cryocooling Duct``
+    | Prop.``Artifact Storage``
+    | Prop.``Cryopreservation Unit``
+    | Prop.``Biostim Tank``
+    | Prop.``Quarantine Pod``
+    | Prop.``Aeration Cycler``
+    | Prop.``Deconstruction Unit``
+    | Prop.``Anatomizer``
+    | Prop.``Cloning Tubes``
+    | Prop.``Cell Assembler``
+    | Prop.``Molecular Binding Bank``
+    | Prop.``Anti-Ion Cluster``
+    | Prop.``Deuterium Array``
+    | Prop.``Mainframe``
+    | Prop.``Storage``
+    | Prop.``Retrofitting Station``
+    | Prop.``Signal Jammer``
+    | Prop.``Cloak Generator``
+    | Prop.``Decryption Engine``
+    | Prop.``Backup Mainframe``
+    | Prop.``Archive Unit``
+    | Prop.``Control Node``
+    | Prop.``Operations Mainframe``
+    | Prop.``Quantum Router``
+    | Prop.``Hyperwave Decoder``
+    | Prop.``Sealed Freight Elevator``
+    | Prop.``Radio-Gravity Array``
+    | Prop.``Anti-Orbital Battery``
+    | Prop.``Spectral Interrupter``
+    | Prop.``Wave Collapse Detector``
+    | Prop.``Signal Shield``
+    | Prop.``Longscan Aggregator`` -> PropOcclusion.Obstructed
+    | Prop.``Blade Trap``
+    | Prop.``Segregator Trap``
+    | Prop.``Explosive Trap``
+    | Prop.``Heavy Explosive Trap``
+    | Prop.``Tiamat Bomb Trap``
+    | Prop.``Fusion Bomb Trap``
+    | Prop.``Hellfire Trap``
+    | Prop.``Armageddon Trap``
+    | Prop.``Dirty Bomb Trap``
+    | Prop.``EMP Trap``
+    | Prop.``Proton Bomb Trap``
+    | Prop.``Tesla Bomb Trap``
+    | Prop.``Gamma Bomb Trap``
+    | Prop.``Shrapnel Trap``
+    | Prop.``Piercing Trap``
+    | Prop.``Shock Trap``
+    | Prop.``EM Surge Trap``
+    | Prop.``Fire Trap``
+    | Prop.``Stasis Trap``
+    | Prop.``Alarm Trap``
+    | Prop.``Ambush Trap``
+    | Prop.``Chute Trap`` -> Dangerous
+    | Prop.``Collapsed Tunnel``
+    | Prop.``Door Terminal``
+    | Prop.``DSF Access``
+    | Prop.``Broken Shaft Lining``
+    | Prop.``XXX_Blast_Door_Open``
+    | Prop.``XXX_Blast_Door_Hackable``
+    | Prop.``ACC_Door_Shootable_SUR``
+    | Prop.``ACC_Door_Shootable_COM``
+    | Prop.``ACC_Door_Hackable``
+    | Prop.``ACC_Shell_Shootable`` -> PropOcclusion.Obstructed
+    | Prop.``Main Access Lift``-> PropOcclusion.Vacant
+    | Prop.``STO_Door_Open``
+    | Prop.``STO_Door_Hackable``
+    | Prop.``STO_Shell_Shootable``
+    | Prop.``GAR_Door_Shootable``
+    | Prop.``GAR_Relay``
+    | Prop.``GAR_Generator``
+    | Prop.``GAR_RIF_Installer``
+    | Prop.``Garrison Terminal``
+    | Prop.``GAR_Heavy_Assembler``
+    | Prop.``GAR_QS_Assembler``
+    | Prop.``SHOP_Sys``
+    | Prop.``MIN_Door_Hackable_Weak``
+    | Prop.``Assembled Analyzer``
+    | Prop.``Components``
+    | Prop.``Testing Chamber Shield``
+    | Prop.``Testing Apparatus``
+    | Prop.``EX-Generator``
+    | Prop.``BIN's Workstation``
+    | Prop.``DEC's Workstation``
+    | Prop.``HEX's Workstation``
+    | Prop.``BIN's Terminal``
+    | Prop.``DEC's Terminal``
+    | Prop.``HEX's Terminal``
+    | Prop.``EXI_Farcom``
+    | Prop.``EX-Vault Access``
+    | Prop.``EX-Prototypes Database``
+    | Prop.``EX-Message Board``
+    | Prop.``Repaired_Machine_T``
+    | Prop.``Repaired_Machine_F``
+    | Prop.``Repaired_Machine_R``
+    | Prop.``Repaired_Machine_Y``
+    | Prop.``Repaired_Machine_S``
+    | Prop.``Testing Chamber``
+    | Prop.``4L-MR0's Prototype Logs``
+    | Prop.``SUB_Autodoor``
+    | Prop.``Clippyterm``
+    | Prop.``Triangle-emblazoned Door``
+    | Prop.``WAR_Sys``
+    | Prop.``Prototyping Terminal``
+    | Prop.``CAV_Door_Hackable``
+    | Prop.``Outpost Terminal``
+    | Prop.``CAV_Base_Generator``
+    | Prop.``CAV_Junk_Machine``
+    | Prop.``CAV_Reinforcement``
+    | Prop.``CAV_Door_Shootable``
+    | Prop.``CAV_Door_No_Terminal``
+    | Prop.``Private``
+    | Prop.``CAV_Thief_Den``
+    | Prop.``W-Fans Enter Here``
+    | Prop.``LOW_Warlord_Fan_Stuff``
+    | Prop.``PRO_Base_Generator``
+    | Prop.``PRO_Target_Dispatcher``
+    | Prop.``PRO_Test_Aggregator``
+    | Prop.``PRO_Data_Receptor``
+    | Prop.``Matter Repository``
+    | Prop.``Twisting Tunnel``
+    | Prop.``DAT_Data_Conduit``
+    | Prop.``ORACLE Interface``
+    | Prop.``ZHI_Cloak_Generator``
+    | Prop.``ZHI_Main_Door``
+    | Prop.``Zhirov's Terminal``
+    | Prop.``Quantum Analyzer``
+    | Prop.``Zhirov's Workstation``
+    | Prop.``WAR_Door_Hackable``
+    | Prop.``Vortex Lab Terminal``
+    | Prop.``Hacking Lab Terminal``
+    | Prop.``Relay Lab Terminal``
+    | Prop.``Fabnet Lab Terminal``
+    | Prop.``Intel Room Terminal``
+    | Prop.``WAR_Staging_Area``
+    | Prop.``RES_Staging_Area``
+    | Prop.``WAR_Mainc_Tunnel``
+    | Prop.``ZIO_Machinery``
+    | Prop.``Deep Containment System``
+    | Prop.``ZIOWAR_Quarantine_Array``
+    | Prop.``ZIO_Cloak_Generator``
+    | Prop.``ZIO_Stockpile_Wall``
+    | Prop.``ZIO_Prototype_Hold``
+    | Prop.``ZIO_Lab_Wall``
+    | Prop.``ZIO_Repair_Shop_Wall``
+    | Prop.``Zion Terminal``
+    | Prop.``ZIO_Machinery_Fake``
+    | Prop.``Conduit Teleporter``
+    | Prop.``ZIO_Memory_Banks``
+    | Prop.``ZIO_Imprinter``
+    | Prop.``DEE_Z_Facility``
+    | Prop.``Z-Power``
+    | Prop.``DEE_Sigix_Wall``
+    | Prop.``DEE_Sigix_Gate``
+    | Prop.``DEE_Wall_Chamber``
+    | Prop.``DEE_Survey_Way_Station``
+    | Prop.``EXT_Door_Hackable``
+    | Prop.``EXT_Transfer_Station``
+    | Prop.``Cetus Terminal``
+    | Prop.``Cetus Manufacturing Controls``
+    | Prop.``CET_Door_Hackable``
+    | Prop.``Doors``
+    | Prop.``Bed``
+    | Prop.``Lockers``
+    | Prop.``Table``
+    | Prop.``Lab Station``
+    | Prop.``Research Interface``
+    | Prop.``Cetus Mainframe``
+    | Prop.``Cetus Manufacturing Module``
+    | Prop.``Archive Terminal``
+    | Prop.``Archive Hub``
+    | Prop.``HUB_Transfer_Station``
+    | Prop.``HUB_Network_Hub``
+    | Prop.``ARM_Door_Hackable``
+    | Prop.``ARM_Shell_Shootable``
+    | Prop.``ARM_Dimension_Slip_Node``
+    | Prop.``NO ENTRY``
+    | Prop.``LAB_Door_Hackable``
+    | Prop.``Active System Cloaker``
+    | Prop.``A0 Command``
+    | Prop.``hN 3sDk7Qc``
+    | Prop.``A0 Storage 04-B``
+    | Prop.``UC xVqbSdU M7q4``
+    | Prop.``Suspension Chamber``
+    | Prop.``TES_Door_Hackable``
+    | Prop.``TES_Shell_Shootable``
+    | Prop.``Regeneration Lab``
+    | Prop.``TES_Terrabomb``
+    | Prop.``QUA_Door_Hackable``
+    | Prop.``QUA_Door_Hackable_Hard``
+    | Prop.``Sigix Lab``
+    | Prop.``Sigix Quarantine Controls``
+    | Prop.``Sigix Quarantine Chamber``
+    | Prop.``Teleportation Lab``
+    | Prop.``Autopsy Lab``
+    | Prop.``Research Terminal``
+    | Prop.``SEC_Door_Hackable``
+    | Prop.``L2 Monitoring Station``
+    | Prop.``Power Cell Monitoring``
+    | Prop.``Thrusters``
+    | Prop.``SEC_L2_Power_Cell``
+    | Prop.``Wing Frame``
+    | Prop.``FTL Facilitator``
+    | Prop.``Core Housing``
+    | Prop.``Hull``
+    | Prop.``Armor Plating``
+    | Prop.``Navigation``
+    | Prop.``Construction Supplies``
+    | Prop.``L2 Fabricator``
+    | Prop.``Exoskeleton Controls``
+    | Prop.``Cave Seal Controls``
+    | Prop.``COM_Cave_Spawn``
+    | Prop.``COM_Shell_Shootable``
+    | Prop.``Access Lift``
+    | Prop.``COM_Teleport_Inhibitor``
+    | Prop.``COM_Door_Hackable``
+    | Prop.``COM_0b10_Conduit``
+    | Prop.``COM_Alternative_Access``
+    | Prop.``COM_Cache_Door``
+    | Prop.``AC0_Singularity_Gate``
+    | Prop.``Gate Controls``
+    | Prop.``AC0_Subspace_Node``
+    | Prop.``AC0_Subspace_Node_Mid``
+    | Prop.``AC0_Architect_Shell``
+    | Prop.``Architect Logs``
+    | Prop.``AC0_Abandoned_Machinery``
+    | Prop.``AC0_Shell_Shootable``
+    | Prop.``Analysis Chamber``
+    | Prop.``AC0_Workstation``
+    | Prop.``JUN_Black_Space``
+    | Prop.``JUN_New_Year_City`` -> PropOcclusion.Obstructed
 
 let itemToCategory (item: Item) : ItemCategory =
     match item with
-    | Item.Matter -> Matter
-    | Item.DataCore
-    | Item.DerelictLog
-    | Item.SchematicArchive
-    | Item.ImprinterDataCore
-    | Item.A2DataCore
-    | Item.A7DataCore
-    | Item.MaincDataCore
-    | Item.ArchitectDataCore
-    | Item.Scrap
-    | Item.Protomatter -> Misc
-    | Item.IonEngine
-    | Item.LgtIonEngine
-    | Item.BackupPowerI
-    | Item.ImpIonEngine
-    | Item.RnfIonEngine
-    | Item.HvyIonEngine
-    | Item.CldIonEngine
-    | Item.DeuteriumEngine
-    | Item.LgtDeuteriumEngine
-    | Item.BackupPowerIii
-    | Item.NuclearCore
-    | Item.LgtNuclearCore
-    | Item.ImpDeuteriumEngine
-    | Item.RnfDeuteriumEngine
-    | Item.HybDeuteriumEngine
-    | Item.HvyDeuteriumEngine
-    | Item.CldDeuteriumEngine
-    | Item.EnhNuclearCore
-    | Item.MicNuclearCore
-    | Item.MakPowerSource
-    | Item.AngularMomentumEngine
-    | Item.LgtAngularMomentumEngine
-    | Item.FcellEngine
-    | Item.FissionCore
-    | Item.LgtFissionCore
-    | Item.HybFissionCore
-    | Item.FusionCompressor
-    | Item.ColdFusionReactor
-    | Item.NeutrinoCore
-    | Item.LgtNeutrinoCore
-    | Item.RnfFissionCore
-    | Item.EnhFissionCore
-    | Item.CldFissionCore
-    | Item.MicFissionCore
-    | Item.FusionReactor
-    | Item.AntimatterReactor
-    | Item.LgtAntimatterReactor
-    | Item.RnfAntimatterReactor
-    | Item.HybAntimatterReactor
-    | Item.BackupPowerVii
-    | Item.HvyAntimatterReactor
-    | Item.MniFusionReactor
-    | Item.ImpFusionCompressor
-    | Item.MicNeutrinoCore
-    | Item.ZioLightDmReactor
-    | Item.ZioHeavyDmReactor
-    | Item.ParticleReactor
-    | Item.LgtParticleReactor
-    | Item.MicAntimatterReactor
-    | Item.ComParticleReactor
-    | Item.CldAntimatterReactor
-    | Item.GravitonReactor
-    | Item.AsbFluxGenerator
-    | Item.QuantumReactor
-    | Item.LgtQuantumReactor
-    | Item.RnfQuantumReactor
-    | Item.ImpQuantumReactor
-    | Item.ZeropointReactor
-    | Item.VortexChainReactor
-    | Item.SingularityReactor -> Power
-    | Item.MatterDrive -> Utility Device
-    | Item.LgtTreads
-    | Item.ImpTreads
-    | Item.SpkTreads
-    | Item.ArmTreads
-    | Item.AdvTreads
-    | Item.MedTreads
-    | Item.ImpMediumTreads
-    | Item.SpkMediumTreads
-    | Item.ArmMediumTreads
-    | Item.HvyTreads
-    | Item.AdvMediumTreads
-    | Item.EnhArmoredMediumTreads
-    | Item.ImpHeavyTreads
-    | Item.HvySiegeTreads
-    | Item.SpkHeavyTreads
-    | Item.BiometalMediumTreads
-    | Item.ArmHeavyTreads
-    | Item.AdvHeavyTreads
-    | Item.ImpHeavySiegeTreads
-    | Item.CentriumHeavyTreads
-    | Item.Megatreads
-    | Item.BiometalHeavyTreads
-    | Item.ExpBiometalHeavyTreads
-    | Item.EnhArmoredHeavyTreads
-    | Item.AdvHeavySiegeTreads
-    | Item.HdnCentriumHeavyTreads
-    | Item.ExpBiometalMediumTreads -> Propulsion Treads
-    | Item.AluminumLeg
-    | Item.ImpAluminumLeg
-    | Item.CarbonfiberLeg
-    | Item.TitaniumLeg
-    | Item.VssLeg
-    | Item.ImpCarbonfiberLeg
-    | Item.ImpTitaniumLeg
-    | Item.MakLeg
-    | Item.FlexicarbonLeg
-    | Item.ArmLeg
-    | Item.ImpVssLeg
-    | Item.ZioCompositeLegI
-    | Item.EnhFlexicarbonLeg
-    | Item.EnhArmoredLeg
-    | Item.MyomerLeg
-    | Item.AdvVssLeg
-    | Item.AdvMyomerLeg
-    | Item.ExpFlexicarbonLeg
-    | Item.ZioCompositeLegIi
-    | Item.EtherialTendrils
-    | Item.BiometalLeg
-    | Item.EnhBiometalLeg
-    | Item.ExpMyomerLeg
-    | Item.TrollExoskeleton
-    | Item.AsbAlloyLeg
-    | Item.CentriumLeg
-    | Item.HdnCentriumLeg
-    | Item.ExpBiometalLeg
-    | Item.SigixExoskeleton
-    | Item.ZioSupercompositeLeg
-    | Item.PotentialLeg
-    | Item.MyomerExoskeleton -> Propulsion Legs
-    | Item.Wheel
-    | Item.ComWheel
-    | Item.ArmWheel
-    | Item.ArmHugeWheel
-    | Item.CentriumWheel
-    | Item.HdnCentriumWheel -> Propulsion Wheel
-    | Item.HoverUnit
-    | Item.BackupPropulsionI
-    | Item.ImpHoverUnit
-    | Item.Airjet
-    | Item.AerolevUnit
-    | Item.AsbHoverUnit
-    | Item.BackupPropulsionIii
-    | Item.GravmagSystem
-    | Item.AsbHoverSystem
-    | Item.ImpAirjet
-    | Item.CldAirjet
-    | Item.ImpGravmagSystem
-    | Item.CldAerolevUnit
-    | Item.CmbAirjet
-    | Item.GravmagArray
-    | Item.MakHoverUnit
-    | Item.ZioGlidesysI
-    | Item.AntigravSystem
-    | Item.GyrokineticInverter
-    | Item.LinearGravjet
-    | Item.CldGravmagSystem
-    | Item.CmbGravmagSystem
-    | Item.ImpAntigravSystem
-    | Item.ImpGyrokineticInverter
-    | Item.ImpLinearGravjet
-    | Item.BackupPropulsionVii
-    | Item.ZioGlidesysIi
-    | Item.CldAntigravSystem
-    | Item.CmbAntigravSystem
-    | Item.AntigravArray
-    | Item.ExpGyrokineticInverter
-    | Item.CldLinearGravjet
-    | Item.CmbLinearGravjet -> Propulsion Hover
-    | Item.FlightUnit
-    | Item.VtolModule
-    | Item.ImpFlightUnit
-    | Item.CesiumionThruster
-    | Item.SurgeThruster
-    | Item.ImpVtolModule
-    | Item.XenonBombardmentThruster
-    | Item.ImpCesiumionThruster
-    | Item.CldVtolModule
-    | Item.MakFlightUnit
-    | Item.NuclearPulseThruster
-    | Item.ImpSurgeThruster
-    | Item.MniNuclearPulseThruster
-    | Item.CldCesiumionThruster
-    | Item.BiomechanicalWings
-    | Item.FieldPropulsionDrive
-    | Item.CldNuclearPulseThruster
-    | Item.ExpCesiumionThruster
-    | Item.NuclearPulseArray
-    | Item.MakMicrothruster
-    | Item.ImpulseThruster
-    | Item.AdvSurgeThruster
-    | Item.CldFieldPropulsionDrive
-    | Item.FieldPropulsionArray
-    | Item.DiametricDrive
-    | Item.FlyingFortressV7
-    | Item.Tthruster
-    | Item.IntegratedTrackerDrive
-    | Item.EtherialPropulsion
-    | Item.Qthruster
-    | Item.ElectronDiverter
-    | Item.ImpDiametricDrive
-    | Item.CldImpulseThruster
-    | Item.ImpulseThrusterArray
-    | Item.ImpQthruster
-    | Item.CldQthruster
-    | Item.ExpQthruster -> Propulsion Flight
-    | Item.Desublimator
-    | Item.PowerAmplifier
-    | Item.AdvPowerAmplifier
-    | Item.ExpPowerAmplifier
-    | Item.ThermalGenerator
-    | Item.ImpThermalGenerator
-    | Item.AdvThermalGenerator
-    | Item.ExpThermalGenerator
-    | Item.CryofiberWeb
-    | Item.ImpCryofiberWeb
-    | Item.AdvCryofiberWeb
-    | Item.HeatSink
-    | Item.ImpHeatSink
-    | Item.AdvHeatSink
-    | Item.ExpHeatSink
-    | Item.CoolingSystem
-    | Item.ImpCoolingSystem
-    | Item.AdvCoolingSystem
-    | Item.ExpCoolingSystem
-    | Item.CoolantNetwork
-    | Item.AsbNanovents
-    | Item.FrostArray
-    | Item.DisposableHeatSink
-    | Item.CoolantInjector
-    | Item.ImpCoolantInjector
-    | Item.AdvCoolantInjector
-    | Item.ExpCoolantInjector -> Utility Device
-    | Item.SmlStorageUnit
-    | Item.MedStorageUnit
-    | Item.LrgStorageUnit
-    | Item.HcpStorageUnit
-    | Item.HugeStorageUnit
-    | Item.CargoStorageUnit
-    | Item.Humpback
-    | Item.Lightpack20
-    | Item.SmlBattery
-    | Item.MedBattery
-    | Item.LrgBattery
-    | Item.HcpBattery
-    | Item.ComBattery
-    | Item.EnergyWell
-    | Item.ImpEnergyWell
-    | Item.AdvEnergyWell
-    | Item.ExpEnergyWell
-    | Item.ZioBiocell
-    | Item.AsbBiocellArray
-    | Item.ZioBiocellArray
-    | Item.Superbattery
-    | Item.SmlMatterPod
-    | Item.MedMatterPod
-    | Item.LrgMatterPod
-    | Item.HcpMatterPod
-    | Item.ComMatterPod
-    | Item.MatterCompressor
-    | Item.ImpMatterCompressor
-    | Item.AdvMatterCompressor
-    | Item.ExpMatterCompressor
-    | Item.Yiuf0sBottomlessMatterPit -> Utility Storage
-    | Item.WeightRedistSystem
-    | Item.AdvWeightRedistSystem
-    | Item.GravityNeutralizer
-    | Item.AdvGravityNeutralizer
-    | Item.QuantumShadingMachine
-    | Item.AsbSuspensionFrame
-    | Item.AdvQuantumShadingMachine
-    | Item.AsbMetafiberNetwork
-    | Item.ZioMetafieldGenerator
-    | Item.StFieldCompressor
-    | Item.StructuralScanner
-    | Item.TrapScanner
-    | Item.ImpTrapScanner
-    | Item.MakTrapScanner
-    | Item.AdvTrapScanner
-    | Item.MachineAnalyzer
-    | Item.Triangulator
-    | Item.VisualProcessingUnit
-    | Item.AdvVisualProcessingUnit
-    | Item.EnhOpticalArray
-    | Item.ExpOpticalArray
-    | Item.SpectralAnalyzer
-    | Item.SensorArray
-    | Item.ImpSensorArray
-    | Item.AdvSensorArray
-    | Item.LrnSensorArray
-    | Item.MakSensorArray
-    | Item.ExpSensorArray -> Utility Device
-    | Item.SignalInterpreter
-    | Item.ImpSignalInterpreter
-    | Item.AdvSignalInterpreter
-    | Item.ExpSignalInterpreter
-    | Item.ActiveSensorSuite -> Utility Processor
-    | Item.TerrainScanner
-    | Item.ImpTerrainScanner
-    | Item.AdvTerrainScanner
-    | Item.MakTerrainScanner
-    | Item.LrnTerrainScanner
-    | Item.ExpTerrainScanner
-    | Item.Surveybot24Scanner -> Utility Device
-    | Item.TerrainScanProcessor
-    | Item.ImpTerrainScanProcessor
-    | Item.MakTerrainScanProcessor
-    | Item.AdvTerrainScanProcessor
-    | Item.ExpTerrainScanProcessor
-    | Item.Surveybot24Chip -> Utility Processor
-    | Item.SeismicDetector -> Utility Device
-    | Item.TransportNetworkCoupler
-    | Item.ModifiedTnc
-    | Item.B10DecoderChipgeneric
-    | Item.B10DecoderChiplooter
-    | Item.B10DecoderChipscout
-    | Item.B10DecoderChipskirmisher
-    | Item.B10AlertChip
-    | Item.SalvageTargetingComputer
-    | Item.ImpSalvageTargetingComputer
-    | Item.MakSalvageTargetingComputer
-    | Item.AdvSalvageTargetingComputer
-    | Item.AsbCombatSuite
-    | Item.TargetingComputer
-    | Item.ImpTargetingComputer
-    | Item.AdvTargetingComputer
-    | Item.ExpTargetingComputer
-    | Item.TacticalCoordinationSuite
-    | Item.MeleeAnalysisSuite
-    | Item.ImpMeleeAnalysisSuite
-    | Item.AdvMeleeAnalysisSuite
-    | Item.ExpMeleeAnalysisSuite
-    | Item.LauncherGuidanceComputer
-    | Item.ImpLauncherGuidanceComputer
-    | Item.AdvLauncherGuidanceComputer
-    | Item.TargetAnalyzer
-    | Item.ImpTargetAnalyzer
-    | Item.AdvTargetAnalyzer
-    | Item.ExpTargetAnalyzer
-    | Item.CoreAnalyzer
-    | Item.ExpCoreAnalyzer
-    | Item.ArmorIntegrityAnalyzer
-    | Item.ImpArmorIntegrityAnalyzer
-    | Item.ExpArmorIntegrityAnalyzer -> Utility Processor
-    | Item.RecoilStabilizer
-    | Item.RecoilNullifier
-    | Item.MatterFilter
-    | Item.PrcMatterFilter
-    | Item.EnergyFilter
-    | Item.PrcEnergyFilter
-    | Item.ParticleCharger
-    | Item.ImpParticleCharger
-    | Item.AdvParticleCharger
-    | Item.ParticleAccelerator
-    | Item.ImpParticleAccelerator
-    | Item.AdvParticleAccelerator
-    | Item.Kinecellerator
-    | Item.ImpKinecellerator
-    | Item.AdvKinecellerator
-    | Item.LauncherLoader
-    | Item.QuantumCapacitor
-    | Item.WeaponCycler
-    | Item.ImpWeaponCycler
-    | Item.AdvWeaponCycler
-    | Item.ExpWeaponCycler
-    | Item.Microactuators
-    | Item.Nanoactuators
-    | Item.Femtoactuators
-    | Item.ActuatorArray
-    | Item.ImpActuatorArray
-    | Item.AdvActuatorArray
-    | Item.ExpActuatorArray
-    | Item.ForceBooster
-    | Item.ImpForceBooster
-    | Item.AdvForceBooster
-    | Item.StasisCanceller
-    | Item.TransmissionJammer
-    | Item.MakTransmissionJammer
-    | Item.ImpTransmissionJammer
-    | Item.AdvTransmissionJammer
-    | Item.ExpTransmissionJammer
-    | Item.EcmSuite
-    | Item.MakEcmSuite
-    | Item.AdvEcmSuite
-    | Item.ExpEcmSuite
-    | Item.ReactionControlSystem
-    | Item.ImpReactionControlSystem
-    | Item.AdvReactionControlSystem
-    | Item.ExpReactionControlSystem
-    | Item.PhaseShifter
-    | Item.ImpPhaseShifter
-    | Item.AdvPhaseShifter
-    | Item.ExpPhaseShifter
-    | Item.CloakingDevice
-    | Item.MakCloakingDevice
-    | Item.ImpCloakingDevice
-    | Item.AdvCloakingDevice
-    | Item.ExpCloakingDevice
-    | Item.CloakOfProtection
-    | Item.Shad0sCloak -> Utility Device
-    | Item.CoreShielding
-    | Item.ImpCoreShielding
-    | Item.ExpCoreShielding
-    | Item.PowerShielding
-    | Item.ImpPowerShielding
-    | Item.ExpPowerShielding
-    | Item.PropulsionShielding
-    | Item.ImpPropulsionShielding
-    | Item.ExpPropulsionShielding
-    | Item.UtilityShielding
-    | Item.ImpUtilityShielding
-    | Item.ExpUtilityShielding
-    | Item.WeaponShielding
-    | Item.ImpWeaponShielding
-    | Item.ExpWeaponShielding
-    | Item.ZioWeaponCasing
-    | Item.LgtArmorPlating
-    | Item.MedArmorPlating
-    | Item.HvyArmorPlating
-    | Item.ZioLightCarapace
-    | Item.ZioHeavyCarapace
-    | Item.HrdLightArmorPlating
-    | Item.HrdMediumArmorPlating
-    | Item.HrdHeavyArmorPlating
-    | Item.ImpLightArmorPlating
-    | Item.ImpMediumArmorPlating
-    | Item.ImpHeavyArmorPlating
-    | Item.LyrLightArmorPlating
-    | Item.MakArmorPlating
-    | Item.LyrMediumArmorPlating
-    | Item.LyrHeavyArmorPlating
-    | Item.CentriumLightArmorPlating
-    | Item.CentriumMediumArmorPlating
-    | Item.CentriumHeavyArmorPlating
-    | Item.CentriumLinkedPlating
-    | Item.ReactivePlating
-    | Item.MedReactivePlating
-    | Item.MakKineticPlating
-    | Item.HvyReactivePlating
-    | Item.ReflectivePlating
-    | Item.MedReflectivePlating
-    | Item.MakThermalPlating
-    | Item.HvyReflectivePlating
-    | Item.BrawnsArmorth
-    | Item.BrawnsArmorex
-    | Item.InsulatedPlating
-    | Item.MedInsulatedPlating
-    | Item.HvyInsulatedPlating
-    | Item.DamperPlating
-    | Item.ZioShadeCarapace
-    | Item.ZioShadeArmor
-    | Item.AsbAlloyArmor
-    | Item.MakAblativeArmor
-    | Item.ActiveCoolingArmor
-    | Item.PoweredArmor
-    | Item.ImpPoweredArmor
-    | Item.AdvPoweredArmor
-    | Item.ExpPoweredArmor
-    | Item.IcutusBuckler
-    | Item.LgtRegenerativePlating
-    | Item.MedRegenerativePlating
-    | Item.HvyRegenerativePlating
-    | Item.ShellArmor
-    | Item.PhaseArmor
-    | Item.GrapheneBrace
-    | Item.FocalShield
-    | Item.ImpFocalShield
-    | Item.AdvFocalShield
-    | Item.ExpFocalShield
-    | Item.ThermalShield
-    | Item.ImpThermalShield
-    | Item.AdvThermalShield
-    | Item.ExpThermalShield
-    | Item.ThermalBarrier
-    | Item.BeamSplitter
-    | Item.ThermalDefenseSuite
-    | Item.ImpThermalDefenseSuite
-    | Item.AdvThermalDefenseSuite
-    | Item.ExpThermalDefenseSuite
-    | Item.ShockAbsorptionSystem
-    | Item.ImpShockAbsorptionSystem
-    | Item.ExpShockAbsorptionSystem
-    | Item.EmDisruptionField
-    | Item.AdvEmDisruptionField
-    | Item.ExpEmDisruptionField
-    | Item.MerlnsChromaticScreen
-    | Item.HardlightGenerator
-    | Item.ImpHardlightGenerator
-    | Item.AdvHardlightGenerator
-    | Item.ExpHardlightGenerator
-    | Item.ShieldGenerator
-    | Item.ImpShieldGenerator
-    | Item.AdvShieldGenerator
-    | Item.ExpShieldGenerator
-    | Item.ForceField
-    | Item.ImpForceField
-    | Item.AdvForceField
-    | Item.ExpForceField
-    | Item.TvrtlsUltimateField
-    | Item.VortexFieldProjector
-    | Item.RemoteShield
-    | Item.ImpRemoteShield
-    | Item.AdvRemoteShield
-    | Item.RemoteForceField
-    | Item.ImpRemoteForceField
-    | Item.EnergyMantle
-    | Item.ImpEnergyMantle
-    | Item.AegisRemoteShield
-    | Item.PhaseRedirector
-    | Item.PointDefenseSystem
-    | Item.PointDefenseArray
-    | Item.AntimissileSystem -> Utility Armor
-    | Item.ExChip1
-    | Item.HackingSuite
-    | Item.MakHackingSuite
-    | Item.ImpHackingSuite
-    | Item.AdvHackingSuite
-    | Item.ExpHackingSuite
-    | Item.SystemMapper
-    | Item.DeepNetworkScanner
-    | Item.ArchitectGodChipA
-    | Item.ExChip2
-    | Item.SystemShield
-    | Item.MakSystemShield
-    | Item.ImpSystemShield
-    | Item.AdvSystemShield
-    | Item.ExpSystemShield
-    | Item.GhostBarrier
-    | Item.QuantumRouter
-    | Item.ArchitectGodChipD
-    | Item.Authchiprnc
-    | Item.Authchiprcombat
-    | Item.Authchippower
-    | Item.Authchippropulsion
-    | Item.Authchipdevice
-    | Item.Authchipstorage
-    | Item.Authchipprocessor
-    | Item.Authchiparmor
-    | Item.Authchipweapon
-    | Item.RelayCouplernc
-    | Item.RelayCouplerc
-    | Item.RelayCouplerarc
-    | Item.RelayCouplerswarmer
-    | Item.RelayCouplercutter
-    | Item.RelayCouplergrunt
-    | Item.RelayCouplerbrawler
-    | Item.RelayCouplerduelist
-    | Item.RelayCouplersentry
-    | Item.RelayCouplerdemolisher
-    | Item.RelayCouplerspecialist
-    | Item.RelayCouplerhunter
-    | Item.RelayCouplerheavy
-    | Item.RelayCouplerbehemoth
-    | Item.RelayCouplerprogrammer -> Utility Processor
-    | Item.SkeletonBox
-    | Item.O1mtfsAutohacker
-    | Item.ComponentAnalysisSuite
-    | Item.ImpComponentAnalysisSuite
-    | Item.AdvComponentAnalysisSuite
-    | Item.DynamicInsulationSystem
-    | Item.ImpDynamicInsulationSystem
-    | Item.AdvDynamicInsulationSystem
-    | Item.SystemGuard
-    | Item.ImpSystemGuard
-    | Item.ExpSystemGuard
-    | Item.CorruptionScreen
-    | Item.ImpCorruptionScreen
-    | Item.AdvCorruptionScreen
-    | Item.SystemRestorationModule
-    | Item.MakSystemRestorationModule
-    | Item.ImpSystemRestorationModule
-    | Item.AdvSystemRestorationModule
-    | Item.SystemPurifier
-    | Item.ExpSystemPurifier
-    | Item.TractorBeam
-    | Item.HpwTractorBeam
-    | Item.LrnTractorBeam
-    | Item.MobileRefineryMkCclxvii
-    | Item.TrapExtractor
-    | Item.ImpTrapExtractor
-    | Item.AdvTrapExtractor
-    | Item.TrapReconfigurator
-    | Item.Recalibrator
-    | Item.ImpRecalibrator
-    | Item.AdvRecalibrator
-    | Item.FieldRecyclingUnit
-    | Item.ImpFieldRecyclingUnit
-    | Item.AdvFieldRecyclingUnit
-    | Item.ExpFieldRecyclingUnit
-    | Item.DroneBay
-    | Item.ZdroneBay
-    | Item.MniDroneBay
-    | Item.MappingDroneBay
-    | Item.AdvDroneBay
-    | Item.BombDroneBay
-    | Item.ThiefDroneBay
-    | Item.DecoyDroneBay
-    | Item.SpliceDroneBay
-    | Item.CombatDroneBay
-    | Item.AssaultDroneBay
-    | Item.StealthDroneBay
-    | Item.SwarmDroneBay
-    | Item.SupersonicDroneBay
-    | Item.SensorDroneBay
-    | Item.HackingDroneBay
-    | Item.MinesnifferDroneBay
-    | Item.Armyinabox
-    | Item.WardroneBay
-    | Item.BombFactoryNo2
-    | Item.MobileAssemblyUnit
-    | Item.HeartOfSteel
-    | Item.GolemUnit
-    | Item.PsuRigger
-    | Item.PhasingAfg
-    | Item.AsneutralizerNo17b
-    | Item.Chronowheel
-    | Item.DimensionalNodeInitializer
-    | Item.TransdimensionalReconstructor
-    | Item.HpwTransdimensionalReconstructor
-    | Item.CoreExpander
-    | Item.CoreRegenerator
-    | Item.IntegrityRedistributor
-    | Item.IntegratedDissipator
-    | Item.SuperchargedIntegratedDissipator
-    | Item.IntegratedThermoelectricNetwork
-    | Item.IntegratedReactor
-    | Item.SuperchargedIntegratedReactor
-    | Item.IntegratedMediator
-    | Item.CoreMembrane
-    | Item.NavigationEfficiencyMatrix
-    | Item.CoreResetMatrix
-    | Item.SubatomicReplicator
-    | Item.Terrabomb
-    | Item.CorePhysicsCalibrator
-    | Item.SpacefoldActivator
-    | Item.MicrowarpDrive
-    | Item.LcCapacitor
-    | Item.LrcArmor
-    | Item.LrcStorage
-    | Item.LrcEnergyWell
-    | Item.LrcMatterCompressor
-    | Item.LrcBoosters
-    | Item.LrcInsulator -> Utility Device
-    | Item.EmPulseGun
-    | Item.HvyEmPulseGun
-    | Item.EmShotgun
-    | Item.ImpEmShotgun
-    | Item.ShockRifle
-    | Item.RiotGun
-    | Item.HvyEmShotgun
-    | Item.LightningGun
-    | Item.HvyRiotGun
-    | Item.ArcProjector
-    | Item.PrcShockRifle
-    | Item.HpwShockRifle
-    | Item.ArcThrower
-    | Item.ImpLightningGun
-    | Item.TeslaRifle
-    | Item.ImpArcProjector
-    | Item.HvyTeslaRifle
-    | Item.HypEmGaussRifle
-    | Item.ImpArcThrower
-    | Item.O1mtfsShockpuncher
-    | Item.GammaRifle
-    | Item.TachyonDispersionRay
-    | Item.Immobilizer
-    | Item.ModifiedEmGaussRifle
-    | Item.Awsexdec
-    | Item.EnhGammaRifle
-    | Item.MedLaser
-    | Item.SmlLaser
-    | Item.BackupLaserI
-    | Item.BeamRifle
-    | Item.ParticleGun
-    | Item.SpreadLaser
-    | Item.ImpMediumLaser
-    | Item.FieldLaser
-    | Item.PulseRifle
-    | Item.BackupLaserIii
-    | Item.HvyParticleGun
-    | Item.PrcBeamRifle
-    | Item.AdvBeamRifle
-    | Item.HvyLaser
-    | Item.GatlingLaser
-    | Item.CldPulseRifle
-    | Item.HpwFieldLaser
-    | Item.ImpSpreadLaser
-    | Item.MakLaser
-    | Item.PlasmaRifle
-    | Item.ThermicLaser
-    | Item.Beamcaster
-    | Item.ForceRifle
-    | Item.ImpHeavyLaser
-    | Item.StormLaser
-    | Item.ZioLasers
-    | Item.WaveGun
-    | Item.VariableChargeGun
-    | Item.HvyBeamcaster
-    | Item.CldPlasmaRifle
-    | Item.EnhForceRifle
-    | Item.HvyGatlingLaser
-    | Item.ZioPhasers
-    | Item.PhaseGun
-    | Item.DispersionRifle
-    | Item.BackupLaserVii
-    | Item.PlasmaStorm
-    | Item.AdvPlasmaRifle
-    | Item.HvyWaveGun
-    | Item.AdvVariableChargeGun
-    | Item.CldPhaseGun
-    | Item.LrnGatlingLaser
-    | Item.WarpGun
-    | Item.VortexRifle
-    | Item.ZioLaserm
-    | Item.Awsthermal
-    | Item.PdLaser
-    | Item.QuantumRifle
-    | Item.PrcPhaseGun
-    | Item.HvyDispersionRifle
-    | Item.VortexShotgun
-    | Item.VortexRail
-    | Item.ZioPhaserm
-    | Item.EnhQuantumRifle
-    | Item.ZioLaserh
-    | Item.HvyQuantumRifle
-    | Item.ZioPhaserh
-    | Item.GatlingBeam
-    | Item.SigixSheargun
-    | Item.ModifiedSigixSheargun -> Weapon Gun
-    | Item.LgtEmPulseCannon
-    | Item.EmPulseCannon
-    | Item.ImpEmPulseCannon
-    | Item.ProtonCannon
-    | Item.LrnProtonCannon
-    | Item.DisruptorCannon
-    | Item.HvyProtonCannon
-    | Item.HerfCannon
-    | Item.HvyDisruptorCannon
-    | Item.CldProtonCannon
-    | Item.ProtonBurstCannon
-    | Item.ComHerfCannon
-    | Item.LatentEnergyStreamer
-    | Item.Nk0lasTeslaDoomcannon
-    | Item.Emds
-    | Item.HpwDisruptorCannon
-    | Item.BeamCannon
-    | Item.ParticleCannon
-    | Item.AdvBeamCannon
-    | Item.HvyParticleCannon
-    | Item.IonCannon
-    | Item.PlasmaCannon
-    | Item.HvyIonCannon
-    | Item.CldParticleCannon
-    | Item.PhaseCannon
-    | Item.HvyPlasmaCannon
-    | Item.CldPlasmaCannon
-    | Item.ComIonCannon
-    | Item.IonBurstCannon
-    | Item.AdvPlasmaCannon
-    | Item.HvyPhaseCannon
-    | Item.NeutronCannon
-    | Item.MatterNeutralizer
-    | Item.HvyNeutronCannon
-    | Item.LrnPhaseCannon
-    | Item.CldPhaseCannon
-    | Item.VortexCannon
-    | Item.GuiPlasmaCannon
-    | Item.NovaCannon
-    | Item.ImpMatterNeutralizer
-    | Item.VortexDriver
-    | Item.ZioAlphaCannon
-    | Item.AsbFocalCannon
-    | Item.EnhNovaCannon
-    | Item.Firepult
-    | Item.YoloCannon
-    | Item.PotentialCannon
-    | Item.WarpCannon
-    | Item.CldNovaCannon
-    | Item.NullCannon
-    | Item.ImpPotentialCannon
-    | Item.Disintegrator
-    | Item.CoreCannon
-    | Item.SigixShearcannon
-    | Item.DrainedLcannon
-    | Item.Lcannon
-    | Item.ZioAlphaCannonMkIi
-    | Item.Bfg9kVortexEdition -> Weapon Cannon
-    | Item.AssaultRifle
-    | Item.AsbRifle
-    | Item.LgtAssaultRifle
-    | Item.HvyAssaultRifle
-    | Item.Autogun
-    | Item.Shotgun
-    | Item.BattleRifle
-    | Item.AsbHeavyRifle
-    | Item.ImpAssaultRifle
-    | Item.Minigun
-    | Item.HpwShotgun
-    | Item.AsbShotgun
-    | Item.BarrageGun
-    | Item.EnhAutogun
-    | Item.GaussRifle
-    | Item.AsbGaussRifle
-    | Item.FlakGun
-    | Item.PrcAssaultRifle
-    | Item.HvyBattleRifle
-    | Item.MakShrapnelGun
-    | Item.CoilGun
-    | Item.HypGaussRifle
-    | Item.HvyMachineGun
-    | Item.ImpHeavyMachineGun
-    | Item.ComGaussRifle
-    | Item.XlAutogunSubcomponent
-    | Item.KePenetrator
-    | Item.HypCoilGun
-    | Item.ImpKePenetrator
-    | Item.EnhCoilGun
-    | Item.ComCoilGun
-    | Item.Railgun
-    | Item.AdvKePenetrator
-    | Item.LinkedAutogun
-    | Item.Awsgauss
-    | Item.HypRailgun
-    | Item.HelicalRailgun
-    | Item.ComRailgun
-    | Item.XlAutogunArray
-    | Item.AshsBoomstick
-    | Item.BrawnsBoregun
-    | Item.Multirail
-    | Item.HypMultirail
-    | Item.Shad0sSniperRifle
-    | Item.A3sSniperRifle -> Weapon Gun
-    | Item.LgtCannon
-    | Item.ImpLightCannon
-    | Item.BattleCannon
-    | Item.AssaultCannon
-    | Item.HvyAssaultCannon
-    | Item.FlakCannon
-    | Item.AdvAssaultCannon
-    | Item.GaussCannon
-    | Item.SlugCannon
-    | Item.MniAssaultCannon
-    | Item.MagneticAccelerationCannon
-    | Item.HvyFlakCannon
-    | Item.BoreCannon
-    | Item.AntimatterCannon
-    | Item.MassDriver
-    | Item.HvyMassDriver
-    | Item.EnhGaussCannon
-    | Item.HypGaussCannon
-    | Item.TrirailAccelerator
-    | Item.HardcellCannon
-    | Item.HvyGaussCannon
-    | Item.HypMassDriver
-    | Item.HvyAutocannon
-    | Item.DasCannon
-    | Item.LgtAntimatterCannon
-    | Item.LinearAccelerator
-    | Item.HvyLinearAccelerator
-    | Item.ComMassDriver
-    | Item.HvyHardcellCannon
-    | Item.ComLinearAccelerator
-    | Item.HypLinearAccelerator
-    | Item.HclLinearAccelerator
-    | Item.GravitonCannon
-    | Item.BlastCannon
-    | Item.P13cesGatlingFlakker
-    | Item.Awsautocannon
-    | Item.Perforator
-    | Item.OmegaCannon -> Weapon Cannon
-    | Item.EmpBlaster
-    | Item.ShockBombLauncher
-    | Item.AdvEmpBlaster
-    | Item.ProtonMissileLauncher
-    | Item.ImpProtonMissileLauncher
-    | Item.GuiEmpBlaster
-    | Item.HvyShockBombLauncher
-    | Item.TeslaBombLauncher
-    | Item.HvyProtonMissileLauncher
-    | Item.ComTeslaBombLauncher
-    | Item.GammaBombArray
-    | Item.EnhGammaBombArray
-    | Item.GrenadeLauncher
-    | Item.RocketLauncher
-    | Item.MniGrenadeLauncher
-    | Item.ImpGrenadeLauncher
-    | Item.MissileLauncher
-    | Item.ConcussiveRpg
-    | Item.Yiuf0sDoublenader
-    | Item.HvyRocketLauncher
-    | Item.HvyMissileLauncher
-    | Item.GuiMissileLauncher
-    | Item.PrcGrenadeLauncher
-    | Item.RocketArray
-    | Item.LrnMissileLauncher
-    | Item.ImpConcussiveRpg
-    | Item.PrcRocketLauncher
-    | Item.ScatterRocketArray
-    | Item.SmartbombLauncher
-    | Item.MniSmartbombLauncher
-    | Item.TiamatMissileLauncher
-    | Item.Thermoblaster
-    | Item.MicronukeLauncher
-    | Item.AdvConcussiveRpg
-    | Item.NeutronMissileLauncher
-    | Item.FusionBombLauncher
-    | Item.HellfireMissileLauncher
-    | Item.AdvMicronukeLauncher
-    | Item.TacticalQuantumWarhead
-    | Item.VortexCatalystActivator
-    | Item.ChainMissileLauncher
-    | Item.RagnarokMissileLauncher
-    | Item.PointSingularityLauncher
-    | Item.GuiMicronukeLauncher
-    | Item.NinteyNineTntsNukerbomber
-    | Item.ZbombDeliverySystem
-    | Item.SigixTerminator
-    | Item.SuperchargedSigixTerminator
-    | Item.ContainmentFacilitator
-    | Item.Detonator -> Weapon Launcher
-    | Item.DirtyDatajack
-    | Item.SpliceInjector
-    | Item.Datajack
-    | Item.ImpDatajack
-    | Item.AdvDatajack
-    | Item.RemoteDatajack
-    | Item.ImpRemoteDatajack
-    | Item.AdvRemoteDatajack
-    | Item.ExpRemoteDatajack
-    | Item.GuiRemoteDatajack
-    | Item.MerlnsWand
-    | Item.FieldLobotomyKit
-    | Item.MiningLaser
-    | Item.WeldingTorch
-    | Item.PlasmaCutter
-    | Item.ImpPlasmaCutter
-    | Item.Flamer
-    | Item.AsbFtorch
-    | Item.EnhFlamer
-    | Item.PlasmaFlamer
-    | Item.AsbPtorch
-    | Item.Run14sThrowingClaymores
-    | Item.Run14sThrowingClaymoresV3
-    | Item.Ad0rfsMagmablaster
-    | Item.StasisBeam
-    | Item.StasisProjector
-    | Item.ExpStasisProjector
-    | Item.MolecularDeconstructor -> Weapon Special
-    | Item.Hammer
-    | Item.Mace
-    | Item.Flail
-    | Item.Maul
-    | Item.AsbMaul
-    | Item.HvyHammer
-    | Item.HvyMace
-    | Item.HvyFlail
-    | Item.GreatMaul
-    | Item.PoweredHammer
-    | Item.MakHammer
-    | Item.PowerMaul
-    | Item.AsbPmaul
-    | Item.ImpactMace
-    | Item.ShockMaul
-    | Item.ThunderHammer
-    | Item.Compactor
-    | Item.GravityFlail
-    | Item.ClanksMallet
-    | Item.CoreStripper
-    | Item.MiningClaw
-    | Item.Ec_1
-    | Item.Katana
-    | Item.AsbBlade
-    | Item.Scythe
-    | Item.Axe
-    | Item.BladeSaw
-    | Item.Ec_3
-    | Item.Chainsword
-    | Item.Ripper
-    | Item.MakAxe
-    | Item.MakSword
-    | Item.GreatAxe
-    | Item.Greatsword
-    | Item.PowerSword
-    | Item.AsbPsword
-    | Item.Falx
-    | Item.CarbideSaw
-    | Item.Segregator
-    | Item.Tearclaws
-    | Item.Ec_5
-    | Item.PhasingSabre
-    | Item.PlasmaSword
-    | Item.IonicAxe
-    | Item.MniTearclaws
-    | Item.DualbladeSaw
-    | Item.Vibroblade
-    | Item.MolecularScythe
-    | Item.CentriumGreatsword
-    | Item.MasterTearclaws
-    | Item.Longsword1
-    | Item.Ec_7
-    | Item.Nanosword
-    | Item.ParticleCleaver
-    | Item.CentriumClaws
-    | Item.IcutusSwordlootmaker
-    | Item.IcutusSwordchoppy
-    | Item.VortexShredder
-    | Item.Ec_9
-    | Item.SigixBroadsword
-    | Item.Spear
-    | Item.MakSpear
-    | Item.Cra16sPointyStick
-    | Item.HvyPick
-    | Item.Lance
-    | Item.KineticSpear
-    | Item.ForceLance
-    | Item.PlasmaLance
-    | Item.EnhForceLance
-    | Item.VortexLance
-    | Item.Cra16sBehemothSlayer -> Weapon Melee
-    | Item.BladeTrap
-    | Item.SegregatorTrap
-    | Item.ExplosiveTrap
-    | Item.HeavyExplosiveTrap
-    | Item.TiamatBombTrap
-    | Item.FusionBombTrap
-    | Item.HellfireTrap
-    | Item.ArmageddonTrap
-    | Item.DirtyBombTrap
-    | Item.EmpTrap
-    | Item.ProtonBombTrap
-    | Item.TeslaBombTrap
-    | Item.GammaBombTrap
-    | Item.ShockTrap
-    | Item.EmSurgeTrap
-    | Item.FireTrap
-    | Item.StasisTrap
-    | Item.SignalGenerator
-    | Item.SelfdestructInterrupter
-    | Item.SapperCharge
-    | Item.Deployasentry
-    | Item.GalModule
-    | Item.PortableAfg
-    | Item.SgempPrototype
-    | Item.TerrabombDerivative
-    | Item.SigixContainmentPod
-    | Item.SigixCorpse
-    | Item.Meganuke
-    | Item.GammaRefractor -> Misc
+    | Item.``Matter`` -> Matter
+    | Item.``Data Core``
+    | Item.``Derelict Log``
+    | Item.``Schematic Archive``
+    | Item.``Imprinter Data Core``
+    | Item.``A2 Data Core``
+    | Item.``A7 Data Core``
+    | Item.``MAIN_C Data Core``
+    | Item.``Architect Data Core``
+    | Item.``Scrap`` -> Misc
+    | Item.``Protomatter`` -> Matter
+    | Item.``Ion Engine``
+    | Item.``Lgt_ Ion Engine``
+    | Item.``Backup Power I``
+    | Item.``Imp_ Ion Engine``
+    | Item.``Rnf_ Ion Engine``
+    | Item.``Hvy_ Ion Engine``
+    | Item.``Cld_ Ion Engine``
+    | Item.``Sub_ Power Source``
+    | Item.``Deuterium Engine``
+    | Item.``Lgt_ Deuterium Engine``
+    | Item.``Backup Power III``
+    | Item.``Nuclear Core``
+    | Item.``Lgt_ Nuclear Core``
+    | Item.``Imp_ Deuterium Engine``
+    | Item.``Rnf_ Deuterium Engine``
+    | Item.``Hyb_ Deuterium Engine``
+    | Item.``Hvy_ Deuterium Engine``
+    | Item.``Cld_ Deuterium Engine``
+    | Item.``Enh_ Nuclear Core``
+    | Item.``Mic_ Nuclear Core``
+    | Item.``Mak_ Power Source``
+    | Item.``Angular Momentum Engine``
+    | Item.``Lgt_ Angular Momentum Engine``
+    | Item.``F-cell Engine``
+    | Item.``Fission Core``
+    | Item.``Lgt_ Fission Core``
+    | Item.``Hyb_ Fission Core``
+    | Item.``Fusion Compressor``
+    | Item.``Cold Fusion Reactor``
+    | Item.``Neutrino Core``
+    | Item.``Lgt_ Neutrino Core``
+    | Item.``Rnf_ Fission Core``
+    | Item.``Enh_ Fission Core``
+    | Item.``Cld_ Fission Core``
+    | Item.``Mic_ Fission Core``
+    | Item.``Fusion Reactor``
+    | Item.``Antimatter Reactor``
+    | Item.``Lgt_ Antimatter Reactor``
+    | Item.``Rnf_ Antimatter Reactor``
+    | Item.``Hyb_ Antimatter Reactor``
+    | Item.``Backup Power VII``
+    | Item.``Hvy_ Antimatter Reactor``
+    | Item.``Mni_ Fusion Reactor``
+    | Item.``Imp_ Fusion Compressor``
+    | Item.``Mic_ Neutrino Core``
+    | Item.``Zio_ Light DM Reactor``
+    | Item.``Zio_ Heavy DM Reactor``
+    | Item.``Particle Reactor``
+    | Item.``Lgt_ Particle Reactor``
+    | Item.``Mic_ Antimatter Reactor``
+    | Item.``Com_ Particle Reactor``
+    | Item.``Cld_ Antimatter Reactor``
+    | Item.``Graviton Reactor``
+    | Item.``Asb_ Flux Generator``
+    | Item.``Quantum Reactor``
+    | Item.``Lgt_ Quantum Reactor``
+    | Item.``Rnf_ Quantum Reactor``
+    | Item.``Imp_ Quantum Reactor``
+    | Item.``Zero-point Reactor``
+    | Item.``Vortex Chain Reactor``
+    | Item.``Singularity Reactor`` -> Power
+    | Item.``Matter Drive``
+    | Item.``Meta Core``
+    | Item.``SE_PO1`` -> Utility Device
+    | Item.``Lgt_ Treads``
+    | Item.``Imp_ Treads``
+    | Item.``Spk_ Treads``
+    | Item.``Arm_ Treads``
+    | Item.``Adv_ Treads``
+    | Item.``Med_ Treads``
+    | Item.``Imp_ Medium Treads``
+    | Item.``Spk_ Medium Treads``
+    | Item.``Arm_ Medium Treads``
+    | Item.``Hvy_ Treads``
+    | Item.``Adv_ Medium Treads``
+    | Item.``Enh_ Armored Medium Treads``
+    | Item.``Imp_ Heavy Treads``
+    | Item.``Hvy_ Siege Treads``
+    | Item.``Spk_ Heavy Treads``
+    | Item.``Biometal Medium Treads``
+    | Item.``Arm_ Heavy Treads``
+    | Item.``Adv_ Heavy Treads``
+    | Item.``Imp_ Heavy Siege Treads``
+    | Item.``Centrium Heavy Treads``
+    | Item.``Megatreads``
+    | Item.``Biometal Heavy Treads``
+    | Item.``Exp_ Biometal Heavy Treads``
+    | Item.``Enh_ Armored Heavy Treads``
+    | Item.``Adv_ Heavy Siege Treads``
+    | Item.``Hdn_ Centrium Heavy Treads``
+    | Item.``Exp_ Biometal Medium Treads`` -> Propulsion Treads
+    | Item.``Aluminum Leg``
+    | Item.``Imp_ Aluminum Leg``
+    | Item.``Carbon-fiber Leg``
+    | Item.``Titanium Leg``
+    | Item.``VSS Leg``
+    | Item.``Imp_ Carbon-fiber Leg``
+    | Item.``Imp_ Titanium Leg``
+    | Item.``Lgt_ Armored Exoskeleton``
+    | Item.``Mak_ Leg``
+    | Item.``Flexi-carbon Leg``
+    | Item.``Arm_ Leg``
+    | Item.``Imp_ VSS Leg``
+    | Item.``Zio_ Composite Leg I``
+    | Item.``Med_ Armored Exoskeleton``
+    | Item.``Enh_ Flexi-carbon Leg``
+    | Item.``Enh_ Armored Leg``
+    | Item.``Arachnoskeleton``
+    | Item.``Myomer Leg``
+    | Item.``Adv_ VSS Leg``
+    | Item.``Adv_ Myomer Leg``
+    | Item.``Exp_ Flexi-carbon Leg``
+    | Item.``Zio_ Composite Leg II``
+    | Item.``Cargo Legs``
+    | Item.``Etherial Tendrils``
+    | Item.``Biometal Leg``
+    | Item.``Hvy_ Armored Exoskeleton``
+    | Item.``Enh_ Biometal Leg``
+    | Item.``Exp_ Myomer Leg``
+    | Item.``Tripod Weapons Platform``
+    | Item.``T_R_O_L_L_ Exoskeleton``
+    | Item.``Asb_ Alloy Leg``
+    | Item.``Centrium Leg``
+    | Item.``Hdn_ Centrium Leg``
+    | Item.``Exp_ Biometal Leg``
+    | Item.``Sigix Exoskeleton``
+    | Item.``Zio_ Supercomposite Leg``
+    | Item.``Potential Leg``
+    | Item.``Myomer Exoskeleton``
+    | Item.``SE_PR1`` -> Propulsion Legs
+    | Item.``Wheel``
+    | Item.``Com_ Wheel``
+    | Item.``Arm_ Wheel``
+    | Item.``Sub_ Monowheel``
+    | Item.``Arm_ Huge Wheel``
+    | Item.``Centrium Wheel``
+    | Item.``Hdn_ Centrium Wheel`` -> Propulsion Wheel
+    | Item.``Hover Unit``
+    | Item.``Backup Propulsion I``
+    | Item.``Imp_ Hover Unit``
+    | Item.``Airjet``
+    | Item.``Aerolev Unit``
+    | Item.``Asb_ Hover Unit``
+    | Item.``Backup Propulsion III``
+    | Item.``Gravmag System``
+    | Item.``Asb_ Hover System``
+    | Item.``Imp_ Airjet``
+    | Item.``Cld_ Airjet``
+    | Item.``Imp_ Gravmag System``
+    | Item.``Cld_ Aerolev Unit``
+    | Item.``Cmb_ Airjet``
+    | Item.``Gravmag Array``
+    | Item.``Mak_ Hover Unit``
+    | Item.``Zio_ Glidesys I``
+    | Item.``Antigrav System``
+    | Item.``Gyrokinetic Inverter``
+    | Item.``Linear Gravjet``
+    | Item.``Cld_ Gravmag System``
+    | Item.``Cmb_ Gravmag System``
+    | Item.``Imp_ Antigrav System``
+    | Item.``Imp_ Gyrokinetic Inverter``
+    | Item.``Imp_ Linear Gravjet``
+    | Item.``Backup Propulsion VII``
+    | Item.``Zio_ Glidesys II``
+    | Item.``Cld_ Antigrav System``
+    | Item.``Cmb_ Antigrav System``
+    | Item.``Antigrav Array``
+    | Item.``Exp_ Gyrokinetic Inverter``
+    | Item.``Cld_ Linear Gravjet``
+    | Item.``Cmb_ Linear Gravjet`` -> Propulsion Hover
+    | Item.``Flight Unit``
+    | Item.``VTOL Module``
+    | Item.``Imp_ Flight Unit``
+    | Item.``Cesium-ion Thruster``
+    | Item.``Surge Thruster``
+    | Item.``Imp_ VTOL Module``
+    | Item.``Xenon Bombardment Thruster``
+    | Item.``Imp_ Cesium-ion Thruster``
+    | Item.``Cld_ VTOL Module``
+    | Item.``Mak_ Flight Unit``
+    | Item.``Nuclear Pulse Thruster``
+    | Item.``Imp_ Surge Thruster``
+    | Item.``Mni_ Nuclear Pulse Thruster``
+    | Item.``Cld_ Cesium-ion Thruster``
+    | Item.``Biomechanical Wings``
+    | Item.``Field Propulsion Drive``
+    | Item.``Cld_ Nuclear Pulse Thruster``
+    | Item.``Exp_ Cesium-ion Thruster``
+    | Item.``Nuclear Pulse Array``
+    | Item.``Mak_ Microthruster``
+    | Item.``Impulse Thruster``
+    | Item.``Adv_ Surge Thruster``
+    | Item.``Cld_ Field Propulsion Drive``
+    | Item.``Field Propulsion Array``
+    | Item.``Diametric Drive``
+    | Item.``Flying Fortress v7``
+    | Item.``T-thruster``
+    | Item.``Integrated Tracker Drive``
+    | Item.``Etherial Propulsion``
+    | Item.``Q-thruster``
+    | Item.``Electron Diverter``
+    | Item.``Imp_ Diametric Drive``
+    | Item.``Cld_ Impulse Thruster``
+    | Item.``Impulse Thruster Array``
+    | Item.``Flightbrick``
+    | Item.``Imp_ Q-thruster``
+    | Item.``Cld_ Q-thruster``
+    | Item.``Exp_ Q-thruster`` -> Propulsion Flight
+    | Item.``Scrap Engine`` 
+    | Item.``Arm_ Scrap Engine``
+    | Item.``Desublimator``
+    | Item.``Power Amplifier``
+    | Item.``Adv_ Power Amplifier``
+    | Item.``Exp_ Power Amplifier``
+    | Item.``Thermal Generator``
+    | Item.``Imp_ Thermal Generator``
+    | Item.``Adv_ Thermal Generator``
+    | Item.``Exp_ Thermal Generator``
+    | Item.``Cryofiber Web``
+    | Item.``Imp_ Cryofiber Web``
+    | Item.``Adv_ Cryofiber Web``
+    | Item.``Exp_ Cryofiber Web``
+    | Item.``Heat Sink``
+    | Item.``Imp_ Heat Sink``
+    | Item.``Adv_ Heat Sink``
+    | Item.``Exp_ Heat Sink``
+    | Item.``Cooling System``
+    | Item.``Imp_ Cooling System``
+    | Item.``Adv_ Cooling System``
+    | Item.``Exp_ Cooling System``
+    | Item.``Coolant Network``
+    | Item.``Asb_ Nanovents``
+    | Item.``2N-1CE's Frost Array``
+    | Item.``Disposable Heat Sink``
+    | Item.``Coolant Injector``
+    | Item.``Imp_ Coolant Injector``
+    | Item.``Adv_ Coolant Injector``
+    | Item.``Exp_ Coolant Injector``
+    | Item.``Sml_ Storage Unit``
+    | Item.``Med_ Storage Unit``
+    | Item.``Lrg_ Storage Unit``
+    | Item.``Hcp_ Storage Unit``
+    | Item.``Huge Storage Unit``
+    | Item.``Cargo Storage Unit``
+    | Item.``Humpback``
+    | Item.``Lightpack 2_0``
+    | Item.``Sml_ Battery``
+    | Item.``Med_ Battery``
+    | Item.``Lrg_ Battery``
+    | Item.``Hcp_ Battery``
+    | Item.``Com_ Battery``
+    | Item.``Energy Well``
+    | Item.``Imp_ Energy Well``
+    | Item.``Adv_ Energy Well``
+    | Item.``Exp_ Energy Well``
+    | Item.``Zio_ Biocell``
+    | Item.``Asb_ Biocell Array``
+    | Item.``Zio_ Biocell Array``
+    | Item.``Superbattery``
+    | Item.``Sml_ Matter Pod``
+    | Item.``Med_ Matter Pod``
+    | Item.``Lrg_ Matter Pod``
+    | Item.``Hcp_ Matter Pod``
+    | Item.``Com_ Matter Pod``
+    | Item.``Matter Compressor``
+    | Item.``Imp_ Matter Compressor``
+    | Item.``Adv_ Matter Compressor``
+    | Item.``Exp_ Matter Compressor``
+    | Item.``YI-UF0's Bottomless Matter Pit``
+    | Item.``Weight Redist_ System``
+    | Item.``Adv_ Weight Redist_ System``
+    | Item.``Gravity Neutralizer``
+    | Item.``Adv_ Gravity Neutralizer``
+    | Item.``Quantum Shading Machine``
+    | Item.``Asb_ Suspension Frame``
+    | Item.``Adv_ Quantum Shading Machine``
+    | Item.``Asb_ Metafiber Network``
+    | Item.``Zio_ Metafield Generator``
+    | Item.``ST Field Compressor``
+    | Item.``Structural Scanner``
+    | Item.``Trap Scanner``
+    | Item.``Imp_ Trap Scanner``
+    | Item.``Mak_ Trap Scanner``
+    | Item.``Adv_ Trap Scanner``
+    | Item.``Machine Analyzer``
+    | Item.``Triangulator``
+    | Item.``Visual Processing Unit``
+    | Item.``Sub_ Optics``
+    | Item.``Adv_ Visual Processing Unit``
+    | Item.``Enh_ Optical Array``
+    | Item.``Exp_ Optical Array``
+    | Item.``Spectral Analyzer``
+    | Item.``Sensor Array``
+    | Item.``Imp_ Sensor Array``
+    | Item.``Adv_ Sensor Array``
+    | Item.``Lrn_ Sensor Array``
+    | Item.``Mak_ Sensor Array``
+    | Item.``Exp_ Sensor Array``
+    | Item.``Signal Interpreter``
+    | Item.``Imp_ Signal Interpreter``
+    | Item.``Adv_ Signal Interpreter``
+    | Item.``Exp_ Signal Interpreter``
+    | Item.``Active Sensor Suite``
+    | Item.``Terrain Scanner``
+    | Item.``Imp_ Terrain Scanner``
+    | Item.``Adv_ Terrain Scanner``
+    | Item.``Mak_ Terrain Scanner``
+    | Item.``Lrn_ Terrain Scanner``
+    | Item.``Exp_ Terrain Scanner``
+    | Item.``Surveybot 24 Scanner``
+    | Item.``Terrain Scan Processor``
+    | Item.``Imp_ Terrain Scan Processor``
+    | Item.``Mak_ Terrain Scan Processor``
+    | Item.``Adv_ Terrain Scan Processor``
+    | Item.``Exp_ Terrain Scan Processor``
+    | Item.``Surveybot 24 Chip``
+    | Item.``Seismic Detector``
+    | Item.``Transport Network Coupler``
+    | Item.``Modified TNC``
+    | Item.``Encrypted Comm Array``
+    | Item.``0b10 Decoder Chip _Generic_``
+    | Item.``0b10 Decoder Chip _Looter_``
+    | Item.``0b10 Decoder Chip _Scout_``
+    | Item.``0b10 Decoder Chip _Skirmisher_``
+    | Item.``0b10 Alert Chip``
+    | Item.``Salvage Targeting Computer``
+    | Item.``Imp_ Salvage Targeting Computer``
+    | Item.``Mak_ Salvage Targeting Computer``
+    | Item.``Adv_ Salvage Targeting Computer``
+    | Item.``Asb_ Combat Suite``
+    | Item.``Targeting Computer``
+    | Item.``Imp_ Targeting Computer``
+    | Item.``Adv_ Targeting Computer``
+    | Item.``Exp_ Targeting Computer``
+    | Item.``Multitargeting Array``
+    | Item.``Tactical Coordination Suite``
+    | Item.``Melee Analysis Suite``
+    | Item.``Imp_ Melee Analysis Suite``
+    | Item.``Adv_ Melee Analysis Suite``
+    | Item.``Exp_ Melee Analysis Suite``
+    | Item.``Launcher Guidance Computer``
+    | Item.``Imp_ Launcher Guidance Computer``
+    | Item.``Adv_ Launcher Guidance Computer``
+    | Item.``Weapon Mount``
+    | Item.``Target Analyzer``
+    | Item.``Imp_ Target Analyzer``
+    | Item.``Adv_ Target Analyzer``
+    | Item.``Exp_ Target Analyzer``
+    | Item.``Core Analyzer``
+    | Item.``Exp_ Core Analyzer``
+    | Item.``Armor Integrity Analyzer``
+    | Item.``Imp_ Armor Integrity Analyzer``
+    | Item.``Exp_ Armor Integrity Analyzer``
+    | Item.``Recoil Stabilizer``
+    | Item.``Recoil Nullifier``
+    | Item.``Matter Filter``
+    | Item.``Prc_ Matter Filter``
+    | Item.``Energy Filter``
+    | Item.``Prc_ Energy Filter``
+    | Item.``Particle Charger``
+    | Item.``Imp_ Particle Charger``
+    | Item.``Adv_ Particle Charger``
+    | Item.``Particle Accelerator``
+    | Item.``Imp_ Particle Accelerator``
+    | Item.``Adv_ Particle Accelerator``
+    | Item.``Kinecellerator``
+    | Item.``Imp_ Kinecellerator``
+    | Item.``Adv_ Kinecellerator``
+    | Item.``Heavy Servo Lattice``
+    | Item.``VL-GR5's Timing Chip``
+    | Item.``Launcher Loader``
+    | Item.``Quantum Capacitor``
+    | Item.``Weapon Cycler``
+    | Item.``Imp_ Weapon Cycler``
+    | Item.``Adv_ Weapon Cycler``
+    | Item.``Exp_ Weapon Cycler``
+    | Item.``Microactuators``
+    | Item.``Nanoactuators``
+    | Item.``Femtoactuators``
+    | Item.``Actuator Array``
+    | Item.``Imp_ Actuator Array``
+    | Item.``Adv_ Actuator Array``
+    | Item.``Exp_ Actuator Array``
+    | Item.``Force Booster``
+    | Item.``Imp_ Force Booster``
+    | Item.``Adv_ Force Booster``
+    | Item.``Stasis Canceller``
+    | Item.``Transmission Jammer``
+    | Item.``Mak_ Transmission Jammer``
+    | Item.``Imp_ Transmission Jammer``
+    | Item.``Adv_ Transmission Jammer``
+    | Item.``Exp_ Transmission Jammer``
+    | Item.``ECM Suite``
+    | Item.``Mak_ ECM Suite``
+    | Item.``Adv_ ECM Suite``
+    | Item.``Exp_ ECM Suite``
+    | Item.``Active Sensor Spoofer``
+    | Item.``Reaction Control System``
+    | Item.``Imp_ Reaction Control System``
+    | Item.``Adv_ Reaction Control System``
+    | Item.``Exp_ Reaction Control System``
+    | Item.``Phase Shifter``
+    | Item.``Imp_ Phase Shifter``
+    | Item.``Adv_ Phase Shifter``
+    | Item.``Exp_ Phase Shifter``
+    | Item.``Cloaking Device``
+    | Item.``Mak_ Cloaking Device``
+    | Item.``Imp_ Cloaking Device``
+    | Item.``Adv_ Cloaking Device``
+    | Item.``Exp_ Cloaking Device``
+    | Item.``Cloak of Protection``
+    | Item.``5H-AD0's Cloak``
+    | Item.``Core Shielding``
+    | Item.``Imp_ Core Shielding``
+    | Item.``Exp_ Core Shielding``
+    | Item.``Power Shielding``
+    | Item.``Imp_ Power Shielding``
+    | Item.``Exp_ Power Shielding``
+    | Item.``Propulsion Shielding``
+    | Item.``Imp_ Propulsion Shielding``
+    | Item.``Exp_ Propulsion Shielding``
+    | Item.``Utility Shielding``
+    | Item.``Imp_ Utility Shielding``
+    | Item.``Exp_ Utility Shielding``
+    | Item.``Weapon Shielding``
+    | Item.``Imp_ Weapon Shielding``
+    | Item.``Exp_ Weapon Shielding``
+    | Item.``Zio_ Weapon Casing``
+    | Item.``Backup Plating I``
+    | Item.``Backup Plating III``
+    | Item.``Backup Plating VII``
+    | Item.``Lgt_ Armor Plating``
+    | Item.``Med_ Armor Plating``
+    | Item.``Hvy_ Armor Plating``
+    | Item.``Zio_ Light Carapace``
+    | Item.``Zio_ Heavy Carapace``
+    | Item.``Hrd_ Light Armor Plating``
+    | Item.``Hrd_ Medium Armor Plating``
+    | Item.``Hrd_ Heavy Armor Plating``
+    | Item.``Imp_ Light Armor Plating``
+    | Item.``Imp_ Medium Armor Plating``
+    | Item.``Imp_ Heavy Armor Plating``
+    | Item.``Lyr_ Light Armor Plating``
+    | Item.``Mak_ Armor Plating``
+    | Item.``Lyr_ Medium Armor Plating``
+    | Item.``Lyr_ Heavy Armor Plating``
+    | Item.``Gun Armor``
+    | Item.``Centrium Light Armor Plating``
+    | Item.``Centrium Medium Armor Plating``
+    | Item.``Centrium Heavy Armor Plating``
+    | Item.``Centrium Linked Plating``
+    | Item.``Reactive Plating``
+    | Item.``Med_ Reactive Plating``
+    | Item.``Mak_ Kinetic Plating``
+    | Item.``Hvy_ Reactive Plating``
+    | Item.``Reflective Plating``
+    | Item.``Med_ Reflective Plating``
+    | Item.``Mak_ Thermal Plating``
+    | Item.``Hvy_ Reflective Plating``
+    | Item.``8R-AWN's Armor_TH``
+    | Item.``8R-AWN's Armor_EX``
+    | Item.``Insulated Plating``
+    | Item.``Med_ Insulated Plating``
+    | Item.``Hvy_ Insulated Plating``
+    | Item.``Damper Plating``
+    | Item.``Zio_ Shade Carapace``
+    | Item.``Zio_ Shade Armor``
+    | Item.``Asb_ Alloy Armor``
+    | Item.``Mak_ Ablative Armor``
+    | Item.``Active Cooling Armor``
+    | Item.``Scrap Shield``
+    | Item.``Powered Armor``
+    | Item.``Imp_ Powered Armor``
+    | Item.``Adv_ Powered Armor``
+    | Item.``Exp_ Powered Armor``
+    | Item.``1C-UTU's Buckler``
+    | Item.``Lgt_ Regenerative Plating``
+    | Item.``Med_ Regenerative Plating``
+    | Item.``Hvy_ Regenerative Plating``
+    | Item.``SHELL Armor``
+    | Item.``Phase Armor``
+    | Item.``Graphene Brace``
+    | Item.``Focal Shield``
+    | Item.``Imp_ Focal Shield``
+    | Item.``Adv_ Focal Shield``
+    | Item.``Exp_ Focal Shield``
+    | Item.``Thermal Shield``
+    | Item.``Imp_ Thermal Shield``
+    | Item.``Adv_ Thermal Shield``
+    | Item.``Exp_ Thermal Shield``
+    | Item.``Thermal Barrier``
+    | Item.``Beam Splitter``
+    | Item.``Thermal Defense Suite``
+    | Item.``Imp_ Thermal Defense Suite``
+    | Item.``Adv_ Thermal Defense Suite``
+    | Item.``Exp_ Thermal Defense Suite``
+    | Item.``Shock Absorption System``
+    | Item.``Imp_ Shock Absorption System``
+    | Item.``Exp_ Shock Absorption System``
+    | Item.``EM Disruption Field``
+    | Item.``Adv_ EM Disruption Field``
+    | Item.``Exp_ EM Disruption Field``
+    | Item.``ME-RLN's Chromatic Screen``
+    | Item.``Hardlight Generator``
+    | Item.``Imp_ Hardlight Generator``
+    | Item.``Adv_ Hardlight Generator``
+    | Item.``Exp_ Hardlight Generator``
+    | Item.``Shield Generator``
+    | Item.``Imp_ Shield Generator``
+    | Item.``Adv_ Shield Generator``
+    | Item.``Exp_ Shield Generator``
+    | Item.``Force Field``
+    | Item.``Imp_ Force Field``
+    | Item.``Adv_ Force Field``
+    | Item.``Exp_ Force Field``
+    | Item.``7V-RTL's Ultimate Field``
+    | Item.``Vortex Field Projector``
+    | Item.``Remote Shield``
+    | Item.``Imp_ Remote Shield``
+    | Item.``Adv_ Remote Shield``
+    | Item.``Remote Force Field``
+    | Item.``Imp_ Remote Force Field``
+    | Item.``Energy Mantle``
+    | Item.``Imp_ Energy Mantle``
+    | Item.``AEGIS Remote Shield``
+    | Item.``Phase Redirector``
+    | Item.``Point Defense System``
+    | Item.``Point Defense Array``
+    | Item.``Antimissile System``
+    | Item.``EX Chip 1``
+    | Item.``Hacking Suite``
+    | Item.``Mak_ Hacking Suite``
+    | Item.``Imp_ Hacking Suite``
+    | Item.``Adv_ Hacking Suite``
+    | Item.``Exp_ Hacking Suite``
+    | Item.``System Mapper``
+    | Item.``Deep Network Scanner``
+    | Item.``Architect God Chip A``
+    | Item.``EX Chip 2``
+    | Item.``System Shield``
+    | Item.``Mak_ System Shield``
+    | Item.``Imp_ System Shield``
+    | Item.``Adv_ System Shield``
+    | Item.``Exp_ System Shield``
+    | Item.``Ghost Barrier``
+    | Item.``Quantum Router``
+    | Item.``Architect God Chip D``
+    | Item.``Authchip _R_NC_``
+    | Item.``Authchip _R_Combat_``
+    | Item.``Authchip _Power_``
+    | Item.``Authchip _Propulsion_``
+    | Item.``Authchip _Device_``
+    | Item.``Authchip _Storage_``
+    | Item.``Authchip _Processor_``
+    | Item.``Authchip _Armor_``
+    | Item.``Authchip _Weapon_``
+    | Item.``Relay Coupler _NC_``
+    | Item.``Relay Coupler _C_``
+    | Item.``Relay Coupler _Swarmer_``
+    | Item.``Relay Coupler _Cutter_``
+    | Item.``Relay Coupler _Grunt_``
+    | Item.``Relay Coupler _Brawler_``
+    | Item.``Relay Coupler _Duelist_``
+    | Item.``Relay Coupler _Sentry_``
+    | Item.``Relay Coupler _Demolisher_``
+    | Item.``Relay Coupler _Specialist_``
+    | Item.``Relay Coupler _Hunter_``
+    | Item.``Relay Coupler _Heavy_``
+    | Item.``Relay Coupler _Behemoth_``
+    | Item.``Relay Coupler _Programmer_``
+    | Item.``Relay Coupler _Proto_``
+    | Item.``Skeleton Box``
+    | Item.``01-MTF's Autohacker``
+    | Item.``Component Analysis Suite``
+    | Item.``Imp_ Component Analysis Suite``
+    | Item.``Adv_ Component Analysis Suite``
+    | Item.``Dynamic Insulation System``
+    | Item.``Imp_ Dynamic Insulation System``
+    | Item.``Adv_ Dynamic Insulation System``
+    | Item.``System Guard``
+    | Item.``Imp_ System Guard``
+    | Item.``Exp_ System Guard``
+    | Item.``Corruption Screen``
+    | Item.``Imp_ Corruption Screen``
+    | Item.``Adv_ Corruption Screen``
+    | Item.``System Restoration Module``
+    | Item.``Mak_ System Restoration Module``
+    | Item.``Imp_ System Restoration Module``
+    | Item.``Adv_ System Restoration Module``
+    | Item.``System Purifier``
+    | Item.``Exp_ System Purifier``
+    | Item.``Tractor Beam``
+    | Item.``Hpw_ Tractor Beam``
+    | Item.``Lrn_ Tractor Beam``
+    | Item.``Mobile Refinery Mk_ CCLXVII``
+    | Item.``Trap Extractor``
+    | Item.``Imp_ Trap Extractor``
+    | Item.``Adv_ Trap Extractor``
+    | Item.``Trap Reconfigurator``
+    | Item.``Recalibrator``
+    | Item.``Imp_ Recalibrator``
+    | Item.``Adv_ Recalibrator``
+    | Item.``Field Recycling Unit``
+    | Item.``Imp_ Field Recycling Unit``
+    | Item.``Adv_ Field Recycling Unit``
+    | Item.``Exp_ Field Recycling Unit``
+    | Item.``Drone Bay``
+    | Item.``Z-Drone Bay``
+    | Item.``Mni_ Drone Bay``
+    | Item.``Mapping Drone Bay``
+    | Item.``Adv_ Drone Bay``
+    | Item.``Bomb Drone Bay``
+    | Item.``Thief Drone Bay``
+    | Item.``Decoy Drone Bay``
+    | Item.``Splice Drone Bay``
+    | Item.``Combat Drone Bay``
+    | Item.``Assault Drone Bay``
+    | Item.``Stealth Drone Bay``
+    | Item.``Swarm Drone Bay``
+    | Item.``Supersonic Drone Bay``
+    | Item.``Sensor Drone Bay``
+    | Item.``Hacking Drone Bay``
+    | Item.``Minesniffer Drone Bay``
+    | Item.``Army-in-a-Box``
+    | Item.``Wardrone Bay``
+    | Item.``Cobbler Unit``
+    | Item.``Bomb Factory No_ 2``
+    | Item.``Mobile Assembly Unit``
+    | Item.``Heart of Steel``
+    | Item.``GOLEM Unit``
+    | Item.``PSU Rigger``
+    | Item.``Phasing AFG``
+    | Item.``AS-neutralizer No_ 17b``
+    | Item.``V3-11A's Pendant``
+    | Item.``Chronowheel``
+    | Item.``Power Bank``
+    | Item.``Rainbow Chip``
+    | Item.``VL-GR5's Exoskeleton _Deathgrip_``
+    | Item.``Dimensional Node Initializer``
+    | Item.``Transdimensional Reconstructor``
+    | Item.``Hpw_ Transdimensional Reconstructor``
+    | Item.``Supercharged TR``
+    | Item.``Core Expander``
+    | Item.``Core Regenerator``
+    | Item.``Integrity Redistributor``
+    | Item.``Integrated Dissipator``
+    | Item.``Supercharged Integrated Dissipator``
+    | Item.``Integrated Thermoelectric Network``
+    | Item.``Integrated Reactor``
+    | Item.``Supercharged Integrated Reactor``
+    | Item.``Integrated Mediator``
+    | Item.``Core Membrane``
+    | Item.``Navigation Efficiency Matrix``
+    | Item.``Core Reset Matrix``
+    | Item.``Subatomic Replicator``
+    | Item.``Terrabomb``
+    | Item.``Core Physics Calibrator``
+    | Item.``Spacefold Activator``
+    | Item.``Microwarp Drive``
+    | Item.``LC Capacitor``
+    | Item.``LRC Armor``
+    | Item.``LRC Storage``
+    | Item.``LRC Energy Well``
+    | Item.``LRC Matter Compressor``
+    | Item.``LRC Boosters``
+    | Item.``LRC Insulator`` -> Utility Device
+    | Item.``EM Pulse Gun``
+    | Item.``Hvy_ EM Pulse Gun``
+    | Item.``EM Shotgun``
+    | Item.``Imp_ EM Shotgun``
+    | Item.``Shock Rifle``
+    | Item.``Riot Gun``
+    | Item.``Hvy_ EM Shotgun``
+    | Item.``Lightning Gun``
+    | Item.``Hvy_ Riot Gun``
+    | Item.``Arc Projector``
+    | Item.``Prc_ Shock Rifle``
+    | Item.``Hpw_ Shock Rifle``
+    | Item.``Arc Thrower``
+    | Item.``Imp_ Lightning Gun``
+    | Item.``Tesla Rifle``
+    | Item.``Imp_ Arc Projector``
+    | Item.``Hvy_ Tesla Rifle``
+    | Item.``Hyp_ EM Gauss Rifle``
+    | Item.``Imp_ Arc Thrower``
+    | Item.``01-MTF's Shockpuncher``
+    | Item.``Gamma Rifle``
+    | Item.``Tachyon Dispersion Ray``
+    | Item.``Immobilizer``
+    | Item.``Modified EM Gauss Rifle``
+    | Item.``AWS_EX-DEC``
+    | Item.``Enh_ Gamma Rifle``
+    | Item.``Med_ Laser``
+    | Item.``Sml_ Laser``
+    | Item.``Backup Laser I``
+    | Item.``Beam Rifle``
+    | Item.``Particle Gun``
+    | Item.``Spread Laser``
+    | Item.``Imp_ Medium Laser``
+    | Item.``Sub_ Laser``
+    | Item.``Autobeam``
+    | Item.``Field Laser``
+    | Item.``Pulse Rifle``
+    | Item.``Backup Laser III``
+    | Item.``Hvy_ Particle Gun``
+    | Item.``Prc_ Beam Rifle``
+    | Item.``Adv_ Beam Rifle``
+    | Item.``Hvy_ Laser``
+    | Item.``Gatling Laser``
+    | Item.``Cld_ Pulse Rifle``
+    | Item.``Hpw_ Field Laser``
+    | Item.``Imp_ Spread Laser``
+    | Item.``Mak_ Laser``
+    | Item.``Plasma Rifle``
+    | Item.``Thermic Laser``
+    | Item.``Beamcaster``
+    | Item.``Force Rifle``
+    | Item.``Imp_ Heavy Laser``
+    | Item.``Storm Laser``
+    | Item.``Zio_ Laser-S``
+    | Item.``Wave Gun``
+    | Item.``Variable Charge Gun``
+    | Item.``Hvy_ Beamcaster``
+    | Item.``Cld_ Plasma Rifle``
+    | Item.``Enh_ Force Rifle``
+    | Item.``Hvy_ Gatling Laser``
+    | Item.``Zio_ Phaser-S``
+    | Item.``Phase Gun``
+    | Item.``Dispersion Rifle``
+    | Item.``Backup Laser VII``
+    | Item.``Plasma Storm``
+    | Item.``Adv_ Plasma Rifle``
+    | Item.``Hvy_ Wave Gun``
+    | Item.``Adv_ Variable Charge Gun``
+    | Item.``Cld_ Phase Gun``
+    | Item.``Lrn_ Gatling Laser``
+    | Item.``Warp Gun``
+    | Item.``Vortex Rifle``
+    | Item.``Zio_ Laser-M``
+    | Item.``AWS_Thermal``
+    | Item.``PD Laser``
+    | Item.``Quantum Rifle``
+    | Item.``Prc_ Phase Gun``
+    | Item.``Hvy_ Dispersion Rifle``
+    | Item.``Vortex Shotgun``
+    | Item.``Vortex Rail``
+    | Item.``Zio_ Phaser-M``
+    | Item.``Enh_ Quantum Rifle``
+    | Item.``Zio_ Laser-H``
+    | Item.``Hvy_ Quantum Rifle``
+    | Item.``Zio_ Phaser-H``
+    | Item.``Gatling Beam``
+    | Item.``Sigix Sheargun``
+    | Item.``Modified Sigix Sheargun`` -> Weapon Gun
+    | Item.``Lgt_ EM Pulse Cannon``
+    | Item.``EM Pulse Cannon``
+    | Item.``Imp_ EM Pulse Cannon``
+    | Item.``Proton Cannon``
+    | Item.``Lrn_ Proton Cannon``
+    | Item.``Disruptor Cannon``
+    | Item.``Hvy_ Proton Cannon``
+    | Item.``HERF Cannon``
+    | Item.``Hvy_ Disruptor Cannon``
+    | Item.``Cld_ Proton Cannon``
+    | Item.``Proton Burst Cannon``
+    | Item.``Com_ HERF Cannon``
+    | Item.``Latent Energy Streamer``
+    | Item.``NK-0LA's Tesla Doomcannon``
+    | Item.``EMDS``
+    | Item.``Hpw_ Disruptor Cannon``
+    | Item.``Beam Cannon``
+    | Item.``Particle Cannon``
+    | Item.``Adv_ Beam Cannon``
+    | Item.``Sub_ Beam Cannon``
+    | Item.``Hvy_ Particle Cannon``
+    | Item.``Ion Cannon``
+    | Item.``Plasma Cannon``
+    | Item.``Hvy_ Ion Cannon``
+    | Item.``Cld_ Particle Cannon``
+    | Item.``Phase Cannon``
+    | Item.``Hvy_ Plasma Cannon``
+    | Item.``Cld_ Plasma Cannon``
+    | Item.``Com_ Ion Cannon``
+    | Item.``Ion Burst Cannon``
+    | Item.``Adv_ Plasma Cannon``
+    | Item.``Hvy_ Phase Cannon``
+    | Item.``Neutron Cannon``
+    | Item.``Powered Cannon``
+    | Item.``Matter Neutralizer``
+    | Item.``Hvy_ Neutron Cannon``
+    | Item.``Lrn_ Phase Cannon``
+    | Item.``Cld_ Phase Cannon``
+    | Item.``Vortex Cannon``
+    | Item.``Gui_ Plasma Cannon``
+    | Item.``Nova Cannon``
+    | Item.``Imp_ Matter Neutralizer``
+    | Item.``Exp_ Thermic Cannon``
+    | Item.``Vortex Driver``
+    | Item.``Zio_ Alpha Cannon``
+    | Item.``Asb_ Focal Cannon``
+    | Item.``Enh_ Nova Cannon``
+    | Item.``Firepult``
+    | Item.``YOLO Cannon``
+    | Item.``Potential Cannon``
+    | Item.``Warp Cannon``
+    | Item.``Cld_ Nova Cannon``
+    | Item.``Null Cannon``
+    | Item.``Imp_ Potential Cannon``
+    | Item.``Multinova Projection Cannon``
+    | Item.``Disintegrator``
+    | Item.``Core Cannon``
+    | Item.``Sigix Shearcannon``
+    | Item.``Drained L-Cannon``
+    | Item.``L-Cannon``
+    | Item.``Zio_ Alpha Cannon Mk_ II``
+    | Item.``BFG-9k Vortex Edition`` -> Weapon Cannon
+    | Item.``Assault Rifle``
+    | Item.``Asb_ Rifle``
+    | Item.``Lgt_ Assault Rifle``
+    | Item.``Hvy_ Assault Rifle``
+    | Item.``Autogun``
+    | Item.``Shotgun``
+    | Item.``Battle Rifle``
+    | Item.``Asb_ Heavy Rifle``
+    | Item.``Sub_ Machine Gun``
+    | Item.``Imp_ Assault Rifle``
+    | Item.``Minigun``
+    | Item.``Hpw_ Shotgun``
+    | Item.``Asb_ Shotgun``
+    | Item.``Barrage Gun``
+    | Item.``Enh_ Autogun``
+    | Item.``Gauss Rifle``
+    | Item.``Asb_ Gauss Rifle``
+    | Item.``Flak Gun``
+    | Item.``Prc_ Assault Rifle``
+    | Item.``Hvy_ Battle Rifle``
+    | Item.``Mak_ Shrapnel Gun``
+    | Item.``Coil Gun``
+    | Item.``Hyp_ Gauss Rifle``
+    | Item.``Hvy_ Machine Gun``
+    | Item.``Imp_ Heavy Machine Gun``
+    | Item.``Com_ Gauss Rifle``
+    | Item.``XL Autogun Subcomponent``
+    | Item.``KE Penetrator``
+    | Item.``Hyp_ Coil Gun``
+    | Item.``Imp_ KE Penetrator``
+    | Item.``Enh_ Coil Gun``
+    | Item.``Com_ Coil Gun``
+    | Item.``Railgun``
+    | Item.``Adv_ KE Penetrator``
+    | Item.``Linked Autogun``
+    | Item.``AWS_Gauss``
+    | Item.``Hyp_ Railgun``
+    | Item.``Helical Railgun``
+    | Item.``Com_ Railgun``
+    | Item.``XL Autogun Array``
+    | Item.``12-ASH's Boomstick``
+    | Item.``8R-AWN's Boregun``
+    | Item.``Multirail``
+    | Item.``Hyp_ Multirail``
+    | Item.``5H-AD0's Sniper Rifle``
+    | Item.``A3's Sniper Rifle`` -> Weapon Gun
+    | Item.``Lgt_ Cannon``
+    | Item.``Imp_ Light Cannon``
+    | Item.``Battle Cannon``
+    | Item.``Assault Cannon``
+    | Item.``Hvy_ Assault Cannon``
+    | Item.``Flak Cannon``
+    | Item.``Adv_ Assault Cannon``
+    | Item.``Gauss Cannon``
+    | Item.``Slug Cannon``
+    | Item.``Mni_ Assault Cannon``
+    | Item.``Magnetic Acceleration Cannon``
+    | Item.``Hvy_ Flak Cannon``
+    | Item.``Bore Cannon``
+    | Item.``Antimatter Cannon``
+    | Item.``Mass Driver``
+    | Item.``Hvy_ Mass Driver``
+    | Item.``Enh_ Gauss Cannon``
+    | Item.``Hyp_ Gauss Cannon``
+    | Item.``Tri-rail Accelerator``
+    | Item.``Hardcell Cannon``
+    | Item.``Hvy_ Gauss Cannon``
+    | Item.``Hyp_ Mass Driver``
+    | Item.``Hvy_ Autocannon``
+    | Item.``DAS Cannon``
+    | Item.``Lgt_ Antimatter Cannon``
+    | Item.``Linear Accelerator``
+    | Item.``Hvy_ Linear Accelerator``
+    | Item.``Com_ Mass Driver``
+    | Item.``Hvy_ Hardcell Cannon``
+    | Item.``Com_ Linear Accelerator``
+    | Item.``Hyp_ Linear Accelerator``
+    | Item.``Hcl_ Linear Accelerator``
+    | Item.``Graviton Cannon``
+    | Item.``Blast Cannon``
+    | Item.``P1-3CE's Gatling Flakker``
+    | Item.``AWS_Autocannon``
+    | Item.``Perforator``
+    | Item.``Omega Cannon`` -> Weapon Cannon
+    | Item.``EMP Blaster``
+    | Item.``Shock Bomb Launcher``
+    | Item.``Adv_ EMP Blaster``
+    | Item.``Proton Missile Launcher``
+    | Item.``Imp_ Proton Missile Launcher``
+    | Item.``Gui_ EMP Blaster``
+    | Item.``Hvy_ Shock Bomb Launcher``
+    | Item.``Tesla Bomb Launcher``
+    | Item.``Hvy_ Proton Missile Launcher``
+    | Item.``Com_ Tesla Bomb Launcher``
+    | Item.``Gamma Bomb Array``
+    | Item.``Enh_ Gamma Bomb Array``
+    | Item.``Grenade Launcher``
+    | Item.``Rocket Launcher``
+    | Item.``Mni_ Grenade Launcher``
+    | Item.``Sub_ Shrapnel Launcher``
+    | Item.``Imp_ Grenade Launcher``
+    | Item.``Missile Launcher``
+    | Item.``Concussive RPG``
+    | Item.``YI-UF0's Doublenader``
+    | Item.``Hvy_ Rocket Launcher``
+    | Item.``Hvy_ Missile Launcher``
+    | Item.``Gui_ Missile Launcher``
+    | Item.``Prc_ Grenade Launcher``
+    | Item.``Rocket Array``
+    | Item.``Lrn_ Missile Launcher``
+    | Item.``Imp_ Concussive RPG``
+    | Item.``Prc_ Rocket Launcher``
+    | Item.``Scatter Rocket Array``
+    | Item.``Smartbomb Launcher``
+    | Item.``Mni_ Smartbomb Launcher``
+    | Item.``Tiamat Missile Launcher``
+    | Item.``Thermoblaster``
+    | Item.``Micro-nuke Launcher``
+    | Item.``Adv_ Concussive RPG``
+    | Item.``Neutron Missile Launcher``
+    | Item.``Fusion Bomb Launcher``
+    | Item.``Hellfire Missile Launcher``
+    | Item.``Adv_ Micro-nuke Launcher``
+    | Item.``Tactical Quantum Warhead``
+    | Item.``Vortex Catalyst Activator``
+    | Item.``Chain Missile Launcher``
+    | Item.``Ragnarok Missile Launcher``
+    | Item.``Point Singularity Launcher``
+    | Item.``Gui_ Micro-nuke Launcher``
+    | Item.``99-TNT's Nukerbomber``
+    | Item.``Z-bomb Delivery System``
+    | Item.``Sigix Terminator``
+    | Item.``Supercharged Sigix Terminator``
+    | Item.``Containment Facilitator``
+    | Item.``Detonator`` -> Weapon Launcher
+    | Item.``Dirty Datajack``
+    | Item.``Splice Injector``
+    | Item.``Datajack``
+    | Item.``Imp_ Datajack``
+    | Item.``Adv_ Datajack``
+    | Item.``Remote Datajack``
+    | Item.``Imp_ Remote Datajack``
+    | Item.``Adv_ Remote Datajack``
+    | Item.``Exp_ Remote Datajack``
+    | Item.``Gui_ Remote Datajack``
+    | Item.``ME-RLN's Wand``
+    | Item.``Field Lobotomy Kit``
+    | Item.``Mining Laser``
+    | Item.``Welding Torch``
+    | Item.``Plasma Cutter``
+    | Item.``Imp_ Plasma Cutter``
+    | Item.``CPS Tube``
+    | Item.``Multitool``
+    | Item.``Flamer``
+    | Item.``Asb_ F-torch``
+    | Item.``Enh_ Flamer``
+    | Item.``Plasma Flamer``
+    | Item.``Asb_ P-torch``
+    | Item.``RU-N14's Throwing Claymores``
+    | Item.``RU-N14's Throwing Claymores v3``
+    | Item.``AD-0RF's Magmablaster``
+    | Item.``Stasis Beam``
+    | Item.``Stasis Projector``
+    | Item.``Exp_ Stasis Projector``
+    | Item.``Molecular Deconstructor``
+    | Item.``SE_WE1``
+    | Item.``SE_WE2``
+    | Item.``SE_WE3``
+    | Item.``SE_WE4``
+    | Item.``SE_WE5`` -> Weapon Special
+    | Item.``Hammer``
+    | Item.``Mace``
+    | Item.``Flail``
+    | Item.``Maul``
+    | Item.``Asb_ Maul``
+    | Item.``Hvy_ Hammer``
+    | Item.``Hvy_ Mace``
+    | Item.``Hvy_ Flail``
+    | Item.``Great Maul``
+    | Item.``Powered Hammer``
+    | Item.``Mak_ Hammer``
+    | Item.``Power Maul``
+    | Item.``Asb_ P-maul``
+    | Item.``Impact Mace``
+    | Item.``Shock Maul``
+    | Item.``Thunder Hammer``
+    | Item.``Compactor``
+    | Item.``Gravity Flail``
+    | Item.``CL-ANK's Mallet``
+    | Item.``Core Stripper``
+    | Item.``Mining Claw``
+    | Item.``EC_1``
+    | Item.``Katana``
+    | Item.``Asb_ Blade``
+    | Item.``Scythe``
+    | Item.``Axe``
+    | Item.``Blade Saw``
+    | Item.``EC_3``
+    | Item.``Chainsword``
+    | Item.``Ripper``
+    | Item.``Mak_ Axe``
+    | Item.``Mak_ Sword``
+    | Item.``Great Axe``
+    | Item.``Greatsword``
+    | Item.``Power Sword``
+    | Item.``Asb_ P-sword``
+    | Item.``Falx``
+    | Item.``Carbide Saw``
+    | Item.``Segregator``
+    | Item.``Tearclaws``
+    | Item.``EC_5``
+    | Item.``Phasing Sabre``
+    | Item.``Plasma Sword``
+    | Item.``Ionic Axe``
+    | Item.``Mni_ Tearclaws``
+    | Item.``Dual-blade Saw``
+    | Item.``Vibroblade``
+    | Item.``Molecular Scythe``
+    | Item.``Centrium Greatsword``
+    | Item.``Master Tearclaws``
+    | Item.``Longsword _1``
+    | Item.``EC_7``
+    | Item.``Nanosword``
+    | Item.``Particle Cleaver``
+    | Item.``Centrium Claws``
+    | Item.``1C-UTU's Sword _Lootmaker_``
+    | Item.``1C-UTU's Sword _Choppy_``
+    | Item.``Vortex Shredder``
+    | Item.``EC_9``
+    | Item.``Sigix Broadsword``
+    | Item.``Spear``
+    | Item.``Mak_ Spear``
+    | Item.``CR-A16's Pointy Stick``
+    | Item.``Hvy_ Pick``
+    | Item.``Lance``
+    | Item.``Kinetic Spear``
+    | Item.``Force Lance``
+    | Item.``Plasma Lance``
+    | Item.``Enh_ Force Lance``
+    | Item.``Vortex Lance``
+    | Item.``CR-A16's Behemoth Slayer`` -> Weapon Melee
+    | Item.``Blade Trap``
+    | Item.``Segregator Trap``
+    | Item.``Explosive Trap``
+    | Item.``Heavy Explosive Trap``
+    | Item.``Tiamat Bomb Trap``
+    | Item.``Fusion Bomb Trap``
+    | Item.``Hellfire Trap``
+    | Item.``Armageddon Trap``
+    | Item.``Dirty Bomb Trap``
+    | Item.``EMP Trap``
+    | Item.``Proton Bomb Trap``
+    | Item.``Tesla Bomb Trap``
+    | Item.``Gamma Bomb Trap``
+    | Item.``Shrapnel Trap``
+    | Item.``Piercing Trap``
+    | Item.``Shock Trap``
+    | Item.``EM Surge Trap``
+    | Item.``Fire Trap``
+    | Item.``Stasis Trap``
+    | Item.``Scrap Shield Fragment``
+    | Item.``Signal Generator``
+    | Item.``Self-destruct Interrupter``
+    | Item.``Sapper Charge``
+    | Item.``Zhirov Special``
+    | Item.``Deploy-a-Sentry``
+    | Item.``GAL Module``
+    | Item.``Portable AFG``
+    | Item.``SGEMP Prototype``
+    | Item.``Terrabomb Derivative``
+    | Item.``Sigix Containment Pod``
+    | Item.``Sigix Corpse``
+    | Item.``Meganuke``
+    | Item.``Gamma Refractor`` -> Misc
 
 let itemToChar (item: Item) : string =
     match itemToCategory item with
@@ -1109,7 +1535,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.NO_CELL
     | cell.SEALED_DOOR
     | cell.DOOR_SAN
-    | cell.DOOR_SCR
+    | cell.DOOR_JUN
     | cell.DOOR_MAT
     | cell.DOOR_FAC
     | cell.DOOR_RES
@@ -1145,7 +1571,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.DOOR_TOW -> Vacant
     | cell.TEMP_WALL
     | cell.WALL_SAN
-    | cell.WALL_SCR
+    | cell.WALL_JUN
     | cell.WALL_MAT
     | cell.WALL_FAC
     | cell.WALL_RES
@@ -1182,7 +1608,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.EARTH
     | cell.EARTH_EXC -> Obstructed
     | cell.FLOOR_SAN
-    | cell.FLOOR_SCR
+    | cell.FLOOR_JUN
     | cell.FLOOR_MAT
     | cell.FLOOR_FAC
     | cell.FLOOR_RES
@@ -1218,7 +1644,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.FLOOR_TOW
     | cell.GROUND -> Vacant
     | cell.STAIRS_SAN
-    | cell.STAIRS_SCR
+    | cell.STAIRS_JUN
     | cell.STAIRS_MAT
     | cell.STAIRS_FAC
     | cell.STAIRS_RES
@@ -1258,7 +1684,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.STAIRS_DSF_OPEN
     | cell.STAIRS_SHORTCUT -> Vacant
     | cell.SHORTCUT_SAN
-    | cell.SHORTCUT_SCR
+    | cell.SHORTCUT_JUN
     | cell.SHORTCUT_MAT
     | cell.SHORTCUT_FAC
     | cell.SHORTCUT_RES
@@ -1300,7 +1726,7 @@ let mapTileOccupancy (tile: LuigiTile) =
         | Vacant ->
             // check if entity is present
             match tile.entity with
-            | Some entity when entity.entity <> WalkMind.Domain.entity.Cogmind -> Occupied entity
+            | Some entity when entity.entity <> Entity.Cogmind -> Occupied entity
             | _ -> Vacant
 
     |> function
@@ -1319,7 +1745,7 @@ let cellToChar (tile: LuigiTile) : string =
     match tile.cell with
     | cell.SEALED_DOOR
     | cell.DOOR_SAN
-    | cell.DOOR_SCR
+    | cell.DOOR_JUN
     | cell.DOOR_MAT
     | cell.DOOR_FAC
     | cell.DOOR_RES
@@ -1355,7 +1781,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.DOOR_TOW -> Some "+"
     | cell.TEMP_WALL
     | cell.WALL_SAN
-    | cell.WALL_SCR
+    | cell.WALL_JUN
     | cell.WALL_MAT
     | cell.WALL_FAC
     | cell.WALL_RES
@@ -1392,7 +1818,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.EARTH
     | cell.EARTH_EXC -> Some "#"
     | cell.FLOOR_SAN
-    | cell.FLOOR_SCR
+    | cell.FLOOR_JUN
     | cell.FLOOR_MAT
     | cell.FLOOR_FAC
     | cell.FLOOR_RES
@@ -1428,7 +1854,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.FLOOR_TOW
     | cell.GROUND -> Some " "
     | cell.STAIRS_SAN
-    | cell.STAIRS_SCR
+    | cell.STAIRS_JUN
     | cell.STAIRS_MAT
     | cell.STAIRS_FAC
     | cell.STAIRS_RES
@@ -1468,7 +1894,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.STAIRS_DSF_OPEN
     | cell.STAIRS_SHORTCUT -> Some ">"
     | cell.SHORTCUT_SAN
-    | cell.SHORTCUT_SCR
+    | cell.SHORTCUT_JUN
     | cell.SHORTCUT_MAT
     | cell.SHORTCUT_FAC
     | cell.SHORTCUT_RES
@@ -1512,7 +1938,7 @@ let cellToChar (tile: LuigiTile) : string =
                 | Some item -> itemToChar item.item
                 | None ->
                     match tile.entity with
-                    | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> "@"
+                    | Some entity when entity.entity = Entity.Cogmind -> "@"
                     | Some _ -> "r"
                     | None -> " "
             | _ -> char
@@ -1543,7 +1969,7 @@ let printPath path goal (mapWidth, mapHeight) (tiles: LuigiTile list) =
 
             if List.contains tile path then
                 match tile.entity with
-                | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> printf "@"
+                | Some entity when entity.entity = Entity.Cogmind -> printf "@"
                 | _ when tile = goal -> printf "@"
                 | _ -> printf "+"
             else
@@ -1555,12 +1981,12 @@ let playerTile tiles =
     tiles
     |> List.find (fun tile ->
         match tile.entity with
-        | Some entity when entity.entity = WalkMind.Domain.entity.Cogmind -> true
+        | Some entity when entity.entity = Entity.Cogmind -> true
         | _ -> false)
 
 let mobs tiles =
     tiles
     |> List.find (fun tile ->
         match tile.entity with
-        | Some entity when entity.entity <> WalkMind.Domain.entity.Cogmind -> true
+        | Some entity when entity.entity <> Entity.Cogmind -> true
         | _ -> false)

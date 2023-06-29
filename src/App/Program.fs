@@ -3,6 +3,7 @@ open WalkMind.Memory
 open AStar
 open Goalfinding
 open FSharpx.Collections
+open FSharp.Json
 open Model
 
 /// We need to wait a little bit before checking magic data if we exited
@@ -108,19 +109,22 @@ let main args =
 
     let refEquipmentCount = ref 0
 
+    let json = Json.serialize (Option.get magic.player.entity)
+    printfn "%s" json
+
     let scrapYardActions (action: ActionOrchestrator) =
         // take the tiles
         magic.tiles
         // choose tiles with starting equipment
         |> Seq.choose (function
-            | TileWithItem WalkMind.Domain.LgtTreads tile
-            | TileWithItem WalkMind.Domain.LgtAssaultRifle tile
-            | TileWithItem WalkMind.Domain.MedLaser tile
-            | TileWithItem WalkMind.Domain.SmlLaser tile
-            | TileWithItem WalkMind.Domain.IonEngine tile
-            | TileWithItem WalkMind.Domain.LgtIonEngine tile
-            | TileWithItem WalkMind.Domain.EmPulseGun tile
-            | TileWithItem WalkMind.Domain.AssaultRifle tile -> Some tile
+            | TileWithItem WalkMind.Domain.Item.``Lgt_ Treads`` tile
+            | TileWithItem WalkMind.Domain.Item.``Lgt_ Assault Rifle`` tile
+            | TileWithItem WalkMind.Domain.Item.``Med_ Laser`` tile
+            | TileWithItem WalkMind.Domain.Item.``Sml_ Laser`` tile
+            | TileWithItem WalkMind.Domain.Item.``Ion Engine`` tile
+            | TileWithItem WalkMind.Domain.Item.``Lgt_ Ion Engine`` tile
+            | TileWithItem WalkMind.Domain.Item.``EM Pulse Gun`` tile
+            | TileWithItem WalkMind.Domain.Item.``Assault Rifle`` tile -> Some tile
             | _ -> None)
         // Path to those tiles in a lazy sequence
         |> Seq.map (fun itemTile ->

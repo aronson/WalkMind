@@ -111,10 +111,19 @@ type LuigiItemData =
 
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Integrity: int
+
+        [<field: MarshalAs(UnmanagedType.Bool)>]
+        val Equipped: bool
     end
 
 /// Very simple record type representing an item on the floor or equipped
-type LuigiItem = { item: Item; integrity: int }
+type LuigiItem =
+    { item: Item
+      integrity: int
+      equipped: bool }
+
+[<Literal>]
+let luigiItemByteLength = 12
 
 [<StructLayout(LayoutKind.Sequential)>]
 type LuigiEntityData =
@@ -148,14 +157,20 @@ type LuigiEntityData =
 
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Speed: int
+
+        [<field: MarshalAs(UnmanagedType.I4)>]
+        val InventorySize: int
+
+        [<field: MarshalAs(UnmanagedType.I4)>]
+        val InventoryPointer: int
     end
 
 [<Literal>]
-let luigiEntityByteLength = 40
+let luigiEntityByteLength = 48
 
 /// These records in tile data are player and non-player characters with a set of stats
 type LuigiEntity =
-    { entity: entity
+    { entity: Entity
       integrity: int
       faction: int
       entityActiveState: int
@@ -164,7 +179,8 @@ type LuigiEntity =
       matter: int
       heat: int
       corruption: int
-      speed: int }
+      speed: int
+      inventory: LuigiItem list }
 
 [<StructLayout(LayoutKind.Sequential)>]
 type LuigiPropData =
@@ -287,6 +303,35 @@ type Memory() =
         | Error message -> raise (Exception message)
         | Ok pointer -> pointer
 
+    let liftLuigiItem =
+        function
+        | pointer when pointer = IntPtr.Zero -> None
+        | pointer ->
+            let bufferSize = uint32 (luigiAiByteLength)
+            let buffer = Marshal.AllocHGlobal(int bufferSize)
+
+            let mutable bytesRead = 0
+
+            let result =
+                NativeMethods.ReadProcessMemory(processHandle, pointer, buffer, (UIntPtr bufferSize), &bytesRead)
+
+            if not result then
+                failwith "Failed to read process memory."
+
+            let itemData = Marshal.PtrToStructure<LuigiItemData>(buffer)
+            Marshal.FreeHGlobal(buffer)
+
+            { item = itemId itemData.Item
+              integrity = itemData.Integrity
+              equipped = itemData.Equipped }
+            |> Some
+
+    let liftLuigiItems startOffset length : LuigiItem array =
+        Array.init length (fun i ->
+            let elementPtr = IntPtr.op_Addition (startOffset, int (i * int luigiItemByteLength))
+            liftLuigiItem elementPtr)
+        |> Array.choose id
+
     let liftLuigiEntity =
         function
         | pointer when pointer = IntPtr.Zero -> None
@@ -304,7 +349,7 @@ type Memory() =
             let entityData = Marshal.PtrToStructure<LuigiEntityData>(buffer)
             Marshal.FreeHGlobal(buffer)
 
-            { entity = enum<entity> (entityData.Entity)
+            { entity = enum<Entity> (entityData.Entity)
               integrity = entityData.Integrity
               faction = entityData.Faction
               entityActiveState = entityData.EntityActiveState
@@ -313,29 +358,10 @@ type Memory() =
               matter = entityData.Matter
               heat = entityData.Heat
               corruption = entityData.Corruption
-              speed = entityData.Speed }
-            |> Some
-
-    let liftLuigiItem =
-        function
-        | pointer when pointer = IntPtr.Zero -> None
-        | pointer ->
-            let bufferSize = uint32 (8)
-            let buffer = Marshal.AllocHGlobal(int bufferSize)
-
-            let mutable bytesRead = 0
-
-            let result =
-                NativeMethods.ReadProcessMemory(processHandle, pointer, buffer, (UIntPtr bufferSize), &bytesRead)
-
-            if not result then
-                failwith "Failed to read process memory."
-
-            let itemData = Marshal.PtrToStructure<LuigiItemData>(buffer)
-            Marshal.FreeHGlobal(buffer)
-
-            { item = itemId itemData.Item
-              integrity = itemData.Integrity }
+              speed = entityData.Speed
+              inventory =
+                liftLuigiItems entityData.InventoryPointer entityData.InventorySize
+                |> List.ofArray }
             |> Some
 
     let liftLuigiProp =
@@ -473,7 +499,7 @@ type Memory() =
     member this.player =
         let filterCogmindTile tile =
             match tile.entity with
-            | Some entity when entity.entity = Domain.entity.Cogmind -> true
+            | Some entity when entity.entity = Entity.Cogmind -> true
             | _ -> false
 
         this.tiles |> List.find filterCogmindTile

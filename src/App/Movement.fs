@@ -69,7 +69,7 @@ type ActionOrchestrator(magic: Memory) =
     /// Filters a tile for if it's stairs interesting in Materials
     let isStairs tile =
         match tile.cell with
-        | WalkMind.Domain.cell.STAIRS_SCR
+        | WalkMind.Domain.cell.STAIRS_JUN
         | WalkMind.Domain.cell.STAIRS_MAT
         | WalkMind.Domain.cell.STAIRS_MIN
         | WalkMind.Domain.cell.STAIRS_STO -> true
