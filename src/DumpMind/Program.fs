@@ -12,6 +12,7 @@ let main argv =
     let memory = Memory()
     let getPlayerString() = Option.get memory.player.entity |> Json.serialize
     let getEnemyString() =
+        if memory.mapCursorIndex < 0 then None else
         match memory.tiles.[memory.mapCursorIndex].entity with
         | None -> None
         | Some entity ->

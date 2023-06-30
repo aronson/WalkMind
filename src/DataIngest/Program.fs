@@ -52,14 +52,16 @@ let parseItem input =
     match input with
     | Match " *(\d+) (.+)$" matches ->
         { itemId = matches.GroupValues.[0] |> int
-          itemString = clean <| matches.GroupValues.[1].Trim() }
+          itemString = matches.GroupValues.[1].Trim() }
     | _ -> failwith "Parsing fail in item data"
     
 let itemInfos = churnLines itemText parseItem
 
 let itemDuType =
     let header = "[<RequireQualifiedAccess>]\ntype Item ="
-    let line info = $"    | ``{clean info.itemString}``"
+    let line info =
+        let itemString = info.itemString.Replace("\"", "'")
+        $"    | [<JsonUnionCase(@\"{itemString}\")>] ``{clean info.itemString}``"
     let lines = List.map line itemInfos
     seq { header; yield! lines } |> join
     
@@ -136,11 +138,11 @@ let entityIdMap =
     seq { header; functionStatement; yield! lines; catch } |> join
 
 //printfn $"{cellEnumType}"
-//printfn $"{itemDuType}"
+printfn $"{itemDuType}"
 //printfn $"{itemIdMap}"
 //printfn $"{itemStringMap}"
 //printfn $"{propDuType}"
 //printfn $"{propIdMap}"
 //printfn $"{entityEnumType}"
-printfn $"{entityIdMap}"
+//printfn $"{entityIdMap}"
  

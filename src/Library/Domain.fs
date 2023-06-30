@@ -1,5 +1,7 @@
 module WalkMind.Domain
 
+open FSharp.Json
+
 
 type cell =
     | ``NO_CELL`` = -1
@@ -270,1107 +272,1108 @@ type cell =
 
 [<RequireQualifiedAccess>]
 type Item =
-    | ``Matter``
-    | ``Data Core``
-    | ``Derelict Log``
-    | ``Schematic Archive``
-    | ``Imprinter Data Core``
-    | ``A2 Data Core``
-    | ``A7 Data Core``
-    | ``MAIN_C Data Core``
-    | ``Architect Data Core``
-    | ``Scrap``
-    | ``Protomatter``
-    | ``Ion Engine``
-    | ``Lgt_ Ion Engine``
-    | ``Backup Power I``
-    | ``Imp_ Ion Engine``
-    | ``Rnf_ Ion Engine``
-    | ``Hvy_ Ion Engine``
-    | ``Cld_ Ion Engine``
-    | ``Sub_ Power Source``
-    | ``Deuterium Engine``
-    | ``Lgt_ Deuterium Engine``
-    | ``Backup Power III``
-    | ``Nuclear Core``
-    | ``Lgt_ Nuclear Core``
-    | ``Imp_ Deuterium Engine``
-    | ``Rnf_ Deuterium Engine``
-    | ``Hyb_ Deuterium Engine``
-    | ``Hvy_ Deuterium Engine``
-    | ``Cld_ Deuterium Engine``
-    | ``Enh_ Nuclear Core``
-    | ``Mic_ Nuclear Core``
-    | ``Mak_ Power Source``
-    | ``Angular Momentum Engine``
-    | ``Lgt_ Angular Momentum Engine``
-    | ``F-cell Engine``
-    | ``Fission Core``
-    | ``Lgt_ Fission Core``
-    | ``Hyb_ Fission Core``
-    | ``Fusion Compressor``
-    | ``Cold Fusion Reactor``
-    | ``Neutrino Core``
-    | ``Lgt_ Neutrino Core``
-    | ``Rnf_ Fission Core``
-    | ``Enh_ Fission Core``
-    | ``Cld_ Fission Core``
-    | ``Mic_ Fission Core``
-    | ``Fusion Reactor``
-    | ``Antimatter Reactor``
-    | ``Lgt_ Antimatter Reactor``
-    | ``Rnf_ Antimatter Reactor``
-    | ``Hyb_ Antimatter Reactor``
-    | ``Backup Power VII``
-    | ``Hvy_ Antimatter Reactor``
-    | ``Mni_ Fusion Reactor``
-    | ``Imp_ Fusion Compressor``
-    | ``Mic_ Neutrino Core``
-    | ``Zio_ Light DM Reactor``
-    | ``Zio_ Heavy DM Reactor``
-    | ``Particle Reactor``
-    | ``Lgt_ Particle Reactor``
-    | ``Mic_ Antimatter Reactor``
-    | ``Com_ Particle Reactor``
-    | ``Cld_ Antimatter Reactor``
-    | ``Graviton Reactor``
-    | ``Asb_ Flux Generator``
-    | ``Quantum Reactor``
-    | ``Lgt_ Quantum Reactor``
-    | ``Rnf_ Quantum Reactor``
-    | ``Imp_ Quantum Reactor``
-    | ``Zero-point Reactor``
-    | ``Vortex Chain Reactor``
-    | ``Singularity Reactor``
-    | ``Matter Drive``
-    | ``Meta Core``
-    | ``SE_PO1``
-    | ``Lgt_ Treads``
-    | ``Imp_ Treads``
-    | ``Spk_ Treads``
-    | ``Arm_ Treads``
-    | ``Adv_ Treads``
-    | ``Med_ Treads``
-    | ``Imp_ Medium Treads``
-    | ``Spk_ Medium Treads``
-    | ``Arm_ Medium Treads``
-    | ``Hvy_ Treads``
-    | ``Adv_ Medium Treads``
-    | ``Enh_ Armored Medium Treads``
-    | ``Imp_ Heavy Treads``
-    | ``Hvy_ Siege Treads``
-    | ``Spk_ Heavy Treads``
-    | ``Biometal Medium Treads``
-    | ``Arm_ Heavy Treads``
-    | ``Adv_ Heavy Treads``
-    | ``Imp_ Heavy Siege Treads``
-    | ``Centrium Heavy Treads``
-    | ``Megatreads``
-    | ``Biometal Heavy Treads``
-    | ``Exp_ Biometal Heavy Treads``
-    | ``Enh_ Armored Heavy Treads``
-    | ``Adv_ Heavy Siege Treads``
-    | ``Hdn_ Centrium Heavy Treads``
-    | ``Exp_ Biometal Medium Treads``
-    | ``Aluminum Leg``
-    | ``Imp_ Aluminum Leg``
-    | ``Carbon-fiber Leg``
-    | ``Titanium Leg``
-    | ``VSS Leg``
-    | ``Imp_ Carbon-fiber Leg``
-    | ``Imp_ Titanium Leg``
-    | ``Lgt_ Armored Exoskeleton``
-    | ``Mak_ Leg``
-    | ``Flexi-carbon Leg``
-    | ``Arm_ Leg``
-    | ``Imp_ VSS Leg``
-    | ``Zio_ Composite Leg I``
-    | ``Med_ Armored Exoskeleton``
-    | ``Enh_ Flexi-carbon Leg``
-    | ``Enh_ Armored Leg``
-    | ``Arachnoskeleton``
-    | ``Myomer Leg``
-    | ``Adv_ VSS Leg``
-    | ``Adv_ Myomer Leg``
-    | ``Exp_ Flexi-carbon Leg``
-    | ``Zio_ Composite Leg II``
-    | ``Cargo Legs``
-    | ``Etherial Tendrils``
-    | ``Biometal Leg``
-    | ``Hvy_ Armored Exoskeleton``
-    | ``Enh_ Biometal Leg``
-    | ``Exp_ Myomer Leg``
-    | ``Tripod Weapons Platform``
-    | ``T_R_O_L_L_ Exoskeleton``
-    | ``Asb_ Alloy Leg``
-    | ``Centrium Leg``
-    | ``Hdn_ Centrium Leg``
-    | ``Exp_ Biometal Leg``
-    | ``Sigix Exoskeleton``
-    | ``Zio_ Supercomposite Leg``
-    | ``Potential Leg``
-    | ``Myomer Exoskeleton``
-    | ``SE_PR1``
-    | ``Wheel``
-    | ``Com_ Wheel``
-    | ``Arm_ Wheel``
-    | ``Sub_ Monowheel``
-    | ``Arm_ Huge Wheel``
-    | ``Centrium Wheel``
-    | ``Hdn_ Centrium Wheel``
-    | ``Hover Unit``
-    | ``Backup Propulsion I``
-    | ``Imp_ Hover Unit``
-    | ``Airjet``
-    | ``Aerolev Unit``
-    | ``Asb_ Hover Unit``
-    | ``Backup Propulsion III``
-    | ``Gravmag System``
-    | ``Asb_ Hover System``
-    | ``Imp_ Airjet``
-    | ``Cld_ Airjet``
-    | ``Imp_ Gravmag System``
-    | ``Cld_ Aerolev Unit``
-    | ``Cmb_ Airjet``
-    | ``Gravmag Array``
-    | ``Mak_ Hover Unit``
-    | ``Zio_ Glidesys I``
-    | ``Antigrav System``
-    | ``Gyrokinetic Inverter``
-    | ``Linear Gravjet``
-    | ``Cld_ Gravmag System``
-    | ``Cmb_ Gravmag System``
-    | ``Imp_ Antigrav System``
-    | ``Imp_ Gyrokinetic Inverter``
-    | ``Imp_ Linear Gravjet``
-    | ``Backup Propulsion VII``
-    | ``Zio_ Glidesys II``
-    | ``Cld_ Antigrav System``
-    | ``Cmb_ Antigrav System``
-    | ``Antigrav Array``
-    | ``Exp_ Gyrokinetic Inverter``
-    | ``Cld_ Linear Gravjet``
-    | ``Cmb_ Linear Gravjet``
-    | ``Flight Unit``
-    | ``VTOL Module``
-    | ``Imp_ Flight Unit``
-    | ``Cesium-ion Thruster``
-    | ``Surge Thruster``
-    | ``Imp_ VTOL Module``
-    | ``Xenon Bombardment Thruster``
-    | ``Imp_ Cesium-ion Thruster``
-    | ``Cld_ VTOL Module``
-    | ``Mak_ Flight Unit``
-    | ``Nuclear Pulse Thruster``
-    | ``Imp_ Surge Thruster``
-    | ``Mni_ Nuclear Pulse Thruster``
-    | ``Cld_ Cesium-ion Thruster``
-    | ``Biomechanical Wings``
-    | ``Field Propulsion Drive``
-    | ``Cld_ Nuclear Pulse Thruster``
-    | ``Exp_ Cesium-ion Thruster``
-    | ``Nuclear Pulse Array``
-    | ``Mak_ Microthruster``
-    | ``Impulse Thruster``
-    | ``Adv_ Surge Thruster``
-    | ``Cld_ Field Propulsion Drive``
-    | ``Field Propulsion Array``
-    | ``Diametric Drive``
-    | ``Flying Fortress v7``
-    | ``T-thruster``
-    | ``Integrated Tracker Drive``
-    | ``Etherial Propulsion``
-    | ``Q-thruster``
-    | ``Electron Diverter``
-    | ``Imp_ Diametric Drive``
-    | ``Cld_ Impulse Thruster``
-    | ``Impulse Thruster Array``
-    | ``Flightbrick``
-    | ``Imp_ Q-thruster``
-    | ``Cld_ Q-thruster``
-    | ``Exp_ Q-thruster``
-    | ``Scrap Engine``
-    | ``Arm_ Scrap Engine``
-    | ``Desublimator``
-    | ``Power Amplifier``
-    | ``Adv_ Power Amplifier``
-    | ``Exp_ Power Amplifier``
-    | ``Thermal Generator``
-    | ``Imp_ Thermal Generator``
-    | ``Adv_ Thermal Generator``
-    | ``Exp_ Thermal Generator``
-    | ``Cryofiber Web``
-    | ``Imp_ Cryofiber Web``
-    | ``Adv_ Cryofiber Web``
-    | ``Exp_ Cryofiber Web``
-    | ``Heat Sink``
-    | ``Imp_ Heat Sink``
-    | ``Adv_ Heat Sink``
-    | ``Exp_ Heat Sink``
-    | ``Cooling System``
-    | ``Imp_ Cooling System``
-    | ``Adv_ Cooling System``
-    | ``Exp_ Cooling System``
-    | ``Coolant Network``
-    | ``Asb_ Nanovents``
-    | ``2N-1CE's Frost Array``
-    | ``Disposable Heat Sink``
-    | ``Coolant Injector``
-    | ``Imp_ Coolant Injector``
-    | ``Adv_ Coolant Injector``
-    | ``Exp_ Coolant Injector``
-    | ``Sml_ Storage Unit``
-    | ``Med_ Storage Unit``
-    | ``Lrg_ Storage Unit``
-    | ``Hcp_ Storage Unit``
-    | ``Huge Storage Unit``
-    | ``Cargo Storage Unit``
-    | ``Humpback``
-    | ``Lightpack 2_0``
-    | ``Sml_ Battery``
-    | ``Med_ Battery``
-    | ``Lrg_ Battery``
-    | ``Hcp_ Battery``
-    | ``Com_ Battery``
-    | ``Energy Well``
-    | ``Imp_ Energy Well``
-    | ``Adv_ Energy Well``
-    | ``Exp_ Energy Well``
-    | ``Zio_ Biocell``
-    | ``Asb_ Biocell Array``
-    | ``Zio_ Biocell Array``
-    | ``Superbattery``
-    | ``Sml_ Matter Pod``
-    | ``Med_ Matter Pod``
-    | ``Lrg_ Matter Pod``
-    | ``Hcp_ Matter Pod``
-    | ``Com_ Matter Pod``
-    | ``Matter Compressor``
-    | ``Imp_ Matter Compressor``
-    | ``Adv_ Matter Compressor``
-    | ``Exp_ Matter Compressor``
-    | ``YI-UF0's Bottomless Matter Pit``
-    | ``Weight Redist_ System``
-    | ``Adv_ Weight Redist_ System``
-    | ``Gravity Neutralizer``
-    | ``Adv_ Gravity Neutralizer``
-    | ``Quantum Shading Machine``
-    | ``Asb_ Suspension Frame``
-    | ``Adv_ Quantum Shading Machine``
-    | ``Asb_ Metafiber Network``
-    | ``Zio_ Metafield Generator``
-    | ``ST Field Compressor``
-    | ``Structural Scanner``
-    | ``Trap Scanner``
-    | ``Imp_ Trap Scanner``
-    | ``Mak_ Trap Scanner``
-    | ``Adv_ Trap Scanner``
-    | ``Machine Analyzer``
-    | ``Triangulator``
-    | ``Visual Processing Unit``
-    | ``Sub_ Optics``
-    | ``Adv_ Visual Processing Unit``
-    | ``Enh_ Optical Array``
-    | ``Exp_ Optical Array``
-    | ``Spectral Analyzer``
-    | ``Sensor Array``
-    | ``Imp_ Sensor Array``
-    | ``Adv_ Sensor Array``
-    | ``Lrn_ Sensor Array``
-    | ``Mak_ Sensor Array``
-    | ``Exp_ Sensor Array``
-    | ``Signal Interpreter``
-    | ``Imp_ Signal Interpreter``
-    | ``Adv_ Signal Interpreter``
-    | ``Exp_ Signal Interpreter``
-    | ``Active Sensor Suite``
-    | ``Terrain Scanner``
-    | ``Imp_ Terrain Scanner``
-    | ``Adv_ Terrain Scanner``
-    | ``Mak_ Terrain Scanner``
-    | ``Lrn_ Terrain Scanner``
-    | ``Exp_ Terrain Scanner``
-    | ``Surveybot 24 Scanner``
-    | ``Terrain Scan Processor``
-    | ``Imp_ Terrain Scan Processor``
-    | ``Mak_ Terrain Scan Processor``
-    | ``Adv_ Terrain Scan Processor``
-    | ``Exp_ Terrain Scan Processor``
-    | ``Surveybot 24 Chip``
-    | ``Seismic Detector``
-    | ``Transport Network Coupler``
-    | ``Modified TNC``
-    | ``Encrypted Comm Array``
-    | ``0b10 Decoder Chip _Generic_``
-    | ``0b10 Decoder Chip _Looter_``
-    | ``0b10 Decoder Chip _Scout_``
-    | ``0b10 Decoder Chip _Skirmisher_``
-    | ``0b10 Alert Chip``
-    | ``Salvage Targeting Computer``
-    | ``Imp_ Salvage Targeting Computer``
-    | ``Mak_ Salvage Targeting Computer``
-    | ``Adv_ Salvage Targeting Computer``
-    | ``Asb_ Combat Suite``
-    | ``Targeting Computer``
-    | ``Imp_ Targeting Computer``
-    | ``Adv_ Targeting Computer``
-    | ``Exp_ Targeting Computer``
-    | ``Multitargeting Array``
-    | ``Tactical Coordination Suite``
-    | ``Melee Analysis Suite``
-    | ``Imp_ Melee Analysis Suite``
-    | ``Adv_ Melee Analysis Suite``
-    | ``Exp_ Melee Analysis Suite``
-    | ``Launcher Guidance Computer``
-    | ``Imp_ Launcher Guidance Computer``
-    | ``Adv_ Launcher Guidance Computer``
-    | ``Weapon Mount``
-    | ``Target Analyzer``
-    | ``Imp_ Target Analyzer``
-    | ``Adv_ Target Analyzer``
-    | ``Exp_ Target Analyzer``
-    | ``Core Analyzer``
-    | ``Exp_ Core Analyzer``
-    | ``Armor Integrity Analyzer``
-    | ``Imp_ Armor Integrity Analyzer``
-    | ``Exp_ Armor Integrity Analyzer``
-    | ``Recoil Stabilizer``
-    | ``Recoil Nullifier``
-    | ``Matter Filter``
-    | ``Prc_ Matter Filter``
-    | ``Energy Filter``
-    | ``Prc_ Energy Filter``
-    | ``Particle Charger``
-    | ``Imp_ Particle Charger``
-    | ``Adv_ Particle Charger``
-    | ``Particle Accelerator``
-    | ``Imp_ Particle Accelerator``
-    | ``Adv_ Particle Accelerator``
-    | ``Kinecellerator``
-    | ``Imp_ Kinecellerator``
-    | ``Adv_ Kinecellerator``
-    | ``Heavy Servo Lattice``
-    | ``VL-GR5's Timing Chip``
-    | ``Launcher Loader``
-    | ``Quantum Capacitor``
-    | ``Weapon Cycler``
-    | ``Imp_ Weapon Cycler``
-    | ``Adv_ Weapon Cycler``
-    | ``Exp_ Weapon Cycler``
-    | ``Microactuators``
-    | ``Nanoactuators``
-    | ``Femtoactuators``
-    | ``Actuator Array``
-    | ``Imp_ Actuator Array``
-    | ``Adv_ Actuator Array``
-    | ``Exp_ Actuator Array``
-    | ``Force Booster``
-    | ``Imp_ Force Booster``
-    | ``Adv_ Force Booster``
-    | ``Stasis Canceller``
-    | ``Transmission Jammer``
-    | ``Mak_ Transmission Jammer``
-    | ``Imp_ Transmission Jammer``
-    | ``Adv_ Transmission Jammer``
-    | ``Exp_ Transmission Jammer``
-    | ``ECM Suite``
-    | ``Mak_ ECM Suite``
-    | ``Adv_ ECM Suite``
-    | ``Exp_ ECM Suite``
-    | ``Active Sensor Spoofer``
-    | ``Reaction Control System``
-    | ``Imp_ Reaction Control System``
-    | ``Adv_ Reaction Control System``
-    | ``Exp_ Reaction Control System``
-    | ``Phase Shifter``
-    | ``Imp_ Phase Shifter``
-    | ``Adv_ Phase Shifter``
-    | ``Exp_ Phase Shifter``
-    | ``Cloaking Device``
-    | ``Mak_ Cloaking Device``
-    | ``Imp_ Cloaking Device``
-    | ``Adv_ Cloaking Device``
-    | ``Exp_ Cloaking Device``
-    | ``Cloak of Protection``
-    | ``5H-AD0's Cloak``
-    | ``Core Shielding``
-    | ``Imp_ Core Shielding``
-    | ``Exp_ Core Shielding``
-    | ``Power Shielding``
-    | ``Imp_ Power Shielding``
-    | ``Exp_ Power Shielding``
-    | ``Propulsion Shielding``
-    | ``Imp_ Propulsion Shielding``
-    | ``Exp_ Propulsion Shielding``
-    | ``Utility Shielding``
-    | ``Imp_ Utility Shielding``
-    | ``Exp_ Utility Shielding``
-    | ``Weapon Shielding``
-    | ``Imp_ Weapon Shielding``
-    | ``Exp_ Weapon Shielding``
-    | ``Zio_ Weapon Casing``
-    | ``Backup Plating I``
-    | ``Backup Plating III``
-    | ``Backup Plating VII``
-    | ``Lgt_ Armor Plating``
-    | ``Med_ Armor Plating``
-    | ``Hvy_ Armor Plating``
-    | ``Zio_ Light Carapace``
-    | ``Zio_ Heavy Carapace``
-    | ``Hrd_ Light Armor Plating``
-    | ``Hrd_ Medium Armor Plating``
-    | ``Hrd_ Heavy Armor Plating``
-    | ``Imp_ Light Armor Plating``
-    | ``Imp_ Medium Armor Plating``
-    | ``Imp_ Heavy Armor Plating``
-    | ``Lyr_ Light Armor Plating``
-    | ``Mak_ Armor Plating``
-    | ``Lyr_ Medium Armor Plating``
-    | ``Lyr_ Heavy Armor Plating``
-    | ``Gun Armor``
-    | ``Centrium Light Armor Plating``
-    | ``Centrium Medium Armor Plating``
-    | ``Centrium Heavy Armor Plating``
-    | ``Centrium Linked Plating``
-    | ``Reactive Plating``
-    | ``Med_ Reactive Plating``
-    | ``Mak_ Kinetic Plating``
-    | ``Hvy_ Reactive Plating``
-    | ``Reflective Plating``
-    | ``Med_ Reflective Plating``
-    | ``Mak_ Thermal Plating``
-    | ``Hvy_ Reflective Plating``
-    | ``8R-AWN's Armor_TH``
-    | ``8R-AWN's Armor_EX``
-    | ``Insulated Plating``
-    | ``Med_ Insulated Plating``
-    | ``Hvy_ Insulated Plating``
-    | ``Damper Plating``
-    | ``Zio_ Shade Carapace``
-    | ``Zio_ Shade Armor``
-    | ``Asb_ Alloy Armor``
-    | ``Mak_ Ablative Armor``
-    | ``Active Cooling Armor``
-    | ``Scrap Shield``
-    | ``Powered Armor``
-    | ``Imp_ Powered Armor``
-    | ``Adv_ Powered Armor``
-    | ``Exp_ Powered Armor``
-    | ``1C-UTU's Buckler``
-    | ``Lgt_ Regenerative Plating``
-    | ``Med_ Regenerative Plating``
-    | ``Hvy_ Regenerative Plating``
-    | ``SHELL Armor``
-    | ``Phase Armor``
-    | ``Graphene Brace``
-    | ``Focal Shield``
-    | ``Imp_ Focal Shield``
-    | ``Adv_ Focal Shield``
-    | ``Exp_ Focal Shield``
-    | ``Thermal Shield``
-    | ``Imp_ Thermal Shield``
-    | ``Adv_ Thermal Shield``
-    | ``Exp_ Thermal Shield``
-    | ``Thermal Barrier``
-    | ``Beam Splitter``
-    | ``Thermal Defense Suite``
-    | ``Imp_ Thermal Defense Suite``
-    | ``Adv_ Thermal Defense Suite``
-    | ``Exp_ Thermal Defense Suite``
-    | ``Shock Absorption System``
-    | ``Imp_ Shock Absorption System``
-    | ``Exp_ Shock Absorption System``
-    | ``EM Disruption Field``
-    | ``Adv_ EM Disruption Field``
-    | ``Exp_ EM Disruption Field``
-    | ``ME-RLN's Chromatic Screen``
-    | ``Hardlight Generator``
-    | ``Imp_ Hardlight Generator``
-    | ``Adv_ Hardlight Generator``
-    | ``Exp_ Hardlight Generator``
-    | ``Shield Generator``
-    | ``Imp_ Shield Generator``
-    | ``Adv_ Shield Generator``
-    | ``Exp_ Shield Generator``
-    | ``Force Field``
-    | ``Imp_ Force Field``
-    | ``Adv_ Force Field``
-    | ``Exp_ Force Field``
-    | ``7V-RTL's Ultimate Field``
-    | ``Vortex Field Projector``
-    | ``Remote Shield``
-    | ``Imp_ Remote Shield``
-    | ``Adv_ Remote Shield``
-    | ``Remote Force Field``
-    | ``Imp_ Remote Force Field``
-    | ``Energy Mantle``
-    | ``Imp_ Energy Mantle``
-    | ``AEGIS Remote Shield``
-    | ``Phase Redirector``
-    | ``Point Defense System``
-    | ``Point Defense Array``
-    | ``Antimissile System``
-    | ``EX Chip 1``
-    | ``Hacking Suite``
-    | ``Mak_ Hacking Suite``
-    | ``Imp_ Hacking Suite``
-    | ``Adv_ Hacking Suite``
-    | ``Exp_ Hacking Suite``
-    | ``System Mapper``
-    | ``Deep Network Scanner``
-    | ``Architect God Chip A``
-    | ``EX Chip 2``
-    | ``System Shield``
-    | ``Mak_ System Shield``
-    | ``Imp_ System Shield``
-    | ``Adv_ System Shield``
-    | ``Exp_ System Shield``
-    | ``Ghost Barrier``
-    | ``Quantum Router``
-    | ``Architect God Chip D``
-    | ``Authchip _R_NC_``
-    | ``Authchip _R_Combat_``
-    | ``Authchip _Power_``
-    | ``Authchip _Propulsion_``
-    | ``Authchip _Device_``
-    | ``Authchip _Storage_``
-    | ``Authchip _Processor_``
-    | ``Authchip _Armor_``
-    | ``Authchip _Weapon_``
-    | ``Relay Coupler _NC_``
-    | ``Relay Coupler _C_``
-    | ``Relay Coupler _Swarmer_``
-    | ``Relay Coupler _Cutter_``
-    | ``Relay Coupler _Grunt_``
-    | ``Relay Coupler _Brawler_``
-    | ``Relay Coupler _Duelist_``
-    | ``Relay Coupler _Sentry_``
-    | ``Relay Coupler _Demolisher_``
-    | ``Relay Coupler _Specialist_``
-    | ``Relay Coupler _Hunter_``
-    | ``Relay Coupler _Heavy_``
-    | ``Relay Coupler _Behemoth_``
-    | ``Relay Coupler _Programmer_``
-    | ``Relay Coupler _Proto_``
-    | ``Skeleton Box``
-    | ``01-MTF's Autohacker``
-    | ``Component Analysis Suite``
-    | ``Imp_ Component Analysis Suite``
-    | ``Adv_ Component Analysis Suite``
-    | ``Dynamic Insulation System``
-    | ``Imp_ Dynamic Insulation System``
-    | ``Adv_ Dynamic Insulation System``
-    | ``System Guard``
-    | ``Imp_ System Guard``
-    | ``Exp_ System Guard``
-    | ``Corruption Screen``
-    | ``Imp_ Corruption Screen``
-    | ``Adv_ Corruption Screen``
-    | ``System Restoration Module``
-    | ``Mak_ System Restoration Module``
-    | ``Imp_ System Restoration Module``
-    | ``Adv_ System Restoration Module``
-    | ``System Purifier``
-    | ``Exp_ System Purifier``
-    | ``Tractor Beam``
-    | ``Hpw_ Tractor Beam``
-    | ``Lrn_ Tractor Beam``
-    | ``Mobile Refinery Mk_ CCLXVII``
-    | ``Trap Extractor``
-    | ``Imp_ Trap Extractor``
-    | ``Adv_ Trap Extractor``
-    | ``Trap Reconfigurator``
-    | ``Recalibrator``
-    | ``Imp_ Recalibrator``
-    | ``Adv_ Recalibrator``
-    | ``Field Recycling Unit``
-    | ``Imp_ Field Recycling Unit``
-    | ``Adv_ Field Recycling Unit``
-    | ``Exp_ Field Recycling Unit``
-    | ``Drone Bay``
-    | ``Z-Drone Bay``
-    | ``Mni_ Drone Bay``
-    | ``Mapping Drone Bay``
-    | ``Adv_ Drone Bay``
-    | ``Bomb Drone Bay``
-    | ``Thief Drone Bay``
-    | ``Decoy Drone Bay``
-    | ``Splice Drone Bay``
-    | ``Combat Drone Bay``
-    | ``Assault Drone Bay``
-    | ``Stealth Drone Bay``
-    | ``Swarm Drone Bay``
-    | ``Supersonic Drone Bay``
-    | ``Sensor Drone Bay``
-    | ``Hacking Drone Bay``
-    | ``Minesniffer Drone Bay``
-    | ``Army-in-a-Box``
-    | ``Wardrone Bay``
-    | ``Cobbler Unit``
-    | ``Bomb Factory No_ 2``
-    | ``Mobile Assembly Unit``
-    | ``Heart of Steel``
-    | ``GOLEM Unit``
-    | ``PSU Rigger``
-    | ``Phasing AFG``
-    | ``AS-neutralizer No_ 17b``
-    | ``V3-11A's Pendant``
-    | ``Chronowheel``
-    | ``Power Bank``
-    | ``Rainbow Chip``
-    | ``VL-GR5's Exoskeleton _Deathgrip_``
-    | ``Dimensional Node Initializer``
-    | ``Transdimensional Reconstructor``
-    | ``Hpw_ Transdimensional Reconstructor``
-    | ``Supercharged TR``
-    | ``Core Expander``
-    | ``Core Regenerator``
-    | ``Integrity Redistributor``
-    | ``Integrated Dissipator``
-    | ``Supercharged Integrated Dissipator``
-    | ``Integrated Thermoelectric Network``
-    | ``Integrated Reactor``
-    | ``Supercharged Integrated Reactor``
-    | ``Integrated Mediator``
-    | ``Core Membrane``
-    | ``Navigation Efficiency Matrix``
-    | ``Core Reset Matrix``
-    | ``Subatomic Replicator``
-    | ``Terrabomb``
-    | ``Core Physics Calibrator``
-    | ``Spacefold Activator``
-    | ``Microwarp Drive``
-    | ``LC Capacitor``
-    | ``LRC Armor``
-    | ``LRC Storage``
-    | ``LRC Energy Well``
-    | ``LRC Matter Compressor``
-    | ``LRC Boosters``
-    | ``LRC Insulator``
-    | ``EM Pulse Gun``
-    | ``Hvy_ EM Pulse Gun``
-    | ``EM Shotgun``
-    | ``Imp_ EM Shotgun``
-    | ``Shock Rifle``
-    | ``Riot Gun``
-    | ``Hvy_ EM Shotgun``
-    | ``Lightning Gun``
-    | ``Hvy_ Riot Gun``
-    | ``Arc Projector``
-    | ``Prc_ Shock Rifle``
-    | ``Hpw_ Shock Rifle``
-    | ``Arc Thrower``
-    | ``Imp_ Lightning Gun``
-    | ``Tesla Rifle``
-    | ``Imp_ Arc Projector``
-    | ``Hvy_ Tesla Rifle``
-    | ``Hyp_ EM Gauss Rifle``
-    | ``Imp_ Arc Thrower``
-    | ``01-MTF's Shockpuncher``
-    | ``Gamma Rifle``
-    | ``Tachyon Dispersion Ray``
-    | ``Immobilizer``
-    | ``Modified EM Gauss Rifle``
-    | ``AWS_EX-DEC``
-    | ``Enh_ Gamma Rifle``
-    | ``Med_ Laser``
-    | ``Sml_ Laser``
-    | ``Backup Laser I``
-    | ``Beam Rifle``
-    | ``Particle Gun``
-    | ``Spread Laser``
-    | ``Imp_ Medium Laser``
-    | ``Sub_ Laser``
-    | ``Autobeam``
-    | ``Field Laser``
-    | ``Pulse Rifle``
-    | ``Backup Laser III``
-    | ``Hvy_ Particle Gun``
-    | ``Prc_ Beam Rifle``
-    | ``Adv_ Beam Rifle``
-    | ``Hvy_ Laser``
-    | ``Gatling Laser``
-    | ``Cld_ Pulse Rifle``
-    | ``Hpw_ Field Laser``
-    | ``Imp_ Spread Laser``
-    | ``Mak_ Laser``
-    | ``Plasma Rifle``
-    | ``Thermic Laser``
-    | ``Beamcaster``
-    | ``Force Rifle``
-    | ``Imp_ Heavy Laser``
-    | ``Storm Laser``
-    | ``Zio_ Laser-S``
-    | ``Wave Gun``
-    | ``Variable Charge Gun``
-    | ``Hvy_ Beamcaster``
-    | ``Cld_ Plasma Rifle``
-    | ``Enh_ Force Rifle``
-    | ``Hvy_ Gatling Laser``
-    | ``Zio_ Phaser-S``
-    | ``Phase Gun``
-    | ``Dispersion Rifle``
-    | ``Backup Laser VII``
-    | ``Plasma Storm``
-    | ``Adv_ Plasma Rifle``
-    | ``Hvy_ Wave Gun``
-    | ``Adv_ Variable Charge Gun``
-    | ``Cld_ Phase Gun``
-    | ``Lrn_ Gatling Laser``
-    | ``Warp Gun``
-    | ``Vortex Rifle``
-    | ``Zio_ Laser-M``
-    | ``AWS_Thermal``
-    | ``PD Laser``
-    | ``Quantum Rifle``
-    | ``Prc_ Phase Gun``
-    | ``Hvy_ Dispersion Rifle``
-    | ``Vortex Shotgun``
-    | ``Vortex Rail``
-    | ``Zio_ Phaser-M``
-    | ``Enh_ Quantum Rifle``
-    | ``Zio_ Laser-H``
-    | ``Hvy_ Quantum Rifle``
-    | ``Zio_ Phaser-H``
-    | ``Gatling Beam``
-    | ``Sigix Sheargun``
-    | ``Modified Sigix Sheargun``
-    | ``Lgt_ EM Pulse Cannon``
-    | ``EM Pulse Cannon``
-    | ``Imp_ EM Pulse Cannon``
-    | ``Proton Cannon``
-    | ``Lrn_ Proton Cannon``
-    | ``Disruptor Cannon``
-    | ``Hvy_ Proton Cannon``
-    | ``HERF Cannon``
-    | ``Hvy_ Disruptor Cannon``
-    | ``Cld_ Proton Cannon``
-    | ``Proton Burst Cannon``
-    | ``Com_ HERF Cannon``
-    | ``Latent Energy Streamer``
-    | ``NK-0LA's Tesla Doomcannon``
-    | ``EMDS``
-    | ``Hpw_ Disruptor Cannon``
-    | ``Beam Cannon``
-    | ``Particle Cannon``
-    | ``Adv_ Beam Cannon``
-    | ``Sub_ Beam Cannon``
-    | ``Hvy_ Particle Cannon``
-    | ``Ion Cannon``
-    | ``Plasma Cannon``
-    | ``Hvy_ Ion Cannon``
-    | ``Cld_ Particle Cannon``
-    | ``Phase Cannon``
-    | ``Hvy_ Plasma Cannon``
-    | ``Cld_ Plasma Cannon``
-    | ``Com_ Ion Cannon``
-    | ``Ion Burst Cannon``
-    | ``Adv_ Plasma Cannon``
-    | ``Hvy_ Phase Cannon``
-    | ``Neutron Cannon``
-    | ``Powered Cannon``
-    | ``Matter Neutralizer``
-    | ``Hvy_ Neutron Cannon``
-    | ``Lrn_ Phase Cannon``
-    | ``Cld_ Phase Cannon``
-    | ``Vortex Cannon``
-    | ``Gui_ Plasma Cannon``
-    | ``Nova Cannon``
-    | ``Imp_ Matter Neutralizer``
-    | ``Exp_ Thermic Cannon``
-    | ``Vortex Driver``
-    | ``Zio_ Alpha Cannon``
-    | ``Asb_ Focal Cannon``
-    | ``Enh_ Nova Cannon``
-    | ``Firepult``
-    | ``YOLO Cannon``
-    | ``Potential Cannon``
-    | ``Warp Cannon``
-    | ``Cld_ Nova Cannon``
-    | ``Null Cannon``
-    | ``Imp_ Potential Cannon``
-    | ``Multinova Projection Cannon``
-    | ``Disintegrator``
-    | ``Core Cannon``
-    | ``Sigix Shearcannon``
-    | ``Drained L-Cannon``
-    | ``L-Cannon``
-    | ``Zio_ Alpha Cannon Mk_ II``
-    | ``BFG-9k Vortex Edition``
-    | ``Assault Rifle``
-    | ``Asb_ Rifle``
-    | ``Lgt_ Assault Rifle``
-    | ``Hvy_ Assault Rifle``
-    | ``Autogun``
-    | ``Shotgun``
-    | ``Battle Rifle``
-    | ``Asb_ Heavy Rifle``
-    | ``Sub_ Machine Gun``
-    | ``Imp_ Assault Rifle``
-    | ``Minigun``
-    | ``Hpw_ Shotgun``
-    | ``Asb_ Shotgun``
-    | ``Barrage Gun``
-    | ``Enh_ Autogun``
-    | ``Gauss Rifle``
-    | ``Asb_ Gauss Rifle``
-    | ``Flak Gun``
-    | ``Prc_ Assault Rifle``
-    | ``Hvy_ Battle Rifle``
-    | ``Mak_ Shrapnel Gun``
-    | ``Coil Gun``
-    | ``Hyp_ Gauss Rifle``
-    | ``Hvy_ Machine Gun``
-    | ``Imp_ Heavy Machine Gun``
-    | ``Com_ Gauss Rifle``
-    | ``XL Autogun Subcomponent``
-    | ``KE Penetrator``
-    | ``Hyp_ Coil Gun``
-    | ``Imp_ KE Penetrator``
-    | ``Enh_ Coil Gun``
-    | ``Com_ Coil Gun``
-    | ``Railgun``
-    | ``Adv_ KE Penetrator``
-    | ``Linked Autogun``
-    | ``AWS_Gauss``
-    | ``Hyp_ Railgun``
-    | ``Helical Railgun``
-    | ``Com_ Railgun``
-    | ``XL Autogun Array``
-    | ``12-ASH's Boomstick``
-    | ``8R-AWN's Boregun``
-    | ``Multirail``
-    | ``Hyp_ Multirail``
-    | ``5H-AD0's Sniper Rifle``
-    | ``A3's Sniper Rifle``
-    | ``Lgt_ Cannon``
-    | ``Imp_ Light Cannon``
-    | ``Battle Cannon``
-    | ``Assault Cannon``
-    | ``Hvy_ Assault Cannon``
-    | ``Flak Cannon``
-    | ``Adv_ Assault Cannon``
-    | ``Gauss Cannon``
-    | ``Slug Cannon``
-    | ``Mni_ Assault Cannon``
-    | ``Magnetic Acceleration Cannon``
-    | ``Hvy_ Flak Cannon``
-    | ``Bore Cannon``
-    | ``Antimatter Cannon``
-    | ``Mass Driver``
-    | ``Hvy_ Mass Driver``
-    | ``Enh_ Gauss Cannon``
-    | ``Hyp_ Gauss Cannon``
-    | ``Tri-rail Accelerator``
-    | ``Hardcell Cannon``
-    | ``Hvy_ Gauss Cannon``
-    | ``Hyp_ Mass Driver``
-    | ``Hvy_ Autocannon``
-    | ``DAS Cannon``
-    | ``Lgt_ Antimatter Cannon``
-    | ``Linear Accelerator``
-    | ``Hvy_ Linear Accelerator``
-    | ``Com_ Mass Driver``
-    | ``Hvy_ Hardcell Cannon``
-    | ``Com_ Linear Accelerator``
-    | ``Hyp_ Linear Accelerator``
-    | ``Hcl_ Linear Accelerator``
-    | ``Graviton Cannon``
-    | ``Blast Cannon``
-    | ``P1-3CE's Gatling Flakker``
-    | ``AWS_Autocannon``
-    | ``Perforator``
-    | ``Omega Cannon``
-    | ``EMP Blaster``
-    | ``Shock Bomb Launcher``
-    | ``Adv_ EMP Blaster``
-    | ``Proton Missile Launcher``
-    | ``Imp_ Proton Missile Launcher``
-    | ``Gui_ EMP Blaster``
-    | ``Hvy_ Shock Bomb Launcher``
-    | ``Tesla Bomb Launcher``
-    | ``Hvy_ Proton Missile Launcher``
-    | ``Com_ Tesla Bomb Launcher``
-    | ``Gamma Bomb Array``
-    | ``Enh_ Gamma Bomb Array``
-    | ``Grenade Launcher``
-    | ``Rocket Launcher``
-    | ``Mni_ Grenade Launcher``
-    | ``Sub_ Shrapnel Launcher``
-    | ``Imp_ Grenade Launcher``
-    | ``Missile Launcher``
-    | ``Concussive RPG``
-    | ``YI-UF0's Doublenader``
-    | ``Hvy_ Rocket Launcher``
-    | ``Hvy_ Missile Launcher``
-    | ``Gui_ Missile Launcher``
-    | ``Prc_ Grenade Launcher``
-    | ``Rocket Array``
-    | ``Lrn_ Missile Launcher``
-    | ``Imp_ Concussive RPG``
-    | ``Prc_ Rocket Launcher``
-    | ``Scatter Rocket Array``
-    | ``Smartbomb Launcher``
-    | ``Mni_ Smartbomb Launcher``
-    | ``Tiamat Missile Launcher``
-    | ``Thermoblaster``
-    | ``Micro-nuke Launcher``
-    | ``Adv_ Concussive RPG``
-    | ``Neutron Missile Launcher``
-    | ``Fusion Bomb Launcher``
-    | ``Hellfire Missile Launcher``
-    | ``Adv_ Micro-nuke Launcher``
-    | ``Tactical Quantum Warhead``
-    | ``Vortex Catalyst Activator``
-    | ``Chain Missile Launcher``
-    | ``Ragnarok Missile Launcher``
-    | ``Point Singularity Launcher``
-    | ``Gui_ Micro-nuke Launcher``
-    | ``99-TNT's Nukerbomber``
-    | ``Z-bomb Delivery System``
-    | ``Sigix Terminator``
-    | ``Supercharged Sigix Terminator``
-    | ``Containment Facilitator``
-    | ``Detonator``
-    | ``Dirty Datajack``
-    | ``Splice Injector``
-    | ``Datajack``
-    | ``Imp_ Datajack``
-    | ``Adv_ Datajack``
-    | ``Remote Datajack``
-    | ``Imp_ Remote Datajack``
-    | ``Adv_ Remote Datajack``
-    | ``Exp_ Remote Datajack``
-    | ``Gui_ Remote Datajack``
-    | ``ME-RLN's Wand``
-    | ``Field Lobotomy Kit``
-    | ``Mining Laser``
-    | ``Welding Torch``
-    | ``Plasma Cutter``
-    | ``Imp_ Plasma Cutter``
-    | ``CPS Tube``
-    | ``Multitool``
-    | ``Flamer``
-    | ``Asb_ F-torch``
-    | ``Enh_ Flamer``
-    | ``Plasma Flamer``
-    | ``Asb_ P-torch``
-    | ``RU-N14's Throwing Claymores``
-    | ``RU-N14's Throwing Claymores v3``
-    | ``AD-0RF's Magmablaster``
-    | ``Stasis Beam``
-    | ``Stasis Projector``
-    | ``Exp_ Stasis Projector``
-    | ``Molecular Deconstructor``
-    | ``SE_WE1``
-    | ``SE_WE2``
-    | ``SE_WE3``
-    | ``SE_WE4``
-    | ``SE_WE5``
-    | ``Hammer``
-    | ``Mace``
-    | ``Flail``
-    | ``Maul``
-    | ``Asb_ Maul``
-    | ``Hvy_ Hammer``
-    | ``Hvy_ Mace``
-    | ``Hvy_ Flail``
-    | ``Great Maul``
-    | ``Powered Hammer``
-    | ``Mak_ Hammer``
-    | ``Power Maul``
-    | ``Asb_ P-maul``
-    | ``Impact Mace``
-    | ``Shock Maul``
-    | ``Thunder Hammer``
-    | ``Compactor``
-    | ``Gravity Flail``
-    | ``CL-ANK's Mallet``
-    | ``Core Stripper``
-    | ``Mining Claw``
-    | ``EC_1``
-    | ``Katana``
-    | ``Asb_ Blade``
-    | ``Scythe``
-    | ``Axe``
-    | ``Blade Saw``
-    | ``EC_3``
-    | ``Chainsword``
-    | ``Ripper``
-    | ``Mak_ Axe``
-    | ``Mak_ Sword``
-    | ``Great Axe``
-    | ``Greatsword``
-    | ``Power Sword``
-    | ``Asb_ P-sword``
-    | ``Falx``
-    | ``Carbide Saw``
-    | ``Segregator``
-    | ``Tearclaws``
-    | ``EC_5``
-    | ``Phasing Sabre``
-    | ``Plasma Sword``
-    | ``Ionic Axe``
-    | ``Mni_ Tearclaws``
-    | ``Dual-blade Saw``
-    | ``Vibroblade``
-    | ``Molecular Scythe``
-    | ``Centrium Greatsword``
-    | ``Master Tearclaws``
-    | ``Longsword _1``
-    | ``EC_7``
-    | ``Nanosword``
-    | ``Particle Cleaver``
-    | ``Centrium Claws``
-    | ``1C-UTU's Sword _Lootmaker_``
-    | ``1C-UTU's Sword _Choppy_``
-    | ``Vortex Shredder``
-    | ``EC_9``
-    | ``Sigix Broadsword``
-    | ``Spear``
-    | ``Mak_ Spear``
-    | ``CR-A16's Pointy Stick``
-    | ``Hvy_ Pick``
-    | ``Lance``
-    | ``Kinetic Spear``
-    | ``Force Lance``
-    | ``Plasma Lance``
-    | ``Enh_ Force Lance``
-    | ``Vortex Lance``
-    | ``CR-A16's Behemoth Slayer``
-    | ``Blade Trap``
-    | ``Segregator Trap``
-    | ``Explosive Trap``
-    | ``Heavy Explosive Trap``
-    | ``Tiamat Bomb Trap``
-    | ``Fusion Bomb Trap``
-    | ``Hellfire Trap``
-    | ``Armageddon Trap``
-    | ``Dirty Bomb Trap``
-    | ``EMP Trap``
-    | ``Proton Bomb Trap``
-    | ``Tesla Bomb Trap``
-    | ``Gamma Bomb Trap``
-    | ``Shrapnel Trap``
-    | ``Piercing Trap``
-    | ``Shock Trap``
-    | ``EM Surge Trap``
-    | ``Fire Trap``
-    | ``Stasis Trap``
-    | ``Scrap Shield Fragment``
-    | ``Signal Generator``
-    | ``Self-destruct Interrupter``
-    | ``Sapper Charge``
-    | ``Zhirov Special``
-    | ``Deploy-a-Sentry``
-    | ``GAL Module``
-    | ``Portable AFG``
-    | ``SGEMP Prototype``
-    | ``Terrabomb Derivative``
-    | ``Sigix Containment Pod``
-    | ``Sigix Corpse``
-    | ``Meganuke``
-    | ``Gamma Refractor``
+    | [<JsonUnionCase(@"Matter")>] ``Matter``
+    | [<JsonUnionCase(@"Data Core")>] ``Data Core``
+    | [<JsonUnionCase(@"Derelict Log")>] ``Derelict Log``
+    | [<JsonUnionCase(@"Schematic Archive")>] ``Schematic Archive``
+    | [<JsonUnionCase(@"Imprinter Data Core")>] ``Imprinter Data Core``
+    | [<JsonUnionCase(@"A2 Data Core")>] ``A2 Data Core``
+    | [<JsonUnionCase(@"A7 Data Core")>] ``A7 Data Core``
+    | [<JsonUnionCase(@"MAIN.C Data Core")>] ``MAIN_C Data Core``
+    | [<JsonUnionCase(@"Architect Data Core")>] ``Architect Data Core``
+    | [<JsonUnionCase(@"Scrap")>] ``Scrap``
+    | [<JsonUnionCase(@"Protomatter")>] ``Protomatter``
+    | [<JsonUnionCase(@"Ion Engine")>] ``Ion Engine``
+    | [<JsonUnionCase(@"Lgt. Ion Engine")>] ``Lgt_ Ion Engine``
+    | [<JsonUnionCase(@"Backup Power I")>] ``Backup Power I``
+    | [<JsonUnionCase(@"Imp. Ion Engine")>] ``Imp_ Ion Engine``
+    | [<JsonUnionCase(@"Rnf. Ion Engine")>] ``Rnf_ Ion Engine``
+    | [<JsonUnionCase(@"Hvy. Ion Engine")>] ``Hvy_ Ion Engine``
+    | [<JsonUnionCase(@"Cld. Ion Engine")>] ``Cld_ Ion Engine``
+    | [<JsonUnionCase(@"Sub. Power Source")>] ``Sub_ Power Source``
+    | [<JsonUnionCase(@"Deuterium Engine")>] ``Deuterium Engine``
+    | [<JsonUnionCase(@"Lgt. Deuterium Engine")>] ``Lgt_ Deuterium Engine``
+    | [<JsonUnionCase(@"Backup Power III")>] ``Backup Power III``
+    | [<JsonUnionCase(@"Nuclear Core")>] ``Nuclear Core``
+    | [<JsonUnionCase(@"Lgt. Nuclear Core")>] ``Lgt_ Nuclear Core``
+    | [<JsonUnionCase(@"Imp. Deuterium Engine")>] ``Imp_ Deuterium Engine``
+    | [<JsonUnionCase(@"Rnf. Deuterium Engine")>] ``Rnf_ Deuterium Engine``
+    | [<JsonUnionCase(@"Hyb. Deuterium Engine")>] ``Hyb_ Deuterium Engine``
+    | [<JsonUnionCase(@"Hvy. Deuterium Engine")>] ``Hvy_ Deuterium Engine``
+    | [<JsonUnionCase(@"Cld. Deuterium Engine")>] ``Cld_ Deuterium Engine``
+    | [<JsonUnionCase(@"Enh. Nuclear Core")>] ``Enh_ Nuclear Core``
+    | [<JsonUnionCase(@"Mic. Nuclear Core")>] ``Mic_ Nuclear Core``
+    | [<JsonUnionCase(@"Mak. Power Source")>] ``Mak_ Power Source``
+    | [<JsonUnionCase(@"Angular Momentum Engine")>] ``Angular Momentum Engine``
+    | [<JsonUnionCase(@"Lgt. Angular Momentum Engine")>] ``Lgt_ Angular Momentum Engine``
+    | [<JsonUnionCase(@"F-cell Engine")>] ``F-cell Engine``
+    | [<JsonUnionCase(@"Fission Core")>] ``Fission Core``
+    | [<JsonUnionCase(@"Lgt. Fission Core")>] ``Lgt_ Fission Core``
+    | [<JsonUnionCase(@"Hyb. Fission Core")>] ``Hyb_ Fission Core``
+    | [<JsonUnionCase(@"Fusion Compressor")>] ``Fusion Compressor``
+    | [<JsonUnionCase(@"Cold Fusion Reactor")>] ``Cold Fusion Reactor``
+    | [<JsonUnionCase(@"Neutrino Core")>] ``Neutrino Core``
+    | [<JsonUnionCase(@"Lgt. Neutrino Core")>] ``Lgt_ Neutrino Core``
+    | [<JsonUnionCase(@"Rnf. Fission Core")>] ``Rnf_ Fission Core``
+    | [<JsonUnionCase(@"Enh. Fission Core")>] ``Enh_ Fission Core``
+    | [<JsonUnionCase(@"Cld. Fission Core")>] ``Cld_ Fission Core``
+    | [<JsonUnionCase(@"Mic. Fission Core")>] ``Mic_ Fission Core``
+    | [<JsonUnionCase(@"Fusion Reactor")>] ``Fusion Reactor``
+    | [<JsonUnionCase(@"Antimatter Reactor")>] ``Antimatter Reactor``
+    | [<JsonUnionCase(@"Lgt. Antimatter Reactor")>] ``Lgt_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Rnf. Antimatter Reactor")>] ``Rnf_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Hyb. Antimatter Reactor")>] ``Hyb_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Backup Power VII")>] ``Backup Power VII``
+    | [<JsonUnionCase(@"Hvy. Antimatter Reactor")>] ``Hvy_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Mni. Fusion Reactor")>] ``Mni_ Fusion Reactor``
+    | [<JsonUnionCase(@"Imp. Fusion Compressor")>] ``Imp_ Fusion Compressor``
+    | [<JsonUnionCase(@"Mic. Neutrino Core")>] ``Mic_ Neutrino Core``
+    | [<JsonUnionCase(@"Zio. Light DM Reactor")>] ``Zio_ Light DM Reactor``
+    | [<JsonUnionCase(@"Zio. Heavy DM Reactor")>] ``Zio_ Heavy DM Reactor``
+    | [<JsonUnionCase(@"Particle Reactor")>] ``Particle Reactor``
+    | [<JsonUnionCase(@"Lgt. Particle Reactor")>] ``Lgt_ Particle Reactor``
+    | [<JsonUnionCase(@"Mic. Antimatter Reactor")>] ``Mic_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Com. Particle Reactor")>] ``Com_ Particle Reactor``
+    | [<JsonUnionCase(@"Cld. Antimatter Reactor")>] ``Cld_ Antimatter Reactor``
+    | [<JsonUnionCase(@"Graviton Reactor")>] ``Graviton Reactor``
+    | [<JsonUnionCase(@"Asb. Flux Generator")>] ``Asb_ Flux Generator``
+    | [<JsonUnionCase(@"Quantum Reactor")>] ``Quantum Reactor``
+    | [<JsonUnionCase(@"Lgt. Quantum Reactor")>] ``Lgt_ Quantum Reactor``
+    | [<JsonUnionCase(@"Rnf. Quantum Reactor")>] ``Rnf_ Quantum Reactor``
+    | [<JsonUnionCase(@"Imp. Quantum Reactor")>] ``Imp_ Quantum Reactor``
+    | [<JsonUnionCase(@"Zero-point Reactor")>] ``Zero-point Reactor``
+    | [<JsonUnionCase(@"Vortex Chain Reactor")>] ``Vortex Chain Reactor``
+    | [<JsonUnionCase(@"Singularity Reactor")>] ``Singularity Reactor``
+    | [<JsonUnionCase(@"Matter Drive")>] ``Matter Drive``
+    | [<JsonUnionCase(@"Meta Core")>] ``Meta Core``
+    | [<JsonUnionCase(@"SE_PO1")>] ``SE_PO1``
+    | [<JsonUnionCase(@"Lgt. Treads")>] ``Lgt_ Treads``
+    | [<JsonUnionCase(@"Imp. Treads")>] ``Imp_ Treads``
+    | [<JsonUnionCase(@"Spk. Treads")>] ``Spk_ Treads``
+    | [<JsonUnionCase(@"Arm. Treads")>] ``Arm_ Treads``
+    | [<JsonUnionCase(@"Adv. Treads")>] ``Adv_ Treads``
+    | [<JsonUnionCase(@"Med. Treads")>] ``Med_ Treads``
+    | [<JsonUnionCase(@"Imp. Medium Treads")>] ``Imp_ Medium Treads``
+    | [<JsonUnionCase(@"Spk. Medium Treads")>] ``Spk_ Medium Treads``
+    | [<JsonUnionCase(@"Arm. Medium Treads")>] ``Arm_ Medium Treads``
+    | [<JsonUnionCase(@"Hvy. Treads")>] ``Hvy_ Treads``
+    | [<JsonUnionCase(@"Adv. Medium Treads")>] ``Adv_ Medium Treads``
+    | [<JsonUnionCase(@"Enh. Armored Medium Treads")>] ``Enh_ Armored Medium Treads``
+    | [<JsonUnionCase(@"Imp. Heavy Treads")>] ``Imp_ Heavy Treads``
+    | [<JsonUnionCase(@"Hvy. Siege Treads")>] ``Hvy_ Siege Treads``
+    | [<JsonUnionCase(@"Spk. Heavy Treads")>] ``Spk_ Heavy Treads``
+    | [<JsonUnionCase(@"Biometal Medium Treads")>] ``Biometal Medium Treads``
+    | [<JsonUnionCase(@"Arm. Heavy Treads")>] ``Arm_ Heavy Treads``
+    | [<JsonUnionCase(@"Adv. Heavy Treads")>] ``Adv_ Heavy Treads``
+    | [<JsonUnionCase(@"Imp. Heavy Siege Treads")>] ``Imp_ Heavy Siege Treads``
+    | [<JsonUnionCase(@"Centrium Heavy Treads")>] ``Centrium Heavy Treads``
+    | [<JsonUnionCase(@"Megatreads")>] ``Megatreads``
+    | [<JsonUnionCase(@"Biometal Heavy Treads")>] ``Biometal Heavy Treads``
+    | [<JsonUnionCase(@"Exp. Biometal Heavy Treads")>] ``Exp_ Biometal Heavy Treads``
+    | [<JsonUnionCase(@"Enh. Armored Heavy Treads")>] ``Enh_ Armored Heavy Treads``
+    | [<JsonUnionCase(@"Adv. Heavy Siege Treads")>] ``Adv_ Heavy Siege Treads``
+    | [<JsonUnionCase(@"Hdn. Centrium Heavy Treads")>] ``Hdn_ Centrium Heavy Treads``
+    | [<JsonUnionCase(@"Exp. Biometal Medium Treads")>] ``Exp_ Biometal Medium Treads``
+    | [<JsonUnionCase(@"Aluminum Leg")>] ``Aluminum Leg``
+    | [<JsonUnionCase(@"Imp. Aluminum Leg")>] ``Imp_ Aluminum Leg``
+    | [<JsonUnionCase(@"Carbon-fiber Leg")>] ``Carbon-fiber Leg``
+    | [<JsonUnionCase(@"Titanium Leg")>] ``Titanium Leg``
+    | [<JsonUnionCase(@"VSS Leg")>] ``VSS Leg``
+    | [<JsonUnionCase(@"Imp. Carbon-fiber Leg")>] ``Imp_ Carbon-fiber Leg``
+    | [<JsonUnionCase(@"Imp. Titanium Leg")>] ``Imp_ Titanium Leg``
+    | [<JsonUnionCase(@"Lgt. Armored Exoskeleton")>] ``Lgt_ Armored Exoskeleton``
+    | [<JsonUnionCase(@"Mak. Leg")>] ``Mak_ Leg``
+    | [<JsonUnionCase(@"Flexi-carbon Leg")>] ``Flexi-carbon Leg``
+    | [<JsonUnionCase(@"Arm. Leg")>] ``Arm_ Leg``
+    | [<JsonUnionCase(@"Imp. VSS Leg")>] ``Imp_ VSS Leg``
+    | [<JsonUnionCase(@"Zio. Composite Leg I")>] ``Zio_ Composite Leg I``
+    | [<JsonUnionCase(@"Med. Armored Exoskeleton")>] ``Med_ Armored Exoskeleton``
+    | [<JsonUnionCase(@"Enh. Flexi-carbon Leg")>] ``Enh_ Flexi-carbon Leg``
+    | [<JsonUnionCase(@"Enh. Armored Leg")>] ``Enh_ Armored Leg``
+    | [<JsonUnionCase(@"Arachnoskeleton")>] ``Arachnoskeleton``
+    | [<JsonUnionCase(@"Myomer Leg")>] ``Myomer Leg``
+    | [<JsonUnionCase(@"Adv. VSS Leg")>] ``Adv_ VSS Leg``
+    | [<JsonUnionCase(@"Adv. Myomer Leg")>] ``Adv_ Myomer Leg``
+    | [<JsonUnionCase(@"Exp. Flexi-carbon Leg")>] ``Exp_ Flexi-carbon Leg``
+    | [<JsonUnionCase(@"Zio. Composite Leg II")>] ``Zio_ Composite Leg II``
+    | [<JsonUnionCase(@"Cargo Legs")>] ``Cargo Legs``
+    | [<JsonUnionCase(@"Etherial Tendrils")>] ``Etherial Tendrils``
+    | [<JsonUnionCase(@"Biometal Leg")>] ``Biometal Leg``
+    | [<JsonUnionCase(@"Hvy. Armored Exoskeleton")>] ``Hvy_ Armored Exoskeleton``
+    | [<JsonUnionCase(@"Enh. Biometal Leg")>] ``Enh_ Biometal Leg``
+    | [<JsonUnionCase(@"Exp. Myomer Leg")>] ``Exp_ Myomer Leg``
+    | [<JsonUnionCase(@"Tripod Weapons Platform")>] ``Tripod Weapons Platform``
+    | [<JsonUnionCase(@"T.R.O.L.L. Exoskeleton")>] ``T_R_O_L_L_ Exoskeleton``
+    | [<JsonUnionCase(@"Asb. Alloy Leg")>] ``Asb_ Alloy Leg``
+    | [<JsonUnionCase(@"Centrium Leg")>] ``Centrium Leg``
+    | [<JsonUnionCase(@"Hdn. Centrium Leg")>] ``Hdn_ Centrium Leg``
+    | [<JsonUnionCase(@"Exp. Biometal Leg")>] ``Exp_ Biometal Leg``
+    | [<JsonUnionCase(@"Sigix Exoskeleton")>] ``Sigix Exoskeleton``
+    | [<JsonUnionCase(@"Zio. Supercomposite Leg")>] ``Zio_ Supercomposite Leg``
+    | [<JsonUnionCase(@"Potential Leg")>] ``Potential Leg``
+    | [<JsonUnionCase(@"Myomer Exoskeleton")>] ``Myomer Exoskeleton``
+    | [<JsonUnionCase(@"SE_PR1")>] ``SE_PR1``
+    | [<JsonUnionCase(@"Wheel")>] ``Wheel``
+    | [<JsonUnionCase(@"Com. Wheel")>] ``Com_ Wheel``
+    | [<JsonUnionCase(@"Arm. Wheel")>] ``Arm_ Wheel``
+    | [<JsonUnionCase(@"Sub. Monowheel")>] ``Sub_ Monowheel``
+    | [<JsonUnionCase(@"Arm. Huge Wheel")>] ``Arm_ Huge Wheel``
+    | [<JsonUnionCase(@"Centrium Wheel")>] ``Centrium Wheel``
+    | [<JsonUnionCase(@"Hdn. Centrium Wheel")>] ``Hdn_ Centrium Wheel``
+    | [<JsonUnionCase(@"Hover Unit")>] ``Hover Unit``
+    | [<JsonUnionCase(@"Backup Propulsion I")>] ``Backup Propulsion I``
+    | [<JsonUnionCase(@"Imp. Hover Unit")>] ``Imp_ Hover Unit``
+    | [<JsonUnionCase(@"Airjet")>] ``Airjet``
+    | [<JsonUnionCase(@"Aerolev Unit")>] ``Aerolev Unit``
+    | [<JsonUnionCase(@"Asb. Hover Unit")>] ``Asb_ Hover Unit``
+    | [<JsonUnionCase(@"Backup Propulsion III")>] ``Backup Propulsion III``
+    | [<JsonUnionCase(@"Gravmag System")>] ``Gravmag System``
+    | [<JsonUnionCase(@"Asb. Hover System")>] ``Asb_ Hover System``
+    | [<JsonUnionCase(@"Imp. Airjet")>] ``Imp_ Airjet``
+    | [<JsonUnionCase(@"Cld. Airjet")>] ``Cld_ Airjet``
+    | [<JsonUnionCase(@"Imp. Gravmag System")>] ``Imp_ Gravmag System``
+    | [<JsonUnionCase(@"Cld. Aerolev Unit")>] ``Cld_ Aerolev Unit``
+    | [<JsonUnionCase(@"Cmb. Airjet")>] ``Cmb_ Airjet``
+    | [<JsonUnionCase(@"Gravmag Array")>] ``Gravmag Array``
+    | [<JsonUnionCase(@"Mak. Hover Unit")>] ``Mak_ Hover Unit``
+    | [<JsonUnionCase(@"Zio. Glidesys I")>] ``Zio_ Glidesys I``
+    | [<JsonUnionCase(@"Antigrav System")>] ``Antigrav System``
+    | [<JsonUnionCase(@"Gyrokinetic Inverter")>] ``Gyrokinetic Inverter``
+    | [<JsonUnionCase(@"Linear Gravjet")>] ``Linear Gravjet``
+    | [<JsonUnionCase(@"Cld. Gravmag System")>] ``Cld_ Gravmag System``
+    | [<JsonUnionCase(@"Cmb. Gravmag System")>] ``Cmb_ Gravmag System``
+    | [<JsonUnionCase(@"Imp. Antigrav System")>] ``Imp_ Antigrav System``
+    | [<JsonUnionCase(@"Imp. Gyrokinetic Inverter")>] ``Imp_ Gyrokinetic Inverter``
+    | [<JsonUnionCase(@"Imp. Linear Gravjet")>] ``Imp_ Linear Gravjet``
+    | [<JsonUnionCase(@"Backup Propulsion VII")>] ``Backup Propulsion VII``
+    | [<JsonUnionCase(@"Zio. Glidesys II")>] ``Zio_ Glidesys II``
+    | [<JsonUnionCase(@"Cld. Antigrav System")>] ``Cld_ Antigrav System``
+    | [<JsonUnionCase(@"Cmb. Antigrav System")>] ``Cmb_ Antigrav System``
+    | [<JsonUnionCase(@"Antigrav Array")>] ``Antigrav Array``
+    | [<JsonUnionCase(@"Exp. Gyrokinetic Inverter")>] ``Exp_ Gyrokinetic Inverter``
+    | [<JsonUnionCase(@"Cld. Linear Gravjet")>] ``Cld_ Linear Gravjet``
+    | [<JsonUnionCase(@"Cmb. Linear Gravjet")>] ``Cmb_ Linear Gravjet``
+    | [<JsonUnionCase(@"Flight Unit")>] ``Flight Unit``
+    | [<JsonUnionCase(@"VTOL Module")>] ``VTOL Module``
+    | [<JsonUnionCase(@"Imp. Flight Unit")>] ``Imp_ Flight Unit``
+    | [<JsonUnionCase(@"Cesium-ion Thruster")>] ``Cesium-ion Thruster``
+    | [<JsonUnionCase(@"Surge Thruster")>] ``Surge Thruster``
+    | [<JsonUnionCase(@"Imp. VTOL Module")>] ``Imp_ VTOL Module``
+    | [<JsonUnionCase(@"Xenon Bombardment Thruster")>] ``Xenon Bombardment Thruster``
+    | [<JsonUnionCase(@"Imp. Cesium-ion Thruster")>] ``Imp_ Cesium-ion Thruster``
+    | [<JsonUnionCase(@"Cld. VTOL Module")>] ``Cld_ VTOL Module``
+    | [<JsonUnionCase(@"Mak. Flight Unit")>] ``Mak_ Flight Unit``
+    | [<JsonUnionCase(@"Nuclear Pulse Thruster")>] ``Nuclear Pulse Thruster``
+    | [<JsonUnionCase(@"Imp. Surge Thruster")>] ``Imp_ Surge Thruster``
+    | [<JsonUnionCase(@"Mni. Nuclear Pulse Thruster")>] ``Mni_ Nuclear Pulse Thruster``
+    | [<JsonUnionCase(@"Cld. Cesium-ion Thruster")>] ``Cld_ Cesium-ion Thruster``
+    | [<JsonUnionCase(@"Biomechanical Wings")>] ``Biomechanical Wings``
+    | [<JsonUnionCase(@"Field Propulsion Drive")>] ``Field Propulsion Drive``
+    | [<JsonUnionCase(@"Cld. Nuclear Pulse Thruster")>] ``Cld_ Nuclear Pulse Thruster``
+    | [<JsonUnionCase(@"Exp. Cesium-ion Thruster")>] ``Exp_ Cesium-ion Thruster``
+    | [<JsonUnionCase(@"Nuclear Pulse Array")>] ``Nuclear Pulse Array``
+    | [<JsonUnionCase(@"Mak. Microthruster")>] ``Mak_ Microthruster``
+    | [<JsonUnionCase(@"Impulse Thruster")>] ``Impulse Thruster``
+    | [<JsonUnionCase(@"Adv. Surge Thruster")>] ``Adv_ Surge Thruster``
+    | [<JsonUnionCase(@"Cld. Field Propulsion Drive")>] ``Cld_ Field Propulsion Drive``
+    | [<JsonUnionCase(@"Field Propulsion Array")>] ``Field Propulsion Array``
+    | [<JsonUnionCase(@"Diametric Drive")>] ``Diametric Drive``
+    | [<JsonUnionCase(@"Flying Fortress v7")>] ``Flying Fortress v7``
+    | [<JsonUnionCase(@"T-thruster")>] ``T-thruster``
+    | [<JsonUnionCase(@"Integrated Tracker Drive")>] ``Integrated Tracker Drive``
+    | [<JsonUnionCase(@"Etherial Propulsion")>] ``Etherial Propulsion``
+    | [<JsonUnionCase(@"Q-thruster")>] ``Q-thruster``
+    | [<JsonUnionCase(@"Electron Diverter")>] ``Electron Diverter``
+    | [<JsonUnionCase(@"Imp. Diametric Drive")>] ``Imp_ Diametric Drive``
+    | [<JsonUnionCase(@"Cld. Impulse Thruster")>] ``Cld_ Impulse Thruster``
+    | [<JsonUnionCase(@"Impulse Thruster Array")>] ``Impulse Thruster Array``
+    | [<JsonUnionCase(@"Flightbrick")>] ``Flightbrick``
+    | [<JsonUnionCase(@"Imp. Q-thruster")>] ``Imp_ Q-thruster``
+    | [<JsonUnionCase(@"Cld. Q-thruster")>] ``Cld_ Q-thruster``
+    | [<JsonUnionCase(@"Exp. Q-thruster")>] ``Exp_ Q-thruster``
+    | [<JsonUnionCase(@"Scrap Engine")>] ``Scrap Engine``
+    | [<JsonUnionCase(@"Arm. Scrap Engine")>] ``Arm_ Scrap Engine``
+    | [<JsonUnionCase(@"Desublimator")>] ``Desublimator``
+    | [<JsonUnionCase(@"Power Amplifier")>] ``Power Amplifier``
+    | [<JsonUnionCase(@"Adv. Power Amplifier")>] ``Adv_ Power Amplifier``
+    | [<JsonUnionCase(@"Exp. Power Amplifier")>] ``Exp_ Power Amplifier``
+    | [<JsonUnionCase(@"Thermal Generator")>] ``Thermal Generator``
+    | [<JsonUnionCase(@"Imp. Thermal Generator")>] ``Imp_ Thermal Generator``
+    | [<JsonUnionCase(@"Adv. Thermal Generator")>] ``Adv_ Thermal Generator``
+    | [<JsonUnionCase(@"Exp. Thermal Generator")>] ``Exp_ Thermal Generator``
+    | [<JsonUnionCase(@"Cryofiber Web")>] ``Cryofiber Web``
+    | [<JsonUnionCase(@"Imp. Cryofiber Web")>] ``Imp_ Cryofiber Web``
+    | [<JsonUnionCase(@"Adv. Cryofiber Web")>] ``Adv_ Cryofiber Web``
+    | [<JsonUnionCase(@"Exp. Cryofiber Web")>] ``Exp_ Cryofiber Web``
+    | [<JsonUnionCase(@"Heat Sink")>] ``Heat Sink``
+    | [<JsonUnionCase(@"Imp. Heat Sink")>] ``Imp_ Heat Sink``
+    | [<JsonUnionCase(@"Adv. Heat Sink")>] ``Adv_ Heat Sink``
+    | [<JsonUnionCase(@"Exp. Heat Sink")>] ``Exp_ Heat Sink``
+    | [<JsonUnionCase(@"Cooling System")>] ``Cooling System``
+    | [<JsonUnionCase(@"Imp. Cooling System")>] ``Imp_ Cooling System``
+    | [<JsonUnionCase(@"Adv. Cooling System")>] ``Adv_ Cooling System``
+    | [<JsonUnionCase(@"Exp. Cooling System")>] ``Exp_ Cooling System``
+    | [<JsonUnionCase(@"Coolant Network")>] ``Coolant Network``
+    | [<JsonUnionCase(@"Asb. Nanovents")>] ``Asb_ Nanovents``
+    | [<JsonUnionCase(@"2N-1CE's Frost Array")>] ``2N-1CE's Frost Array``
+    | [<JsonUnionCase(@"Disposable Heat Sink")>] ``Disposable Heat Sink``
+    | [<JsonUnionCase(@"Coolant Injector")>] ``Coolant Injector``
+    | [<JsonUnionCase(@"Imp. Coolant Injector")>] ``Imp_ Coolant Injector``
+    | [<JsonUnionCase(@"Adv. Coolant Injector")>] ``Adv_ Coolant Injector``
+    | [<JsonUnionCase(@"Exp. Coolant Injector")>] ``Exp_ Coolant Injector``
+    | [<JsonUnionCase(@"Sml. Storage Unit")>] ``Sml_ Storage Unit``
+    | [<JsonUnionCase(@"Med. Storage Unit")>] ``Med_ Storage Unit``
+    | [<JsonUnionCase(@"Lrg. Storage Unit")>] ``Lrg_ Storage Unit``
+    | [<JsonUnionCase(@"Hcp. Storage Unit")>] ``Hcp_ Storage Unit``
+    | [<JsonUnionCase(@"Huge Storage Unit")>] ``Huge Storage Unit``
+    | [<JsonUnionCase(@"Cargo Storage Unit")>] ``Cargo Storage Unit``
+    | [<JsonUnionCase(@"Humpback")>] ``Humpback``
+    | [<JsonUnionCase(@"Lightpack 2.0")>] ``Lightpack 2_0``
+    | [<JsonUnionCase(@"Sml. Battery")>] ``Sml_ Battery``
+    | [<JsonUnionCase(@"Med. Battery")>] ``Med_ Battery``
+    | [<JsonUnionCase(@"Lrg. Battery")>] ``Lrg_ Battery``
+    | [<JsonUnionCase(@"Hcp. Battery")>] ``Hcp_ Battery``
+    | [<JsonUnionCase(@"Com. Battery")>] ``Com_ Battery``
+    | [<JsonUnionCase(@"Energy Well")>] ``Energy Well``
+    | [<JsonUnionCase(@"Imp. Energy Well")>] ``Imp_ Energy Well``
+    | [<JsonUnionCase(@"Adv. Energy Well")>] ``Adv_ Energy Well``
+    | [<JsonUnionCase(@"Exp. Energy Well")>] ``Exp_ Energy Well``
+    | [<JsonUnionCase(@"Zio. Biocell")>] ``Zio_ Biocell``
+    | [<JsonUnionCase(@"Asb. Biocell Array")>] ``Asb_ Biocell Array``
+    | [<JsonUnionCase(@"Zio. Biocell Array")>] ``Zio_ Biocell Array``
+    | [<JsonUnionCase(@"Superbattery")>] ``Superbattery``
+    | [<JsonUnionCase(@"Sml. Matter Pod")>] ``Sml_ Matter Pod``
+    | [<JsonUnionCase(@"Med. Matter Pod")>] ``Med_ Matter Pod``
+    | [<JsonUnionCase(@"Lrg. Matter Pod")>] ``Lrg_ Matter Pod``
+    | [<JsonUnionCase(@"Hcp. Matter Pod")>] ``Hcp_ Matter Pod``
+    | [<JsonUnionCase(@"Com. Matter Pod")>] ``Com_ Matter Pod``
+    | [<JsonUnionCase(@"Matter Compressor")>] ``Matter Compressor``
+    | [<JsonUnionCase(@"Imp. Matter Compressor")>] ``Imp_ Matter Compressor``
+    | [<JsonUnionCase(@"Adv. Matter Compressor")>] ``Adv_ Matter Compressor``
+    | [<JsonUnionCase(@"Exp. Matter Compressor")>] ``Exp_ Matter Compressor``
+    | [<JsonUnionCase(@"YI-UF0's Bottomless Matter Pit")>] ``YI-UF0's Bottomless Matter Pit``
+    | [<JsonUnionCase(@"Weight Redist. System")>] ``Weight Redist_ System``
+    | [<JsonUnionCase(@"Adv. Weight Redist. System")>] ``Adv_ Weight Redist_ System``
+    | [<JsonUnionCase(@"Gravity Neutralizer")>] ``Gravity Neutralizer``
+    | [<JsonUnionCase(@"Adv. Gravity Neutralizer")>] ``Adv_ Gravity Neutralizer``
+    | [<JsonUnionCase(@"Quantum Shading Machine")>] ``Quantum Shading Machine``
+    | [<JsonUnionCase(@"Asb. Suspension Frame")>] ``Asb_ Suspension Frame``
+    | [<JsonUnionCase(@"Adv. Quantum Shading Machine")>] ``Adv_ Quantum Shading Machine``
+    | [<JsonUnionCase(@"Asb. Metafiber Network")>] ``Asb_ Metafiber Network``
+    | [<JsonUnionCase(@"Zio. Metafield Generator")>] ``Zio_ Metafield Generator``
+    | [<JsonUnionCase(@"ST Field Compressor")>] ``ST Field Compressor``
+    | [<JsonUnionCase(@"Structural Scanner")>] ``Structural Scanner``
+    | [<JsonUnionCase(@"Trap Scanner")>] ``Trap Scanner``
+    | [<JsonUnionCase(@"Imp. Trap Scanner")>] ``Imp_ Trap Scanner``
+    | [<JsonUnionCase(@"Mak. Trap Scanner")>] ``Mak_ Trap Scanner``
+    | [<JsonUnionCase(@"Adv. Trap Scanner")>] ``Adv_ Trap Scanner``
+    | [<JsonUnionCase(@"Machine Analyzer")>] ``Machine Analyzer``
+    | [<JsonUnionCase(@"Triangulator")>] ``Triangulator``
+    | [<JsonUnionCase(@"Visual Processing Unit")>] ``Visual Processing Unit``
+    | [<JsonUnionCase(@"Sub. Optics")>] ``Sub_ Optics``
+    | [<JsonUnionCase(@"Adv. Visual Processing Unit")>] ``Adv_ Visual Processing Unit``
+    | [<JsonUnionCase(@"Enh. Optical Array")>] ``Enh_ Optical Array``
+    | [<JsonUnionCase(@"Exp. Optical Array")>] ``Exp_ Optical Array``
+    | [<JsonUnionCase(@"Spectral Analyzer")>] ``Spectral Analyzer``
+    | [<JsonUnionCase(@"Sensor Array")>] ``Sensor Array``
+    | [<JsonUnionCase(@"Imp. Sensor Array")>] ``Imp_ Sensor Array``
+    | [<JsonUnionCase(@"Adv. Sensor Array")>] ``Adv_ Sensor Array``
+    | [<JsonUnionCase(@"Lrn. Sensor Array")>] ``Lrn_ Sensor Array``
+    | [<JsonUnionCase(@"Mak. Sensor Array")>] ``Mak_ Sensor Array``
+    | [<JsonUnionCase(@"Exp. Sensor Array")>] ``Exp_ Sensor Array``
+    | [<JsonUnionCase(@"Signal Interpreter")>] ``Signal Interpreter``
+    | [<JsonUnionCase(@"Imp. Signal Interpreter")>] ``Imp_ Signal Interpreter``
+    | [<JsonUnionCase(@"Adv. Signal Interpreter")>] ``Adv_ Signal Interpreter``
+    | [<JsonUnionCase(@"Exp. Signal Interpreter")>] ``Exp_ Signal Interpreter``
+    | [<JsonUnionCase(@"Active Sensor Suite")>] ``Active Sensor Suite``
+    | [<JsonUnionCase(@"Terrain Scanner")>] ``Terrain Scanner``
+    | [<JsonUnionCase(@"Imp. Terrain Scanner")>] ``Imp_ Terrain Scanner``
+    | [<JsonUnionCase(@"Adv. Terrain Scanner")>] ``Adv_ Terrain Scanner``
+    | [<JsonUnionCase(@"Mak. Terrain Scanner")>] ``Mak_ Terrain Scanner``
+    | [<JsonUnionCase(@"Lrn. Terrain Scanner")>] ``Lrn_ Terrain Scanner``
+    | [<JsonUnionCase(@"Exp. Terrain Scanner")>] ``Exp_ Terrain Scanner``
+    | [<JsonUnionCase(@"Surveybot 24 Scanner")>] ``Surveybot 24 Scanner``
+    | [<JsonUnionCase(@"Terrain Scan Processor")>] ``Terrain Scan Processor``
+    | [<JsonUnionCase(@"Imp. Terrain Scan Processor")>] ``Imp_ Terrain Scan Processor``
+    | [<JsonUnionCase(@"Mak. Terrain Scan Processor")>] ``Mak_ Terrain Scan Processor``
+    | [<JsonUnionCase(@"Adv. Terrain Scan Processor")>] ``Adv_ Terrain Scan Processor``
+    | [<JsonUnionCase(@"Exp. Terrain Scan Processor")>] ``Exp_ Terrain Scan Processor``
+    | [<JsonUnionCase(@"Surveybot 24 Chip")>] ``Surveybot 24 Chip``
+    | [<JsonUnionCase(@"Seismic Detector")>] ``Seismic Detector``
+    | [<JsonUnionCase(@"Transport Network Coupler")>] ``Transport Network Coupler``
+    | [<JsonUnionCase(@"Modified TNC")>] ``Modified TNC``
+    | [<JsonUnionCase(@"Encrypted Comm Array")>] ``Encrypted Comm Array``
+    | [<JsonUnionCase(@"0b10 Decoder Chip [Generic]")>] ``0b10 Decoder Chip _Generic_``
+    | [<JsonUnionCase(@"0b10 Decoder Chip [Looter]")>] ``0b10 Decoder Chip _Looter_``
+    | [<JsonUnionCase(@"0b10 Decoder Chip [Scout]")>] ``0b10 Decoder Chip _Scout_``
+    | [<JsonUnionCase(@"0b10 Decoder Chip [Skirmisher]")>] ``0b10 Decoder Chip _Skirmisher_``
+    | [<JsonUnionCase(@"0b10 Alert Chip")>] ``0b10 Alert Chip``
+    | [<JsonUnionCase(@"Salvage Targeting Computer")>] ``Salvage Targeting Computer``
+    | [<JsonUnionCase(@"Imp. Salvage Targeting Computer")>] ``Imp_ Salvage Targeting Computer``
+    | [<JsonUnionCase(@"Mak. Salvage Targeting Computer")>] ``Mak_ Salvage Targeting Computer``
+    | [<JsonUnionCase(@"Adv. Salvage Targeting Computer")>] ``Adv_ Salvage Targeting Computer``
+    | [<JsonUnionCase(@"Asb. Combat Suite")>] ``Asb_ Combat Suite``
+    | [<JsonUnionCase(@"Targeting Computer")>] ``Targeting Computer``
+    | [<JsonUnionCase(@"Imp. Targeting Computer")>] ``Imp_ Targeting Computer``
+    | [<JsonUnionCase(@"Adv. Targeting Computer")>] ``Adv_ Targeting Computer``
+    | [<JsonUnionCase(@"Exp. Targeting Computer")>] ``Exp_ Targeting Computer``
+    | [<JsonUnionCase(@"Multitargeting Array")>] ``Multitargeting Array``
+    | [<JsonUnionCase(@"Tactical Coordination Suite")>] ``Tactical Coordination Suite``
+    | [<JsonUnionCase(@"Melee Analysis Suite")>] ``Melee Analysis Suite``
+    | [<JsonUnionCase(@"Imp. Melee Analysis Suite")>] ``Imp_ Melee Analysis Suite``
+    | [<JsonUnionCase(@"Adv. Melee Analysis Suite")>] ``Adv_ Melee Analysis Suite``
+    | [<JsonUnionCase(@"Exp. Melee Analysis Suite")>] ``Exp_ Melee Analysis Suite``
+    | [<JsonUnionCase(@"Launcher Guidance Computer")>] ``Launcher Guidance Computer``
+    | [<JsonUnionCase(@"Imp. Launcher Guidance Computer")>] ``Imp_ Launcher Guidance Computer``
+    | [<JsonUnionCase(@"Adv. Launcher Guidance Computer")>] ``Adv_ Launcher Guidance Computer``
+    | [<JsonUnionCase(@"Weapon Mount")>] ``Weapon Mount``
+    | [<JsonUnionCase(@"Target Analyzer")>] ``Target Analyzer``
+    | [<JsonUnionCase(@"Imp. Target Analyzer")>] ``Imp_ Target Analyzer``
+    | [<JsonUnionCase(@"Adv. Target Analyzer")>] ``Adv_ Target Analyzer``
+    | [<JsonUnionCase(@"Exp. Target Analyzer")>] ``Exp_ Target Analyzer``
+    | [<JsonUnionCase(@"Core Analyzer")>] ``Core Analyzer``
+    | [<JsonUnionCase(@"Exp. Core Analyzer")>] ``Exp_ Core Analyzer``
+    | [<JsonUnionCase(@"Armor Integrity Analyzer")>] ``Armor Integrity Analyzer``
+    | [<JsonUnionCase(@"Imp. Armor Integrity Analyzer")>] ``Imp_ Armor Integrity Analyzer``
+    | [<JsonUnionCase(@"Exp. Armor Integrity Analyzer")>] ``Exp_ Armor Integrity Analyzer``
+    | [<JsonUnionCase(@"Recoil Stabilizer")>] ``Recoil Stabilizer``
+    | [<JsonUnionCase(@"Recoil Nullifier")>] ``Recoil Nullifier``
+    | [<JsonUnionCase(@"Matter Filter")>] ``Matter Filter``
+    | [<JsonUnionCase(@"Prc. Matter Filter")>] ``Prc_ Matter Filter``
+    | [<JsonUnionCase(@"Energy Filter")>] ``Energy Filter``
+    | [<JsonUnionCase(@"Prc. Energy Filter")>] ``Prc_ Energy Filter``
+    | [<JsonUnionCase(@"Particle Charger")>] ``Particle Charger``
+    | [<JsonUnionCase(@"Imp. Particle Charger")>] ``Imp_ Particle Charger``
+    | [<JsonUnionCase(@"Adv. Particle Charger")>] ``Adv_ Particle Charger``
+    | [<JsonUnionCase(@"Particle Accelerator")>] ``Particle Accelerator``
+    | [<JsonUnionCase(@"Imp. Particle Accelerator")>] ``Imp_ Particle Accelerator``
+    | [<JsonUnionCase(@"Adv. Particle Accelerator")>] ``Adv_ Particle Accelerator``
+    | [<JsonUnionCase(@"Kinecellerator")>] ``Kinecellerator``
+    | [<JsonUnionCase(@"Imp. Kinecellerator")>] ``Imp_ Kinecellerator``
+    | [<JsonUnionCase(@"Adv. Kinecellerator")>] ``Adv_ Kinecellerator``
+    | [<JsonUnionCase(@"Heavy Servo Lattice")>] ``Heavy Servo Lattice``
+    | [<JsonUnionCase(@"VL-GR5's Timing Chip")>] ``VL-GR5's Timing Chip``
+    | [<JsonUnionCase(@"Launcher Loader")>] ``Launcher Loader``
+    | [<JsonUnionCase(@"Quantum Capacitor")>] ``Quantum Capacitor``
+    | [<JsonUnionCase(@"Weapon Cycler")>] ``Weapon Cycler``
+    | [<JsonUnionCase(@"Imp. Weapon Cycler")>] ``Imp_ Weapon Cycler``
+    | [<JsonUnionCase(@"Adv. Weapon Cycler")>] ``Adv_ Weapon Cycler``
+    | [<JsonUnionCase(@"Exp. Weapon Cycler")>] ``Exp_ Weapon Cycler``
+    | [<JsonUnionCase(@"Microactuators")>] ``Microactuators``
+    | [<JsonUnionCase(@"Nanoactuators")>] ``Nanoactuators``
+    | [<JsonUnionCase(@"Femtoactuators")>] ``Femtoactuators``
+    | [<JsonUnionCase(@"Actuator Array")>] ``Actuator Array``
+    | [<JsonUnionCase(@"Imp. Actuator Array")>] ``Imp_ Actuator Array``
+    | [<JsonUnionCase(@"Adv. Actuator Array")>] ``Adv_ Actuator Array``
+    | [<JsonUnionCase(@"Exp. Actuator Array")>] ``Exp_ Actuator Array``
+    | [<JsonUnionCase(@"Force Booster")>] ``Force Booster``
+    | [<JsonUnionCase(@"Imp. Force Booster")>] ``Imp_ Force Booster``
+    | [<JsonUnionCase(@"Adv. Force Booster")>] ``Adv_ Force Booster``
+    | [<JsonUnionCase(@"Stasis Canceller")>] ``Stasis Canceller``
+    | [<JsonUnionCase(@"Transmission Jammer")>] ``Transmission Jammer``
+    | [<JsonUnionCase(@"Mak. Transmission Jammer")>] ``Mak_ Transmission Jammer``
+    | [<JsonUnionCase(@"Imp. Transmission Jammer")>] ``Imp_ Transmission Jammer``
+    | [<JsonUnionCase(@"Adv. Transmission Jammer")>] ``Adv_ Transmission Jammer``
+    | [<JsonUnionCase(@"Exp. Transmission Jammer")>] ``Exp_ Transmission Jammer``
+    | [<JsonUnionCase(@"ECM Suite")>] ``ECM Suite``
+    | [<JsonUnionCase(@"Mak. ECM Suite")>] ``Mak_ ECM Suite``
+    | [<JsonUnionCase(@"Adv. ECM Suite")>] ``Adv_ ECM Suite``
+    | [<JsonUnionCase(@"Exp. ECM Suite")>] ``Exp_ ECM Suite``
+    | [<JsonUnionCase(@"Active Sensor Spoofer")>] ``Active Sensor Spoofer``
+    | [<JsonUnionCase(@"Reaction Control System")>] ``Reaction Control System``
+    | [<JsonUnionCase(@"Imp. Reaction Control System")>] ``Imp_ Reaction Control System``
+    | [<JsonUnionCase(@"Adv. Reaction Control System")>] ``Adv_ Reaction Control System``
+    | [<JsonUnionCase(@"Exp. Reaction Control System")>] ``Exp_ Reaction Control System``
+    | [<JsonUnionCase(@"Phase Shifter")>] ``Phase Shifter``
+    | [<JsonUnionCase(@"Imp. Phase Shifter")>] ``Imp_ Phase Shifter``
+    | [<JsonUnionCase(@"Adv. Phase Shifter")>] ``Adv_ Phase Shifter``
+    | [<JsonUnionCase(@"Exp. Phase Shifter")>] ``Exp_ Phase Shifter``
+    | [<JsonUnionCase(@"Cloaking Device")>] ``Cloaking Device``
+    | [<JsonUnionCase(@"Mak. Cloaking Device")>] ``Mak_ Cloaking Device``
+    | [<JsonUnionCase(@"Imp. Cloaking Device")>] ``Imp_ Cloaking Device``
+    | [<JsonUnionCase(@"Adv. Cloaking Device")>] ``Adv_ Cloaking Device``
+    | [<JsonUnionCase(@"Exp. Cloaking Device")>] ``Exp_ Cloaking Device``
+    | [<JsonUnionCase(@"Cloak of Protection")>] ``Cloak of Protection``
+    | [<JsonUnionCase(@"5H-AD0's Cloak")>] ``5H-AD0's Cloak``
+    | [<JsonUnionCase(@"Core Shielding")>] ``Core Shielding``
+    | [<JsonUnionCase(@"Imp. Core Shielding")>] ``Imp_ Core Shielding``
+    | [<JsonUnionCase(@"Exp. Core Shielding")>] ``Exp_ Core Shielding``
+    | [<JsonUnionCase(@"Power Shielding")>] ``Power Shielding``
+    | [<JsonUnionCase(@"Imp. Power Shielding")>] ``Imp_ Power Shielding``
+    | [<JsonUnionCase(@"Exp. Power Shielding")>] ``Exp_ Power Shielding``
+    | [<JsonUnionCase(@"Propulsion Shielding")>] ``Propulsion Shielding``
+    | [<JsonUnionCase(@"Imp. Propulsion Shielding")>] ``Imp_ Propulsion Shielding``
+    | [<JsonUnionCase(@"Exp. Propulsion Shielding")>] ``Exp_ Propulsion Shielding``
+    | [<JsonUnionCase(@"Utility Shielding")>] ``Utility Shielding``
+    | [<JsonUnionCase(@"Imp. Utility Shielding")>] ``Imp_ Utility Shielding``
+    | [<JsonUnionCase(@"Exp. Utility Shielding")>] ``Exp_ Utility Shielding``
+    | [<JsonUnionCase(@"Weapon Shielding")>] ``Weapon Shielding``
+    | [<JsonUnionCase(@"Imp. Weapon Shielding")>] ``Imp_ Weapon Shielding``
+    | [<JsonUnionCase(@"Exp. Weapon Shielding")>] ``Exp_ Weapon Shielding``
+    | [<JsonUnionCase(@"Zio. Weapon Casing")>] ``Zio_ Weapon Casing``
+    | [<JsonUnionCase(@"Backup Plating I")>] ``Backup Plating I``
+    | [<JsonUnionCase(@"Backup Plating III")>] ``Backup Plating III``
+    | [<JsonUnionCase(@"Backup Plating VII")>] ``Backup Plating VII``
+    | [<JsonUnionCase(@"Lgt. Armor Plating")>] ``Lgt_ Armor Plating``
+    | [<JsonUnionCase(@"Med. Armor Plating")>] ``Med_ Armor Plating``
+    | [<JsonUnionCase(@"Hvy. Armor Plating")>] ``Hvy_ Armor Plating``
+    | [<JsonUnionCase(@"Zio. Light Carapace")>] ``Zio_ Light Carapace``
+    | [<JsonUnionCase(@"Zio. Heavy Carapace")>] ``Zio_ Heavy Carapace``
+    | [<JsonUnionCase(@"Hrd. Light Armor Plating")>] ``Hrd_ Light Armor Plating``
+    | [<JsonUnionCase(@"Hrd. Medium Armor Plating")>] ``Hrd_ Medium Armor Plating``
+    | [<JsonUnionCase(@"Hrd. Heavy Armor Plating")>] ``Hrd_ Heavy Armor Plating``
+    | [<JsonUnionCase(@"Imp. Light Armor Plating")>] ``Imp_ Light Armor Plating``
+    | [<JsonUnionCase(@"Imp. Medium Armor Plating")>] ``Imp_ Medium Armor Plating``
+    | [<JsonUnionCase(@"Imp. Heavy Armor Plating")>] ``Imp_ Heavy Armor Plating``
+    | [<JsonUnionCase(@"Lyr. Light Armor Plating")>] ``Lyr_ Light Armor Plating``
+    | [<JsonUnionCase(@"Mak. Armor Plating")>] ``Mak_ Armor Plating``
+    | [<JsonUnionCase(@"Lyr. Medium Armor Plating")>] ``Lyr_ Medium Armor Plating``
+    | [<JsonUnionCase(@"Lyr. Heavy Armor Plating")>] ``Lyr_ Heavy Armor Plating``
+    | [<JsonUnionCase(@"Gun Armor")>] ``Gun Armor``
+    | [<JsonUnionCase(@"Centrium Light Armor Plating")>] ``Centrium Light Armor Plating``
+    | [<JsonUnionCase(@"Centrium Medium Armor Plating")>] ``Centrium Medium Armor Plating``
+    | [<JsonUnionCase(@"Centrium Heavy Armor Plating")>] ``Centrium Heavy Armor Plating``
+    | [<JsonUnionCase(@"Centrium Linked Plating")>] ``Centrium Linked Plating``
+    | [<JsonUnionCase(@"Reactive Plating")>] ``Reactive Plating``
+    | [<JsonUnionCase(@"Med. Reactive Plating")>] ``Med_ Reactive Plating``
+    | [<JsonUnionCase(@"Mak. Kinetic Plating")>] ``Mak_ Kinetic Plating``
+    | [<JsonUnionCase(@"Hvy. Reactive Plating")>] ``Hvy_ Reactive Plating``
+    | [<JsonUnionCase(@"Reflective Plating")>] ``Reflective Plating``
+    | [<JsonUnionCase(@"Med. Reflective Plating")>] ``Med_ Reflective Plating``
+    | [<JsonUnionCase(@"Mak. Thermal Plating")>] ``Mak_ Thermal Plating``
+    | [<JsonUnionCase(@"Hvy. Reflective Plating")>] ``Hvy_ Reflective Plating``
+    | [<JsonUnionCase(@"8R-AWN's Armor/TH")>] ``8R-AWN's Armor_TH``
+    | [<JsonUnionCase(@"8R-AWN's Armor/EX")>] ``8R-AWN's Armor_EX``
+    | [<JsonUnionCase(@"Insulated Plating")>] ``Insulated Plating``
+    | [<JsonUnionCase(@"Med. Insulated Plating")>] ``Med_ Insulated Plating``
+    | [<JsonUnionCase(@"Hvy. Insulated Plating")>] ``Hvy_ Insulated Plating``
+    | [<JsonUnionCase(@"Damper Plating")>] ``Damper Plating``
+    | [<JsonUnionCase(@"Zio. Shade Carapace")>] ``Zio_ Shade Carapace``
+    | [<JsonUnionCase(@"Zio. Shade Armor")>] ``Zio_ Shade Armor``
+    | [<JsonUnionCase(@"Asb. Alloy Armor")>] ``Asb_ Alloy Armor``
+    | [<JsonUnionCase(@"Mak. Ablative Armor")>] ``Mak_ Ablative Armor``
+    | [<JsonUnionCase(@"Active Cooling Armor")>] ``Active Cooling Armor``
+    | [<JsonUnionCase(@"Scrap Shield")>] ``Scrap Shield``
+    | [<JsonUnionCase(@"Powered Armor")>] ``Powered Armor``
+    | [<JsonUnionCase(@"Imp. Powered Armor")>] ``Imp_ Powered Armor``
+    | [<JsonUnionCase(@"Adv. Powered Armor")>] ``Adv_ Powered Armor``
+    | [<JsonUnionCase(@"Exp. Powered Armor")>] ``Exp_ Powered Armor``
+    | [<JsonUnionCase(@"1C-UTU's Buckler")>] ``1C-UTU's Buckler``
+    | [<JsonUnionCase(@"Lgt. Regenerative Plating")>] ``Lgt_ Regenerative Plating``
+    | [<JsonUnionCase(@"Med. Regenerative Plating")>] ``Med_ Regenerative Plating``
+    | [<JsonUnionCase(@"Hvy. Regenerative Plating")>] ``Hvy_ Regenerative Plating``
+    | [<JsonUnionCase(@"SHELL Armor")>] ``SHELL Armor``
+    | [<JsonUnionCase(@"Phase Armor")>] ``Phase Armor``
+    | [<JsonUnionCase(@"Graphene Brace")>] ``Graphene Brace``
+    | [<JsonUnionCase(@"Focal Shield")>] ``Focal Shield``
+    | [<JsonUnionCase(@"Imp. Focal Shield")>] ``Imp_ Focal Shield``
+    | [<JsonUnionCase(@"Adv. Focal Shield")>] ``Adv_ Focal Shield``
+    | [<JsonUnionCase(@"Exp. Focal Shield")>] ``Exp_ Focal Shield``
+    | [<JsonUnionCase(@"Thermal Shield")>] ``Thermal Shield``
+    | [<JsonUnionCase(@"Imp. Thermal Shield")>] ``Imp_ Thermal Shield``
+    | [<JsonUnionCase(@"Adv. Thermal Shield")>] ``Adv_ Thermal Shield``
+    | [<JsonUnionCase(@"Exp. Thermal Shield")>] ``Exp_ Thermal Shield``
+    | [<JsonUnionCase(@"Thermal Barrier")>] ``Thermal Barrier``
+    | [<JsonUnionCase(@"Beam Splitter")>] ``Beam Splitter``
+    | [<JsonUnionCase(@"Thermal Defense Suite")>] ``Thermal Defense Suite``
+    | [<JsonUnionCase(@"Imp. Thermal Defense Suite")>] ``Imp_ Thermal Defense Suite``
+    | [<JsonUnionCase(@"Adv. Thermal Defense Suite")>] ``Adv_ Thermal Defense Suite``
+    | [<JsonUnionCase(@"Exp. Thermal Defense Suite")>] ``Exp_ Thermal Defense Suite``
+    | [<JsonUnionCase(@"Shock Absorption System")>] ``Shock Absorption System``
+    | [<JsonUnionCase(@"Imp. Shock Absorption System")>] ``Imp_ Shock Absorption System``
+    | [<JsonUnionCase(@"Exp. Shock Absorption System")>] ``Exp_ Shock Absorption System``
+    | [<JsonUnionCase(@"EM Disruption Field")>] ``EM Disruption Field``
+    | [<JsonUnionCase(@"Adv. EM Disruption Field")>] ``Adv_ EM Disruption Field``
+    | [<JsonUnionCase(@"Exp. EM Disruption Field")>] ``Exp_ EM Disruption Field``
+    | [<JsonUnionCase(@"ME-RLN's Chromatic Screen")>] ``ME-RLN's Chromatic Screen``
+    | [<JsonUnionCase(@"Hardlight Generator")>] ``Hardlight Generator``
+    | [<JsonUnionCase(@"Imp. Hardlight Generator")>] ``Imp_ Hardlight Generator``
+    | [<JsonUnionCase(@"Adv. Hardlight Generator")>] ``Adv_ Hardlight Generator``
+    | [<JsonUnionCase(@"Exp. Hardlight Generator")>] ``Exp_ Hardlight Generator``
+    | [<JsonUnionCase(@"Shield Generator")>] ``Shield Generator``
+    | [<JsonUnionCase(@"Imp. Shield Generator")>] ``Imp_ Shield Generator``
+    | [<JsonUnionCase(@"Adv. Shield Generator")>] ``Adv_ Shield Generator``
+    | [<JsonUnionCase(@"Exp. Shield Generator")>] ``Exp_ Shield Generator``
+    | [<JsonUnionCase(@"Force Field")>] ``Force Field``
+    | [<JsonUnionCase(@"Imp. Force Field")>] ``Imp_ Force Field``
+    | [<JsonUnionCase(@"Adv. Force Field")>] ``Adv_ Force Field``
+    | [<JsonUnionCase(@"Exp. Force Field")>] ``Exp_ Force Field``
+    | [<JsonUnionCase(@"7V-RTL's Ultimate Field")>] ``7V-RTL's Ultimate Field``
+    | [<JsonUnionCase(@"Vortex Field Projector")>] ``Vortex Field Projector``
+    | [<JsonUnionCase(@"Remote Shield")>] ``Remote Shield``
+    | [<JsonUnionCase(@"Imp. Remote Shield")>] ``Imp_ Remote Shield``
+    | [<JsonUnionCase(@"Adv. Remote Shield")>] ``Adv_ Remote Shield``
+    | [<JsonUnionCase(@"Remote Force Field")>] ``Remote Force Field``
+    | [<JsonUnionCase(@"Imp. Remote Force Field")>] ``Imp_ Remote Force Field``
+    | [<JsonUnionCase(@"Energy Mantle")>] ``Energy Mantle``
+    | [<JsonUnionCase(@"Imp. Energy Mantle")>] ``Imp_ Energy Mantle``
+    | [<JsonUnionCase(@"AEGIS Remote Shield")>] ``AEGIS Remote Shield``
+    | [<JsonUnionCase(@"Phase Redirector")>] ``Phase Redirector``
+    | [<JsonUnionCase(@"Point Defense System")>] ``Point Defense System``
+    | [<JsonUnionCase(@"Point Defense Array")>] ``Point Defense Array``
+    | [<JsonUnionCase(@"Antimissile System")>] ``Antimissile System``
+    | [<JsonUnionCase(@"EX Chip 1")>] ``EX Chip 1``
+    | [<JsonUnionCase(@"Hacking Suite")>] ``Hacking Suite``
+    | [<JsonUnionCase(@"Mak. Hacking Suite")>] ``Mak_ Hacking Suite``
+    | [<JsonUnionCase(@"Imp. Hacking Suite")>] ``Imp_ Hacking Suite``
+    | [<JsonUnionCase(@"Adv. Hacking Suite")>] ``Adv_ Hacking Suite``
+    | [<JsonUnionCase(@"Exp. Hacking Suite")>] ``Exp_ Hacking Suite``
+    | [<JsonUnionCase(@"System Mapper")>] ``System Mapper``
+    | [<JsonUnionCase(@"Deep Network Scanner")>] ``Deep Network Scanner``
+    | [<JsonUnionCase(@"Architect God Chip A")>] ``Architect God Chip A``
+    | [<JsonUnionCase(@"EX Chip 2")>] ``EX Chip 2``
+    | [<JsonUnionCase(@"System Shield")>] ``System Shield``
+    | [<JsonUnionCase(@"Mak. System Shield")>] ``Mak_ System Shield``
+    | [<JsonUnionCase(@"Imp. System Shield")>] ``Imp_ System Shield``
+    | [<JsonUnionCase(@"Adv. System Shield")>] ``Adv_ System Shield``
+    | [<JsonUnionCase(@"Exp. System Shield")>] ``Exp_ System Shield``
+    | [<JsonUnionCase(@"Ghost Barrier")>] ``Ghost Barrier``
+    | [<JsonUnionCase(@"Quantum Router")>] ``Quantum Router``
+    | [<JsonUnionCase(@"Architect God Chip D")>] ``Architect God Chip D``
+    | [<JsonUnionCase(@"Authchip [R/NC]")>] ``Authchip _R_NC_``
+    | [<JsonUnionCase(@"Authchip [R/Combat]")>] ``Authchip _R_Combat_``
+    | [<JsonUnionCase(@"Authchip [Power]")>] ``Authchip _Power_``
+    | [<JsonUnionCase(@"Authchip [Propulsion]")>] ``Authchip _Propulsion_``
+    | [<JsonUnionCase(@"Authchip [Device]")>] ``Authchip _Device_``
+    | [<JsonUnionCase(@"Authchip [Storage]")>] ``Authchip _Storage_``
+    | [<JsonUnionCase(@"Authchip [Processor]")>] ``Authchip _Processor_``
+    | [<JsonUnionCase(@"Authchip [Armor]")>] ``Authchip _Armor_``
+    | [<JsonUnionCase(@"Authchip [Weapon]")>] ``Authchip _Weapon_``
+    | [<JsonUnionCase(@"Relay Coupler [NC]")>] ``Relay Coupler _NC_``
+    | [<JsonUnionCase(@"Relay Coupler [C]")>] ``Relay Coupler _C_``
+    | [<JsonUnionCase(@"Relay Coupler [Swarmer]")>] ``Relay Coupler _Swarmer_``
+    | [<JsonUnionCase(@"Relay Coupler [Cutter]")>] ``Relay Coupler _Cutter_``
+    | [<JsonUnionCase(@"Relay Coupler [Grunt]")>] ``Relay Coupler _Grunt_``
+    | [<JsonUnionCase(@"Relay Coupler [Brawler]")>] ``Relay Coupler _Brawler_``
+    | [<JsonUnionCase(@"Relay Coupler [Duelist]")>] ``Relay Coupler _Duelist_``
+    | [<JsonUnionCase(@"Relay Coupler [Sentry]")>] ``Relay Coupler _Sentry_``
+    | [<JsonUnionCase(@"Relay Coupler [Demolisher]")>] ``Relay Coupler _Demolisher_``
+    | [<JsonUnionCase(@"Relay Coupler [Specialist]")>] ``Relay Coupler _Specialist_``
+    | [<JsonUnionCase(@"Relay Coupler [Hunter]")>] ``Relay Coupler _Hunter_``
+    | [<JsonUnionCase(@"Relay Coupler [Heavy]")>] ``Relay Coupler _Heavy_``
+    | [<JsonUnionCase(@"Relay Coupler [Behemoth]")>] ``Relay Coupler _Behemoth_``
+    | [<JsonUnionCase(@"Relay Coupler [Programmer]")>] ``Relay Coupler _Programmer_``
+    | [<JsonUnionCase(@"Relay Coupler [Proto]")>] ``Relay Coupler _Proto_``
+    | [<JsonUnionCase(@"Skeleton Box")>] ``Skeleton Box``
+    | [<JsonUnionCase(@"01-MTF's Autohacker")>] ``01-MTF's Autohacker``
+    | [<JsonUnionCase(@"Component Analysis Suite")>] ``Component Analysis Suite``
+    | [<JsonUnionCase(@"Imp. Component Analysis Suite")>] ``Imp_ Component Analysis Suite``
+    | [<JsonUnionCase(@"Adv. Component Analysis Suite")>] ``Adv_ Component Analysis Suite``
+    | [<JsonUnionCase(@"Dynamic Insulation System")>] ``Dynamic Insulation System``
+    | [<JsonUnionCase(@"Imp. Dynamic Insulation System")>] ``Imp_ Dynamic Insulation System``
+    | [<JsonUnionCase(@"Adv. Dynamic Insulation System")>] ``Adv_ Dynamic Insulation System``
+    | [<JsonUnionCase(@"System Guard")>] ``System Guard``
+    | [<JsonUnionCase(@"Imp. System Guard")>] ``Imp_ System Guard``
+    | [<JsonUnionCase(@"Exp. System Guard")>] ``Exp_ System Guard``
+    | [<JsonUnionCase(@"Corruption Screen")>] ``Corruption Screen``
+    | [<JsonUnionCase(@"Imp. Corruption Screen")>] ``Imp_ Corruption Screen``
+    | [<JsonUnionCase(@"Adv. Corruption Screen")>] ``Adv_ Corruption Screen``
+    | [<JsonUnionCase(@"System Restoration Module")>] ``System Restoration Module``
+    | [<JsonUnionCase(@"Mak. System Restoration Module")>] ``Mak_ System Restoration Module``
+    | [<JsonUnionCase(@"Imp. System Restoration Module")>] ``Imp_ System Restoration Module``
+    | [<JsonUnionCase(@"Adv. System Restoration Module")>] ``Adv_ System Restoration Module``
+    | [<JsonUnionCase(@"System Purifier")>] ``System Purifier``
+    | [<JsonUnionCase(@"Exp. System Purifier")>] ``Exp_ System Purifier``
+    | [<JsonUnionCase(@"Tractor Beam")>] ``Tractor Beam``
+    | [<JsonUnionCase(@"Hpw. Tractor Beam")>] ``Hpw_ Tractor Beam``
+    | [<JsonUnionCase(@"Lrn. Tractor Beam")>] ``Lrn_ Tractor Beam``
+    | [<JsonUnionCase(@"Mobile Refinery Mk. CCLXVII")>] ``Mobile Refinery Mk_ CCLXVII``
+    | [<JsonUnionCase(@"Trap Extractor")>] ``Trap Extractor``
+    | [<JsonUnionCase(@"Imp. Trap Extractor")>] ``Imp_ Trap Extractor``
+    | [<JsonUnionCase(@"Adv. Trap Extractor")>] ``Adv_ Trap Extractor``
+    | [<JsonUnionCase(@"Trap Reconfigurator")>] ``Trap Reconfigurator``
+    | [<JsonUnionCase(@"Recalibrator")>] ``Recalibrator``
+    | [<JsonUnionCase(@"Imp. Recalibrator")>] ``Imp_ Recalibrator``
+    | [<JsonUnionCase(@"Adv. Recalibrator")>] ``Adv_ Recalibrator``
+    | [<JsonUnionCase(@"Field Recycling Unit")>] ``Field Recycling Unit``
+    | [<JsonUnionCase(@"Imp. Field Recycling Unit")>] ``Imp_ Field Recycling Unit``
+    | [<JsonUnionCase(@"Adv. Field Recycling Unit")>] ``Adv_ Field Recycling Unit``
+    | [<JsonUnionCase(@"Exp. Field Recycling Unit")>] ``Exp_ Field Recycling Unit``
+    | [<JsonUnionCase(@"Drone Bay")>] ``Drone Bay``
+    | [<JsonUnionCase(@"Z-Drone Bay")>] ``Z-Drone Bay``
+    | [<JsonUnionCase(@"Mni. Drone Bay")>] ``Mni_ Drone Bay``
+    | [<JsonUnionCase(@"Mapping Drone Bay")>] ``Mapping Drone Bay``
+    | [<JsonUnionCase(@"Adv. Drone Bay")>] ``Adv_ Drone Bay``
+    | [<JsonUnionCase(@"Bomb Drone Bay")>] ``Bomb Drone Bay``
+    | [<JsonUnionCase(@"Thief Drone Bay")>] ``Thief Drone Bay``
+    | [<JsonUnionCase(@"Decoy Drone Bay")>] ``Decoy Drone Bay``
+    | [<JsonUnionCase(@"Splice Drone Bay")>] ``Splice Drone Bay``
+    | [<JsonUnionCase(@"Combat Drone Bay")>] ``Combat Drone Bay``
+    | [<JsonUnionCase(@"Assault Drone Bay")>] ``Assault Drone Bay``
+    | [<JsonUnionCase(@"Stealth Drone Bay")>] ``Stealth Drone Bay``
+    | [<JsonUnionCase(@"Swarm Drone Bay")>] ``Swarm Drone Bay``
+    | [<JsonUnionCase(@"Supersonic Drone Bay")>] ``Supersonic Drone Bay``
+    | [<JsonUnionCase(@"Sensor Drone Bay")>] ``Sensor Drone Bay``
+    | [<JsonUnionCase(@"Hacking Drone Bay")>] ``Hacking Drone Bay``
+    | [<JsonUnionCase(@"Minesniffer Drone Bay")>] ``Minesniffer Drone Bay``
+    | [<JsonUnionCase(@"Army-in-a-Box")>] ``Army-in-a-Box``
+    | [<JsonUnionCase(@"Wardrone Bay")>] ``Wardrone Bay``
+    | [<JsonUnionCase(@"Cobbler Unit")>] ``Cobbler Unit``
+    | [<JsonUnionCase(@"Bomb Factory No. 2")>] ``Bomb Factory No_ 2``
+    | [<JsonUnionCase(@"Mobile Assembly Unit")>] ``Mobile Assembly Unit``
+    | [<JsonUnionCase(@"Heart of Steel")>] ``Heart of Steel``
+    | [<JsonUnionCase(@"GOLEM Unit")>] ``GOLEM Unit``
+    | [<JsonUnionCase(@"PSU Rigger")>] ``PSU Rigger``
+    | [<JsonUnionCase(@"Phasing AFG")>] ``Phasing AFG``
+    | [<JsonUnionCase(@"AS-neutralizer No. 17b")>] ``AS-neutralizer No_ 17b``
+    | [<JsonUnionCase(@"V3-11A's Pendant")>] ``V3-11A's Pendant``
+    | [<JsonUnionCase(@"Chronowheel")>] ``Chronowheel``
+    | [<JsonUnionCase(@"Power Bank")>] ``Power Bank``
+    | [<JsonUnionCase(@"Rainbow Chip")>] ``Rainbow Chip``
+    | [<JsonUnionCase(@"VL-GR5's Exoskeleton 'Deathgrip'")>] ``VL-GR5's Exoskeleton _Deathgrip_``
+    | [<JsonUnionCase(@"Dimensional Node Initializer")>] ``Dimensional Node Initializer``
+    | [<JsonUnionCase(@"Transdimensional Reconstructor")>] ``Transdimensional Reconstructor``
+    | [<JsonUnionCase(@"Hpw. Transdimensional Reconstructor")>] ``Hpw_ Transdimensional Reconstructor``
+    | [<JsonUnionCase(@"Supercharged TR")>] ``Supercharged TR``
+    | [<JsonUnionCase(@"Core Expander")>] ``Core Expander``
+    | [<JsonUnionCase(@"Core Regenerator")>] ``Core Regenerator``
+    | [<JsonUnionCase(@"Integrity Redistributor")>] ``Integrity Redistributor``
+    | [<JsonUnionCase(@"Integrated Dissipator")>] ``Integrated Dissipator``
+    | [<JsonUnionCase(@"Supercharged Integrated Dissipator")>] ``Supercharged Integrated Dissipator``
+    | [<JsonUnionCase(@"Integrated Thermoelectric Network")>] ``Integrated Thermoelectric Network``
+    | [<JsonUnionCase(@"Integrated Reactor")>] ``Integrated Reactor``
+    | [<JsonUnionCase(@"Supercharged Integrated Reactor")>] ``Supercharged Integrated Reactor``
+    | [<JsonUnionCase(@"Integrated Mediator")>] ``Integrated Mediator``
+    | [<JsonUnionCase(@"Core Membrane")>] ``Core Membrane``
+    | [<JsonUnionCase(@"Navigation Efficiency Matrix")>] ``Navigation Efficiency Matrix``
+    | [<JsonUnionCase(@"Core Reset Matrix")>] ``Core Reset Matrix``
+    | [<JsonUnionCase(@"Subatomic Replicator")>] ``Subatomic Replicator``
+    | [<JsonUnionCase(@"Terrabomb")>] ``Terrabomb``
+    | [<JsonUnionCase(@"Core Physics Calibrator")>] ``Core Physics Calibrator``
+    | [<JsonUnionCase(@"Spacefold Activator")>] ``Spacefold Activator``
+    | [<JsonUnionCase(@"Microwarp Drive")>] ``Microwarp Drive``
+    | [<JsonUnionCase(@"LC Capacitor")>] ``LC Capacitor``
+    | [<JsonUnionCase(@"LRC Armor")>] ``LRC Armor``
+    | [<JsonUnionCase(@"LRC Storage")>] ``LRC Storage``
+    | [<JsonUnionCase(@"LRC Energy Well")>] ``LRC Energy Well``
+    | [<JsonUnionCase(@"LRC Matter Compressor")>] ``LRC Matter Compressor``
+    | [<JsonUnionCase(@"LRC Boosters")>] ``LRC Boosters``
+    | [<JsonUnionCase(@"LRC Insulator")>] ``LRC Insulator``
+    | [<JsonUnionCase(@"EM Pulse Gun")>] ``EM Pulse Gun``
+    | [<JsonUnionCase(@"Hvy. EM Pulse Gun")>] ``Hvy_ EM Pulse Gun``
+    | [<JsonUnionCase(@"EM Shotgun")>] ``EM Shotgun``
+    | [<JsonUnionCase(@"Imp. EM Shotgun")>] ``Imp_ EM Shotgun``
+    | [<JsonUnionCase(@"Shock Rifle")>] ``Shock Rifle``
+    | [<JsonUnionCase(@"Riot Gun")>] ``Riot Gun``
+    | [<JsonUnionCase(@"Hvy. EM Shotgun")>] ``Hvy_ EM Shotgun``
+    | [<JsonUnionCase(@"Lightning Gun")>] ``Lightning Gun``
+    | [<JsonUnionCase(@"Hvy. Riot Gun")>] ``Hvy_ Riot Gun``
+    | [<JsonUnionCase(@"Arc Projector")>] ``Arc Projector``
+    | [<JsonUnionCase(@"Prc. Shock Rifle")>] ``Prc_ Shock Rifle``
+    | [<JsonUnionCase(@"Hpw. Shock Rifle")>] ``Hpw_ Shock Rifle``
+    | [<JsonUnionCase(@"Arc Thrower")>] ``Arc Thrower``
+    | [<JsonUnionCase(@"Imp. Lightning Gun")>] ``Imp_ Lightning Gun``
+    | [<JsonUnionCase(@"Tesla Rifle")>] ``Tesla Rifle``
+    | [<JsonUnionCase(@"Imp. Arc Projector")>] ``Imp_ Arc Projector``
+    | [<JsonUnionCase(@"Hvy. Tesla Rifle")>] ``Hvy_ Tesla Rifle``
+    | [<JsonUnionCase(@"Hyp. EM Gauss Rifle")>] ``Hyp_ EM Gauss Rifle``
+    | [<JsonUnionCase(@"Imp. Arc Thrower")>] ``Imp_ Arc Thrower``
+    | [<JsonUnionCase(@"01-MTF's Shockpuncher")>] ``01-MTF's Shockpuncher``
+    | [<JsonUnionCase(@"Gamma Rifle")>] ``Gamma Rifle``
+    | [<JsonUnionCase(@"Tachyon Dispersion Ray")>] ``Tachyon Dispersion Ray``
+    | [<JsonUnionCase(@"Immobilizer")>] ``Immobilizer``
+    | [<JsonUnionCase(@"Modified EM Gauss Rifle")>] ``Modified EM Gauss Rifle``
+    | [<JsonUnionCase(@"AWS/EX-DEC")>] ``AWS_EX-DEC``
+    | [<JsonUnionCase(@"Enh. Gamma Rifle")>] ``Enh_ Gamma Rifle``
+    | [<JsonUnionCase(@"Med. Laser")>] ``Med_ Laser``
+    | [<JsonUnionCase(@"Sml. Laser")>] ``Sml_ Laser``
+    | [<JsonUnionCase(@"Backup Laser I")>] ``Backup Laser I``
+    | [<JsonUnionCase(@"Beam Rifle")>] ``Beam Rifle``
+    | [<JsonUnionCase(@"Particle Gun")>] ``Particle Gun``
+    | [<JsonUnionCase(@"Spread Laser")>] ``Spread Laser``
+    | [<JsonUnionCase(@"Imp. Medium Laser")>] ``Imp_ Medium Laser``
+    | [<JsonUnionCase(@"Sub. Laser")>] ``Sub_ Laser``
+    | [<JsonUnionCase(@"Autobeam")>] ``Autobeam``
+    | [<JsonUnionCase(@"Field Laser")>] ``Field Laser``
+    | [<JsonUnionCase(@"Pulse Rifle")>] ``Pulse Rifle``
+    | [<JsonUnionCase(@"Backup Laser III")>] ``Backup Laser III``
+    | [<JsonUnionCase(@"Hvy. Particle Gun")>] ``Hvy_ Particle Gun``
+    | [<JsonUnionCase(@"Prc. Beam Rifle")>] ``Prc_ Beam Rifle``
+    | [<JsonUnionCase(@"Adv. Beam Rifle")>] ``Adv_ Beam Rifle``
+    | [<JsonUnionCase(@"Hvy. Laser")>] ``Hvy_ Laser``
+    | [<JsonUnionCase(@"Gatling Laser")>] ``Gatling Laser``
+    | [<JsonUnionCase(@"Cld. Pulse Rifle")>] ``Cld_ Pulse Rifle``
+    | [<JsonUnionCase(@"Hpw. Field Laser")>] ``Hpw_ Field Laser``
+    | [<JsonUnionCase(@"Imp. Spread Laser")>] ``Imp_ Spread Laser``
+    | [<JsonUnionCase(@"Mak. Laser")>] ``Mak_ Laser``
+    | [<JsonUnionCase(@"Plasma Rifle")>] ``Plasma Rifle``
+    | [<JsonUnionCase(@"Thermic Laser")>] ``Thermic Laser``
+    | [<JsonUnionCase(@"Beamcaster")>] ``Beamcaster``
+    | [<JsonUnionCase(@"Force Rifle")>] ``Force Rifle``
+    | [<JsonUnionCase(@"Imp. Heavy Laser")>] ``Imp_ Heavy Laser``
+    | [<JsonUnionCase(@"Storm Laser")>] ``Storm Laser``
+    | [<JsonUnionCase(@"Zio. Laser-S")>] ``Zio_ Laser-S``
+    | [<JsonUnionCase(@"Wave Gun")>] ``Wave Gun``
+    | [<JsonUnionCase(@"Variable Charge Gun")>] ``Variable Charge Gun``
+    | [<JsonUnionCase(@"Hvy. Beamcaster")>] ``Hvy_ Beamcaster``
+    | [<JsonUnionCase(@"Cld. Plasma Rifle")>] ``Cld_ Plasma Rifle``
+    | [<JsonUnionCase(@"Enh. Force Rifle")>] ``Enh_ Force Rifle``
+    | [<JsonUnionCase(@"Hvy. Gatling Laser")>] ``Hvy_ Gatling Laser``
+    | [<JsonUnionCase(@"Zio. Phaser-S")>] ``Zio_ Phaser-S``
+    | [<JsonUnionCase(@"Phase Gun")>] ``Phase Gun``
+    | [<JsonUnionCase(@"Dispersion Rifle")>] ``Dispersion Rifle``
+    | [<JsonUnionCase(@"Backup Laser VII")>] ``Backup Laser VII``
+    | [<JsonUnionCase(@"Plasma Storm")>] ``Plasma Storm``
+    | [<JsonUnionCase(@"Adv. Plasma Rifle")>] ``Adv_ Plasma Rifle``
+    | [<JsonUnionCase(@"Hvy. Wave Gun")>] ``Hvy_ Wave Gun``
+    | [<JsonUnionCase(@"Adv. Variable Charge Gun")>] ``Adv_ Variable Charge Gun``
+    | [<JsonUnionCase(@"Cld. Phase Gun")>] ``Cld_ Phase Gun``
+    | [<JsonUnionCase(@"Lrn. Gatling Laser")>] ``Lrn_ Gatling Laser``
+    | [<JsonUnionCase(@"Warp Gun")>] ``Warp Gun``
+    | [<JsonUnionCase(@"Vortex Rifle")>] ``Vortex Rifle``
+    | [<JsonUnionCase(@"Zio. Laser-M")>] ``Zio_ Laser-M``
+    | [<JsonUnionCase(@"AWS/Thermal")>] ``AWS_Thermal``
+    | [<JsonUnionCase(@"PD Laser")>] ``PD Laser``
+    | [<JsonUnionCase(@"Quantum Rifle")>] ``Quantum Rifle``
+    | [<JsonUnionCase(@"Prc. Phase Gun")>] ``Prc_ Phase Gun``
+    | [<JsonUnionCase(@"Hvy. Dispersion Rifle")>] ``Hvy_ Dispersion Rifle``
+    | [<JsonUnionCase(@"Vortex Shotgun")>] ``Vortex Shotgun``
+    | [<JsonUnionCase(@"Vortex Rail")>] ``Vortex Rail``
+    | [<JsonUnionCase(@"Zio. Phaser-M")>] ``Zio_ Phaser-M``
+    | [<JsonUnionCase(@"Enh. Quantum Rifle")>] ``Enh_ Quantum Rifle``
+    | [<JsonUnionCase(@"Zio. Laser-H")>] ``Zio_ Laser-H``
+    | [<JsonUnionCase(@"Hvy. Quantum Rifle")>] ``Hvy_ Quantum Rifle``
+    | [<JsonUnionCase(@"Zio. Phaser-H")>] ``Zio_ Phaser-H``
+    | [<JsonUnionCase(@"Gatling Beam")>] ``Gatling Beam``
+    | [<JsonUnionCase(@"Sigix Sheargun")>] ``Sigix Sheargun``
+    | [<JsonUnionCase(@"Modified Sigix Sheargun")>] ``Modified Sigix Sheargun``
+    | [<JsonUnionCase(@"Lgt. EM Pulse Cannon")>] ``Lgt_ EM Pulse Cannon``
+    | [<JsonUnionCase(@"EM Pulse Cannon")>] ``EM Pulse Cannon``
+    | [<JsonUnionCase(@"Imp. EM Pulse Cannon")>] ``Imp_ EM Pulse Cannon``
+    | [<JsonUnionCase(@"Proton Cannon")>] ``Proton Cannon``
+    | [<JsonUnionCase(@"Lrn. Proton Cannon")>] ``Lrn_ Proton Cannon``
+    | [<JsonUnionCase(@"Disruptor Cannon")>] ``Disruptor Cannon``
+    | [<JsonUnionCase(@"Hvy. Proton Cannon")>] ``Hvy_ Proton Cannon``
+    | [<JsonUnionCase(@"HERF Cannon")>] ``HERF Cannon``
+    | [<JsonUnionCase(@"Hvy. Disruptor Cannon")>] ``Hvy_ Disruptor Cannon``
+    | [<JsonUnionCase(@"Cld. Proton Cannon")>] ``Cld_ Proton Cannon``
+    | [<JsonUnionCase(@"Proton Burst Cannon")>] ``Proton Burst Cannon``
+    | [<JsonUnionCase(@"Com. HERF Cannon")>] ``Com_ HERF Cannon``
+    | [<JsonUnionCase(@"Latent Energy Streamer")>] ``Latent Energy Streamer``
+    | [<JsonUnionCase(@"NK-0LA's Tesla Doomcannon")>] ``NK-0LA's Tesla Doomcannon``
+    | [<JsonUnionCase(@"EMDS")>] ``EMDS``
+    | [<JsonUnionCase(@"Hpw. Disruptor Cannon")>] ``Hpw_ Disruptor Cannon``
+    | [<JsonUnionCase(@"Beam Cannon")>] ``Beam Cannon``
+    | [<JsonUnionCase(@"Particle Cannon")>] ``Particle Cannon``
+    | [<JsonUnionCase(@"Adv. Beam Cannon")>] ``Adv_ Beam Cannon``
+    | [<JsonUnionCase(@"Sub. Beam Cannon")>] ``Sub_ Beam Cannon``
+    | [<JsonUnionCase(@"Hvy. Particle Cannon")>] ``Hvy_ Particle Cannon``
+    | [<JsonUnionCase(@"Ion Cannon")>] ``Ion Cannon``
+    | [<JsonUnionCase(@"Plasma Cannon")>] ``Plasma Cannon``
+    | [<JsonUnionCase(@"Hvy. Ion Cannon")>] ``Hvy_ Ion Cannon``
+    | [<JsonUnionCase(@"Cld. Particle Cannon")>] ``Cld_ Particle Cannon``
+    | [<JsonUnionCase(@"Phase Cannon")>] ``Phase Cannon``
+    | [<JsonUnionCase(@"Hvy. Plasma Cannon")>] ``Hvy_ Plasma Cannon``
+    | [<JsonUnionCase(@"Cld. Plasma Cannon")>] ``Cld_ Plasma Cannon``
+    | [<JsonUnionCase(@"Com. Ion Cannon")>] ``Com_ Ion Cannon``
+    | [<JsonUnionCase(@"Ion Burst Cannon")>] ``Ion Burst Cannon``
+    | [<JsonUnionCase(@"Adv. Plasma Cannon")>] ``Adv_ Plasma Cannon``
+    | [<JsonUnionCase(@"Hvy. Phase Cannon")>] ``Hvy_ Phase Cannon``
+    | [<JsonUnionCase(@"Neutron Cannon")>] ``Neutron Cannon``
+    | [<JsonUnionCase(@"Powered Cannon")>] ``Powered Cannon``
+    | [<JsonUnionCase(@"Matter Neutralizer")>] ``Matter Neutralizer``
+    | [<JsonUnionCase(@"Hvy. Neutron Cannon")>] ``Hvy_ Neutron Cannon``
+    | [<JsonUnionCase(@"Lrn. Phase Cannon")>] ``Lrn_ Phase Cannon``
+    | [<JsonUnionCase(@"Cld. Phase Cannon")>] ``Cld_ Phase Cannon``
+    | [<JsonUnionCase(@"Vortex Cannon")>] ``Vortex Cannon``
+    | [<JsonUnionCase(@"Gui. Plasma Cannon")>] ``Gui_ Plasma Cannon``
+    | [<JsonUnionCase(@"Nova Cannon")>] ``Nova Cannon``
+    | [<JsonUnionCase(@"Imp. Matter Neutralizer")>] ``Imp_ Matter Neutralizer``
+    | [<JsonUnionCase(@"Exp. Thermic Cannon")>] ``Exp_ Thermic Cannon``
+    | [<JsonUnionCase(@"Vortex Driver")>] ``Vortex Driver``
+    | [<JsonUnionCase(@"Zio. Alpha Cannon")>] ``Zio_ Alpha Cannon``
+    | [<JsonUnionCase(@"Asb. Focal Cannon")>] ``Asb_ Focal Cannon``
+    | [<JsonUnionCase(@"Enh. Nova Cannon")>] ``Enh_ Nova Cannon``
+    | [<JsonUnionCase(@"Firepult")>] ``Firepult``
+    | [<JsonUnionCase(@"YOLO Cannon")>] ``YOLO Cannon``
+    | [<JsonUnionCase(@"Potential Cannon")>] ``Potential Cannon``
+    | [<JsonUnionCase(@"Warp Cannon")>] ``Warp Cannon``
+    | [<JsonUnionCase(@"Cld. Nova Cannon")>] ``Cld_ Nova Cannon``
+    | [<JsonUnionCase(@"Null Cannon")>] ``Null Cannon``
+    | [<JsonUnionCase(@"Imp. Potential Cannon")>] ``Imp_ Potential Cannon``
+    | [<JsonUnionCase(@"Multinova Projection Cannon")>] ``Multinova Projection Cannon``
+    | [<JsonUnionCase(@"Disintegrator")>] ``Disintegrator``
+    | [<JsonUnionCase(@"Core Cannon")>] ``Core Cannon``
+    | [<JsonUnionCase(@"Sigix Shearcannon")>] ``Sigix Shearcannon``
+    | [<JsonUnionCase(@"Drained L-Cannon")>] ``Drained L-Cannon``
+    | [<JsonUnionCase(@"L-Cannon")>] ``L-Cannon``
+    | [<JsonUnionCase(@"Zio. Alpha Cannon Mk. II")>] ``Zio_ Alpha Cannon Mk_ II``
+    | [<JsonUnionCase(@"BFG-9k Vortex Edition")>] ``BFG-9k Vortex Edition``
+    | [<JsonUnionCase(@"Assault Rifle")>] ``Assault Rifle``
+    | [<JsonUnionCase(@"Asb. Rifle")>] ``Asb_ Rifle``
+    | [<JsonUnionCase(@"Lgt. Assault Rifle")>] ``Lgt_ Assault Rifle``
+    | [<JsonUnionCase(@"Hvy. Assault Rifle")>] ``Hvy_ Assault Rifle``
+    | [<JsonUnionCase(@"Autogun")>] ``Autogun``
+    | [<JsonUnionCase(@"Shotgun")>] ``Shotgun``
+    | [<JsonUnionCase(@"Battle Rifle")>] ``Battle Rifle``
+    | [<JsonUnionCase(@"Asb. Heavy Rifle")>] ``Asb_ Heavy Rifle``
+    | [<JsonUnionCase(@"Sub. Machine Gun")>] ``Sub_ Machine Gun``
+    | [<JsonUnionCase(@"Imp. Assault Rifle")>] ``Imp_ Assault Rifle``
+    | [<JsonUnionCase(@"Minigun")>] ``Minigun``
+    | [<JsonUnionCase(@"Hpw. Shotgun")>] ``Hpw_ Shotgun``
+    | [<JsonUnionCase(@"Asb. Shotgun")>] ``Asb_ Shotgun``
+    | [<JsonUnionCase(@"Barrage Gun")>] ``Barrage Gun``
+    | [<JsonUnionCase(@"Enh. Autogun")>] ``Enh_ Autogun``
+    | [<JsonUnionCase(@"Gauss Rifle")>] ``Gauss Rifle``
+    | [<JsonUnionCase(@"Asb. Gauss Rifle")>] ``Asb_ Gauss Rifle``
+    | [<JsonUnionCase(@"Flak Gun")>] ``Flak Gun``
+    | [<JsonUnionCase(@"Prc. Assault Rifle")>] ``Prc_ Assault Rifle``
+    | [<JsonUnionCase(@"Hvy. Battle Rifle")>] ``Hvy_ Battle Rifle``
+    | [<JsonUnionCase(@"Mak. Shrapnel Gun")>] ``Mak_ Shrapnel Gun``
+    | [<JsonUnionCase(@"Coil Gun")>] ``Coil Gun``
+    | [<JsonUnionCase(@"Hyp. Gauss Rifle")>] ``Hyp_ Gauss Rifle``
+    | [<JsonUnionCase(@"Hvy. Machine Gun")>] ``Hvy_ Machine Gun``
+    | [<JsonUnionCase(@"Imp. Heavy Machine Gun")>] ``Imp_ Heavy Machine Gun``
+    | [<JsonUnionCase(@"Com. Gauss Rifle")>] ``Com_ Gauss Rifle``
+    | [<JsonUnionCase(@"XL Autogun Subcomponent")>] ``XL Autogun Subcomponent``
+    | [<JsonUnionCase(@"KE Penetrator")>] ``KE Penetrator``
+    | [<JsonUnionCase(@"Hyp. Coil Gun")>] ``Hyp_ Coil Gun``
+    | [<JsonUnionCase(@"Imp. KE Penetrator")>] ``Imp_ KE Penetrator``
+    | [<JsonUnionCase(@"Enh. Coil Gun")>] ``Enh_ Coil Gun``
+    | [<JsonUnionCase(@"Com. Coil Gun")>] ``Com_ Coil Gun``
+    | [<JsonUnionCase(@"Railgun")>] ``Railgun``
+    | [<JsonUnionCase(@"Adv. KE Penetrator")>] ``Adv_ KE Penetrator``
+    | [<JsonUnionCase(@"Linked Autogun")>] ``Linked Autogun``
+    | [<JsonUnionCase(@"AWS/Gauss")>] ``AWS_Gauss``
+    | [<JsonUnionCase(@"Hyp. Railgun")>] ``Hyp_ Railgun``
+    | [<JsonUnionCase(@"Helical Railgun")>] ``Helical Railgun``
+    | [<JsonUnionCase(@"Com. Railgun")>] ``Com_ Railgun``
+    | [<JsonUnionCase(@"XL Autogun Array")>] ``XL Autogun Array``
+    | [<JsonUnionCase(@"12-ASH's Boomstick")>] ``12-ASH's Boomstick``
+    | [<JsonUnionCase(@"8R-AWN's Boregun")>] ``8R-AWN's Boregun``
+    | [<JsonUnionCase(@"Multirail")>] ``Multirail``
+    | [<JsonUnionCase(@"Hyp. Multirail")>] ``Hyp_ Multirail``
+    | [<JsonUnionCase(@"5H-AD0's Sniper Rifle")>] ``5H-AD0's Sniper Rifle``
+    | [<JsonUnionCase(@"A3's Sniper Rifle")>] ``A3's Sniper Rifle``
+    | [<JsonUnionCase(@"Lgt. Cannon")>] ``Lgt_ Cannon``
+    | [<JsonUnionCase(@"Imp. Light Cannon")>] ``Imp_ Light Cannon``
+    | [<JsonUnionCase(@"Battle Cannon")>] ``Battle Cannon``
+    | [<JsonUnionCase(@"Assault Cannon")>] ``Assault Cannon``
+    | [<JsonUnionCase(@"Hvy. Assault Cannon")>] ``Hvy_ Assault Cannon``
+    | [<JsonUnionCase(@"Flak Cannon")>] ``Flak Cannon``
+    | [<JsonUnionCase(@"Adv. Assault Cannon")>] ``Adv_ Assault Cannon``
+    | [<JsonUnionCase(@"Gauss Cannon")>] ``Gauss Cannon``
+    | [<JsonUnionCase(@"Slug Cannon")>] ``Slug Cannon``
+    | [<JsonUnionCase(@"Mni. Assault Cannon")>] ``Mni_ Assault Cannon``
+    | [<JsonUnionCase(@"Magnetic Acceleration Cannon")>] ``Magnetic Acceleration Cannon``
+    | [<JsonUnionCase(@"Hvy. Flak Cannon")>] ``Hvy_ Flak Cannon``
+    | [<JsonUnionCase(@"Bore Cannon")>] ``Bore Cannon``
+    | [<JsonUnionCase(@"Antimatter Cannon")>] ``Antimatter Cannon``
+    | [<JsonUnionCase(@"Mass Driver")>] ``Mass Driver``
+    | [<JsonUnionCase(@"Hvy. Mass Driver")>] ``Hvy_ Mass Driver``
+    | [<JsonUnionCase(@"Enh. Gauss Cannon")>] ``Enh_ Gauss Cannon``
+    | [<JsonUnionCase(@"Hyp. Gauss Cannon")>] ``Hyp_ Gauss Cannon``
+    | [<JsonUnionCase(@"Tri-rail Accelerator")>] ``Tri-rail Accelerator``
+    | [<JsonUnionCase(@"Hardcell Cannon")>] ``Hardcell Cannon``
+    | [<JsonUnionCase(@"Hvy. Gauss Cannon")>] ``Hvy_ Gauss Cannon``
+    | [<JsonUnionCase(@"Hyp. Mass Driver")>] ``Hyp_ Mass Driver``
+    | [<JsonUnionCase(@"Hvy. Autocannon")>] ``Hvy_ Autocannon``
+    | [<JsonUnionCase(@"DAS Cannon")>] ``DAS Cannon``
+    | [<JsonUnionCase(@"Lgt. Antimatter Cannon")>] ``Lgt_ Antimatter Cannon``
+    | [<JsonUnionCase(@"Linear Accelerator")>] ``Linear Accelerator``
+    | [<JsonUnionCase(@"Hvy. Linear Accelerator")>] ``Hvy_ Linear Accelerator``
+    | [<JsonUnionCase(@"Com. Mass Driver")>] ``Com_ Mass Driver``
+    | [<JsonUnionCase(@"Hvy. Hardcell Cannon")>] ``Hvy_ Hardcell Cannon``
+    | [<JsonUnionCase(@"Com. Linear Accelerator")>] ``Com_ Linear Accelerator``
+    | [<JsonUnionCase(@"Hyp. Linear Accelerator")>] ``Hyp_ Linear Accelerator``
+    | [<JsonUnionCase(@"Hcl. Linear Accelerator")>] ``Hcl_ Linear Accelerator``
+    | [<JsonUnionCase(@"Graviton Cannon")>] ``Graviton Cannon``
+    | [<JsonUnionCase(@"Blast Cannon")>] ``Blast Cannon``
+    | [<JsonUnionCase(@"P1-3CE's Gatling Flakker")>] ``P1-3CE's Gatling Flakker``
+    | [<JsonUnionCase(@"AWS/Autocannon")>] ``AWS_Autocannon``
+    | [<JsonUnionCase(@"Perforator")>] ``Perforator``
+    | [<JsonUnionCase(@"Omega Cannon")>] ``Omega Cannon``
+    | [<JsonUnionCase(@"EMP Blaster")>] ``EMP Blaster``
+    | [<JsonUnionCase(@"Shock Bomb Launcher")>] ``Shock Bomb Launcher``
+    | [<JsonUnionCase(@"Adv. EMP Blaster")>] ``Adv_ EMP Blaster``
+    | [<JsonUnionCase(@"Proton Missile Launcher")>] ``Proton Missile Launcher``
+    | [<JsonUnionCase(@"Imp. Proton Missile Launcher")>] ``Imp_ Proton Missile Launcher``
+    | [<JsonUnionCase(@"Gui. EMP Blaster")>] ``Gui_ EMP Blaster``
+    | [<JsonUnionCase(@"Hvy. Shock Bomb Launcher")>] ``Hvy_ Shock Bomb Launcher``
+    | [<JsonUnionCase(@"Tesla Bomb Launcher")>] ``Tesla Bomb Launcher``
+    | [<JsonUnionCase(@"Hvy. Proton Missile Launcher")>] ``Hvy_ Proton Missile Launcher``
+    | [<JsonUnionCase(@"Com. Tesla Bomb Launcher")>] ``Com_ Tesla Bomb Launcher``
+    | [<JsonUnionCase(@"Gamma Bomb Array")>] ``Gamma Bomb Array``
+    | [<JsonUnionCase(@"Enh. Gamma Bomb Array")>] ``Enh_ Gamma Bomb Array``
+    | [<JsonUnionCase(@"Grenade Launcher")>] ``Grenade Launcher``
+    | [<JsonUnionCase(@"Rocket Launcher")>] ``Rocket Launcher``
+    | [<JsonUnionCase(@"Mni. Grenade Launcher")>] ``Mni_ Grenade Launcher``
+    | [<JsonUnionCase(@"Sub. Shrapnel Launcher")>] ``Sub_ Shrapnel Launcher``
+    | [<JsonUnionCase(@"Imp. Grenade Launcher")>] ``Imp_ Grenade Launcher``
+    | [<JsonUnionCase(@"Missile Launcher")>] ``Missile Launcher``
+    | [<JsonUnionCase(@"Concussive RPG")>] ``Concussive RPG``
+    | [<JsonUnionCase(@"YI-UF0's Doublenader")>] ``YI-UF0's Doublenader``
+    | [<JsonUnionCase(@"Hvy. Rocket Launcher")>] ``Hvy_ Rocket Launcher``
+    | [<JsonUnionCase(@"Hvy. Missile Launcher")>] ``Hvy_ Missile Launcher``
+    | [<JsonUnionCase(@"Gui. Missile Launcher")>] ``Gui_ Missile Launcher``
+    | [<JsonUnionCase(@"Prc. Grenade Launcher")>] ``Prc_ Grenade Launcher``
+    | [<JsonUnionCase(@"Rocket Array")>] ``Rocket Array``
+    | [<JsonUnionCase(@"Lrn. Missile Launcher")>] ``Lrn_ Missile Launcher``
+    | [<JsonUnionCase(@"Imp. Concussive RPG")>] ``Imp_ Concussive RPG``
+    | [<JsonUnionCase(@"Prc. Rocket Launcher")>] ``Prc_ Rocket Launcher``
+    | [<JsonUnionCase(@"Scatter Rocket Array")>] ``Scatter Rocket Array``
+    | [<JsonUnionCase(@"Smartbomb Launcher")>] ``Smartbomb Launcher``
+    | [<JsonUnionCase(@"Mni. Smartbomb Launcher")>] ``Mni_ Smartbomb Launcher``
+    | [<JsonUnionCase(@"Tiamat Missile Launcher")>] ``Tiamat Missile Launcher``
+    | [<JsonUnionCase(@"Thermoblaster")>] ``Thermoblaster``
+    | [<JsonUnionCase(@"Micro-nuke Launcher")>] ``Micro-nuke Launcher``
+    | [<JsonUnionCase(@"Adv. Concussive RPG")>] ``Adv_ Concussive RPG``
+    | [<JsonUnionCase(@"Neutron Missile Launcher")>] ``Neutron Missile Launcher``
+    | [<JsonUnionCase(@"Fusion Bomb Launcher")>] ``Fusion Bomb Launcher``
+    | [<JsonUnionCase(@"Hellfire Missile Launcher")>] ``Hellfire Missile Launcher``
+    | [<JsonUnionCase(@"Adv. Micro-nuke Launcher")>] ``Adv_ Micro-nuke Launcher``
+    | [<JsonUnionCase(@"Tactical Quantum Warhead")>] ``Tactical Quantum Warhead``
+    | [<JsonUnionCase(@"Vortex Catalyst Activator")>] ``Vortex Catalyst Activator``
+    | [<JsonUnionCase(@"Chain Missile Launcher")>] ``Chain Missile Launcher``
+    | [<JsonUnionCase(@"Ragnarok Missile Launcher")>] ``Ragnarok Missile Launcher``
+    | [<JsonUnionCase(@"Point Singularity Launcher")>] ``Point Singularity Launcher``
+    | [<JsonUnionCase(@"Gui. Micro-nuke Launcher")>] ``Gui_ Micro-nuke Launcher``
+    | [<JsonUnionCase(@"99-TNT's Nukerbomber")>] ``99-TNT's Nukerbomber``
+    | [<JsonUnionCase(@"Z-bomb Delivery System")>] ``Z-bomb Delivery System``
+    | [<JsonUnionCase(@"Sigix Terminator")>] ``Sigix Terminator``
+    | [<JsonUnionCase(@"Supercharged Sigix Terminator")>] ``Supercharged Sigix Terminator``
+    | [<JsonUnionCase(@"Containment Facilitator")>] ``Containment Facilitator``
+    | [<JsonUnionCase(@"Detonator")>] ``Detonator``
+    | [<JsonUnionCase(@"Dirty Datajack")>] ``Dirty Datajack``
+    | [<JsonUnionCase(@"Splice Injector")>] ``Splice Injector``
+    | [<JsonUnionCase(@"Datajack")>] ``Datajack``
+    | [<JsonUnionCase(@"Imp. Datajack")>] ``Imp_ Datajack``
+    | [<JsonUnionCase(@"Adv. Datajack")>] ``Adv_ Datajack``
+    | [<JsonUnionCase(@"Remote Datajack")>] ``Remote Datajack``
+    | [<JsonUnionCase(@"Imp. Remote Datajack")>] ``Imp_ Remote Datajack``
+    | [<JsonUnionCase(@"Adv. Remote Datajack")>] ``Adv_ Remote Datajack``
+    | [<JsonUnionCase(@"Exp. Remote Datajack")>] ``Exp_ Remote Datajack``
+    | [<JsonUnionCase(@"Gui. Remote Datajack")>] ``Gui_ Remote Datajack``
+    | [<JsonUnionCase(@"ME-RLN's Wand")>] ``ME-RLN's Wand``
+    | [<JsonUnionCase(@"Field Lobotomy Kit")>] ``Field Lobotomy Kit``
+    | [<JsonUnionCase(@"Mining Laser")>] ``Mining Laser``
+    | [<JsonUnionCase(@"Welding Torch")>] ``Welding Torch``
+    | [<JsonUnionCase(@"Plasma Cutter")>] ``Plasma Cutter``
+    | [<JsonUnionCase(@"Imp. Plasma Cutter")>] ``Imp_ Plasma Cutter``
+    | [<JsonUnionCase(@"CPS Tube")>] ``CPS Tube``
+    | [<JsonUnionCase(@"Multitool")>] ``Multitool``
+    | [<JsonUnionCase(@"Flamer")>] ``Flamer``
+    | [<JsonUnionCase(@"Asb. F-torch")>] ``Asb_ F-torch``
+    | [<JsonUnionCase(@"Enh. Flamer")>] ``Enh_ Flamer``
+    | [<JsonUnionCase(@"Plasma Flamer")>] ``Plasma Flamer``
+    | [<JsonUnionCase(@"Asb. P-torch")>] ``Asb_ P-torch``
+    | [<JsonUnionCase(@"RU-N14's Throwing Claymores")>] ``RU-N14's Throwing Claymores``
+    | [<JsonUnionCase(@"RU-N14's Throwing Claymores v3")>] ``RU-N14's Throwing Claymores v3``
+    | [<JsonUnionCase(@"AD-0RF's Magmablaster")>] ``AD-0RF's Magmablaster``
+    | [<JsonUnionCase(@"Stasis Beam")>] ``Stasis Beam``
+    | [<JsonUnionCase(@"Stasis Projector")>] ``Stasis Projector``
+    | [<JsonUnionCase(@"Exp. Stasis Projector")>] ``Exp_ Stasis Projector``
+    | [<JsonUnionCase(@"Molecular Deconstructor")>] ``Molecular Deconstructor``
+    | [<JsonUnionCase(@"SE_WE1")>] ``SE_WE1``
+    | [<JsonUnionCase(@"SE_WE2")>] ``SE_WE2``
+    | [<JsonUnionCase(@"SE_WE3")>] ``SE_WE3``
+    | [<JsonUnionCase(@"SE_WE4")>] ``SE_WE4``
+    | [<JsonUnionCase(@"SE_WE5")>] ``SE_WE5``
+    | [<JsonUnionCase(@"Hammer")>] ``Hammer``
+    | [<JsonUnionCase(@"Mace")>] ``Mace``
+    | [<JsonUnionCase(@"Flail")>] ``Flail``
+    | [<JsonUnionCase(@"Maul")>] ``Maul``
+    | [<JsonUnionCase(@"Asb. Maul")>] ``Asb_ Maul``
+    | [<JsonUnionCase(@"Hvy. Hammer")>] ``Hvy_ Hammer``
+    | [<JsonUnionCase(@"Hvy. Mace")>] ``Hvy_ Mace``
+    | [<JsonUnionCase(@"Hvy. Flail")>] ``Hvy_ Flail``
+    | [<JsonUnionCase(@"Great Maul")>] ``Great Maul``
+    | [<JsonUnionCase(@"Powered Hammer")>] ``Powered Hammer``
+    | [<JsonUnionCase(@"Mak. Hammer")>] ``Mak_ Hammer``
+    | [<JsonUnionCase(@"Power Maul")>] ``Power Maul``
+    | [<JsonUnionCase(@"Asb. P-maul")>] ``Asb_ P-maul``
+    | [<JsonUnionCase(@"Impact Mace")>] ``Impact Mace``
+    | [<JsonUnionCase(@"Shock Maul")>] ``Shock Maul``
+    | [<JsonUnionCase(@"Thunder Hammer")>] ``Thunder Hammer``
+    | [<JsonUnionCase(@"Compactor")>] ``Compactor``
+    | [<JsonUnionCase(@"Gravity Flail")>] ``Gravity Flail``
+    | [<JsonUnionCase(@"CL-ANK's Mallet")>] ``CL-ANK's Mallet``
+    | [<JsonUnionCase(@"Core Stripper")>] ``Core Stripper``
+    | [<JsonUnionCase(@"Mining Claw")>] ``Mining Claw``
+    | [<JsonUnionCase(@"EC_1")>] ``EC_1``
+    | [<JsonUnionCase(@"Katana")>] ``Katana``
+    | [<JsonUnionCase(@"Asb. Blade")>] ``Asb_ Blade``
+    | [<JsonUnionCase(@"Scythe")>] ``Scythe``
+    | [<JsonUnionCase(@"Axe")>] ``Axe``
+    | [<JsonUnionCase(@"Blade Saw")>] ``Blade Saw``
+    | [<JsonUnionCase(@"EC_3")>] ``EC_3``
+    | [<JsonUnionCase(@"Chainsword")>] ``Chainsword``
+    | [<JsonUnionCase(@"Ripper")>] ``Ripper``
+    | [<JsonUnionCase(@"Mak. Axe")>] ``Mak_ Axe``
+    | [<JsonUnionCase(@"Mak. Sword")>] ``Mak_ Sword``
+    | [<JsonUnionCase(@"Great Axe")>] ``Great Axe``
+    | [<JsonUnionCase(@"Greatsword")>] ``Greatsword``
+    | [<JsonUnionCase(@"Power Sword")>] ``Power Sword``
+    | [<JsonUnionCase(@"Asb. P-sword")>] ``Asb_ P-sword``
+    | [<JsonUnionCase(@"Falx")>] ``Falx``
+    | [<JsonUnionCase(@"Carbide Saw")>] ``Carbide Saw``
+    | [<JsonUnionCase(@"Segregator")>] ``Segregator``
+    | [<JsonUnionCase(@"Tearclaws")>] ``Tearclaws``
+    | [<JsonUnionCase(@"EC_5")>] ``EC_5``
+    | [<JsonUnionCase(@"Phasing Sabre")>] ``Phasing Sabre``
+    | [<JsonUnionCase(@"Plasma Sword")>] ``Plasma Sword``
+    | [<JsonUnionCase(@"Ionic Axe")>] ``Ionic Axe``
+    | [<JsonUnionCase(@"Mni. Tearclaws")>] ``Mni_ Tearclaws``
+    | [<JsonUnionCase(@"Dual-blade Saw")>] ``Dual-blade Saw``
+    | [<JsonUnionCase(@"Vibroblade")>] ``Vibroblade``
+    | [<JsonUnionCase(@"Molecular Scythe")>] ``Molecular Scythe``
+    | [<JsonUnionCase(@"Centrium Greatsword")>] ``Centrium Greatsword``
+    | [<JsonUnionCase(@"Master Tearclaws")>] ``Master Tearclaws``
+    | [<JsonUnionCase(@"Longsword +1")>] ``Longsword _1``
+    | [<JsonUnionCase(@"EC_7")>] ``EC_7``
+    | [<JsonUnionCase(@"Nanosword")>] ``Nanosword``
+    | [<JsonUnionCase(@"Particle Cleaver")>] ``Particle Cleaver``
+    | [<JsonUnionCase(@"Centrium Claws")>] ``Centrium Claws``
+    | [<JsonUnionCase(@"1C-UTU's Sword 'Lootmaker'")>] ``1C-UTU's Sword _Lootmaker_``
+    | [<JsonUnionCase(@"1C-UTU's Sword 'Choppy'")>] ``1C-UTU's Sword _Choppy_``
+    | [<JsonUnionCase(@"Vortex Shredder")>] ``Vortex Shredder``
+    | [<JsonUnionCase(@"EC_9")>] ``EC_9``
+    | [<JsonUnionCase(@"Sigix Broadsword")>] ``Sigix Broadsword``
+    | [<JsonUnionCase(@"Spear")>] ``Spear``
+    | [<JsonUnionCase(@"Mak. Spear")>] ``Mak_ Spear``
+    | [<JsonUnionCase(@"CR-A16's Pointy Stick")>] ``CR-A16's Pointy Stick``
+    | [<JsonUnionCase(@"Hvy. Pick")>] ``Hvy_ Pick``
+    | [<JsonUnionCase(@"Lance")>] ``Lance``
+    | [<JsonUnionCase(@"Kinetic Spear")>] ``Kinetic Spear``
+    | [<JsonUnionCase(@"Force Lance")>] ``Force Lance``
+    | [<JsonUnionCase(@"Plasma Lance")>] ``Plasma Lance``
+    | [<JsonUnionCase(@"Enh. Force Lance")>] ``Enh_ Force Lance``
+    | [<JsonUnionCase(@"Vortex Lance")>] ``Vortex Lance``
+    | [<JsonUnionCase(@"CR-A16's Behemoth Slayer")>] ``CR-A16's Behemoth Slayer``
+    | [<JsonUnionCase(@"Blade Trap")>] ``Blade Trap``
+    | [<JsonUnionCase(@"Segregator Trap")>] ``Segregator Trap``
+    | [<JsonUnionCase(@"Explosive Trap")>] ``Explosive Trap``
+    | [<JsonUnionCase(@"Heavy Explosive Trap")>] ``Heavy Explosive Trap``
+    | [<JsonUnionCase(@"Tiamat Bomb Trap")>] ``Tiamat Bomb Trap``
+    | [<JsonUnionCase(@"Fusion Bomb Trap")>] ``Fusion Bomb Trap``
+    | [<JsonUnionCase(@"Hellfire Trap")>] ``Hellfire Trap``
+    | [<JsonUnionCase(@"Armageddon Trap")>] ``Armageddon Trap``
+    | [<JsonUnionCase(@"Dirty Bomb Trap")>] ``Dirty Bomb Trap``
+    | [<JsonUnionCase(@"EMP Trap")>] ``EMP Trap``
+    | [<JsonUnionCase(@"Proton Bomb Trap")>] ``Proton Bomb Trap``
+    | [<JsonUnionCase(@"Tesla Bomb Trap")>] ``Tesla Bomb Trap``
+    | [<JsonUnionCase(@"Gamma Bomb Trap")>] ``Gamma Bomb Trap``
+    | [<JsonUnionCase(@"Shrapnel Trap")>] ``Shrapnel Trap``
+    | [<JsonUnionCase(@"Piercing Trap")>] ``Piercing Trap``
+    | [<JsonUnionCase(@"Shock Trap")>] ``Shock Trap``
+    | [<JsonUnionCase(@"EM Surge Trap")>] ``EM Surge Trap``
+    | [<JsonUnionCase(@"Fire Trap")>] ``Fire Trap``
+    | [<JsonUnionCase(@"Stasis Trap")>] ``Stasis Trap``
+    | [<JsonUnionCase(@"Scrap Shield Fragment")>] ``Scrap Shield Fragment``
+    | [<JsonUnionCase(@"Signal Generator")>] ``Signal Generator``
+    | [<JsonUnionCase(@"Self-destruct Interrupter")>] ``Self-destruct Interrupter``
+    | [<JsonUnionCase(@"Sapper Charge")>] ``Sapper Charge``
+    | [<JsonUnionCase(@"Zhirov Special")>] ``Zhirov Special``
+    | [<JsonUnionCase(@"Deploy-a-Sentry")>] ``Deploy-a-Sentry``
+    | [<JsonUnionCase(@"GAL Module")>] ``GAL Module``
+    | [<JsonUnionCase(@"Portable AFG")>] ``Portable AFG``
+    | [<JsonUnionCase(@"SGEMP Prototype")>] ``SGEMP Prototype``
+    | [<JsonUnionCase(@"Terrabomb Derivative")>] ``Terrabomb Derivative``
+    | [<JsonUnionCase(@"Sigix Containment Pod")>] ``Sigix Containment Pod``
+    | [<JsonUnionCase(@"Sigix Corpse")>] ``Sigix Corpse``
+    | [<JsonUnionCase(@"Meganuke")>] ``Meganuke``
+    | [<JsonUnionCase(@"Gamma Refractor")>] ``Gamma Refractor``
+
     
 let itemId =
     function
