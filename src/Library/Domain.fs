@@ -920,7 +920,7 @@ type Item =
     | [<JsonUnionCase(@"Chronowheel")>] ``Chronowheel``
     | [<JsonUnionCase(@"Power Bank")>] ``Power Bank``
     | [<JsonUnionCase(@"Rainbow Chip")>] ``Rainbow Chip``
-    | [<JsonUnionCase(@"VL-GR5's Exoskeleton 'Deathgrip'")>] ``VL-GR5's Exoskeleton _Deathgrip_``
+    | [<JsonUnionCase(@"VL-GR5's Exoskeleton ""Deathgrip""")>] ``VL-GR5's Exoskeleton _Deathgrip_``
     | [<JsonUnionCase(@"Dimensional Node Initializer")>] ``Dimensional Node Initializer``
     | [<JsonUnionCase(@"Transdimensional Reconstructor")>] ``Transdimensional Reconstructor``
     | [<JsonUnionCase(@"Hpw. Transdimensional Reconstructor")>] ``Hpw_ Transdimensional Reconstructor``
