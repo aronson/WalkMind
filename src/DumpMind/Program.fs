@@ -14,9 +14,9 @@ let main argv =
     let getEnemyString() =
         if memory.mapCursorIndex < 0 then None else
         match memory.tiles.[memory.mapCursorIndex].entity with
-        | None -> None
-        | Some entity ->
+        | Some entity when entity <> Option.get memory.player.entity ->
             Some <| Json.serialize entity
+        | _ -> None
             
     let getStrings() =
         let player = getPlayerString()
