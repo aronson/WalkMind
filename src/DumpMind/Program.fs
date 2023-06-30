@@ -26,8 +26,15 @@ let main argv =
     
     let hotkeyManager = HotkeyManager.Current
     
-    hotkeyManager.AddOrReplace("DumpGameData", Keys.F11 ||| Keys.Control, (fun _ _ -> Clipboard.SetText(getStrings())))
-    printfn "Press Ctrl+F11 with an enemy highlighted to dump to console...\n"
+    hotkeyManager.AddOrReplace("DumpGameData", Keys.F11 ||| Keys.Control, (
+        fun _ _ ->
+            try
+                Clipboard.SetText(getStrings())
+            with
+            | e ->
+                printfn "%A" e
+                ))
+    printfn "Press Ctrl+F11 with an enemy highlighted to dump to clipboard...\n"
 
     // Enter message loop
     Application.Run()
