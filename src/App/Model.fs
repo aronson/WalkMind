@@ -31,9 +31,12 @@ type ItemCategory =
     | Weapon of Weapon
     | Misc
     | Matter
-    
-type PropOcclusion = | Obstructed | Vacant | Dangerous
-    
+
+type PropOcclusion =
+    | Obstructed
+    | Vacant
+    | Dangerous
+
 let propToOcclusion =
     function
     | Prop.``Concrete Rubble``
@@ -238,7 +241,7 @@ let propToOcclusion =
     | Prop.``ACC_Door_Shootable_COM``
     | Prop.``ACC_Door_Hackable``
     | Prop.``ACC_Shell_Shootable`` -> PropOcclusion.Obstructed
-    | Prop.``Main Access Lift``-> PropOcclusion.Vacant
+    | Prop.``Main Access Lift`` -> PropOcclusion.Vacant
     | Prop.``STO_Door_Open``
     | Prop.``STO_Door_Hackable``
     | Prop.``STO_Shell_Shootable``
@@ -627,7 +630,7 @@ let itemToCategory (item: Item) : ItemCategory =
     | Item.``Imp_ Q-thruster``
     | Item.``Cld_ Q-thruster``
     | Item.``Exp_ Q-thruster`` -> Propulsion Flight
-    | Item.``Scrap Engine`` 
+    | Item.``Scrap Engine``
     | Item.``Arm_ Scrap Engine``
     | Item.``Desublimator``
     | Item.``Power Amplifier``

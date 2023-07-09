@@ -1374,7 +1374,7 @@ type Item =
     | [<JsonUnionCase(@"Meganuke")>] ``Meganuke``
     | [<JsonUnionCase(@"Gamma Refractor")>] ``Gamma Refractor``
 
-    
+
 let itemId =
     function
     | 0 -> Item.``Matter``
