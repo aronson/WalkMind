@@ -112,7 +112,7 @@ type LuigiItemData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Integrity: int
 
-        [<field: MarshalAs(UnmanagedType.I1)>]
+        [<field: MarshalAs(UnmanagedType.U1)>]
         val Equipped: bool
     end
 
@@ -188,7 +188,7 @@ type LuigiPropData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val PropId: int
 
-        [<field: MarshalAs(UnmanagedType.I1)>]
+        [<field: MarshalAs(UnmanagedType.U1)>]
         val InteractivePiece: bool
     end
 
@@ -206,7 +206,7 @@ type LuigiTileData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Cell: int
 
-        [<field: MarshalAs(UnmanagedType.I1)>]
+        [<field: MarshalAs(UnmanagedType.U1)>]
         val DoorOpen: bool
 
         [<field: MarshalAs(UnmanagedType.I4)>]
