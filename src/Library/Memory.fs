@@ -307,7 +307,7 @@ type Memory() =
         function
         | pointer when pointer = IntPtr.Zero -> None
         | pointer ->
-            let bufferSize = uint32 luigiAiByteLength
+            let bufferSize = uint32 luigiItemByteLength
             let buffer = Marshal.AllocHGlobal(int bufferSize)
 
             let mutable bytesRead = 0
