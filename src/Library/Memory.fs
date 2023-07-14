@@ -72,10 +72,10 @@ type LuigiAiData =
         val MapCursorIndex: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val PlayerEntityPointer: int
+        val PlayerEntityPointer: IntPtr
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val MachineHackingPointer: int
+        val MachineHackingPointer: IntPtr
     end
 
 [<Literal>]
@@ -162,7 +162,7 @@ type LuigiEntityData =
         val InventorySize: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val InventoryPointer: int
+        val InventoryPointer: IntPtr
     end
 
 [<Literal>]
@@ -210,13 +210,13 @@ type LuigiTileData =
         val DoorOpen: bool
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val PropPointer: int
+        val PropPointer: IntPtr
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val EntityPointer: int
+        val EntityPointer: IntPtr
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val ItemPointer: int
+        val ItemPointer: IntPtr
     end
 
 [<Literal>]
@@ -250,6 +250,12 @@ type Memory() =
     let processHandle = cogmindProcess.Handle
 
     let chunkSize = uint32 4096
+        
+    let addPointers (p1: IntPtr) (p2: int) =
+        IntPtr.op_Addition(p1, p2)
+
+    let readInt32 (buffer: byte[]) (i: int) =
+        BitConverter.ToInt32(buffer, i)
 
     let findMagicNumbers hProcess startAddress =
         let mutable buffer = Array.zeroCreate<byte> (int chunkSize)
@@ -263,14 +269,14 @@ type Memory() =
                 NativeMethods.ReadProcessMemory(hProcess, startAddress, pBuffer, (UIntPtr chunkSize), &bytesRead)
 
             if result then
-                [ 0 .. int chunkSize - 8 ]
-                |> List.tryPick (fun i ->
-                    let n1 = BitConverter.ToInt32(buffer, i)
-                    let n2 = BitConverter.ToInt32(buffer, i + 4)
+                Seq.initInfinite id
+                |> Seq.take (buffer.Length - 8)
+                |> Seq.tryPick (fun i ->
+                    let n1 = readInt32 buffer i
+                    let n2 = readInt32 buffer (i + 4)
 
                     if n1 = primaryMagic && n2 = secondaryMagic then
-                        let pointer = IntPtr.op_Addition (startAddress, int i)
-                        Some pointer
+                        Some (addPointers startAddress i)
                     else
                         None)
             else
@@ -281,21 +287,36 @@ type Memory() =
     let searchMemory (p: Process) baseAddress =
         let PROCESS_VM_READ = 0x0010
         let hProcess = NativeMethods.OpenProcess(PROCESS_VM_READ, false, p.Id)
+        let chunkSizeInt = int chunkSize
 
         if hProcess = IntPtr.Zero then
             Error "Failed to open process."
         else
+            let maxAttempts = (int p.VirtualMemorySize64) / chunkSizeInt
 
-            let mutable foundAddress = None
-            let mutable currentAddress = baseAddress
+            let searchKnownAddresses =
+                [0xC5E65C; 0xC61724]
+                |> List.map(IntPtr)
+                |> List.tryFind (fun addr ->
+                    match findMagicNumbers hProcess addr with
+                    | Some _ -> true
+                    | None -> false)
 
-            while foundAddress.IsNone do
-                foundAddress <- findMagicNumbers hProcess currentAddress
-                currentAddress <- IntPtr.op_Addition (currentAddress, int chunkSize)
+            let rec loop currentAddress attempts =
+                if attempts > maxAttempts then
+                    Error "Failed to find magic numbers after maximum attempts."
+                else
+                    match findMagicNumbers hProcess currentAddress with
+                    | Some addr -> Ok addr
+                    | None -> loop (addPointers currentAddress chunkSizeInt) (attempts + 1)
 
-            let _ = NativeMethods.CloseHandle(hProcess)
+            try
+                match searchKnownAddresses with
+                | Some addr -> Ok addr
+                | None -> loop baseAddress 0
+            finally
+                NativeMethods.CloseHandle(hProcess) |> ignore
 
-            Ok foundAddress.Value
 
     /// The location in memory in Cogmind's heap where the LuigiAi structure begins
     let magicPointer =
