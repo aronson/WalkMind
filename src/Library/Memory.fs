@@ -112,7 +112,7 @@ type LuigiItemData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Integrity: int
 
-        [<field: MarshalAs(UnmanagedType.Bool)>]
+        [<field: MarshalAs(UnmanagedType.I1)>]
         val Equipped: bool
     end
 
@@ -188,7 +188,7 @@ type LuigiPropData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val PropId: int
 
-        [<field: MarshalAs(UnmanagedType.Bool)>]
+        [<field: MarshalAs(UnmanagedType.I1)>]
         val InteractivePiece: bool
     end
 
@@ -206,7 +206,7 @@ type LuigiTileData =
         [<field: MarshalAs(UnmanagedType.I4)>]
         val Cell: int
 
-        [<field: MarshalAs(UnmanagedType.Bool)>] // Marshaling a boolean value
+        [<field: MarshalAs(UnmanagedType.I1)>]
         val DoorOpen: bool
 
         [<field: MarshalAs(UnmanagedType.I4)>]
@@ -307,7 +307,7 @@ type Memory() =
         function
         | pointer when pointer = IntPtr.Zero -> None
         | pointer ->
-            let bufferSize = uint32 (luigiAiByteLength)
+            let bufferSize = uint32 luigiAiByteLength
             let buffer = Marshal.AllocHGlobal(int bufferSize)
 
             let mutable bytesRead = 0
