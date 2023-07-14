@@ -72,10 +72,10 @@ type LuigiAiData =
         val MapCursorIndex: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val PlayerEntityPointer: IntPtr
+        val PlayerEntityPointer: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val MachineHackingPointer: IntPtr
+        val MachineHackingPointer: int
     end
 
 [<Literal>]
@@ -162,7 +162,7 @@ type LuigiEntityData =
         val InventorySize: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val InventoryPointer: IntPtr
+        val InventoryPointer: int
     end
 
 [<Literal>]
@@ -210,13 +210,13 @@ type LuigiTileData =
         val DoorOpen: bool
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val PropPointer: IntPtr
+        val PropPointer: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val EntityPointer: IntPtr
+        val EntityPointer: int
 
         [<field: MarshalAs(UnmanagedType.I4)>]
-        val ItemPointer: IntPtr
+        val ItemPointer: int
     end
 
 [<Literal>]
@@ -295,7 +295,7 @@ type Memory() =
             let maxAttempts = (int p.VirtualMemorySize64) / chunkSizeInt
 
             let searchKnownAddresses =
-                [0xC5E65C; 0xC61724]
+                [0xC6465C; 0xC66724]
                 |> List.map(IntPtr)
                 |> List.tryFind (fun addr ->
                     match findMagicNumbers hProcess addr with

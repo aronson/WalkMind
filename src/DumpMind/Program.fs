@@ -35,6 +35,7 @@ let main _ =
             (fun _ _ ->
                 try
                     Clipboard.SetText(getStrings ())
+                    printfn "[%s] Dumped to clipboard..." (DateTime.Now.ToString("hh:mm:ss tt"))
                 with e ->
                     printfn "%A" e)
         )
