@@ -6,23 +6,23 @@ This repository contains a number of projects geared towards this endeavor. This
 
 ## WalkMind
 
-An F# console application designed to read Cogmind's memory and press buttons to progress through the game.
+WalkMind is an F# console application. Its design facilitates the reading of Cogmind's memory and enables button presses to progress through the game.
 
 ## SniffMind
 
-SniffMind is an F# library specifically designed for real-time interfacing with Cogmind. Its key features include the ability to attach to a running instance of Cogmind, from where it proceeds to extract valuable gameplay data by directly reading RAM. This encompasses a wide array of details like terrain that has been explored, player statistics, statistics of other in-game robots, as well as items and equipment located either on the ground or in inventories.
+SniffMind is an F# library, purpose-built for real-time interfacing with Cogmind. It boasts key features such as attaching to a live instance of Cogmind, after which it extracts valuable gameplay data directly from RAM. This encompasses a wide array of details like terrain that has been explored, player statistics, statistics of other in-game robots, as well as items and equipment located either on the ground or in inventories.
 
-The data structures SniffMind reads have been provided by the original author of Cogmind and are vital to bypassing the need for scraping the game's visual data. This functionality ensures that an AI can receive comprehensive updates about the game's state without resorting to intrusive or inefficient methods. The LuigiAI structures can be found on Kyzrati's GitHub [here](https://github.com/Kyzrati/luigiai/tree/main).
+SniffMind reads data structures provided by Cogmind's author. These are crucial for avoiding the need to scrape the game's visual data, allowing an AI to receive comprehensive updates about the game state without resorting to intrusive or inefficient methods. The LuigiAI structures can be found on Kyzrati's GitHub [here](https://github.com/Kyzrati/luigiai/tree/main).
 
 Cogmind must be launched with the argument `-luigiAi` to expose these data structures. Note that the capitalization must be exact, with a lowercase `i` at the end.
 
 ## DumpMind
 
-An F# console application on the same platform that uses SniffMind to dump Cogmind and an enemy's stats to the clipboard for use with aoemica's [Cog-minder](https://noemica.github.io/cog-minder/simulator.html).
+DumpMind is an F# console application that utilizes SniffMind to dump Cogmind and an enemy's stats onto the clipboard for use with aoemica's [Cog-minder](https://noemica.github.io/cog-minder/simulator.html).
 
 ## DataIngest
 
-An internal F# application designed to generate SniffMind's parsing code from the files output to the `Cogmind/luigiAi` folder when running the game in LuigiAI mode.
+DataIngest is an internal F# application, designed to generate SniffMind's parsing code. It operates on the files output to the Cogmind/luigiAi folder when the game runs in LuigiAI mode.
 
 ## LearnMind (coming soon!)
 
