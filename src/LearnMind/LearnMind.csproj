@@ -33,20 +33,30 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="FSharp.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\FSharp.Core.7.0.300\lib\netstandard2.0\FSharp.Core.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Gym.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Runner.cs" />
+        <Compile Include="Save.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\SniffMind\SniffMind.fsproj">
         <Project>{027c6316-0b05-4be2-a572-6d6175eaf4fc}</Project>
         <Name>SniffMind</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="RemoveSatelliteAssemblies" AfterTargets="ResolveAssemblyReferences">
