@@ -10,7 +10,7 @@ An F# console application designed to read Cogmind's memory and press buttons to
 
 ## SniffMind
 
-Sniff Mind is an F# library specifically designed for real-time interfacing with Cogmind. Its key features include the ability to attach to a running instance of Cogmind, from where it proceeds to extract valuable gameplay data by directly reading RAM. This encompasses a wide array of details like terrain that has been explored, player statistics, statistics of other in-game robots, as well as items and equipment located either on the ground or in inventories.
+SniffMind is an F# library specifically designed for real-time interfacing with Cogmind. Its key features include the ability to attach to a running instance of Cogmind, from where it proceeds to extract valuable gameplay data by directly reading RAM. This encompasses a wide array of details like terrain that has been explored, player statistics, statistics of other in-game robots, as well as items and equipment located either on the ground or in inventories.
 
 The data structures SniffMind reads have been provided by the original author of Cogmind and are vital to bypassing the need for scraping the game's visual data. This functionality ensures that an AI can receive comprehensive updates about the game's state without resorting to intrusive or inefficient methods. The LuigiAI structures can be found on Kyzrati's GitHub [here](https://github.com/Kyzrati/luigiai/tree/main).
 
