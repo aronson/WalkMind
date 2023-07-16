@@ -14,5 +14,10 @@
         <PackageReference Include="FSharp.Json" Version="0.4.1"/>
         <PackageReference Include="FSharpx.Extras" Version="3.1.0"/>
     </ItemGroup>
+    <Target Name="RemoveSatelliteAssemblies" AfterTargets="ResolveAssemblyReferences">
+        <ItemGroup>
+            <ReferenceCopyLocalPaths Remove="@(ReferenceSatellitePaths)" />
+        </ItemGroup>
+    </Target>
 
 </Project>
