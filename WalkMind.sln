@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2A74C4C-1E22-48DA-9220-121D34648266}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "App", "src\App\App.fsproj", "{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "WalkMind", "src\WalkMind\WalkMind.fsproj", "{23A87ABE-038D-4AEE-A1CC-E75BC57651A9}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Library", "src\Library\Library.fsproj", "{027C6316-0B05-4BE2-A572-6D6175EAF4FC}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SniffMind", "src\SniffMind\SniffMind.fsproj", "{027C6316-0B05-4BE2-A572-6D6175EAF4FC}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DataIngest", "src\DataIngest\DataIngest.fsproj", "{313C98F3-0E4E-43D4-8127-378D3D7B2EDA}"
 EndProject

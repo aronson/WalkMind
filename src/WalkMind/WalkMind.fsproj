@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net481</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="Model.fs" />
+        <Compile Include="AStar.fs" />
+        <Compile Include="Goalfinding.fs" />
+        <Compile Include="Bresenham.fs" />
+        <Compile Include="Movement.fs" />
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FSharp.Data" Version="4.2.7" />
+        <PackageReference Include="FSharp.Json" Version="0.4.1" />
+        <PackageReference Include="FSharpPlus" Version="1.2.4" />
+        <PackageReference Include="FSharpx.Collections" Version="3.0.1" />
+        <PackageReference Include="FSharpx.Extras" Version="3.1.0" />
+        <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+        <PackageReference Include="GregsStack.InputSimulatorStandard" Version="1.3.5" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\SniffMind\SniffMind.fsproj" />
+    </ItemGroup>
+</Project>
