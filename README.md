@@ -1,15 +1,39 @@
-# WalkMind
+# A Cogmind AI project
 
-## TODO:
-- Support equipping parts
-- Initialize combat simulator with initial values
-- Fight robots
-- Remove imperative process for handling level transitions and replace with level-aware collection producer
-- Support machine hacking for exit location
-- Support pathfinding outside of materials depths
+WalkMind is a project to create an AI that can play the sci-fi roguelike [Cogmind](https://gridsagegames.com/cogmind) by Grid Sage Games.
+
+This repository contains a number of projects geared towards this endeavor. This README goes over their high-level goals.
+
+## WalkMind
+
+An F# console application designed to read Cogmind's memory and press buttons to progress through the game.
+
+## SniffMind
+
+An F# library capable of attaching to a running Cogmind game and extracting meaningful data from it, such as explored terrain, the player and other robots' stats, items and equipment on the ground or in inventories, and many other data structures from the author of Cogmind necessary to avoid scraping the visual data of the game to inform an AI about the state of the game. The LuigiAI structures can be found on Kyzrati's GitHub [here](https://github.com/Kyzrati/luigiai/tree/main).
+
+Cogmind must be launched with the argument `-luigiAi` to expose these data structures. Note that the capitalization must be exact, with a lowercase `i` at the end.
+
+## DumpMind
+
+An F# console application on the same platform that uses SniffMind to dump Cogmind and an enemy's stats to the clipboard for use with aoemica's [Cog-minder](https://noemica.github.io/cog-minder/simulator.html).
+
+## DataIngest
+
+An internal F# application designed to generate SniffMind's parsing code from the files output to the `Cogmind/luigiAi` folder when running the game in LuigiAI mode.
+
+## LearnMind (coming soon!)
+
+A C# console application providing a learning environment for Cogmind AIs. It provides a framework to:
+- launch and manage game sessions
+- pass inputs from client AI applications to game instances
+- provide the LuigiAI structure data as rich .NET domain types back to client AIs
+- manage synchronization of client AI and game input/ready state
+- test AI behavior in iterative units that build up to higher level actions (step in a direction, shoot one enemy, assemble a scrapyard build, traverse a mats floor, etc.)
+- mock a Cogmind instance through a pre-made data set instead of a live application
 
 ## License notes
 
 The initial implementation of AStar.fs is licensed under [WTFGPL](http://www.wtfpl.net/txt/copying/) and adapted to AGPL under a different name
 
-All AGPL code contributed by authors of these commits is additionally licensed under the MIT License to the business entity Grid Sage Games and the creator of Cogmind Josh Gee where possible. As of writing, this includes all code.
+All AGPL code contributed by authors of these commits is additionally licensed under the MIT License to the business entity Grid Sage Games and sole creator of Cogmind where possible. As of writing, this includes all code. This is a fan-made project and the authors of this project are not afilliated with Grid Sage Games.
