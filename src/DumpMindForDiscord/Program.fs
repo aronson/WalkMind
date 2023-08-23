@@ -26,7 +26,7 @@ let getState () =
     | x when x <= 50 -> "Fine"
     | x when x <= 25 -> "OK"
     | x when x <= 5 -> "Greed"
-    | _ -> "u dead bro"
+    | _ -> "u dead fr"
 
 let getPropType () =
     let parseItem (item: LuigiItem) =
