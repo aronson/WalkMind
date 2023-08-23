@@ -125,12 +125,11 @@ let main _ =
     client.Initialize() |> ignore
 
     let rec loop actionReady =
+        Thread.Sleep(5000)
         if actionReady <> memory.actionReadyValue then
             client.SetPresence(getPresence ())
-            Thread.Sleep(5000)
             loop memory.actionReadyValue
         else
-            Thread.Sleep(5000)
             loop actionReady
 
     let handleCtrlC (args: ConsoleCancelEventArgs) =
