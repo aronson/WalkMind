@@ -133,7 +133,6 @@ let main _ =
             loop actionReady
 
     let handleCtrlC (args: ConsoleCancelEventArgs) =
-        client.Dispose()
         args.Cancel <- true
 
     Console.CancelKeyPress.Add(handleCtrlC)
