@@ -9,9 +9,9 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyTitle("DumpMind")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
-[<assembly: AssemblyCompany("")>]
+[<assembly: AssemblyCompany("https://github.com/aronson/WalkMind")>]
 [<assembly: AssemblyProduct("DumpMind")>]
-[<assembly: AssemblyCopyright("Copyright ©  $year$")>]
+[<assembly: AssemblyCopyright("AGPL 3.0")>]
 [<assembly: AssemblyTrademark("")>]
 [<assembly: AssemblyCulture("")>]
 
