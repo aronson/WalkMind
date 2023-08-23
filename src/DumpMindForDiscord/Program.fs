@@ -1,5 +1,5 @@
-﻿open System.Threading
-open System.Timers
+﻿open System
+open System.Threading
 open DiscordRPC
 open DiscordRPC.Logging
 open WalkMind.Domain
@@ -124,16 +124,19 @@ let main _ =
     client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
     client.Initialize() |> ignore
 
-    let mutable actionReady = -1
+    let rec loop actionReady =
+        Thread.Sleep(5000)
 
-    while true do
-        (Thread.Sleep(5000)
+        if actionReady <> memory.actionReadyValue then
+            client.SetPresence(getPresence ())
+            loop memory.actionReadyValue
+        else
+            loop actionReady
 
-         if actionReady = memory.actionReadyValue then
-             ()
-         else
-             client.SetPresence(getPresence ())
-             actionReady <- memory.actionReadyValue)
+    let handleCtrlC (args: ConsoleCancelEventArgs) =
+        client.Dispose()
+        args.Cancel <- true
 
-    client.Dispose()
+    Console.CancelKeyPress.Add(handleCtrlC)
+    loop -1
     0 // return an integer exit code
