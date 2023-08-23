@@ -29,9 +29,6 @@ let discord () =
             else
                 loop actionReady
 
-        let handleCtrlC (args: ConsoleCancelEventArgs) = args.Cancel <- true
-
-        Console.CancelKeyPress.Add(handleCtrlC)
         loop -1)
 
 [<EntryPoint>]
