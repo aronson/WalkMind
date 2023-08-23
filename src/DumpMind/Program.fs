@@ -1,4 +1,5 @@
 ﻿open System
+open System.IO
 open System.Threading
 open System.Threading.Tasks
 open DiscordRPC
@@ -9,6 +10,9 @@ open System.Windows.Forms
 open WalkMind.Memory
 open DumpMind.Status
 
+
+let executablePath = AppDomain.CurrentDomain.BaseDirectory
+let discordControlFile = Path.Combine(executablePath, "nodiscord.txt")
 
 let discord () =
     Task.Run(fun () ->
@@ -38,7 +42,10 @@ let main args =
         let memory = Memory()
 
         // Discord integration can be disabled with any argument
-        if args.Length = 0 then discord () |> ignore else ()
+        if not <| File.Exists(discordControlFile) && args.Length = 0 then
+            discord () |> ignore
+        else
+            ()
 
         let getPlayerString () =
             Option.get memory.player.entity |> Json.serialize
