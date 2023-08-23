@@ -40,9 +40,6 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 1               ICON                    "AppIcon.ico"
-2               ICON                    "AppIcon32.ico"
-3               ICON                    "AppIcon16.ico"
-4               ICON                    "AppIcon48.ico"
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
