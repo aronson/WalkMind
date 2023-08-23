@@ -4,12 +4,13 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Domain.fs"/>
-        <Compile Include="Memory.fs"/>
+        <Compile Include="Domain.fs" />
+        <Compile Include="Memory.fs" />
+        <Compile Include="Model.fs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FSharp.Json" Version="0.4.1"/>
-        <PackageReference Include="FSharp.TypeProviders.StarterPack" Version="2.1.0"/>
+        <PackageReference Include="FSharp.Json" Version="0.4.1" />
+        <PackageReference Include="FSharp.TypeProviders.StarterPack" Version="2.1.0" />
     </ItemGroup>
     <Target Name="RemoveSatelliteAssemblies" AfterTargets="ResolveAssemblyReferences">
         <ItemGroup>
