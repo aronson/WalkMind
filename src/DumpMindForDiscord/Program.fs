@@ -119,7 +119,7 @@ let getPresence () =
 
 [<EntryPoint>]
 let main _ =
-    client.Logger <- ConsoleLogger(Level = LogLevel.Trace)
+    client.Logger <- ConsoleLogger(Level = LogLevel.Warning)
     client.OnReady.Add(fun message -> printfn "Received Ready from user %s" message.User.Username)
     client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
     client.Initialize() |> ignore
