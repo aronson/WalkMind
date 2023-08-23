@@ -1,14 +1,47 @@
 ﻿open System
+open System.Threading
+open System.Threading.Tasks
+open DiscordRPC
+open DiscordRPC.Logging
 open FSharp.Json
 open NHotkey.WindowsForms
 open System.Windows.Forms
 open WalkMind.Memory
+open DumpMind.Status
+
+
+let discord () =
+    Task.Run(fun () ->
+        use client = new DiscordRpcClient("914720093701832724")
+        client.Logger <- ConsoleLogger(Level = LogLevel.Warning)
+        client.OnReady.Add(fun message -> printfn "Received Ready from user %s" message.User.Username)
+        client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
+        client.Initialize() |> ignore
+
+        let memory = Memory()
+
+        let rec loop actionReady =
+            Thread.Sleep(5000)
+
+            if actionReady <> memory.actionReadyValue then
+                client.SetPresence(getPresence ())
+                loop memory.actionReadyValue
+            else
+                loop actionReady
+
+        let handleCtrlC (args: ConsoleCancelEventArgs) = args.Cancel <- true
+
+        Console.CancelKeyPress.Add(handleCtrlC)
+        loop -1)
 
 [<EntryPoint>]
 [<STAThread>]
-let main _ =
+let main args =
     try
         let memory = Memory()
+
+        // Discord integration can be disabled with any argument
+        if args.Length = 0 then discord () |> ignore else ()
 
         let getPlayerString () =
             Option.get memory.player.entity |> Json.serialize

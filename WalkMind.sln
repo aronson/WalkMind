@@ -15,8 +15,6 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DumpMind", "src\DumpMind\Du
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnMind", "src\LearnMind\LearnMind.csproj", "{0EE9EC5B-21E8-445D-8AB3-B87E48803E14}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DumpMindForDiscord", "src\DumpMindForDiscord\DumpMindForDiscord.fsproj", "{006E769F-34D5-4A7C-BC3C-B901962E952E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{0EE9EC5B-21E8-445D-8AB3-B87E48803E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE9EC5B-21E8-445D-8AB3-B87E48803E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE9EC5B-21E8-445D-8AB3-B87E48803E14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{006E769F-34D5-4A7C-BC3C-B901962E952E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{006E769F-34D5-4A7C-BC3C-B901962E952E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{006E769F-34D5-4A7C-BC3C-B901962E952E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{006E769F-34D5-4A7C-BC3C-B901962E952E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,7 +51,6 @@ Global
 		{313C98F3-0E4E-43D4-8127-378D3D7B2EDA} = {D2A74C4C-1E22-48DA-9220-121D34648266}
 		{5D857919-0ED8-4D55-A31A-ED8DC4F39315} = {D2A74C4C-1E22-48DA-9220-121D34648266}
 		{0EE9EC5B-21E8-445D-8AB3-B87E48803E14} = {D2A74C4C-1E22-48DA-9220-121D34648266}
-		{006E769F-34D5-4A7C-BC3C-B901962E952E} = {D2A74C4C-1E22-48DA-9220-121D34648266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F767407-253D-46E3-9B26-6A9A0595AD61}

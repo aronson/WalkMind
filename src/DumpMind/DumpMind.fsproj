@@ -33,6 +33,9 @@
         <OtherFlags>--warnon:1182</OtherFlags>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="DiscordRPC, Version=1.2.1.24, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\DiscordRichPresence.1.2.1.24\lib\net45\DiscordRPC.dll</HintPath>
+        </Reference>
         <Reference Include="FSharp.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\..\packages\FSharp.Core.7.0.300\lib\netstandard2.0\FSharp.Core.dll</HintPath>
         </Reference>
@@ -40,6 +43,9 @@
             <HintPath>..\..\packages\FSharp.Json.0.4.1\lib\netstandard2.0\FSharp.Json.dll</HintPath>
         </Reference>
         <Reference Include="mscorlib" />
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
         <Reference Include="NHotkey, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
             <HintPath>..\..\packages\NHotkey.2.1.1\lib\net45\NHotkey.dll</HintPath>
         </Reference>
@@ -54,6 +60,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="AssemblyInfo.fs" />
+        <Compile Include="Status.fs" />
         <Compile Include="Program.fs" />
         <Content Include="packages.config" />
     </ItemGroup>

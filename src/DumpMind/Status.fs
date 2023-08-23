@@ -1,7 +1,6 @@
-﻿open System
-open System.Threading
+﻿module DumpMind.Status
+
 open DiscordRPC
-open DiscordRPC.Logging
 open WalkMind.Domain
 open WalkMind.Memory
 open WalkMind.Model
@@ -115,26 +114,3 @@ let getPresence () =
         Assets =
             Assets(LargeImageKey = "cogmind_logo", LargeImageText = "Cogmind b13 X1", SmallImageKey = getPropType ())
     )
-
-[<EntryPoint>]
-let main _ =
-    use client = new DiscordRpcClient("914720093701832724")
-    client.Logger <- ConsoleLogger(Level = LogLevel.Warning)
-    client.OnReady.Add(fun message -> printfn "Received Ready from user %s" message.User.Username)
-    client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
-    client.Initialize() |> ignore
-
-    let rec loop actionReady =
-        Thread.Sleep(5000)
-        if actionReady <> memory.actionReadyValue then
-            client.SetPresence(getPresence ())
-            loop memory.actionReadyValue
-        else
-            loop actionReady
-
-    let handleCtrlC (args: ConsoleCancelEventArgs) =
-        args.Cancel <- true
-
-    Console.CancelKeyPress.Add(handleCtrlC)
-    loop -1
-    0 // return an integer exit code
