@@ -95,7 +95,7 @@ let getPresence () =
            | MapType.MAP_SEC -> "Section 7"
            | MapType.MAP_COM -> "Command"
            | MapType.MAP_AC0 -> "Access 0"
-           | MapType.MAP_LAI -> "Lair"
+           | MapType.MAP_LAI -> "Abomination Lair"
            | MapType.MAP_TOW -> "Wartown"
            | MapType.MAP_W00 -> "w0"
            | MapType.MAP_W01 -> "w1"
