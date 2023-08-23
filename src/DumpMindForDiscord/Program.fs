@@ -75,6 +75,7 @@ let getPresence () =
            | MapType.MAP_WAS -> "Wastes"
            | MapType.MAP_GAR -> "Garrison"
            | MapType.MAP_DSF -> "DSF"
+           | MapType.MAP_SUB -> "Subcaves"
            | MapType.MAP_LOW -> "Lower Caves"
            | MapType.MAP_UPP -> "Upper Caves"
            | MapType.MAP_PRO -> "Proxy Caves"
