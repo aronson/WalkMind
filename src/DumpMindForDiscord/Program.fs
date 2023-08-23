@@ -6,7 +6,6 @@ open WalkMind.Domain
 open WalkMind.Memory
 open WalkMind.Model
 
-let client = new DiscordRpcClient("914720093701832724")
 
 let memory = Memory()
 
@@ -119,6 +118,7 @@ let getPresence () =
 
 [<EntryPoint>]
 let main _ =
+    use client = new DiscordRpcClient("914720093701832724")
     client.Logger <- ConsoleLogger(Level = LogLevel.Warning)
     client.OnReady.Add(fun message -> printfn "Received Ready from user %s" message.User.Username)
     client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
