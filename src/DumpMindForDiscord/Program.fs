@@ -21,7 +21,7 @@ let getState () =
     let coreRemainingPercentage = memory.player.entity.Value.integrity / maxCore * 100
 
     match coreRemainingPercentage with
-    | x when x <= 90 -> "Pristine"
+    | x when x <= 100 -> "Pristine"
     | x when x <= 75 -> "Decent"
     | x when x <= 50 -> "Fine"
     | x when x <= 25 -> "OK"
@@ -95,8 +95,8 @@ let getPresence () =
            | MapType.MAP_SEC -> "Section 7"
            | MapType.MAP_COM -> "Command"
            | MapType.MAP_AC0 -> "Access 0"
-           | MapType.MAP_LAI -> "Abomination Lair"
-           | MapType.MAP_TOW -> "Scraptown"
+           | MapType.MAP_LAI -> "Lair"
+           | MapType.MAP_TOW -> "Wartown"
            | MapType.MAP_W00 -> "w0"
            | MapType.MAP_W01 -> "w1"
            | MapType.MAP_W02 -> "w2"
@@ -119,7 +119,7 @@ let getPresence () =
 
 [<EntryPoint>]
 let main _ =
-    client.Logger <- ConsoleLogger(Level = LogLevel.Warning)
+    client.Logger <- ConsoleLogger(Level = LogLevel.Trace)
     client.OnReady.Add(fun message -> printfn "Received Ready from user %s" message.User.Username)
     client.OnPresenceUpdate.Add(fun message -> printfn "Received Update! %s" message.Presence.Details)
     client.Initialize() |> ignore
