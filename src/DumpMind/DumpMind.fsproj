@@ -12,6 +12,7 @@
         <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+        <ApplicationIcon>169276660219744153.png</ApplicationIcon>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -71,6 +72,7 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
+        <None Include="169276660219744153.png" />
         <None Include="App.config" />
     </ItemGroup>
     <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
