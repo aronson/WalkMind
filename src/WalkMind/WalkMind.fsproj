@@ -2,6 +2,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFrameworks>net481</TargetFrameworks>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Model.fs" />

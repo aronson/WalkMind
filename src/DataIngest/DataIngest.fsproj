@@ -3,16 +3,17 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Program.fs"/>
+        <Compile Include="Program.fs" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FSharp.Data.LiteralProviders" Version="1.0.3"/>
-        <PackageReference Include="FSharp.Json" Version="0.4.1"/>
-        <PackageReference Include="FSharpx.Extras" Version="3.1.0"/>
+        <PackageReference Include="FSharp.Data.LiteralProviders" Version="1.0.3" />
+        <PackageReference Include="FSharp.Json" Version="0.4.1" />
+        <PackageReference Include="FSharpx.Extras" Version="3.1.0" />
     </ItemGroup>
     <Target Name="RemoveSatelliteAssemblies" AfterTargets="ResolveAssemblyReferences">
         <ItemGroup>

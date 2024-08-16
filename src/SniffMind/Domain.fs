@@ -8,267 +8,276 @@ type cell =
     | ``EARTH`` = 0
     | ``EARTH_EXC`` = 1
     | ``GROUND`` = 2
-    | ``FLOOR_SAN`` = 3
-    | ``FLOOR_JUN`` = 4
-    | ``FLOOR_MAT`` = 5
-    | ``FLOOR_FAC`` = 6
-    | ``FLOOR_RES`` = 7
-    | ``FLOOR_ACC`` = 8
-    | ``FLOOR_SUR`` = 9
-    | ``FLOOR_MIN`` = 10
-    | ``FLOOR_EXI`` = 11
-    | ``FLOOR_STO`` = 12
-    | ``FLOOR_REC`` = 13
-    | ``FLOOR_WAS`` = 14
-    | ``FLOOR_GAR`` = 15
-    | ``FLOOR_DSF`` = 16
-    | ``FLOOR_SUB`` = 17
-    | ``FLOOR_LOW`` = 18
-    | ``FLOOR_UPP`` = 19
-    | ``FLOOR_PRO`` = 20
-    | ``FLOOR_DEE`` = 21
-    | ``FLOOR_ZIO`` = 22
-    | ``FLOOR_DAT`` = 23
-    | ``FLOOR_ZHI`` = 24
-    | ``FLOOR_WAR`` = 25
-    | ``FLOOR_EXT`` = 26
-    | ``FLOOR_CET`` = 27
-    | ``FLOOR_ARC`` = 28
-    | ``FLOOR_HUB`` = 29
-    | ``FLOOR_ARM`` = 30
-    | ``FLOOR_LAB`` = 31
-    | ``FLOOR_QUA`` = 32
-    | ``FLOOR_TES`` = 33
-    | ``FLOOR_SEC`` = 34
-    | ``FLOOR_COM`` = 35
-    | ``FLOOR_AC0`` = 36
-    | ``FLOOR_LAI`` = 37
-    | ``FLOOR_TOW`` = 38
-    | ``TEMP_WALL`` = 39
-    | ``WALL_SAN`` = 40
-    | ``WALL_JUN`` = 41
-    | ``WALL_MAT`` = 42
-    | ``WALL_FAC`` = 43
-    | ``WALL_RES`` = 44
-    | ``WALL_ACC`` = 45
-    | ``WALL_SUR`` = 46
-    | ``WALL_MIN`` = 47
-    | ``WALL_EXI`` = 48
-    | ``WALL_STO`` = 49
-    | ``WALL_REC`` = 50
-    | ``WALL_WAS`` = 51
-    | ``WALL_GAR`` = 52
-    | ``WALL_DSF`` = 53
-    | ``WALL_SUB`` = 54
-    | ``WALL_LOW`` = 55
-    | ``WALL_UPP`` = 56
-    | ``WALL_PRO`` = 57
-    | ``WALL_DEE`` = 58
-    | ``WALL_ZIO`` = 59
-    | ``WALL_DAT`` = 60
-    | ``WALL_ZHI`` = 61
-    | ``WALL_WAR`` = 62
-    | ``WALL_EXT`` = 63
-    | ``WALL_CET`` = 64
-    | ``WALL_ARC`` = 65
-    | ``WALL_HUB`` = 66
-    | ``WALL_ARM`` = 67
-    | ``WALL_LAB`` = 68
-    | ``WALL_QUA`` = 69
-    | ``WALL_TES`` = 70
-    | ``WALL_SEC`` = 71
-    | ``WALL_COM`` = 72
-    | ``WALL_AC0`` = 73
-    | ``WALL_LAI`` = 74
-    | ``WALL_TOW`` = 75
-    | ``BARRIER_SAN`` = 76
-    | ``BARRIER_JUN`` = 77
-    | ``BARRIER_MAT`` = 78
-    | ``BARRIER_FAC`` = 79
-    | ``BARRIER_RES`` = 80
-    | ``BARRIER_ACC`` = 81
-    | ``BARRIER_SUR`` = 82
-    | ``BARRIER_MIN`` = 83
-    | ``BARRIER_EXI`` = 84
-    | ``BARRIER_STO`` = 85
-    | ``BARRIER_REC`` = 86
-    | ``BARRIER_WAS`` = 87
-    | ``BARRIER_GAR`` = 88
-    | ``BARRIER_DSF`` = 89
-    | ``BARRIER_SUB`` = 90
-    | ``BARRIER_LOW`` = 91
-    | ``BARRIER_UPP`` = 92
-    | ``BARRIER_PRO`` = 93
-    | ``BARRIER_DEE`` = 94
-    | ``BARRIER_ZIO`` = 95
-    | ``BARRIER_DAT`` = 96
-    | ``BARRIER_ZHI`` = 97
-    | ``BARRIER_WAR`` = 98
-    | ``BARRIER_EXT`` = 99
-    | ``BARRIER_CET`` = 100
-    | ``BARRIER_ARC`` = 101
-    | ``BARRIER_HUB`` = 102
-    | ``BARRIER_ARM`` = 103
-    | ``BARRIER_LAB`` = 104
-    | ``BARRIER_QUA`` = 105
-    | ``BARRIER_TES`` = 106
-    | ``BARRIER_SEC`` = 107
-    | ``BARRIER_COM`` = 108
-    | ``BARRIER_AC0`` = 109
-    | ``BARRIER_LAI`` = 110
-    | ``BARRIER_TOW`` = 111
-    | ``SHORTCUT_SAN`` = 112
-    | ``SHORTCUT_JUN`` = 113
-    | ``SHORTCUT_MAT`` = 114
-    | ``SHORTCUT_FAC`` = 115
-    | ``SHORTCUT_RES`` = 116
-    | ``SHORTCUT_ACC`` = 117
-    | ``SHORTCUT_SUR`` = 118
-    | ``SHORTCUT_MIN`` = 119
-    | ``SHORTCUT_EXI`` = 120
-    | ``SHORTCUT_STO`` = 121
-    | ``SHORTCUT_REC`` = 122
-    | ``SHORTCUT_WAS`` = 123
-    | ``SHORTCUT_GAR`` = 124
-    | ``SHORTCUT_DSF`` = 125
-    | ``SHORTCUT_SUB`` = 126
-    | ``SHORTCUT_LOW`` = 127
-    | ``SHORTCUT_UPP`` = 128
-    | ``SHORTCUT_PRO`` = 129
-    | ``SHORTCUT_DEE`` = 130
-    | ``SHORTCUT_ZIO`` = 131
-    | ``SHORTCUT_DAT`` = 132
-    | ``SHORTCUT_ZHI`` = 133
-    | ``SHORTCUT_WAR`` = 134
-    | ``SHORTCUT_EXT`` = 135
-    | ``SHORTCUT_CET`` = 136
-    | ``SHORTCUT_ARC`` = 137
-    | ``SHORTCUT_HUB`` = 138
-    | ``SHORTCUT_ARM`` = 139
-    | ``SHORTCUT_LAB`` = 140
-    | ``SHORTCUT_QUA`` = 141
-    | ``SHORTCUT_TES`` = 142
-    | ``SHORTCUT_SEC`` = 143
-    | ``SHORTCUT_COM`` = 144
-    | ``SHORTCUT_AC0`` = 145
-    | ``SHORTCUT_LAI`` = 146
-    | ``SHORTCUT_TOW`` = 147
-    | ``SHORTCUT_KNOWN`` = 148
-    | ``PHASEWALL_SAN`` = 149
-    | ``PHASEWALL_JUN`` = 150
-    | ``PHASEWALL_MAT`` = 151
-    | ``PHASEWALL_FAC`` = 152
-    | ``PHASEWALL_RES`` = 153
-    | ``PHASEWALL_ACC`` = 154
-    | ``PHASEWALL_SUR`` = 155
-    | ``PHASEWALL_MIN`` = 156
-    | ``PHASEWALL_EXI`` = 157
-    | ``PHASEWALL_STO`` = 158
-    | ``PHASEWALL_REC`` = 159
-    | ``PHASEWALL_WAS`` = 160
-    | ``PHASEWALL_GAR`` = 161
-    | ``PHASEWALL_DSF`` = 162
-    | ``PHASEWALL_SUB`` = 163
-    | ``PHASEWALL_LOW`` = 164
-    | ``PHASEWALL_UPP`` = 165
-    | ``PHASEWALL_PRO`` = 166
-    | ``PHASEWALL_DEE`` = 167
-    | ``PHASEWALL_ZIO`` = 168
-    | ``PHASEWALL_DAT`` = 169
-    | ``PHASEWALL_ZHI`` = 170
-    | ``PHASEWALL_WAR`` = 171
-    | ``PHASEWALL_EXT`` = 172
-    | ``PHASEWALL_CET`` = 173
-    | ``PHASEWALL_ARC`` = 174
-    | ``PHASEWALL_HUB`` = 175
-    | ``PHASEWALL_ARM`` = 176
-    | ``PHASEWALL_LAB`` = 177
-    | ``PHASEWALL_QUA`` = 178
-    | ``PHASEWALL_TES`` = 179
-    | ``PHASEWALL_SEC`` = 180
-    | ``PHASEWALL_COM`` = 181
-    | ``PHASEWALL_AC0`` = 182
-    | ``PHASEWALL_LAI`` = 183
-    | ``PHASEWALL_TOW`` = 184
-    | ``PHASEWALL_KNOWN`` = 185
-    | ``SEALED_DOOR`` = 186
-    | ``DOOR_SAN`` = 187
-    | ``DOOR_JUN`` = 188
-    | ``DOOR_MAT`` = 189
-    | ``DOOR_FAC`` = 190
-    | ``DOOR_RES`` = 191
-    | ``DOOR_ACC`` = 192
-    | ``DOOR_SUR`` = 193
-    | ``DOOR_MIN`` = 194
-    | ``DOOR_EXI`` = 195
-    | ``DOOR_STO`` = 196
-    | ``DOOR_REC`` = 197
-    | ``DOOR_WAS`` = 198
-    | ``DOOR_GAR`` = 199
-    | ``DOOR_DSF`` = 200
-    | ``DOOR_SUB`` = 201
-    | ``DOOR_LOW`` = 202
-    | ``DOOR_UPP`` = 203
-    | ``DOOR_PRO`` = 204
-    | ``DOOR_DEE`` = 205
-    | ``DOOR_ZIO`` = 206
-    | ``DOOR_DAT`` = 207
-    | ``DOOR_ZHI`` = 208
-    | ``DOOR_WAR`` = 209
-    | ``DOOR_EXT`` = 210
-    | ``DOOR_CET`` = 211
-    | ``DOOR_ARC`` = 212
-    | ``DOOR_HUB`` = 213
-    | ``DOOR_ARM`` = 214
-    | ``DOOR_LAB`` = 215
-    | ``DOOR_QUA`` = 216
-    | ``DOOR_TES`` = 217
-    | ``DOOR_SEC`` = 218
-    | ``DOOR_COM`` = 219
-    | ``DOOR_AC0`` = 220
-    | ``DOOR_LAI`` = 221
-    | ``DOOR_TOW`` = 222
-    | ``STAIRS_SAN`` = 223
-    | ``STAIRS_JUN`` = 224
-    | ``STAIRS_MAT`` = 225
-    | ``STAIRS_FAC`` = 226
-    | ``STAIRS_RES`` = 227
-    | ``STAIRS_SUR`` = 228
-    | ``STAIRS_ACC`` = 229
-    | ``STAIRS_MIN`` = 230
-    | ``STAIRS_EXI`` = 231
-    | ``STAIRS_STO`` = 232
-    | ``STAIRS_REC`` = 233
-    | ``STAIRS_WAS`` = 234
-    | ``STAIRS_GAR`` = 235
-    | ``STAIRS_DSF`` = 236
-    | ``STAIRS_SUB`` = 237
-    | ``STAIRS_LOW`` = 238
-    | ``STAIRS_UPP`` = 239
-    | ``STAIRS_PRO`` = 240
-    | ``STAIRS_DEE`` = 241
-    | ``STAIRS_ZIO`` = 242
-    | ``STAIRS_DAT`` = 243
-    | ``STAIRS_ZHI`` = 244
-    | ``STAIRS_WAR`` = 245
-    | ``STAIRS_EXT`` = 246
-    | ``STAIRS_CET`` = 247
-    | ``STAIRS_ARC`` = 248
-    | ``STAIRS_HUB`` = 249
-    | ``STAIRS_ARM`` = 250
-    | ``STAIRS_LAB`` = 251
-    | ``STAIRS_QUA`` = 252
-    | ``STAIRS_TES`` = 253
-    | ``STAIRS_SEC`` = 254
-    | ``STAIRS_COM`` = 255
-    | ``STAIRS_AC0`` = 256
-    | ``STAIRS_LAI`` = 257
-    | ``STAIRS_TOW`` = 258
-    | ``STAIRS_NOACCESS`` = 259
-    | ``STAIRS_BLOCKED`` = 260
-    | ``STAIRS_GAR_OPEN`` = 261
-    | ``STAIRS_DSF_OPEN`` = 262
-    | ``STAIRS_SHORTCUT`` = 263
+    | ``FLOOR_RETRACTED`` = 3
+    | ``FLOOR_SAN`` = 4
+    | ``FLOOR_YRD`` = 5
+    | ``FLOOR_MAT`` = 6
+    | ``FLOOR_FAC`` = 7
+    | ``FLOOR_RES`` = 8
+    | ``FLOOR_ACC`` = 9
+    | ``FLOOR_SUR`` = 10
+    | ``FLOOR_MIN`` = 11
+    | ``FLOOR_EXI`` = 12
+    | ``FLOOR_STO`` = 13
+    | ``FLOOR_REC`` = 14
+    | ``FLOOR_SCR`` = 15
+    | ``FLOOR_WAS`` = 16
+    | ``FLOOR_GAR`` = 17
+    | ``FLOOR_DSF`` = 18
+    | ``FLOOR_SUB`` = 19
+    | ``FLOOR_LOW`` = 20
+    | ``FLOOR_UPP`` = 21
+    | ``FLOOR_PRO`` = 22
+    | ``FLOOR_DEE`` = 23
+    | ``FLOOR_ZIO`` = 24
+    | ``FLOOR_DAT`` = 25
+    | ``FLOOR_ZHI`` = 26
+    | ``FLOOR_WAR`` = 27
+    | ``FLOOR_EXT`` = 28
+    | ``FLOOR_CET`` = 29
+    | ``FLOOR_ARC`` = 30
+    | ``FLOOR_HUB`` = 31
+    | ``FLOOR_ARM`` = 32
+    | ``FLOOR_LAB`` = 33
+    | ``FLOOR_QUA`` = 34
+    | ``FLOOR_TES`` = 35
+    | ``FLOOR_SEC`` = 36
+    | ``FLOOR_COM`` = 37
+    | ``FLOOR_AC0`` = 38
+    | ``FLOOR_LAI`` = 39
+    | ``FLOOR_TOW`` = 40
+    | ``TEMP_WALL`` = 41
+    | ``WALL_SAN`` = 42
+    | ``WALL_YRD`` = 43
+    | ``WALL_MAT`` = 44
+    | ``WALL_FAC`` = 45
+    | ``WALL_RES`` = 46
+    | ``WALL_ACC`` = 47
+    | ``WALL_SUR`` = 48
+    | ``WALL_MIN`` = 49
+    | ``WALL_EXI`` = 50
+    | ``WALL_STO`` = 51
+    | ``WALL_REC`` = 52
+    | ``WALL_SCR`` = 53
+    | ``WALL_WAS`` = 54
+    | ``WALL_GAR`` = 55
+    | ``WALL_DSF`` = 56
+    | ``WALL_SUB`` = 57
+    | ``WALL_LOW`` = 58
+    | ``WALL_UPP`` = 59
+    | ``WALL_PRO`` = 60
+    | ``WALL_DEE`` = 61
+    | ``WALL_ZIO`` = 62
+    | ``WALL_DAT`` = 63
+    | ``WALL_ZHI`` = 64
+    | ``WALL_WAR`` = 65
+    | ``WALL_EXT`` = 66
+    | ``WALL_CET`` = 67
+    | ``WALL_ARC`` = 68
+    | ``WALL_HUB`` = 69
+    | ``WALL_ARM`` = 70
+    | ``WALL_LAB`` = 71
+    | ``WALL_QUA`` = 72
+    | ``WALL_TES`` = 73
+    | ``WALL_SEC`` = 74
+    | ``WALL_COM`` = 75
+    | ``WALL_AC0`` = 76
+    | ``WALL_LAI`` = 77
+    | ``WALL_TOW`` = 78
+    | ``BARRIER_SAN`` = 79
+    | ``BARRIER_YRD`` = 80
+    | ``BARRIER_MAT`` = 81
+    | ``BARRIER_FAC`` = 82
+    | ``BARRIER_RES`` = 83
+    | ``BARRIER_ACC`` = 84
+    | ``BARRIER_SUR`` = 85
+    | ``BARRIER_MIN`` = 86
+    | ``BARRIER_EXI`` = 87
+    | ``BARRIER_STO`` = 88
+    | ``BARRIER_REC`` = 89
+    | ``BARRIER_SCR`` = 90
+    | ``BARRIER_WAS`` = 91
+    | ``BARRIER_GAR`` = 92
+    | ``BARRIER_DSF`` = 93
+    | ``BARRIER_SUB`` = 94
+    | ``BARRIER_LOW`` = 95
+    | ``BARRIER_UPP`` = 96
+    | ``BARRIER_PRO`` = 97
+    | ``BARRIER_DEE`` = 98
+    | ``BARRIER_ZIO`` = 99
+    | ``BARRIER_DAT`` = 100
+    | ``BARRIER_ZHI`` = 101
+    | ``BARRIER_WAR`` = 102
+    | ``BARRIER_EXT`` = 103
+    | ``BARRIER_CET`` = 104
+    | ``BARRIER_ARC`` = 105
+    | ``BARRIER_HUB`` = 106
+    | ``BARRIER_ARM`` = 107
+    | ``BARRIER_LAB`` = 108
+    | ``BARRIER_QUA`` = 109
+    | ``BARRIER_TES`` = 110
+    | ``BARRIER_SEC`` = 111
+    | ``BARRIER_COM`` = 112
+    | ``BARRIER_AC0`` = 113
+    | ``BARRIER_LAI`` = 114
+    | ``BARRIER_TOW`` = 115
+    | ``SHORTCUT_SAN`` = 116
+    | ``SHORTCUT_YRD`` = 117
+    | ``SHORTCUT_MAT`` = 118
+    | ``SHORTCUT_FAC`` = 119
+    | ``SHORTCUT_RES`` = 120
+    | ``SHORTCUT_ACC`` = 121
+    | ``SHORTCUT_SUR`` = 122
+    | ``SHORTCUT_MIN`` = 123
+    | ``SHORTCUT_EXI`` = 124
+    | ``SHORTCUT_STO`` = 125
+    | ``SHORTCUT_REC`` = 126
+    | ``SHORTCUT_SCR`` = 127
+    | ``SHORTCUT_WAS`` = 128
+    | ``SHORTCUT_GAR`` = 129
+    | ``SHORTCUT_DSF`` = 130
+    | ``SHORTCUT_SUB`` = 131
+    | ``SHORTCUT_LOW`` = 132
+    | ``SHORTCUT_UPP`` = 133
+    | ``SHORTCUT_PRO`` = 134
+    | ``SHORTCUT_DEE`` = 135
+    | ``SHORTCUT_ZIO`` = 136
+    | ``SHORTCUT_DAT`` = 137
+    | ``SHORTCUT_ZHI`` = 138
+    | ``SHORTCUT_WAR`` = 139
+    | ``SHORTCUT_EXT`` = 140
+    | ``SHORTCUT_CET`` = 141
+    | ``SHORTCUT_ARC`` = 142
+    | ``SHORTCUT_HUB`` = 143
+    | ``SHORTCUT_ARM`` = 144
+    | ``SHORTCUT_LAB`` = 145
+    | ``SHORTCUT_QUA`` = 146
+    | ``SHORTCUT_TES`` = 147
+    | ``SHORTCUT_SEC`` = 148
+    | ``SHORTCUT_COM`` = 149
+    | ``SHORTCUT_AC0`` = 150
+    | ``SHORTCUT_LAI`` = 151
+    | ``SHORTCUT_TOW`` = 152
+    | ``SHORTCUT_KNOWN`` = 153
+    | ``PHASEWALL_SAN`` = 154
+    | ``PHASEWALL_YRD`` = 155
+    | ``PHASEWALL_MAT`` = 156
+    | ``PHASEWALL_FAC`` = 157
+    | ``PHASEWALL_RES`` = 158
+    | ``PHASEWALL_ACC`` = 159
+    | ``PHASEWALL_SUR`` = 160
+    | ``PHASEWALL_MIN`` = 161
+    | ``PHASEWALL_EXI`` = 162
+    | ``PHASEWALL_STO`` = 163
+    | ``PHASEWALL_REC`` = 164
+    | ``PHASEWALL_SCR`` = 165
+    | ``PHASEWALL_WAS`` = 166
+    | ``PHASEWALL_GAR`` = 167
+    | ``PHASEWALL_DSF`` = 168
+    | ``PHASEWALL_SUB`` = 169
+    | ``PHASEWALL_LOW`` = 170
+    | ``PHASEWALL_UPP`` = 171
+    | ``PHASEWALL_PRO`` = 172
+    | ``PHASEWALL_DEE`` = 173
+    | ``PHASEWALL_ZIO`` = 174
+    | ``PHASEWALL_DAT`` = 175
+    | ``PHASEWALL_ZHI`` = 176
+    | ``PHASEWALL_WAR`` = 177
+    | ``PHASEWALL_EXT`` = 178
+    | ``PHASEWALL_CET`` = 179
+    | ``PHASEWALL_ARC`` = 180
+    | ``PHASEWALL_HUB`` = 181
+    | ``PHASEWALL_ARM`` = 182
+    | ``PHASEWALL_LAB`` = 183
+    | ``PHASEWALL_QUA`` = 184
+    | ``PHASEWALL_TES`` = 185
+    | ``PHASEWALL_SEC`` = 186
+    | ``PHASEWALL_COM`` = 187
+    | ``PHASEWALL_AC0`` = 188
+    | ``PHASEWALL_LAI`` = 189
+    | ``PHASEWALL_TOW`` = 190
+    | ``PHASEWALL_KNOWN`` = 191
+    | ``SEALED_DOOR`` = 192
+    | ``DOOR_SAN`` = 193
+    | ``DOOR_YRD`` = 194
+    | ``DOOR_MAT`` = 195
+    | ``DOOR_FAC`` = 196
+    | ``DOOR_RES`` = 197
+    | ``DOOR_ACC`` = 198
+    | ``DOOR_SUR`` = 199
+    | ``DOOR_MIN`` = 200
+    | ``DOOR_EXI`` = 201
+    | ``DOOR_STO`` = 202
+    | ``DOOR_REC`` = 203
+    | ``DOOR_SCR`` = 204
+    | ``DOOR_WAS`` = 205
+    | ``DOOR_GAR`` = 206
+    | ``DOOR_DSF`` = 207
+    | ``DOOR_SUB`` = 208
+    | ``DOOR_LOW`` = 209
+    | ``DOOR_UPP`` = 210
+    | ``DOOR_PRO`` = 211
+    | ``DOOR_DEE`` = 212
+    | ``DOOR_ZIO`` = 213
+    | ``DOOR_DAT`` = 214
+    | ``DOOR_ZHI`` = 215
+    | ``DOOR_WAR`` = 216
+    | ``DOOR_EXT`` = 217
+    | ``DOOR_CET`` = 218
+    | ``DOOR_ARC`` = 219
+    | ``DOOR_HUB`` = 220
+    | ``DOOR_ARM`` = 221
+    | ``DOOR_LAB`` = 222
+    | ``DOOR_QUA`` = 223
+    | ``DOOR_TES`` = 224
+    | ``DOOR_SEC`` = 225
+    | ``DOOR_COM`` = 226
+    | ``DOOR_AC0`` = 227
+    | ``DOOR_LAI`` = 228
+    | ``DOOR_TOW`` = 229
+    | ``STAIRS_SAN`` = 230
+    | ``STAIRS_YRD`` = 231
+    | ``STAIRS_MAT`` = 232
+    | ``STAIRS_FAC`` = 233
+    | ``STAIRS_RES`` = 234
+    | ``STAIRS_SUR`` = 235
+    | ``STAIRS_ACC`` = 236
+    | ``STAIRS_MIN`` = 237
+    | ``STAIRS_EXI`` = 238
+    | ``STAIRS_STO`` = 239
+    | ``STAIRS_REC`` = 240
+    | ``STAIRS_SCR`` = 241
+    | ``STAIRS_WAS`` = 242
+    | ``STAIRS_GAR`` = 243
+    | ``STAIRS_DSF`` = 244
+    | ``STAIRS_SUB`` = 245
+    | ``STAIRS_LOW`` = 246
+    | ``STAIRS_UPP`` = 247
+    | ``STAIRS_PRO`` = 248
+    | ``STAIRS_DEE`` = 249
+    | ``STAIRS_ZIO`` = 250
+    | ``STAIRS_DAT`` = 251
+    | ``STAIRS_ZHI`` = 252
+    | ``STAIRS_WAR`` = 253
+    | ``STAIRS_EXT`` = 254
+    | ``STAIRS_CET`` = 255
+    | ``STAIRS_ARC`` = 256
+    | ``STAIRS_HUB`` = 257
+    | ``STAIRS_ARM`` = 258
+    | ``STAIRS_LAB`` = 259
+    | ``STAIRS_QUA`` = 260
+    | ``STAIRS_TES`` = 261
+    | ``STAIRS_SEC`` = 262
+    | ``STAIRS_COM`` = 263
+    | ``STAIRS_AC0`` = 264
+    | ``STAIRS_LAI`` = 265
+    | ``STAIRS_TOW`` = 266
+    | ``STAIRS_NOACCESS`` = 267
+    | ``STAIRS_BLOCKED`` = 268
+    | ``STAIRS_GAR_OPEN`` = 269
+    | ``STAIRS_DSF_OPEN`` = 270
+    | ``STAIRS_SHORTCUT`` = 271
+
 
 [<RequireQualifiedAccess>]
 type Item =
@@ -324,6 +333,7 @@ type Item =
     | [<JsonUnionCase(@"Rnf. Antimatter Reactor")>] ``Rnf_ Antimatter Reactor``
     | [<JsonUnionCase(@"Hyb. Antimatter Reactor")>] ``Hyb_ Antimatter Reactor``
     | [<JsonUnionCase(@"Backup Power VII")>] ``Backup Power VII``
+    | [<JsonUnionCase(@"MA-1KR's Cyclogen")>] ``MA-1KR's Cyclogen``
     | [<JsonUnionCase(@"Hvy. Antimatter Reactor")>] ``Hvy_ Antimatter Reactor``
     | [<JsonUnionCase(@"Mni. Fusion Reactor")>] ``Mni_ Fusion Reactor``
     | [<JsonUnionCase(@"Imp. Fusion Compressor")>] ``Imp_ Fusion Compressor``
@@ -352,16 +362,22 @@ type Item =
     | [<JsonUnionCase(@"Spk. Treads")>] ``Spk_ Treads``
     | [<JsonUnionCase(@"Arm. Treads")>] ``Arm_ Treads``
     | [<JsonUnionCase(@"Adv. Treads")>] ``Adv_ Treads``
+    | [<JsonUnionCase(@"Ovr. Treads")>] ``Ovr_ Treads``
     | [<JsonUnionCase(@"Med. Treads")>] ``Med_ Treads``
     | [<JsonUnionCase(@"Imp. Medium Treads")>] ``Imp_ Medium Treads``
     | [<JsonUnionCase(@"Spk. Medium Treads")>] ``Spk_ Medium Treads``
     | [<JsonUnionCase(@"Arm. Medium Treads")>] ``Arm_ Medium Treads``
     | [<JsonUnionCase(@"Hvy. Treads")>] ``Hvy_ Treads``
+    | [<JsonUnionCase(@"Ovr. Medium Treads")>] ``Ovr_ Medium Treads``
+    | [<JsonUnionCase(@"Tri-treads")>] ``Tri-treads``
+    | [<JsonUnionCase(@"Wartreads")>] ``Wartreads``
     | [<JsonUnionCase(@"Adv. Medium Treads")>] ``Adv_ Medium Treads``
     | [<JsonUnionCase(@"Enh. Armored Medium Treads")>] ``Enh_ Armored Medium Treads``
     | [<JsonUnionCase(@"Imp. Heavy Treads")>] ``Imp_ Heavy Treads``
     | [<JsonUnionCase(@"Hvy. Siege Treads")>] ``Hvy_ Siege Treads``
     | [<JsonUnionCase(@"Spk. Heavy Treads")>] ``Spk_ Heavy Treads``
+    | [<JsonUnionCase(@"Vmp. Heavy Siege Treads")>] ``Vmp_ Heavy Siege Treads``
+    | [<JsonUnionCase(@"DD-05H's Wartreads")>] ``DD-05H's Wartreads``
     | [<JsonUnionCase(@"Biometal Medium Treads")>] ``Biometal Medium Treads``
     | [<JsonUnionCase(@"Arm. Heavy Treads")>] ``Arm_ Heavy Treads``
     | [<JsonUnionCase(@"Adv. Heavy Treads")>] ``Adv_ Heavy Treads``
@@ -378,6 +394,7 @@ type Item =
     | [<JsonUnionCase(@"Imp. Aluminum Leg")>] ``Imp_ Aluminum Leg``
     | [<JsonUnionCase(@"Carbon-fiber Leg")>] ``Carbon-fiber Leg``
     | [<JsonUnionCase(@"Titanium Leg")>] ``Titanium Leg``
+    | [<JsonUnionCase(@"Ovr. Titanium Leg")>] ``Ovr_ Titanium Leg``
     | [<JsonUnionCase(@"VSS Leg")>] ``VSS Leg``
     | [<JsonUnionCase(@"Imp. Carbon-fiber Leg")>] ``Imp_ Carbon-fiber Leg``
     | [<JsonUnionCase(@"Imp. Titanium Leg")>] ``Imp_ Titanium Leg``
@@ -388,6 +405,7 @@ type Item =
     | [<JsonUnionCase(@"Imp. VSS Leg")>] ``Imp_ VSS Leg``
     | [<JsonUnionCase(@"Zio. Composite Leg I")>] ``Zio_ Composite Leg I``
     | [<JsonUnionCase(@"Med. Armored Exoskeleton")>] ``Med_ Armored Exoskeleton``
+    | [<JsonUnionCase(@"Ovr. Flexi-carbon Leg")>] ``Ovr_ Flexi-carbon Leg``
     | [<JsonUnionCase(@"Enh. Flexi-carbon Leg")>] ``Enh_ Flexi-carbon Leg``
     | [<JsonUnionCase(@"Enh. Armored Leg")>] ``Enh_ Armored Leg``
     | [<JsonUnionCase(@"Arachnoskeleton")>] ``Arachnoskeleton``
@@ -408,16 +426,19 @@ type Item =
     | [<JsonUnionCase(@"Centrium Leg")>] ``Centrium Leg``
     | [<JsonUnionCase(@"Hdn. Centrium Leg")>] ``Hdn_ Centrium Leg``
     | [<JsonUnionCase(@"Exp. Biometal Leg")>] ``Exp_ Biometal Leg``
-    | [<JsonUnionCase(@"Sigix Exoskeleton")>] ``Sigix Exoskeleton``
     | [<JsonUnionCase(@"Zio. Supercomposite Leg")>] ``Zio_ Supercomposite Leg``
     | [<JsonUnionCase(@"Potential Leg")>] ``Potential Leg``
     | [<JsonUnionCase(@"Myomer Exoskeleton")>] ``Myomer Exoskeleton``
+    | [<JsonUnionCase(@"Sigix Exoskeleton")>] ``Sigix Exoskeleton``
     | [<JsonUnionCase(@"SE_PR1")>] ``SE_PR1``
     | [<JsonUnionCase(@"Wheel")>] ``Wheel``
     | [<JsonUnionCase(@"Com. Wheel")>] ``Com_ Wheel``
     | [<JsonUnionCase(@"Arm. Wheel")>] ``Arm_ Wheel``
     | [<JsonUnionCase(@"Sub. Monowheel")>] ``Sub_ Monowheel``
+    | [<JsonUnionCase(@"Ovr. Scrapsphere")>] ``Ovr_ Scrapsphere``
     | [<JsonUnionCase(@"Arm. Huge Wheel")>] ``Arm_ Huge Wheel``
+    | [<JsonUnionCase(@"Ballwheel")>] ``Ballwheel``
+    | [<JsonUnionCase(@"Ovr. Huge Scrapsphere")>] ``Ovr_ Huge Scrapsphere``
     | [<JsonUnionCase(@"Centrium Wheel")>] ``Centrium Wheel``
     | [<JsonUnionCase(@"Hdn. Centrium Wheel")>] ``Hdn_ Centrium Wheel``
     | [<JsonUnionCase(@"Hover Unit")>] ``Hover Unit``
@@ -493,6 +514,8 @@ type Item =
     | [<JsonUnionCase(@"Exp. Q-thruster")>] ``Exp_ Q-thruster``
     | [<JsonUnionCase(@"Scrap Engine")>] ``Scrap Engine``
     | [<JsonUnionCase(@"Arm. Scrap Engine")>] ``Arm_ Scrap Engine``
+    | [<JsonUnionCase(@"Scrap Suit")>] ``Scrap Suit``
+    | [<JsonUnionCase(@"Matter Focus")>] ``Matter Focus``
     | [<JsonUnionCase(@"Desublimator")>] ``Desublimator``
     | [<JsonUnionCase(@"Power Amplifier")>] ``Power Amplifier``
     | [<JsonUnionCase(@"Adv. Power Amplifier")>] ``Adv_ Power Amplifier``
@@ -513,6 +536,7 @@ type Item =
     | [<JsonUnionCase(@"Imp. Cooling System")>] ``Imp_ Cooling System``
     | [<JsonUnionCase(@"Adv. Cooling System")>] ``Adv_ Cooling System``
     | [<JsonUnionCase(@"Exp. Cooling System")>] ``Exp_ Cooling System``
+    | [<JsonUnionCase(@"Mak. Coolant Network")>] ``Mak_ Coolant Network``
     | [<JsonUnionCase(@"Coolant Network")>] ``Coolant Network``
     | [<JsonUnionCase(@"Asb. Nanovents")>] ``Asb_ Nanovents``
     | [<JsonUnionCase(@"2N-1CE's Frost Array")>] ``2N-1CE's Frost Array``
@@ -521,6 +545,7 @@ type Item =
     | [<JsonUnionCase(@"Imp. Coolant Injector")>] ``Imp_ Coolant Injector``
     | [<JsonUnionCase(@"Adv. Coolant Injector")>] ``Adv_ Coolant Injector``
     | [<JsonUnionCase(@"Exp. Coolant Injector")>] ``Exp_ Coolant Injector``
+    | [<JsonUnionCase(@"Mak. Microdissipator Network")>] ``Mak_ Microdissipator Network``
     | [<JsonUnionCase(@"Sml. Storage Unit")>] ``Sml_ Storage Unit``
     | [<JsonUnionCase(@"Med. Storage Unit")>] ``Med_ Storage Unit``
     | [<JsonUnionCase(@"Lrg. Storage Unit")>] ``Lrg_ Storage Unit``
@@ -528,6 +553,7 @@ type Item =
     | [<JsonUnionCase(@"Huge Storage Unit")>] ``Huge Storage Unit``
     | [<JsonUnionCase(@"Cargo Storage Unit")>] ``Cargo Storage Unit``
     | [<JsonUnionCase(@"Humpback")>] ``Humpback``
+    | [<JsonUnionCase(@"Vmp. Humpback")>] ``Vmp_ Humpback``
     | [<JsonUnionCase(@"Lightpack 2.0")>] ``Lightpack 2_0``
     | [<JsonUnionCase(@"Sml. Battery")>] ``Sml_ Battery``
     | [<JsonUnionCase(@"Med. Battery")>] ``Med_ Battery``
@@ -559,10 +585,13 @@ type Item =
     | [<JsonUnionCase(@"Quantum Shading Machine")>] ``Quantum Shading Machine``
     | [<JsonUnionCase(@"Asb. Suspension Frame")>] ``Asb_ Suspension Frame``
     | [<JsonUnionCase(@"Adv. Quantum Shading Machine")>] ``Adv_ Quantum Shading Machine``
+    | [<JsonUnionCase(@"Rocket Booster")>] ``Rocket Booster``
     | [<JsonUnionCase(@"Asb. Metafiber Network")>] ``Asb_ Metafiber Network``
     | [<JsonUnionCase(@"Zio. Metafield Generator")>] ``Zio_ Metafield Generator``
     | [<JsonUnionCase(@"ST Field Compressor")>] ``ST Field Compressor``
+    | [<JsonUnionCase(@"Siege Articulator")>] ``Siege Articulator``
     | [<JsonUnionCase(@"Structural Scanner")>] ``Structural Scanner``
+    | [<JsonUnionCase(@"Deep Structural Scanner")>] ``Deep Structural Scanner``
     | [<JsonUnionCase(@"Trap Scanner")>] ``Trap Scanner``
     | [<JsonUnionCase(@"Imp. Trap Scanner")>] ``Imp_ Trap Scanner``
     | [<JsonUnionCase(@"Mak. Trap Scanner")>] ``Mak_ Trap Scanner``
@@ -598,6 +627,7 @@ type Item =
     | [<JsonUnionCase(@"Mak. Terrain Scan Processor")>] ``Mak_ Terrain Scan Processor``
     | [<JsonUnionCase(@"Adv. Terrain Scan Processor")>] ``Adv_ Terrain Scan Processor``
     | [<JsonUnionCase(@"Exp. Terrain Scan Processor")>] ``Exp_ Terrain Scan Processor``
+    | [<JsonUnionCase(@"Surveybot 17 Chip")>] ``Surveybot 17 Chip``
     | [<JsonUnionCase(@"Surveybot 24 Chip")>] ``Surveybot 24 Chip``
     | [<JsonUnionCase(@"Seismic Detector")>] ``Seismic Detector``
     | [<JsonUnionCase(@"Transport Network Coupler")>] ``Transport Network Coupler``
@@ -615,6 +645,7 @@ type Item =
     | [<JsonUnionCase(@"Asb. Combat Suite")>] ``Asb_ Combat Suite``
     | [<JsonUnionCase(@"Targeting Computer")>] ``Targeting Computer``
     | [<JsonUnionCase(@"Imp. Targeting Computer")>] ``Imp_ Targeting Computer``
+    | [<JsonUnionCase(@"Mak. Targeting Computer")>] ``Mak_ Targeting Computer``
     | [<JsonUnionCase(@"Adv. Targeting Computer")>] ``Adv_ Targeting Computer``
     | [<JsonUnionCase(@"Exp. Targeting Computer")>] ``Exp_ Targeting Computer``
     | [<JsonUnionCase(@"Multitargeting Array")>] ``Multitargeting Array``
@@ -651,6 +682,7 @@ type Item =
     | [<JsonUnionCase(@"Kinecellerator")>] ``Kinecellerator``
     | [<JsonUnionCase(@"Imp. Kinecellerator")>] ``Imp_ Kinecellerator``
     | [<JsonUnionCase(@"Adv. Kinecellerator")>] ``Adv_ Kinecellerator``
+    | [<JsonUnionCase(@"Expert System")>] ``Expert System``
     | [<JsonUnionCase(@"Heavy Servo Lattice")>] ``Heavy Servo Lattice``
     | [<JsonUnionCase(@"VL-GR5's Timing Chip")>] ``VL-GR5's Timing Chip``
     | [<JsonUnionCase(@"Launcher Loader")>] ``Launcher Loader``
@@ -695,20 +727,26 @@ type Item =
     | [<JsonUnionCase(@"Exp. Cloaking Device")>] ``Exp_ Cloaking Device``
     | [<JsonUnionCase(@"Cloak of Protection")>] ``Cloak of Protection``
     | [<JsonUnionCase(@"5H-AD0's Cloak")>] ``5H-AD0's Cloak``
+    | [<JsonUnionCase(@"ID Mask")>] ``ID Mask``
     | [<JsonUnionCase(@"Core Shielding")>] ``Core Shielding``
     | [<JsonUnionCase(@"Imp. Core Shielding")>] ``Imp_ Core Shielding``
+    | [<JsonUnionCase(@"Mak. Core Shielding")>] ``Mak_ Core Shielding``
     | [<JsonUnionCase(@"Exp. Core Shielding")>] ``Exp_ Core Shielding``
     | [<JsonUnionCase(@"Power Shielding")>] ``Power Shielding``
     | [<JsonUnionCase(@"Imp. Power Shielding")>] ``Imp_ Power Shielding``
+    | [<JsonUnionCase(@"Mak. Power Shielding")>] ``Mak_ Power Shielding``
     | [<JsonUnionCase(@"Exp. Power Shielding")>] ``Exp_ Power Shielding``
     | [<JsonUnionCase(@"Propulsion Shielding")>] ``Propulsion Shielding``
     | [<JsonUnionCase(@"Imp. Propulsion Shielding")>] ``Imp_ Propulsion Shielding``
+    | [<JsonUnionCase(@"Mak. Propulsion Shielding")>] ``Mak_ Propulsion Shielding``
     | [<JsonUnionCase(@"Exp. Propulsion Shielding")>] ``Exp_ Propulsion Shielding``
     | [<JsonUnionCase(@"Utility Shielding")>] ``Utility Shielding``
     | [<JsonUnionCase(@"Imp. Utility Shielding")>] ``Imp_ Utility Shielding``
+    | [<JsonUnionCase(@"Mak. Utility Shielding")>] ``Mak_ Utility Shielding``
     | [<JsonUnionCase(@"Exp. Utility Shielding")>] ``Exp_ Utility Shielding``
     | [<JsonUnionCase(@"Weapon Shielding")>] ``Weapon Shielding``
     | [<JsonUnionCase(@"Imp. Weapon Shielding")>] ``Imp_ Weapon Shielding``
+    | [<JsonUnionCase(@"Mak. Weapon Shielding")>] ``Mak_ Weapon Shielding``
     | [<JsonUnionCase(@"Exp. Weapon Shielding")>] ``Exp_ Weapon Shielding``
     | [<JsonUnionCase(@"Zio. Weapon Casing")>] ``Zio_ Weapon Casing``
     | [<JsonUnionCase(@"Backup Plating I")>] ``Backup Plating I``
@@ -725,8 +763,10 @@ type Item =
     | [<JsonUnionCase(@"Imp. Light Armor Plating")>] ``Imp_ Light Armor Plating``
     | [<JsonUnionCase(@"Imp. Medium Armor Plating")>] ``Imp_ Medium Armor Plating``
     | [<JsonUnionCase(@"Imp. Heavy Armor Plating")>] ``Imp_ Heavy Armor Plating``
+    | [<JsonUnionCase(@"Mak. Light Armor Plating")>] ``Mak_ Light Armor Plating``
+    | [<JsonUnionCase(@"Mak. Medium Armor Plating")>] ``Mak_ Medium Armor Plating``
+    | [<JsonUnionCase(@"Mak. Heavy Armor Plating")>] ``Mak_ Heavy Armor Plating``
     | [<JsonUnionCase(@"Lyr. Light Armor Plating")>] ``Lyr_ Light Armor Plating``
-    | [<JsonUnionCase(@"Mak. Armor Plating")>] ``Mak_ Armor Plating``
     | [<JsonUnionCase(@"Lyr. Medium Armor Plating")>] ``Lyr_ Medium Armor Plating``
     | [<JsonUnionCase(@"Lyr. Heavy Armor Plating")>] ``Lyr_ Heavy Armor Plating``
     | [<JsonUnionCase(@"Gun Armor")>] ``Gun Armor``
@@ -738,6 +778,7 @@ type Item =
     | [<JsonUnionCase(@"Med. Reactive Plating")>] ``Med_ Reactive Plating``
     | [<JsonUnionCase(@"Mak. Kinetic Plating")>] ``Mak_ Kinetic Plating``
     | [<JsonUnionCase(@"Hvy. Reactive Plating")>] ``Hvy_ Reactive Plating``
+    | [<JsonUnionCase(@"Superdense Plating")>] ``Superdense Plating``
     | [<JsonUnionCase(@"Reflective Plating")>] ``Reflective Plating``
     | [<JsonUnionCase(@"Med. Reflective Plating")>] ``Med_ Reflective Plating``
     | [<JsonUnionCase(@"Mak. Thermal Plating")>] ``Mak_ Thermal Plating``
@@ -754,16 +795,19 @@ type Item =
     | [<JsonUnionCase(@"Mak. Ablative Armor")>] ``Mak_ Ablative Armor``
     | [<JsonUnionCase(@"Active Cooling Armor")>] ``Active Cooling Armor``
     | [<JsonUnionCase(@"Scrap Shield")>] ``Scrap Shield``
+    | [<JsonUnionCase(@"Enh. Scrap Shield")>] ``Enh_ Scrap Shield``
     | [<JsonUnionCase(@"Powered Armor")>] ``Powered Armor``
     | [<JsonUnionCase(@"Imp. Powered Armor")>] ``Imp_ Powered Armor``
     | [<JsonUnionCase(@"Adv. Powered Armor")>] ``Adv_ Powered Armor``
     | [<JsonUnionCase(@"Exp. Powered Armor")>] ``Exp_ Powered Armor``
     | [<JsonUnionCase(@"1C-UTU's Buckler")>] ``1C-UTU's Buckler``
+    | [<JsonUnionCase(@"Tower Shield")>] ``Tower Shield``
     | [<JsonUnionCase(@"Lgt. Regenerative Plating")>] ``Lgt_ Regenerative Plating``
     | [<JsonUnionCase(@"Med. Regenerative Plating")>] ``Med_ Regenerative Plating``
     | [<JsonUnionCase(@"Hvy. Regenerative Plating")>] ``Hvy_ Regenerative Plating``
     | [<JsonUnionCase(@"SHELL Armor")>] ``SHELL Armor``
     | [<JsonUnionCase(@"Phase Armor")>] ``Phase Armor``
+    | [<JsonUnionCase(@"Vmp. Brace Plating")>] ``Vmp_ Brace Plating``
     | [<JsonUnionCase(@"Graphene Brace")>] ``Graphene Brace``
     | [<JsonUnionCase(@"Focal Shield")>] ``Focal Shield``
     | [<JsonUnionCase(@"Imp. Focal Shield")>] ``Imp_ Focal Shield``
@@ -809,6 +853,8 @@ type Item =
     | [<JsonUnionCase(@"Imp. Energy Mantle")>] ``Imp_ Energy Mantle``
     | [<JsonUnionCase(@"AEGIS Remote Shield")>] ``AEGIS Remote Shield``
     | [<JsonUnionCase(@"Phase Redirector")>] ``Phase Redirector``
+    | [<JsonUnionCase(@"Field Manipulator")>] ``Field Manipulator``
+    | [<JsonUnionCase(@"Energy Deflector")>] ``Energy Deflector``
     | [<JsonUnionCase(@"Point Defense System")>] ``Point Defense System``
     | [<JsonUnionCase(@"Point Defense Array")>] ``Point Defense Array``
     | [<JsonUnionCase(@"Antimissile System")>] ``Antimissile System``
@@ -859,6 +905,8 @@ type Item =
     | [<JsonUnionCase(@"Component Analysis Suite")>] ``Component Analysis Suite``
     | [<JsonUnionCase(@"Imp. Component Analysis Suite")>] ``Imp_ Component Analysis Suite``
     | [<JsonUnionCase(@"Adv. Component Analysis Suite")>] ``Adv_ Component Analysis Suite``
+    | [<JsonUnionCase(@"A0-MCA's Component Scanner")>] ``A0-MCA's Component Scanner``
+    | [<JsonUnionCase(@"Tech Extrapolator")>] ``Tech Extrapolator``
     | [<JsonUnionCase(@"Dynamic Insulation System")>] ``Dynamic Insulation System``
     | [<JsonUnionCase(@"Imp. Dynamic Insulation System")>] ``Imp_ Dynamic Insulation System``
     | [<JsonUnionCase(@"Adv. Dynamic Insulation System")>] ``Adv_ Dynamic Insulation System``
@@ -885,6 +933,7 @@ type Item =
     | [<JsonUnionCase(@"Recalibrator")>] ``Recalibrator``
     | [<JsonUnionCase(@"Imp. Recalibrator")>] ``Imp_ Recalibrator``
     | [<JsonUnionCase(@"Adv. Recalibrator")>] ``Adv_ Recalibrator``
+    | [<JsonUnionCase(@"Exp. Recalibrator")>] ``Exp_ Recalibrator``
     | [<JsonUnionCase(@"Field Recycling Unit")>] ``Field Recycling Unit``
     | [<JsonUnionCase(@"Imp. Field Recycling Unit")>] ``Imp_ Field Recycling Unit``
     | [<JsonUnionCase(@"Adv. Field Recycling Unit")>] ``Adv_ Field Recycling Unit``
@@ -907,20 +956,24 @@ type Item =
     | [<JsonUnionCase(@"Hacking Drone Bay")>] ``Hacking Drone Bay``
     | [<JsonUnionCase(@"Minesniffer Drone Bay")>] ``Minesniffer Drone Bay``
     | [<JsonUnionCase(@"Army-in-a-Box")>] ``Army-in-a-Box``
+    | [<JsonUnionCase(@"Master Drone Bay")>] ``Master Drone Bay``
     | [<JsonUnionCase(@"Wardrone Bay")>] ``Wardrone Bay``
     | [<JsonUnionCase(@"Cobbler Unit")>] ``Cobbler Unit``
     | [<JsonUnionCase(@"Bomb Factory No. 2")>] ``Bomb Factory No_ 2``
     | [<JsonUnionCase(@"Mobile Assembly Unit")>] ``Mobile Assembly Unit``
     | [<JsonUnionCase(@"Heart of Steel")>] ``Heart of Steel``
+    | [<JsonUnionCase(@"Scrapoid Pod")>] ``Scrapoid Pod``
     | [<JsonUnionCase(@"GOLEM Unit")>] ``GOLEM Unit``
     | [<JsonUnionCase(@"PSU Rigger")>] ``PSU Rigger``
+    | [<JsonUnionCase(@"Machine Rigger")>] ``Machine Rigger``
     | [<JsonUnionCase(@"Phasing AFG")>] ``Phasing AFG``
     | [<JsonUnionCase(@"AS-neutralizer No. 17b")>] ``AS-neutralizer No_ 17b``
     | [<JsonUnionCase(@"V3-11A's Pendant")>] ``V3-11A's Pendant``
+    | [<JsonUnionCase(@"Amulet of Y3-NDR")>] ``Amulet of Y3-NDR``
     | [<JsonUnionCase(@"Chronowheel")>] ``Chronowheel``
     | [<JsonUnionCase(@"Power Bank")>] ``Power Bank``
     | [<JsonUnionCase(@"Rainbow Chip")>] ``Rainbow Chip``
-    | [<JsonUnionCase(@"VL-GR5's Exoskeleton ""Deathgrip""")>] ``VL-GR5's Exoskeleton _Deathgrip_``
+    | [<JsonUnionCase(@"VL-GR5's Exoskeleton 'Deathgrip'")>] ``VL-GR5's Exoskeleton _Deathgrip_``
     | [<JsonUnionCase(@"Dimensional Node Initializer")>] ``Dimensional Node Initializer``
     | [<JsonUnionCase(@"Transdimensional Reconstructor")>] ``Transdimensional Reconstructor``
     | [<JsonUnionCase(@"Hpw. Transdimensional Reconstructor")>] ``Hpw_ Transdimensional Reconstructor``
@@ -940,6 +993,8 @@ type Item =
     | [<JsonUnionCase(@"Subatomic Replicator")>] ``Subatomic Replicator``
     | [<JsonUnionCase(@"Terrabomb")>] ``Terrabomb``
     | [<JsonUnionCase(@"Core Physics Calibrator")>] ``Core Physics Calibrator``
+    | [<JsonUnionCase(@"Personal Teleporter v0.10")>] ``Personal Teleporter v0_10``
+    | [<JsonUnionCase(@"Telecube")>] ``Telecube``
     | [<JsonUnionCase(@"Spacefold Activator")>] ``Spacefold Activator``
     | [<JsonUnionCase(@"Microwarp Drive")>] ``Microwarp Drive``
     | [<JsonUnionCase(@"LC Capacitor")>] ``LC Capacitor``
@@ -947,7 +1002,7 @@ type Item =
     | [<JsonUnionCase(@"LRC Storage")>] ``LRC Storage``
     | [<JsonUnionCase(@"LRC Energy Well")>] ``LRC Energy Well``
     | [<JsonUnionCase(@"LRC Matter Compressor")>] ``LRC Matter Compressor``
-    | [<JsonUnionCase(@"LRC Boosters")>] ``LRC Boosters``
+    | [<JsonUnionCase(@"LRC Inertial Stabilizer")>] ``LRC Inertial Stabilizer``
     | [<JsonUnionCase(@"LRC Insulator")>] ``LRC Insulator``
     | [<JsonUnionCase(@"EM Pulse Gun")>] ``EM Pulse Gun``
     | [<JsonUnionCase(@"Hvy. EM Pulse Gun")>] ``Hvy_ EM Pulse Gun``
@@ -972,11 +1027,13 @@ type Item =
     | [<JsonUnionCase(@"Gamma Rifle")>] ``Gamma Rifle``
     | [<JsonUnionCase(@"Tachyon Dispersion Ray")>] ``Tachyon Dispersion Ray``
     | [<JsonUnionCase(@"Immobilizer")>] ``Immobilizer``
+    | [<JsonUnionCase(@"Electrostorm Shotgun")>] ``Electrostorm Shotgun``
     | [<JsonUnionCase(@"Modified EM Gauss Rifle")>] ``Modified EM Gauss Rifle``
     | [<JsonUnionCase(@"AWS/EX-DEC")>] ``AWS_EX-DEC``
     | [<JsonUnionCase(@"Enh. Gamma Rifle")>] ``Enh_ Gamma Rifle``
     | [<JsonUnionCase(@"Med. Laser")>] ``Med_ Laser``
     | [<JsonUnionCase(@"Sml. Laser")>] ``Sml_ Laser``
+    | [<JsonUnionCase(@"Salvaging Laser")>] ``Salvaging Laser``
     | [<JsonUnionCase(@"Backup Laser I")>] ``Backup Laser I``
     | [<JsonUnionCase(@"Beam Rifle")>] ``Beam Rifle``
     | [<JsonUnionCase(@"Particle Gun")>] ``Particle Gun``
@@ -986,6 +1043,7 @@ type Item =
     | [<JsonUnionCase(@"Autobeam")>] ``Autobeam``
     | [<JsonUnionCase(@"Field Laser")>] ``Field Laser``
     | [<JsonUnionCase(@"Pulse Rifle")>] ``Pulse Rifle``
+    | [<JsonUnionCase(@"Ovr. Pulse Rifle")>] ``Ovr_ Pulse Rifle``
     | [<JsonUnionCase(@"Backup Laser III")>] ``Backup Laser III``
     | [<JsonUnionCase(@"Hvy. Particle Gun")>] ``Hvy_ Particle Gun``
     | [<JsonUnionCase(@"Prc. Beam Rifle")>] ``Prc_ Beam Rifle``
@@ -1006,6 +1064,7 @@ type Item =
     | [<JsonUnionCase(@"Wave Gun")>] ``Wave Gun``
     | [<JsonUnionCase(@"Variable Charge Gun")>] ``Variable Charge Gun``
     | [<JsonUnionCase(@"Hvy. Beamcaster")>] ``Hvy_ Beamcaster``
+    | [<JsonUnionCase(@"Ovr. Beamcaster")>] ``Ovr_ Beamcaster``
     | [<JsonUnionCase(@"Cld. Plasma Rifle")>] ``Cld_ Plasma Rifle``
     | [<JsonUnionCase(@"Enh. Force Rifle")>] ``Enh_ Force Rifle``
     | [<JsonUnionCase(@"Hvy. Gatling Laser")>] ``Hvy_ Gatling Laser``
@@ -1024,7 +1083,9 @@ type Item =
     | [<JsonUnionCase(@"Zio. Laser-M")>] ``Zio_ Laser-M``
     | [<JsonUnionCase(@"AWS/Thermal")>] ``AWS_Thermal``
     | [<JsonUnionCase(@"PD Laser")>] ``PD Laser``
+    | [<JsonUnionCase(@"KN-7UR's Autopenetrator")>] ``KN-7UR's Autopenetrator``
     | [<JsonUnionCase(@"Quantum Rifle")>] ``Quantum Rifle``
+    | [<JsonUnionCase(@"Ovr. Quantum Rifle")>] ``Ovr_ Quantum Rifle``
     | [<JsonUnionCase(@"Prc. Phase Gun")>] ``Prc_ Phase Gun``
     | [<JsonUnionCase(@"Hvy. Dispersion Rifle")>] ``Hvy_ Dispersion Rifle``
     | [<JsonUnionCase(@"Vortex Shotgun")>] ``Vortex Shotgun``
@@ -1090,6 +1151,8 @@ type Item =
     | [<JsonUnionCase(@"Warp Cannon")>] ``Warp Cannon``
     | [<JsonUnionCase(@"Cld. Nova Cannon")>] ``Cld_ Nova Cannon``
     | [<JsonUnionCase(@"Null Cannon")>] ``Null Cannon``
+    | [<JsonUnionCase(@"Hyp. Alpha Cannon")>] ``Hyp_ Alpha Cannon``
+    | [<JsonUnionCase(@"Zio. Alpha Cannon Mk. II")>] ``Zio_ Alpha Cannon Mk_ II``
     | [<JsonUnionCase(@"Imp. Potential Cannon")>] ``Imp_ Potential Cannon``
     | [<JsonUnionCase(@"Multinova Projection Cannon")>] ``Multinova Projection Cannon``
     | [<JsonUnionCase(@"Disintegrator")>] ``Disintegrator``
@@ -1097,11 +1160,11 @@ type Item =
     | [<JsonUnionCase(@"Sigix Shearcannon")>] ``Sigix Shearcannon``
     | [<JsonUnionCase(@"Drained L-Cannon")>] ``Drained L-Cannon``
     | [<JsonUnionCase(@"L-Cannon")>] ``L-Cannon``
-    | [<JsonUnionCase(@"Zio. Alpha Cannon Mk. II")>] ``Zio_ Alpha Cannon Mk_ II``
     | [<JsonUnionCase(@"BFG-9k Vortex Edition")>] ``BFG-9k Vortex Edition``
     | [<JsonUnionCase(@"Assault Rifle")>] ``Assault Rifle``
     | [<JsonUnionCase(@"Asb. Rifle")>] ``Asb_ Rifle``
     | [<JsonUnionCase(@"Lgt. Assault Rifle")>] ``Lgt_ Assault Rifle``
+    | [<JsonUnionCase(@"Bolt Gun")>] ``Bolt Gun``
     | [<JsonUnionCase(@"Hvy. Assault Rifle")>] ``Hvy_ Assault Rifle``
     | [<JsonUnionCase(@"Autogun")>] ``Autogun``
     | [<JsonUnionCase(@"Shotgun")>] ``Shotgun``
@@ -1113,6 +1176,7 @@ type Item =
     | [<JsonUnionCase(@"Hpw. Shotgun")>] ``Hpw_ Shotgun``
     | [<JsonUnionCase(@"Asb. Shotgun")>] ``Asb_ Shotgun``
     | [<JsonUnionCase(@"Barrage Gun")>] ``Barrage Gun``
+    | [<JsonUnionCase(@"Ovr. Barrage Gun")>] ``Ovr_ Barrage Gun``
     | [<JsonUnionCase(@"Enh. Autogun")>] ``Enh_ Autogun``
     | [<JsonUnionCase(@"Gauss Rifle")>] ``Gauss Rifle``
     | [<JsonUnionCase(@"Asb. Gauss Rifle")>] ``Asb_ Gauss Rifle``
@@ -1128,6 +1192,7 @@ type Item =
     | [<JsonUnionCase(@"XL Autogun Subcomponent")>] ``XL Autogun Subcomponent``
     | [<JsonUnionCase(@"KE Penetrator")>] ``KE Penetrator``
     | [<JsonUnionCase(@"Hyp. Coil Gun")>] ``Hyp_ Coil Gun``
+    | [<JsonUnionCase(@"Ovr. Coil Gun")>] ``Ovr_ Coil Gun``
     | [<JsonUnionCase(@"Imp. KE Penetrator")>] ``Imp_ KE Penetrator``
     | [<JsonUnionCase(@"Enh. Coil Gun")>] ``Enh_ Coil Gun``
     | [<JsonUnionCase(@"Com. Coil Gun")>] ``Com_ Coil Gun``
@@ -1136,6 +1201,7 @@ type Item =
     | [<JsonUnionCase(@"Linked Autogun")>] ``Linked Autogun``
     | [<JsonUnionCase(@"AWS/Gauss")>] ``AWS_Gauss``
     | [<JsonUnionCase(@"Hyp. Railgun")>] ``Hyp_ Railgun``
+    | [<JsonUnionCase(@"Ovr. Railgun")>] ``Ovr_ Railgun``
     | [<JsonUnionCase(@"Helical Railgun")>] ``Helical Railgun``
     | [<JsonUnionCase(@"Com. Railgun")>] ``Com_ Railgun``
     | [<JsonUnionCase(@"XL Autogun Array")>] ``XL Autogun Array``
@@ -1155,10 +1221,12 @@ type Item =
     | [<JsonUnionCase(@"Gauss Cannon")>] ``Gauss Cannon``
     | [<JsonUnionCase(@"Slug Cannon")>] ``Slug Cannon``
     | [<JsonUnionCase(@"Mni. Assault Cannon")>] ``Mni_ Assault Cannon``
+    | [<JsonUnionCase(@"Siege Cannon Replica")>] ``Siege Cannon Replica``
     | [<JsonUnionCase(@"Magnetic Acceleration Cannon")>] ``Magnetic Acceleration Cannon``
     | [<JsonUnionCase(@"Hvy. Flak Cannon")>] ``Hvy_ Flak Cannon``
     | [<JsonUnionCase(@"Bore Cannon")>] ``Bore Cannon``
     | [<JsonUnionCase(@"Antimatter Cannon")>] ``Antimatter Cannon``
+    | [<JsonUnionCase(@"Siege Cannon")>] ``Siege Cannon``
     | [<JsonUnionCase(@"Mass Driver")>] ``Mass Driver``
     | [<JsonUnionCase(@"Hvy. Mass Driver")>] ``Hvy_ Mass Driver``
     | [<JsonUnionCase(@"Enh. Gauss Cannon")>] ``Enh_ Gauss Cannon``
@@ -1183,6 +1251,7 @@ type Item =
     | [<JsonUnionCase(@"AWS/Autocannon")>] ``AWS_Autocannon``
     | [<JsonUnionCase(@"Perforator")>] ``Perforator``
     | [<JsonUnionCase(@"Omega Cannon")>] ``Omega Cannon``
+    | [<JsonUnionCase(@"PL-3XN's Obliterator")>] ``PL-3XN's Obliterator``
     | [<JsonUnionCase(@"EMP Blaster")>] ``EMP Blaster``
     | [<JsonUnionCase(@"Shock Bomb Launcher")>] ``Shock Bomb Launcher``
     | [<JsonUnionCase(@"Adv. EMP Blaster")>] ``Adv_ EMP Blaster``
@@ -1229,6 +1298,7 @@ type Item =
     | [<JsonUnionCase(@"Point Singularity Launcher")>] ``Point Singularity Launcher``
     | [<JsonUnionCase(@"Gui. Micro-nuke Launcher")>] ``Gui_ Micro-nuke Launcher``
     | [<JsonUnionCase(@"99-TNT's Nukerbomber")>] ``99-TNT's Nukerbomber``
+    | [<JsonUnionCase(@"Exp. Neutron Missile Launcher")>] ``Exp_ Neutron Missile Launcher``
     | [<JsonUnionCase(@"Z-bomb Delivery System")>] ``Z-bomb Delivery System``
     | [<JsonUnionCase(@"Sigix Terminator")>] ``Sigix Terminator``
     | [<JsonUnionCase(@"Supercharged Sigix Terminator")>] ``Supercharged Sigix Terminator``
@@ -1236,6 +1306,7 @@ type Item =
     | [<JsonUnionCase(@"Detonator")>] ``Detonator``
     | [<JsonUnionCase(@"Dirty Datajack")>] ``Dirty Datajack``
     | [<JsonUnionCase(@"Splice Injector")>] ``Splice Injector``
+    | [<JsonUnionCase(@"Master Link")>] ``Master Link``
     | [<JsonUnionCase(@"Datajack")>] ``Datajack``
     | [<JsonUnionCase(@"Imp. Datajack")>] ``Imp_ Datajack``
     | [<JsonUnionCase(@"Adv. Datajack")>] ``Adv_ Datajack``
@@ -1245,11 +1316,14 @@ type Item =
     | [<JsonUnionCase(@"Exp. Remote Datajack")>] ``Exp_ Remote Datajack``
     | [<JsonUnionCase(@"Gui. Remote Datajack")>] ``Gui_ Remote Datajack``
     | [<JsonUnionCase(@"ME-RLN's Wand")>] ``ME-RLN's Wand``
+    | [<JsonUnionCase(@"System Spiker")>] ``System Spiker``
     | [<JsonUnionCase(@"Field Lobotomy Kit")>] ``Field Lobotomy Kit``
     | [<JsonUnionCase(@"Mining Laser")>] ``Mining Laser``
+    | [<JsonUnionCase(@"LU-1G1's Laser Shovel")>] ``LU-1G1's Laser Shovel``
     | [<JsonUnionCase(@"Welding Torch")>] ``Welding Torch``
     | [<JsonUnionCase(@"Plasma Cutter")>] ``Plasma Cutter``
     | [<JsonUnionCase(@"Imp. Plasma Cutter")>] ``Imp_ Plasma Cutter``
+    | [<JsonUnionCase(@"Exp. Plasma Cutter")>] ``Exp_ Plasma Cutter``
     | [<JsonUnionCase(@"CPS Tube")>] ``CPS Tube``
     | [<JsonUnionCase(@"Multitool")>] ``Multitool``
     | [<JsonUnionCase(@"Flamer")>] ``Flamer``
@@ -1259,7 +1333,12 @@ type Item =
     | [<JsonUnionCase(@"Asb. P-torch")>] ``Asb_ P-torch``
     | [<JsonUnionCase(@"RU-N14's Throwing Claymores")>] ``RU-N14's Throwing Claymores``
     | [<JsonUnionCase(@"RU-N14's Throwing Claymores v3")>] ``RU-N14's Throwing Claymores v3``
+    | [<JsonUnionCase(@"Warlord Statue")>] ``Warlord Statue``
+    | [<JsonUnionCase(@"Voltaic Drivehammer")>] ``Voltaic Drivehammer``
     | [<JsonUnionCase(@"AD-0RF's Magmablaster")>] ``AD-0RF's Magmablaster``
+    | [<JsonUnionCase(@"IN-MT5's Pitchfork 'Insurrection'")>] ``IN-MT5's Pitchfork _Insurrection_``
+    | [<JsonUnionCase(@"Shield Trident")>] ``Shield Trident``
+    | [<JsonUnionCase(@"Junk Cannon")>] ``Junk Cannon``
     | [<JsonUnionCase(@"Stasis Beam")>] ``Stasis Beam``
     | [<JsonUnionCase(@"Stasis Projector")>] ``Stasis Projector``
     | [<JsonUnionCase(@"Exp. Stasis Projector")>] ``Exp_ Stasis Projector``
@@ -1303,17 +1382,20 @@ type Item =
     | [<JsonUnionCase(@"Mak. Sword")>] ``Mak_ Sword``
     | [<JsonUnionCase(@"Great Axe")>] ``Great Axe``
     | [<JsonUnionCase(@"Greatsword")>] ``Greatsword``
+    | [<JsonUnionCase(@"Ripteeth")>] ``Ripteeth``
     | [<JsonUnionCase(@"Power Sword")>] ``Power Sword``
     | [<JsonUnionCase(@"Asb. P-sword")>] ``Asb_ P-sword``
     | [<JsonUnionCase(@"Falx")>] ``Falx``
     | [<JsonUnionCase(@"Carbide Saw")>] ``Carbide Saw``
     | [<JsonUnionCase(@"Segregator")>] ``Segregator``
     | [<JsonUnionCase(@"Tearclaws")>] ``Tearclaws``
+    | [<JsonUnionCase(@"Companion Sword")>] ``Companion Sword``
     | [<JsonUnionCase(@"EC_5")>] ``EC_5``
     | [<JsonUnionCase(@"Phasing Sabre")>] ``Phasing Sabre``
     | [<JsonUnionCase(@"Plasma Sword")>] ``Plasma Sword``
     | [<JsonUnionCase(@"Ionic Axe")>] ``Ionic Axe``
     | [<JsonUnionCase(@"Mni. Tearclaws")>] ``Mni_ Tearclaws``
+    | [<JsonUnionCase(@"Vmp. Broadsword")>] ``Vmp_ Broadsword``
     | [<JsonUnionCase(@"Dual-blade Saw")>] ``Dual-blade Saw``
     | [<JsonUnionCase(@"Vibroblade")>] ``Vibroblade``
     | [<JsonUnionCase(@"Molecular Scythe")>] ``Molecular Scythe``
@@ -1325,9 +1407,13 @@ type Item =
     | [<JsonUnionCase(@"Particle Cleaver")>] ``Particle Cleaver``
     | [<JsonUnionCase(@"Centrium Claws")>] ``Centrium Claws``
     | [<JsonUnionCase(@"1C-UTU's Sword 'Lootmaker'")>] ``1C-UTU's Sword _Lootmaker_``
-    | [<JsonUnionCase(@"1C-UTU's Sword 'Choppy'")>] ``1C-UTU's Sword _Choppy_``
+    | [<JsonUnionCase(@"DM-GVY's Chainsaw")>] ``DM-GVY's Chainsaw``
     | [<JsonUnionCase(@"Vortex Shredder")>] ``Vortex Shredder``
     | [<JsonUnionCase(@"EC_9")>] ``EC_9``
+    | [<JsonUnionCase(@"1C-UTU's Sword 'Choppy'")>] ``1C-UTU's Sword _Choppy_``
+    | [<JsonUnionCase(@"Quantum Companion")>] ``Quantum Companion``
+    | [<JsonUnionCase(@"Superquantum Companion")>] ``Superquantum Companion``
+    | [<JsonUnionCase(@"Quantum Blade")>] ``Quantum Blade``
     | [<JsonUnionCase(@"Sigix Broadsword")>] ``Sigix Broadsword``
     | [<JsonUnionCase(@"Spear")>] ``Spear``
     | [<JsonUnionCase(@"Mak. Spear")>] ``Mak_ Spear``
@@ -1340,6 +1426,7 @@ type Item =
     | [<JsonUnionCase(@"Enh. Force Lance")>] ``Enh_ Force Lance``
     | [<JsonUnionCase(@"Vortex Lance")>] ``Vortex Lance``
     | [<JsonUnionCase(@"CR-A16's Behemoth Slayer")>] ``CR-A16's Behemoth Slayer``
+    | [<JsonUnionCase(@"Thermal Lance")>] ``Thermal Lance``
     | [<JsonUnionCase(@"Blade Trap")>] ``Blade Trap``
     | [<JsonUnionCase(@"Segregator Trap")>] ``Segregator Trap``
     | [<JsonUnionCase(@"Explosive Trap")>] ``Explosive Trap``
@@ -1354,19 +1441,27 @@ type Item =
     | [<JsonUnionCase(@"Tesla Bomb Trap")>] ``Tesla Bomb Trap``
     | [<JsonUnionCase(@"Gamma Bomb Trap")>] ``Gamma Bomb Trap``
     | [<JsonUnionCase(@"Shrapnel Trap")>] ``Shrapnel Trap``
+    | [<JsonUnionCase(@"Vortex Trap")>] ``Vortex Trap``
     | [<JsonUnionCase(@"Piercing Trap")>] ``Piercing Trap``
     | [<JsonUnionCase(@"Shock Trap")>] ``Shock Trap``
     | [<JsonUnionCase(@"EM Surge Trap")>] ``EM Surge Trap``
     | [<JsonUnionCase(@"Fire Trap")>] ``Fire Trap``
+    | [<JsonUnionCase(@"Heat Bomb Trap")>] ``Heat Bomb Trap``
     | [<JsonUnionCase(@"Stasis Trap")>] ``Stasis Trap``
     | [<JsonUnionCase(@"Scrap Shield Fragment")>] ``Scrap Shield Fragment``
+    | [<JsonUnionCase(@"SUBCON Basin")>] ``SUBCON Basin``
     | [<JsonUnionCase(@"Signal Generator")>] ``Signal Generator``
     | [<JsonUnionCase(@"Self-destruct Interrupter")>] ``Self-destruct Interrupter``
+    | [<JsonUnionCase(@"DRS Beacon")>] ``DRS Beacon``
     | [<JsonUnionCase(@"Sapper Charge")>] ``Sapper Charge``
-    | [<JsonUnionCase(@"Zhirov Special")>] ``Zhirov Special``
     | [<JsonUnionCase(@"Deploy-a-Sentry")>] ``Deploy-a-Sentry``
+    | [<JsonUnionCase(@"Botcube")>] ``Botcube``
+    | [<JsonUnionCase(@"Lrg. Botcube")>] ``Lrg_ Botcube``
+    | [<JsonUnionCase(@"PL-3XN's Ring of Power")>] ``PL-3XN's Ring of Power``
+    | [<JsonUnionCase(@"Disassembled Obliterator")>] ``Disassembled Obliterator``
     | [<JsonUnionCase(@"GAL Module")>] ``GAL Module``
     | [<JsonUnionCase(@"Portable AFG")>] ``Portable AFG``
+    | [<JsonUnionCase(@"Zhirov Special")>] ``Zhirov Special``
     | [<JsonUnionCase(@"SGEMP Prototype")>] ``SGEMP Prototype``
     | [<JsonUnionCase(@"Terrabomb Derivative")>] ``Terrabomb Derivative``
     | [<JsonUnionCase(@"Sigix Containment Pod")>] ``Sigix Containment Pod``
@@ -1429,1056 +1524,1143 @@ let itemId =
     | 49 -> Item.``Rnf_ Antimatter Reactor``
     | 50 -> Item.``Hyb_ Antimatter Reactor``
     | 51 -> Item.``Backup Power VII``
-    | 52 -> Item.``Hvy_ Antimatter Reactor``
-    | 53 -> Item.``Mni_ Fusion Reactor``
-    | 54 -> Item.``Imp_ Fusion Compressor``
-    | 55 -> Item.``Mic_ Neutrino Core``
-    | 56 -> Item.``Zio_ Light DM Reactor``
-    | 57 -> Item.``Zio_ Heavy DM Reactor``
-    | 58 -> Item.``Particle Reactor``
-    | 59 -> Item.``Lgt_ Particle Reactor``
-    | 60 -> Item.``Mic_ Antimatter Reactor``
-    | 61 -> Item.``Com_ Particle Reactor``
-    | 62 -> Item.``Cld_ Antimatter Reactor``
-    | 63 -> Item.``Graviton Reactor``
-    | 64 -> Item.``Asb_ Flux Generator``
-    | 65 -> Item.``Quantum Reactor``
-    | 66 -> Item.``Lgt_ Quantum Reactor``
-    | 67 -> Item.``Rnf_ Quantum Reactor``
-    | 68 -> Item.``Imp_ Quantum Reactor``
-    | 69 -> Item.``Zero-point Reactor``
-    | 70 -> Item.``Vortex Chain Reactor``
-    | 71 -> Item.``Singularity Reactor``
-    | 72 -> Item.``Matter Drive``
-    | 73 -> Item.``Meta Core``
-    | 74 -> Item.``SE_PO1``
-    | 75 -> Item.``Lgt_ Treads``
-    | 76 -> Item.``Imp_ Treads``
-    | 77 -> Item.``Spk_ Treads``
-    | 78 -> Item.``Arm_ Treads``
-    | 79 -> Item.``Adv_ Treads``
-    | 80 -> Item.``Med_ Treads``
-    | 81 -> Item.``Imp_ Medium Treads``
-    | 82 -> Item.``Spk_ Medium Treads``
-    | 83 -> Item.``Arm_ Medium Treads``
-    | 84 -> Item.``Hvy_ Treads``
-    | 85 -> Item.``Adv_ Medium Treads``
-    | 86 -> Item.``Enh_ Armored Medium Treads``
-    | 87 -> Item.``Imp_ Heavy Treads``
-    | 88 -> Item.``Hvy_ Siege Treads``
-    | 89 -> Item.``Spk_ Heavy Treads``
-    | 90 -> Item.``Biometal Medium Treads``
-    | 91 -> Item.``Arm_ Heavy Treads``
-    | 92 -> Item.``Adv_ Heavy Treads``
-    | 93 -> Item.``Imp_ Heavy Siege Treads``
-    | 94 -> Item.``Centrium Heavy Treads``
-    | 95 -> Item.``Megatreads``
-    | 96 -> Item.``Biometal Heavy Treads``
-    | 97 -> Item.``Exp_ Biometal Heavy Treads``
-    | 98 -> Item.``Enh_ Armored Heavy Treads``
-    | 99 -> Item.``Adv_ Heavy Siege Treads``
-    | 100 -> Item.``Hdn_ Centrium Heavy Treads``
-    | 101 -> Item.``Exp_ Biometal Medium Treads``
-    | 102 -> Item.``Aluminum Leg``
-    | 103 -> Item.``Imp_ Aluminum Leg``
-    | 104 -> Item.``Carbon-fiber Leg``
-    | 105 -> Item.``Titanium Leg``
-    | 106 -> Item.``VSS Leg``
-    | 107 -> Item.``Imp_ Carbon-fiber Leg``
-    | 108 -> Item.``Imp_ Titanium Leg``
-    | 109 -> Item.``Lgt_ Armored Exoskeleton``
-    | 110 -> Item.``Mak_ Leg``
-    | 111 -> Item.``Flexi-carbon Leg``
-    | 112 -> Item.``Arm_ Leg``
-    | 113 -> Item.``Imp_ VSS Leg``
-    | 114 -> Item.``Zio_ Composite Leg I``
-    | 115 -> Item.``Med_ Armored Exoskeleton``
-    | 116 -> Item.``Enh_ Flexi-carbon Leg``
-    | 117 -> Item.``Enh_ Armored Leg``
-    | 118 -> Item.``Arachnoskeleton``
-    | 119 -> Item.``Myomer Leg``
-    | 120 -> Item.``Adv_ VSS Leg``
-    | 121 -> Item.``Adv_ Myomer Leg``
-    | 122 -> Item.``Exp_ Flexi-carbon Leg``
-    | 123 -> Item.``Zio_ Composite Leg II``
-    | 124 -> Item.``Cargo Legs``
-    | 125 -> Item.``Etherial Tendrils``
-    | 126 -> Item.``Biometal Leg``
-    | 127 -> Item.``Hvy_ Armored Exoskeleton``
-    | 128 -> Item.``Enh_ Biometal Leg``
-    | 129 -> Item.``Exp_ Myomer Leg``
-    | 130 -> Item.``Tripod Weapons Platform``
-    | 131 -> Item.``T_R_O_L_L_ Exoskeleton``
-    | 132 -> Item.``Asb_ Alloy Leg``
-    | 133 -> Item.``Centrium Leg``
-    | 134 -> Item.``Hdn_ Centrium Leg``
-    | 135 -> Item.``Exp_ Biometal Leg``
-    | 136 -> Item.``Sigix Exoskeleton``
-    | 137 -> Item.``Zio_ Supercomposite Leg``
-    | 138 -> Item.``Potential Leg``
-    | 139 -> Item.``Myomer Exoskeleton``
-    | 140 -> Item.``SE_PR1``
-    | 141 -> Item.``Wheel``
-    | 142 -> Item.``Com_ Wheel``
-    | 143 -> Item.``Arm_ Wheel``
-    | 144 -> Item.``Sub_ Monowheel``
-    | 145 -> Item.``Arm_ Huge Wheel``
-    | 146 -> Item.``Centrium Wheel``
-    | 147 -> Item.``Hdn_ Centrium Wheel``
-    | 148 -> Item.``Hover Unit``
-    | 149 -> Item.``Backup Propulsion I``
-    | 150 -> Item.``Imp_ Hover Unit``
-    | 151 -> Item.``Airjet``
-    | 152 -> Item.``Aerolev Unit``
-    | 153 -> Item.``Asb_ Hover Unit``
-    | 154 -> Item.``Backup Propulsion III``
-    | 155 -> Item.``Gravmag System``
-    | 156 -> Item.``Asb_ Hover System``
-    | 157 -> Item.``Imp_ Airjet``
-    | 158 -> Item.``Cld_ Airjet``
-    | 159 -> Item.``Imp_ Gravmag System``
-    | 160 -> Item.``Cld_ Aerolev Unit``
-    | 161 -> Item.``Cmb_ Airjet``
-    | 162 -> Item.``Gravmag Array``
-    | 163 -> Item.``Mak_ Hover Unit``
-    | 164 -> Item.``Zio_ Glidesys I``
-    | 165 -> Item.``Antigrav System``
-    | 166 -> Item.``Gyrokinetic Inverter``
-    | 167 -> Item.``Linear Gravjet``
-    | 168 -> Item.``Cld_ Gravmag System``
-    | 169 -> Item.``Cmb_ Gravmag System``
-    | 170 -> Item.``Imp_ Antigrav System``
-    | 171 -> Item.``Imp_ Gyrokinetic Inverter``
-    | 172 -> Item.``Imp_ Linear Gravjet``
-    | 173 -> Item.``Backup Propulsion VII``
-    | 174 -> Item.``Zio_ Glidesys II``
-    | 175 -> Item.``Cld_ Antigrav System``
-    | 176 -> Item.``Cmb_ Antigrav System``
-    | 177 -> Item.``Antigrav Array``
-    | 178 -> Item.``Exp_ Gyrokinetic Inverter``
-    | 179 -> Item.``Cld_ Linear Gravjet``
-    | 180 -> Item.``Cmb_ Linear Gravjet``
-    | 181 -> Item.``Flight Unit``
-    | 182 -> Item.``VTOL Module``
-    | 183 -> Item.``Imp_ Flight Unit``
-    | 184 -> Item.``Cesium-ion Thruster``
-    | 185 -> Item.``Surge Thruster``
-    | 186 -> Item.``Imp_ VTOL Module``
-    | 187 -> Item.``Xenon Bombardment Thruster``
-    | 188 -> Item.``Imp_ Cesium-ion Thruster``
-    | 189 -> Item.``Cld_ VTOL Module``
-    | 190 -> Item.``Mak_ Flight Unit``
-    | 191 -> Item.``Nuclear Pulse Thruster``
-    | 192 -> Item.``Imp_ Surge Thruster``
-    | 193 -> Item.``Mni_ Nuclear Pulse Thruster``
-    | 194 -> Item.``Cld_ Cesium-ion Thruster``
-    | 195 -> Item.``Biomechanical Wings``
-    | 196 -> Item.``Field Propulsion Drive``
-    | 197 -> Item.``Cld_ Nuclear Pulse Thruster``
-    | 198 -> Item.``Exp_ Cesium-ion Thruster``
-    | 199 -> Item.``Nuclear Pulse Array``
-    | 200 -> Item.``Mak_ Microthruster``
-    | 201 -> Item.``Impulse Thruster``
-    | 202 -> Item.``Adv_ Surge Thruster``
-    | 203 -> Item.``Cld_ Field Propulsion Drive``
-    | 204 -> Item.``Field Propulsion Array``
-    | 205 -> Item.``Diametric Drive``
-    | 206 -> Item.``Flying Fortress v7``
-    | 207 -> Item.``T-thruster``
-    | 208 -> Item.``Integrated Tracker Drive``
-    | 209 -> Item.``Etherial Propulsion``
-    | 210 -> Item.``Q-thruster``
-    | 211 -> Item.``Electron Diverter``
-    | 212 -> Item.``Imp_ Diametric Drive``
-    | 213 -> Item.``Cld_ Impulse Thruster``
-    | 214 -> Item.``Impulse Thruster Array``
-    | 215 -> Item.``Flightbrick``
-    | 216 -> Item.``Imp_ Q-thruster``
-    | 217 -> Item.``Cld_ Q-thruster``
-    | 218 -> Item.``Exp_ Q-thruster``
-    | 219 -> Item.``Scrap Engine``
-    | 220 -> Item.``Arm_ Scrap Engine``
-    | 221 -> Item.``Desublimator``
-    | 222 -> Item.``Power Amplifier``
-    | 223 -> Item.``Adv_ Power Amplifier``
-    | 224 -> Item.``Exp_ Power Amplifier``
-    | 225 -> Item.``Thermal Generator``
-    | 226 -> Item.``Imp_ Thermal Generator``
-    | 227 -> Item.``Adv_ Thermal Generator``
-    | 228 -> Item.``Exp_ Thermal Generator``
-    | 229 -> Item.``Cryofiber Web``
-    | 230 -> Item.``Imp_ Cryofiber Web``
-    | 231 -> Item.``Adv_ Cryofiber Web``
-    | 232 -> Item.``Exp_ Cryofiber Web``
-    | 233 -> Item.``Heat Sink``
-    | 234 -> Item.``Imp_ Heat Sink``
-    | 235 -> Item.``Adv_ Heat Sink``
-    | 236 -> Item.``Exp_ Heat Sink``
-    | 237 -> Item.``Cooling System``
-    | 238 -> Item.``Imp_ Cooling System``
-    | 239 -> Item.``Adv_ Cooling System``
-    | 240 -> Item.``Exp_ Cooling System``
-    | 241 -> Item.``Coolant Network``
-    | 242 -> Item.``Asb_ Nanovents``
-    | 243 -> Item.``2N-1CE's Frost Array``
-    | 244 -> Item.``Disposable Heat Sink``
-    | 245 -> Item.``Coolant Injector``
-    | 246 -> Item.``Imp_ Coolant Injector``
-    | 247 -> Item.``Adv_ Coolant Injector``
-    | 248 -> Item.``Exp_ Coolant Injector``
-    | 249 -> Item.``Sml_ Storage Unit``
-    | 250 -> Item.``Med_ Storage Unit``
-    | 251 -> Item.``Lrg_ Storage Unit``
-    | 252 -> Item.``Hcp_ Storage Unit``
-    | 253 -> Item.``Huge Storage Unit``
-    | 254 -> Item.``Cargo Storage Unit``
-    | 255 -> Item.``Humpback``
-    | 256 -> Item.``Lightpack 2_0``
-    | 257 -> Item.``Sml_ Battery``
-    | 258 -> Item.``Med_ Battery``
-    | 259 -> Item.``Lrg_ Battery``
-    | 260 -> Item.``Hcp_ Battery``
-    | 261 -> Item.``Com_ Battery``
-    | 262 -> Item.``Energy Well``
-    | 263 -> Item.``Imp_ Energy Well``
-    | 264 -> Item.``Adv_ Energy Well``
-    | 265 -> Item.``Exp_ Energy Well``
-    | 266 -> Item.``Zio_ Biocell``
-    | 267 -> Item.``Asb_ Biocell Array``
-    | 268 -> Item.``Zio_ Biocell Array``
-    | 269 -> Item.``Superbattery``
-    | 270 -> Item.``Sml_ Matter Pod``
-    | 271 -> Item.``Med_ Matter Pod``
-    | 272 -> Item.``Lrg_ Matter Pod``
-    | 273 -> Item.``Hcp_ Matter Pod``
-    | 274 -> Item.``Com_ Matter Pod``
-    | 275 -> Item.``Matter Compressor``
-    | 276 -> Item.``Imp_ Matter Compressor``
-    | 277 -> Item.``Adv_ Matter Compressor``
-    | 278 -> Item.``Exp_ Matter Compressor``
-    | 279 -> Item.``YI-UF0's Bottomless Matter Pit``
-    | 280 -> Item.``Weight Redist_ System``
-    | 281 -> Item.``Adv_ Weight Redist_ System``
-    | 282 -> Item.``Gravity Neutralizer``
-    | 283 -> Item.``Adv_ Gravity Neutralizer``
-    | 284 -> Item.``Quantum Shading Machine``
-    | 285 -> Item.``Asb_ Suspension Frame``
-    | 286 -> Item.``Adv_ Quantum Shading Machine``
-    | 287 -> Item.``Asb_ Metafiber Network``
-    | 288 -> Item.``Zio_ Metafield Generator``
-    | 289 -> Item.``ST Field Compressor``
-    | 290 -> Item.``Structural Scanner``
-    | 291 -> Item.``Trap Scanner``
-    | 292 -> Item.``Imp_ Trap Scanner``
-    | 293 -> Item.``Mak_ Trap Scanner``
-    | 294 -> Item.``Adv_ Trap Scanner``
-    | 295 -> Item.``Machine Analyzer``
-    | 296 -> Item.``Triangulator``
-    | 297 -> Item.``Visual Processing Unit``
-    | 298 -> Item.``Sub_ Optics``
-    | 299 -> Item.``Adv_ Visual Processing Unit``
-    | 300 -> Item.``Enh_ Optical Array``
-    | 301 -> Item.``Exp_ Optical Array``
-    | 302 -> Item.``Spectral Analyzer``
-    | 303 -> Item.``Sensor Array``
-    | 304 -> Item.``Imp_ Sensor Array``
-    | 305 -> Item.``Adv_ Sensor Array``
-    | 306 -> Item.``Lrn_ Sensor Array``
-    | 307 -> Item.``Mak_ Sensor Array``
-    | 308 -> Item.``Exp_ Sensor Array``
-    | 309 -> Item.``Signal Interpreter``
-    | 310 -> Item.``Imp_ Signal Interpreter``
-    | 311 -> Item.``Adv_ Signal Interpreter``
-    | 312 -> Item.``Exp_ Signal Interpreter``
-    | 313 -> Item.``Active Sensor Suite``
-    | 314 -> Item.``Terrain Scanner``
-    | 315 -> Item.``Imp_ Terrain Scanner``
-    | 316 -> Item.``Adv_ Terrain Scanner``
-    | 317 -> Item.``Mak_ Terrain Scanner``
-    | 318 -> Item.``Lrn_ Terrain Scanner``
-    | 319 -> Item.``Exp_ Terrain Scanner``
-    | 320 -> Item.``Surveybot 24 Scanner``
-    | 321 -> Item.``Terrain Scan Processor``
-    | 322 -> Item.``Imp_ Terrain Scan Processor``
-    | 323 -> Item.``Mak_ Terrain Scan Processor``
-    | 324 -> Item.``Adv_ Terrain Scan Processor``
-    | 325 -> Item.``Exp_ Terrain Scan Processor``
-    | 326 -> Item.``Surveybot 24 Chip``
-    | 327 -> Item.``Seismic Detector``
-    | 328 -> Item.``Transport Network Coupler``
-    | 329 -> Item.``Modified TNC``
-    | 330 -> Item.``Encrypted Comm Array``
-    | 331 -> Item.``0b10 Decoder Chip _Generic_``
-    | 332 -> Item.``0b10 Decoder Chip _Looter_``
-    | 333 -> Item.``0b10 Decoder Chip _Scout_``
-    | 334 -> Item.``0b10 Decoder Chip _Skirmisher_``
-    | 335 -> Item.``0b10 Alert Chip``
-    | 336 -> Item.``Salvage Targeting Computer``
-    | 337 -> Item.``Imp_ Salvage Targeting Computer``
-    | 338 -> Item.``Mak_ Salvage Targeting Computer``
-    | 339 -> Item.``Adv_ Salvage Targeting Computer``
-    | 340 -> Item.``Asb_ Combat Suite``
-    | 341 -> Item.``Targeting Computer``
-    | 342 -> Item.``Imp_ Targeting Computer``
-    | 343 -> Item.``Adv_ Targeting Computer``
-    | 344 -> Item.``Exp_ Targeting Computer``
-    | 345 -> Item.``Multitargeting Array``
-    | 346 -> Item.``Tactical Coordination Suite``
-    | 347 -> Item.``Melee Analysis Suite``
-    | 348 -> Item.``Imp_ Melee Analysis Suite``
-    | 349 -> Item.``Adv_ Melee Analysis Suite``
-    | 350 -> Item.``Exp_ Melee Analysis Suite``
-    | 351 -> Item.``Launcher Guidance Computer``
-    | 352 -> Item.``Imp_ Launcher Guidance Computer``
-    | 353 -> Item.``Adv_ Launcher Guidance Computer``
-    | 354 -> Item.``Weapon Mount``
-    | 355 -> Item.``Target Analyzer``
-    | 356 -> Item.``Imp_ Target Analyzer``
-    | 357 -> Item.``Adv_ Target Analyzer``
-    | 358 -> Item.``Exp_ Target Analyzer``
-    | 359 -> Item.``Core Analyzer``
-    | 360 -> Item.``Exp_ Core Analyzer``
-    | 361 -> Item.``Armor Integrity Analyzer``
-    | 362 -> Item.``Imp_ Armor Integrity Analyzer``
-    | 363 -> Item.``Exp_ Armor Integrity Analyzer``
-    | 364 -> Item.``Recoil Stabilizer``
-    | 365 -> Item.``Recoil Nullifier``
-    | 366 -> Item.``Matter Filter``
-    | 367 -> Item.``Prc_ Matter Filter``
-    | 368 -> Item.``Energy Filter``
-    | 369 -> Item.``Prc_ Energy Filter``
-    | 370 -> Item.``Particle Charger``
-    | 371 -> Item.``Imp_ Particle Charger``
-    | 372 -> Item.``Adv_ Particle Charger``
-    | 373 -> Item.``Particle Accelerator``
-    | 374 -> Item.``Imp_ Particle Accelerator``
-    | 375 -> Item.``Adv_ Particle Accelerator``
-    | 376 -> Item.``Kinecellerator``
-    | 377 -> Item.``Imp_ Kinecellerator``
-    | 378 -> Item.``Adv_ Kinecellerator``
-    | 379 -> Item.``Heavy Servo Lattice``
-    | 380 -> Item.``VL-GR5's Timing Chip``
-    | 381 -> Item.``Launcher Loader``
-    | 382 -> Item.``Quantum Capacitor``
-    | 383 -> Item.``Weapon Cycler``
-    | 384 -> Item.``Imp_ Weapon Cycler``
-    | 385 -> Item.``Adv_ Weapon Cycler``
-    | 386 -> Item.``Exp_ Weapon Cycler``
-    | 387 -> Item.``Microactuators``
-    | 388 -> Item.``Nanoactuators``
-    | 389 -> Item.``Femtoactuators``
-    | 390 -> Item.``Actuator Array``
-    | 391 -> Item.``Imp_ Actuator Array``
-    | 392 -> Item.``Adv_ Actuator Array``
-    | 393 -> Item.``Exp_ Actuator Array``
-    | 394 -> Item.``Force Booster``
-    | 395 -> Item.``Imp_ Force Booster``
-    | 396 -> Item.``Adv_ Force Booster``
-    | 397 -> Item.``Stasis Canceller``
-    | 398 -> Item.``Transmission Jammer``
-    | 399 -> Item.``Mak_ Transmission Jammer``
-    | 400 -> Item.``Imp_ Transmission Jammer``
-    | 401 -> Item.``Adv_ Transmission Jammer``
-    | 402 -> Item.``Exp_ Transmission Jammer``
-    | 403 -> Item.``ECM Suite``
-    | 404 -> Item.``Mak_ ECM Suite``
-    | 405 -> Item.``Adv_ ECM Suite``
-    | 406 -> Item.``Exp_ ECM Suite``
-    | 407 -> Item.``Active Sensor Spoofer``
-    | 408 -> Item.``Reaction Control System``
-    | 409 -> Item.``Imp_ Reaction Control System``
-    | 410 -> Item.``Adv_ Reaction Control System``
-    | 411 -> Item.``Exp_ Reaction Control System``
-    | 412 -> Item.``Phase Shifter``
-    | 413 -> Item.``Imp_ Phase Shifter``
-    | 414 -> Item.``Adv_ Phase Shifter``
-    | 415 -> Item.``Exp_ Phase Shifter``
-    | 416 -> Item.``Cloaking Device``
-    | 417 -> Item.``Mak_ Cloaking Device``
-    | 418 -> Item.``Imp_ Cloaking Device``
-    | 419 -> Item.``Adv_ Cloaking Device``
-    | 420 -> Item.``Exp_ Cloaking Device``
-    | 421 -> Item.``Cloak of Protection``
-    | 422 -> Item.``5H-AD0's Cloak``
-    | 423 -> Item.``Core Shielding``
-    | 424 -> Item.``Imp_ Core Shielding``
-    | 425 -> Item.``Exp_ Core Shielding``
-    | 426 -> Item.``Power Shielding``
-    | 427 -> Item.``Imp_ Power Shielding``
-    | 428 -> Item.``Exp_ Power Shielding``
-    | 429 -> Item.``Propulsion Shielding``
-    | 430 -> Item.``Imp_ Propulsion Shielding``
-    | 431 -> Item.``Exp_ Propulsion Shielding``
-    | 432 -> Item.``Utility Shielding``
-    | 433 -> Item.``Imp_ Utility Shielding``
-    | 434 -> Item.``Exp_ Utility Shielding``
-    | 435 -> Item.``Weapon Shielding``
-    | 436 -> Item.``Imp_ Weapon Shielding``
-    | 437 -> Item.``Exp_ Weapon Shielding``
-    | 438 -> Item.``Zio_ Weapon Casing``
-    | 439 -> Item.``Backup Plating I``
-    | 440 -> Item.``Backup Plating III``
-    | 441 -> Item.``Backup Plating VII``
-    | 442 -> Item.``Lgt_ Armor Plating``
-    | 443 -> Item.``Med_ Armor Plating``
-    | 444 -> Item.``Hvy_ Armor Plating``
-    | 445 -> Item.``Zio_ Light Carapace``
-    | 446 -> Item.``Zio_ Heavy Carapace``
-    | 447 -> Item.``Hrd_ Light Armor Plating``
-    | 448 -> Item.``Hrd_ Medium Armor Plating``
-    | 449 -> Item.``Hrd_ Heavy Armor Plating``
-    | 450 -> Item.``Imp_ Light Armor Plating``
-    | 451 -> Item.``Imp_ Medium Armor Plating``
-    | 452 -> Item.``Imp_ Heavy Armor Plating``
-    | 453 -> Item.``Lyr_ Light Armor Plating``
-    | 454 -> Item.``Mak_ Armor Plating``
-    | 455 -> Item.``Lyr_ Medium Armor Plating``
-    | 456 -> Item.``Lyr_ Heavy Armor Plating``
-    | 457 -> Item.``Gun Armor``
-    | 458 -> Item.``Centrium Light Armor Plating``
-    | 459 -> Item.``Centrium Medium Armor Plating``
-    | 460 -> Item.``Centrium Heavy Armor Plating``
-    | 461 -> Item.``Centrium Linked Plating``
-    | 462 -> Item.``Reactive Plating``
-    | 463 -> Item.``Med_ Reactive Plating``
-    | 464 -> Item.``Mak_ Kinetic Plating``
-    | 465 -> Item.``Hvy_ Reactive Plating``
-    | 466 -> Item.``Reflective Plating``
-    | 467 -> Item.``Med_ Reflective Plating``
-    | 468 -> Item.``Mak_ Thermal Plating``
-    | 469 -> Item.``Hvy_ Reflective Plating``
-    | 470 -> Item.``8R-AWN's Armor_TH``
-    | 471 -> Item.``8R-AWN's Armor_EX``
-    | 472 -> Item.``Insulated Plating``
-    | 473 -> Item.``Med_ Insulated Plating``
-    | 474 -> Item.``Hvy_ Insulated Plating``
-    | 475 -> Item.``Damper Plating``
-    | 476 -> Item.``Zio_ Shade Carapace``
-    | 477 -> Item.``Zio_ Shade Armor``
-    | 478 -> Item.``Asb_ Alloy Armor``
-    | 479 -> Item.``Mak_ Ablative Armor``
-    | 480 -> Item.``Active Cooling Armor``
-    | 481 -> Item.``Scrap Shield``
-    | 482 -> Item.``Powered Armor``
-    | 483 -> Item.``Imp_ Powered Armor``
-    | 484 -> Item.``Adv_ Powered Armor``
-    | 485 -> Item.``Exp_ Powered Armor``
-    | 486 -> Item.``1C-UTU's Buckler``
-    | 487 -> Item.``Lgt_ Regenerative Plating``
-    | 488 -> Item.``Med_ Regenerative Plating``
-    | 489 -> Item.``Hvy_ Regenerative Plating``
-    | 490 -> Item.``SHELL Armor``
-    | 491 -> Item.``Phase Armor``
-    | 492 -> Item.``Graphene Brace``
-    | 493 -> Item.``Focal Shield``
-    | 494 -> Item.``Imp_ Focal Shield``
-    | 495 -> Item.``Adv_ Focal Shield``
-    | 496 -> Item.``Exp_ Focal Shield``
-    | 497 -> Item.``Thermal Shield``
-    | 498 -> Item.``Imp_ Thermal Shield``
-    | 499 -> Item.``Adv_ Thermal Shield``
-    | 500 -> Item.``Exp_ Thermal Shield``
-    | 501 -> Item.``Thermal Barrier``
-    | 502 -> Item.``Beam Splitter``
-    | 503 -> Item.``Thermal Defense Suite``
-    | 504 -> Item.``Imp_ Thermal Defense Suite``
-    | 505 -> Item.``Adv_ Thermal Defense Suite``
-    | 506 -> Item.``Exp_ Thermal Defense Suite``
-    | 507 -> Item.``Shock Absorption System``
-    | 508 -> Item.``Imp_ Shock Absorption System``
-    | 509 -> Item.``Exp_ Shock Absorption System``
-    | 510 -> Item.``EM Disruption Field``
-    | 511 -> Item.``Adv_ EM Disruption Field``
-    | 512 -> Item.``Exp_ EM Disruption Field``
-    | 513 -> Item.``ME-RLN's Chromatic Screen``
-    | 514 -> Item.``Hardlight Generator``
-    | 515 -> Item.``Imp_ Hardlight Generator``
-    | 516 -> Item.``Adv_ Hardlight Generator``
-    | 517 -> Item.``Exp_ Hardlight Generator``
-    | 518 -> Item.``Shield Generator``
-    | 519 -> Item.``Imp_ Shield Generator``
-    | 520 -> Item.``Adv_ Shield Generator``
-    | 521 -> Item.``Exp_ Shield Generator``
-    | 522 -> Item.``Force Field``
-    | 523 -> Item.``Imp_ Force Field``
-    | 524 -> Item.``Adv_ Force Field``
-    | 525 -> Item.``Exp_ Force Field``
-    | 526 -> Item.``7V-RTL's Ultimate Field``
-    | 527 -> Item.``Vortex Field Projector``
-    | 528 -> Item.``Remote Shield``
-    | 529 -> Item.``Imp_ Remote Shield``
-    | 530 -> Item.``Adv_ Remote Shield``
-    | 531 -> Item.``Remote Force Field``
-    | 532 -> Item.``Imp_ Remote Force Field``
-    | 533 -> Item.``Energy Mantle``
-    | 534 -> Item.``Imp_ Energy Mantle``
-    | 535 -> Item.``AEGIS Remote Shield``
-    | 536 -> Item.``Phase Redirector``
-    | 537 -> Item.``Point Defense System``
-    | 538 -> Item.``Point Defense Array``
-    | 539 -> Item.``Antimissile System``
-    | 540 -> Item.``EX Chip 1``
-    | 541 -> Item.``Hacking Suite``
-    | 542 -> Item.``Mak_ Hacking Suite``
-    | 543 -> Item.``Imp_ Hacking Suite``
-    | 544 -> Item.``Adv_ Hacking Suite``
-    | 545 -> Item.``Exp_ Hacking Suite``
-    | 546 -> Item.``System Mapper``
-    | 547 -> Item.``Deep Network Scanner``
-    | 548 -> Item.``Architect God Chip A``
-    | 549 -> Item.``EX Chip 2``
-    | 550 -> Item.``System Shield``
-    | 551 -> Item.``Mak_ System Shield``
-    | 552 -> Item.``Imp_ System Shield``
-    | 553 -> Item.``Adv_ System Shield``
-    | 554 -> Item.``Exp_ System Shield``
-    | 555 -> Item.``Ghost Barrier``
-    | 556 -> Item.``Quantum Router``
-    | 557 -> Item.``Architect God Chip D``
-    | 558 -> Item.``Authchip _R_NC_``
-    | 559 -> Item.``Authchip _R_Combat_``
-    | 560 -> Item.``Authchip _Power_``
-    | 561 -> Item.``Authchip _Propulsion_``
-    | 562 -> Item.``Authchip _Device_``
-    | 563 -> Item.``Authchip _Storage_``
-    | 564 -> Item.``Authchip _Processor_``
-    | 565 -> Item.``Authchip _Armor_``
-    | 566 -> Item.``Authchip _Weapon_``
-    | 567 -> Item.``Relay Coupler _NC_``
-    | 568 -> Item.``Relay Coupler _C_``
-    | 569 -> Item.``Relay Coupler _Swarmer_``
-    | 570 -> Item.``Relay Coupler _Cutter_``
-    | 571 -> Item.``Relay Coupler _Grunt_``
-    | 572 -> Item.``Relay Coupler _Brawler_``
-    | 573 -> Item.``Relay Coupler _Duelist_``
-    | 574 -> Item.``Relay Coupler _Sentry_``
-    | 575 -> Item.``Relay Coupler _Demolisher_``
-    | 576 -> Item.``Relay Coupler _Specialist_``
-    | 577 -> Item.``Relay Coupler _Hunter_``
-    | 578 -> Item.``Relay Coupler _Heavy_``
-    | 579 -> Item.``Relay Coupler _Behemoth_``
-    | 580 -> Item.``Relay Coupler _Programmer_``
-    | 581 -> Item.``Relay Coupler _Proto_``
-    | 582 -> Item.``Skeleton Box``
-    | 583 -> Item.``01-MTF's Autohacker``
-    | 584 -> Item.``Component Analysis Suite``
-    | 585 -> Item.``Imp_ Component Analysis Suite``
-    | 586 -> Item.``Adv_ Component Analysis Suite``
-    | 587 -> Item.``Dynamic Insulation System``
-    | 588 -> Item.``Imp_ Dynamic Insulation System``
-    | 589 -> Item.``Adv_ Dynamic Insulation System``
-    | 590 -> Item.``System Guard``
-    | 591 -> Item.``Imp_ System Guard``
-    | 592 -> Item.``Exp_ System Guard``
-    | 593 -> Item.``Corruption Screen``
-    | 594 -> Item.``Imp_ Corruption Screen``
-    | 595 -> Item.``Adv_ Corruption Screen``
-    | 596 -> Item.``System Restoration Module``
-    | 597 -> Item.``Mak_ System Restoration Module``
-    | 598 -> Item.``Imp_ System Restoration Module``
-    | 599 -> Item.``Adv_ System Restoration Module``
-    | 600 -> Item.``System Purifier``
-    | 601 -> Item.``Exp_ System Purifier``
-    | 602 -> Item.``Tractor Beam``
-    | 603 -> Item.``Hpw_ Tractor Beam``
-    | 604 -> Item.``Lrn_ Tractor Beam``
-    | 605 -> Item.``Mobile Refinery Mk_ CCLXVII``
-    | 606 -> Item.``Trap Extractor``
-    | 607 -> Item.``Imp_ Trap Extractor``
-    | 608 -> Item.``Adv_ Trap Extractor``
-    | 609 -> Item.``Trap Reconfigurator``
-    | 610 -> Item.``Recalibrator``
-    | 611 -> Item.``Imp_ Recalibrator``
-    | 612 -> Item.``Adv_ Recalibrator``
-    | 613 -> Item.``Field Recycling Unit``
-    | 614 -> Item.``Imp_ Field Recycling Unit``
-    | 615 -> Item.``Adv_ Field Recycling Unit``
-    | 616 -> Item.``Exp_ Field Recycling Unit``
-    | 617 -> Item.``Drone Bay``
-    | 618 -> Item.``Z-Drone Bay``
-    | 619 -> Item.``Mni_ Drone Bay``
-    | 620 -> Item.``Mapping Drone Bay``
-    | 621 -> Item.``Adv_ Drone Bay``
-    | 622 -> Item.``Bomb Drone Bay``
-    | 623 -> Item.``Thief Drone Bay``
-    | 624 -> Item.``Decoy Drone Bay``
-    | 625 -> Item.``Splice Drone Bay``
-    | 626 -> Item.``Combat Drone Bay``
-    | 627 -> Item.``Assault Drone Bay``
-    | 628 -> Item.``Stealth Drone Bay``
-    | 629 -> Item.``Swarm Drone Bay``
-    | 630 -> Item.``Supersonic Drone Bay``
-    | 631 -> Item.``Sensor Drone Bay``
-    | 632 -> Item.``Hacking Drone Bay``
-    | 633 -> Item.``Minesniffer Drone Bay``
-    | 634 -> Item.``Army-in-a-Box``
-    | 635 -> Item.``Wardrone Bay``
-    | 636 -> Item.``Cobbler Unit``
-    | 637 -> Item.``Bomb Factory No_ 2``
-    | 638 -> Item.``Mobile Assembly Unit``
-    | 639 -> Item.``Heart of Steel``
-    | 640 -> Item.``GOLEM Unit``
-    | 641 -> Item.``PSU Rigger``
-    | 642 -> Item.``Phasing AFG``
-    | 643 -> Item.``AS-neutralizer No_ 17b``
-    | 644 -> Item.``V3-11A's Pendant``
-    | 645 -> Item.``Chronowheel``
-    | 646 -> Item.``Power Bank``
-    | 647 -> Item.``Rainbow Chip``
-    | 648 -> Item.``VL-GR5's Exoskeleton _Deathgrip_``
-    | 649 -> Item.``Dimensional Node Initializer``
-    | 650 -> Item.``Transdimensional Reconstructor``
-    | 651 -> Item.``Hpw_ Transdimensional Reconstructor``
-    | 652 -> Item.``Supercharged TR``
-    | 653 -> Item.``Core Expander``
-    | 654 -> Item.``Core Regenerator``
-    | 655 -> Item.``Integrity Redistributor``
-    | 656 -> Item.``Integrated Dissipator``
-    | 657 -> Item.``Supercharged Integrated Dissipator``
-    | 658 -> Item.``Integrated Thermoelectric Network``
-    | 659 -> Item.``Integrated Reactor``
-    | 660 -> Item.``Supercharged Integrated Reactor``
-    | 661 -> Item.``Integrated Mediator``
-    | 662 -> Item.``Core Membrane``
-    | 663 -> Item.``Navigation Efficiency Matrix``
-    | 664 -> Item.``Core Reset Matrix``
-    | 665 -> Item.``Subatomic Replicator``
-    | 666 -> Item.``Terrabomb``
-    | 667 -> Item.``Core Physics Calibrator``
-    | 668 -> Item.``Spacefold Activator``
-    | 669 -> Item.``Microwarp Drive``
-    | 670 -> Item.``LC Capacitor``
-    | 671 -> Item.``LRC Armor``
-    | 672 -> Item.``LRC Storage``
-    | 673 -> Item.``LRC Energy Well``
-    | 674 -> Item.``LRC Matter Compressor``
-    | 675 -> Item.``LRC Boosters``
-    | 676 -> Item.``LRC Insulator``
-    | 677 -> Item.``EM Pulse Gun``
-    | 678 -> Item.``Hvy_ EM Pulse Gun``
-    | 679 -> Item.``EM Shotgun``
-    | 680 -> Item.``Imp_ EM Shotgun``
-    | 681 -> Item.``Shock Rifle``
-    | 682 -> Item.``Riot Gun``
-    | 683 -> Item.``Hvy_ EM Shotgun``
-    | 684 -> Item.``Lightning Gun``
-    | 685 -> Item.``Hvy_ Riot Gun``
-    | 686 -> Item.``Arc Projector``
-    | 687 -> Item.``Prc_ Shock Rifle``
-    | 688 -> Item.``Hpw_ Shock Rifle``
-    | 689 -> Item.``Arc Thrower``
-    | 690 -> Item.``Imp_ Lightning Gun``
-    | 691 -> Item.``Tesla Rifle``
-    | 692 -> Item.``Imp_ Arc Projector``
-    | 693 -> Item.``Hvy_ Tesla Rifle``
-    | 694 -> Item.``Hyp_ EM Gauss Rifle``
-    | 695 -> Item.``Imp_ Arc Thrower``
-    | 696 -> Item.``01-MTF's Shockpuncher``
-    | 697 -> Item.``Gamma Rifle``
-    | 698 -> Item.``Tachyon Dispersion Ray``
-    | 699 -> Item.``Immobilizer``
-    | 700 -> Item.``Modified EM Gauss Rifle``
-    | 701 -> Item.``AWS_EX-DEC``
-    | 702 -> Item.``Enh_ Gamma Rifle``
-    | 703 -> Item.``Med_ Laser``
-    | 704 -> Item.``Sml_ Laser``
-    | 705 -> Item.``Backup Laser I``
-    | 706 -> Item.``Beam Rifle``
-    | 707 -> Item.``Particle Gun``
-    | 708 -> Item.``Spread Laser``
-    | 709 -> Item.``Imp_ Medium Laser``
-    | 710 -> Item.``Sub_ Laser``
-    | 711 -> Item.``Autobeam``
-    | 712 -> Item.``Field Laser``
-    | 713 -> Item.``Pulse Rifle``
-    | 714 -> Item.``Backup Laser III``
-    | 715 -> Item.``Hvy_ Particle Gun``
-    | 716 -> Item.``Prc_ Beam Rifle``
-    | 717 -> Item.``Adv_ Beam Rifle``
-    | 718 -> Item.``Hvy_ Laser``
-    | 719 -> Item.``Gatling Laser``
-    | 720 -> Item.``Cld_ Pulse Rifle``
-    | 721 -> Item.``Hpw_ Field Laser``
-    | 722 -> Item.``Imp_ Spread Laser``
-    | 723 -> Item.``Mak_ Laser``
-    | 724 -> Item.``Plasma Rifle``
-    | 725 -> Item.``Thermic Laser``
-    | 726 -> Item.``Beamcaster``
-    | 727 -> Item.``Force Rifle``
-    | 728 -> Item.``Imp_ Heavy Laser``
-    | 729 -> Item.``Storm Laser``
-    | 730 -> Item.``Zio_ Laser-S``
-    | 731 -> Item.``Wave Gun``
-    | 732 -> Item.``Variable Charge Gun``
-    | 733 -> Item.``Hvy_ Beamcaster``
-    | 734 -> Item.``Cld_ Plasma Rifle``
-    | 735 -> Item.``Enh_ Force Rifle``
-    | 736 -> Item.``Hvy_ Gatling Laser``
-    | 737 -> Item.``Zio_ Phaser-S``
-    | 738 -> Item.``Phase Gun``
-    | 739 -> Item.``Dispersion Rifle``
-    | 740 -> Item.``Backup Laser VII``
-    | 741 -> Item.``Plasma Storm``
-    | 742 -> Item.``Adv_ Plasma Rifle``
-    | 743 -> Item.``Hvy_ Wave Gun``
-    | 744 -> Item.``Adv_ Variable Charge Gun``
-    | 745 -> Item.``Cld_ Phase Gun``
-    | 746 -> Item.``Lrn_ Gatling Laser``
-    | 747 -> Item.``Warp Gun``
-    | 748 -> Item.``Vortex Rifle``
-    | 749 -> Item.``Zio_ Laser-M``
-    | 750 -> Item.``AWS_Thermal``
-    | 751 -> Item.``PD Laser``
-    | 752 -> Item.``Quantum Rifle``
-    | 753 -> Item.``Prc_ Phase Gun``
-    | 754 -> Item.``Hvy_ Dispersion Rifle``
-    | 755 -> Item.``Vortex Shotgun``
-    | 756 -> Item.``Vortex Rail``
-    | 757 -> Item.``Zio_ Phaser-M``
-    | 758 -> Item.``Enh_ Quantum Rifle``
-    | 759 -> Item.``Zio_ Laser-H``
-    | 760 -> Item.``Hvy_ Quantum Rifle``
-    | 761 -> Item.``Zio_ Phaser-H``
-    | 762 -> Item.``Gatling Beam``
-    | 763 -> Item.``Sigix Sheargun``
-    | 764 -> Item.``Modified Sigix Sheargun``
-    | 765 -> Item.``Lgt_ EM Pulse Cannon``
-    | 766 -> Item.``EM Pulse Cannon``
-    | 767 -> Item.``Imp_ EM Pulse Cannon``
-    | 768 -> Item.``Proton Cannon``
-    | 769 -> Item.``Lrn_ Proton Cannon``
-    | 770 -> Item.``Disruptor Cannon``
-    | 771 -> Item.``Hvy_ Proton Cannon``
-    | 772 -> Item.``HERF Cannon``
-    | 773 -> Item.``Hvy_ Disruptor Cannon``
-    | 774 -> Item.``Cld_ Proton Cannon``
-    | 775 -> Item.``Proton Burst Cannon``
-    | 776 -> Item.``Com_ HERF Cannon``
-    | 777 -> Item.``Latent Energy Streamer``
-    | 778 -> Item.``NK-0LA's Tesla Doomcannon``
-    | 779 -> Item.``EMDS``
-    | 780 -> Item.``Hpw_ Disruptor Cannon``
-    | 781 -> Item.``Beam Cannon``
-    | 782 -> Item.``Particle Cannon``
-    | 783 -> Item.``Adv_ Beam Cannon``
-    | 784 -> Item.``Sub_ Beam Cannon``
-    | 785 -> Item.``Hvy_ Particle Cannon``
-    | 786 -> Item.``Ion Cannon``
-    | 787 -> Item.``Plasma Cannon``
-    | 788 -> Item.``Hvy_ Ion Cannon``
-    | 789 -> Item.``Cld_ Particle Cannon``
-    | 790 -> Item.``Phase Cannon``
-    | 791 -> Item.``Hvy_ Plasma Cannon``
-    | 792 -> Item.``Cld_ Plasma Cannon``
-    | 793 -> Item.``Com_ Ion Cannon``
-    | 794 -> Item.``Ion Burst Cannon``
-    | 795 -> Item.``Adv_ Plasma Cannon``
-    | 796 -> Item.``Hvy_ Phase Cannon``
-    | 797 -> Item.``Neutron Cannon``
-    | 798 -> Item.``Powered Cannon``
-    | 799 -> Item.``Matter Neutralizer``
-    | 800 -> Item.``Hvy_ Neutron Cannon``
-    | 801 -> Item.``Lrn_ Phase Cannon``
-    | 802 -> Item.``Cld_ Phase Cannon``
-    | 803 -> Item.``Vortex Cannon``
-    | 804 -> Item.``Gui_ Plasma Cannon``
-    | 805 -> Item.``Nova Cannon``
-    | 806 -> Item.``Imp_ Matter Neutralizer``
-    | 807 -> Item.``Exp_ Thermic Cannon``
-    | 808 -> Item.``Vortex Driver``
-    | 809 -> Item.``Zio_ Alpha Cannon``
-    | 810 -> Item.``Asb_ Focal Cannon``
-    | 811 -> Item.``Enh_ Nova Cannon``
-    | 812 -> Item.``Firepult``
-    | 813 -> Item.``YOLO Cannon``
-    | 814 -> Item.``Potential Cannon``
-    | 815 -> Item.``Warp Cannon``
-    | 816 -> Item.``Cld_ Nova Cannon``
-    | 817 -> Item.``Null Cannon``
-    | 818 -> Item.``Imp_ Potential Cannon``
-    | 819 -> Item.``Multinova Projection Cannon``
-    | 820 -> Item.``Disintegrator``
-    | 821 -> Item.``Core Cannon``
-    | 822 -> Item.``Sigix Shearcannon``
-    | 823 -> Item.``Drained L-Cannon``
-    | 824 -> Item.``L-Cannon``
-    | 825 -> Item.``Zio_ Alpha Cannon Mk_ II``
-    | 826 -> Item.``BFG-9k Vortex Edition``
-    | 827 -> Item.``Assault Rifle``
-    | 828 -> Item.``Asb_ Rifle``
-    | 829 -> Item.``Lgt_ Assault Rifle``
-    | 830 -> Item.``Hvy_ Assault Rifle``
-    | 831 -> Item.``Autogun``
-    | 832 -> Item.``Shotgun``
-    | 833 -> Item.``Battle Rifle``
-    | 834 -> Item.``Asb_ Heavy Rifle``
-    | 835 -> Item.``Sub_ Machine Gun``
-    | 836 -> Item.``Imp_ Assault Rifle``
-    | 837 -> Item.``Minigun``
-    | 838 -> Item.``Hpw_ Shotgun``
-    | 839 -> Item.``Asb_ Shotgun``
-    | 840 -> Item.``Barrage Gun``
-    | 841 -> Item.``Enh_ Autogun``
-    | 842 -> Item.``Gauss Rifle``
-    | 843 -> Item.``Asb_ Gauss Rifle``
-    | 844 -> Item.``Flak Gun``
-    | 845 -> Item.``Prc_ Assault Rifle``
-    | 846 -> Item.``Hvy_ Battle Rifle``
-    | 847 -> Item.``Mak_ Shrapnel Gun``
-    | 848 -> Item.``Coil Gun``
-    | 849 -> Item.``Hyp_ Gauss Rifle``
-    | 850 -> Item.``Hvy_ Machine Gun``
-    | 851 -> Item.``Imp_ Heavy Machine Gun``
-    | 852 -> Item.``Com_ Gauss Rifle``
-    | 853 -> Item.``XL Autogun Subcomponent``
-    | 854 -> Item.``KE Penetrator``
-    | 855 -> Item.``Hyp_ Coil Gun``
-    | 856 -> Item.``Imp_ KE Penetrator``
-    | 857 -> Item.``Enh_ Coil Gun``
-    | 858 -> Item.``Com_ Coil Gun``
-    | 859 -> Item.``Railgun``
-    | 860 -> Item.``Adv_ KE Penetrator``
-    | 861 -> Item.``Linked Autogun``
-    | 862 -> Item.``AWS_Gauss``
-    | 863 -> Item.``Hyp_ Railgun``
-    | 864 -> Item.``Helical Railgun``
-    | 865 -> Item.``Com_ Railgun``
-    | 866 -> Item.``XL Autogun Array``
-    | 867 -> Item.``12-ASH's Boomstick``
-    | 868 -> Item.``8R-AWN's Boregun``
-    | 869 -> Item.``Multirail``
-    | 870 -> Item.``Hyp_ Multirail``
-    | 871 -> Item.``5H-AD0's Sniper Rifle``
-    | 872 -> Item.``A3's Sniper Rifle``
-    | 873 -> Item.``Lgt_ Cannon``
-    | 874 -> Item.``Imp_ Light Cannon``
-    | 875 -> Item.``Battle Cannon``
-    | 876 -> Item.``Assault Cannon``
-    | 877 -> Item.``Hvy_ Assault Cannon``
-    | 878 -> Item.``Flak Cannon``
-    | 879 -> Item.``Adv_ Assault Cannon``
-    | 880 -> Item.``Gauss Cannon``
-    | 881 -> Item.``Slug Cannon``
-    | 882 -> Item.``Mni_ Assault Cannon``
-    | 883 -> Item.``Magnetic Acceleration Cannon``
-    | 884 -> Item.``Hvy_ Flak Cannon``
-    | 885 -> Item.``Bore Cannon``
-    | 886 -> Item.``Antimatter Cannon``
-    | 887 -> Item.``Mass Driver``
-    | 888 -> Item.``Hvy_ Mass Driver``
-    | 889 -> Item.``Enh_ Gauss Cannon``
-    | 890 -> Item.``Hyp_ Gauss Cannon``
-    | 891 -> Item.``Tri-rail Accelerator``
-    | 892 -> Item.``Hardcell Cannon``
-    | 893 -> Item.``Hvy_ Gauss Cannon``
-    | 894 -> Item.``Hyp_ Mass Driver``
-    | 895 -> Item.``Hvy_ Autocannon``
-    | 896 -> Item.``DAS Cannon``
-    | 897 -> Item.``Lgt_ Antimatter Cannon``
-    | 898 -> Item.``Linear Accelerator``
-    | 899 -> Item.``Hvy_ Linear Accelerator``
-    | 900 -> Item.``Com_ Mass Driver``
-    | 901 -> Item.``Hvy_ Hardcell Cannon``
-    | 902 -> Item.``Com_ Linear Accelerator``
-    | 903 -> Item.``Hyp_ Linear Accelerator``
-    | 904 -> Item.``Hcl_ Linear Accelerator``
-    | 905 -> Item.``Graviton Cannon``
-    | 906 -> Item.``Blast Cannon``
-    | 907 -> Item.``P1-3CE's Gatling Flakker``
-    | 908 -> Item.``AWS_Autocannon``
-    | 909 -> Item.``Perforator``
-    | 910 -> Item.``Omega Cannon``
-    | 911 -> Item.``EMP Blaster``
-    | 912 -> Item.``Shock Bomb Launcher``
-    | 913 -> Item.``Adv_ EMP Blaster``
-    | 914 -> Item.``Proton Missile Launcher``
-    | 915 -> Item.``Imp_ Proton Missile Launcher``
-    | 916 -> Item.``Gui_ EMP Blaster``
-    | 917 -> Item.``Hvy_ Shock Bomb Launcher``
-    | 918 -> Item.``Tesla Bomb Launcher``
-    | 919 -> Item.``Hvy_ Proton Missile Launcher``
-    | 920 -> Item.``Com_ Tesla Bomb Launcher``
-    | 921 -> Item.``Gamma Bomb Array``
-    | 922 -> Item.``Enh_ Gamma Bomb Array``
-    | 923 -> Item.``Grenade Launcher``
-    | 924 -> Item.``Rocket Launcher``
-    | 925 -> Item.``Mni_ Grenade Launcher``
-    | 926 -> Item.``Sub_ Shrapnel Launcher``
-    | 927 -> Item.``Imp_ Grenade Launcher``
-    | 928 -> Item.``Missile Launcher``
-    | 929 -> Item.``Concussive RPG``
-    | 930 -> Item.``YI-UF0's Doublenader``
-    | 931 -> Item.``Hvy_ Rocket Launcher``
-    | 932 -> Item.``Hvy_ Missile Launcher``
-    | 933 -> Item.``Gui_ Missile Launcher``
-    | 934 -> Item.``Prc_ Grenade Launcher``
-    | 935 -> Item.``Rocket Array``
-    | 936 -> Item.``Lrn_ Missile Launcher``
-    | 937 -> Item.``Imp_ Concussive RPG``
-    | 938 -> Item.``Prc_ Rocket Launcher``
-    | 939 -> Item.``Scatter Rocket Array``
-    | 940 -> Item.``Smartbomb Launcher``
-    | 941 -> Item.``Mni_ Smartbomb Launcher``
-    | 942 -> Item.``Tiamat Missile Launcher``
-    | 943 -> Item.``Thermoblaster``
-    | 944 -> Item.``Micro-nuke Launcher``
-    | 945 -> Item.``Adv_ Concussive RPG``
-    | 946 -> Item.``Neutron Missile Launcher``
-    | 947 -> Item.``Fusion Bomb Launcher``
-    | 948 -> Item.``Hellfire Missile Launcher``
-    | 949 -> Item.``Adv_ Micro-nuke Launcher``
-    | 950 -> Item.``Tactical Quantum Warhead``
-    | 951 -> Item.``Vortex Catalyst Activator``
-    | 952 -> Item.``Chain Missile Launcher``
-    | 953 -> Item.``Ragnarok Missile Launcher``
-    | 954 -> Item.``Point Singularity Launcher``
-    | 955 -> Item.``Gui_ Micro-nuke Launcher``
-    | 956 -> Item.``99-TNT's Nukerbomber``
-    | 957 -> Item.``Z-bomb Delivery System``
-    | 958 -> Item.``Sigix Terminator``
-    | 959 -> Item.``Supercharged Sigix Terminator``
-    | 960 -> Item.``Containment Facilitator``
-    | 961 -> Item.``Detonator``
-    | 962 -> Item.``Dirty Datajack``
-    | 963 -> Item.``Splice Injector``
-    | 964 -> Item.``Datajack``
-    | 965 -> Item.``Imp_ Datajack``
-    | 966 -> Item.``Adv_ Datajack``
-    | 967 -> Item.``Remote Datajack``
-    | 968 -> Item.``Imp_ Remote Datajack``
-    | 969 -> Item.``Adv_ Remote Datajack``
-    | 970 -> Item.``Exp_ Remote Datajack``
-    | 971 -> Item.``Gui_ Remote Datajack``
-    | 972 -> Item.``ME-RLN's Wand``
-    | 973 -> Item.``Field Lobotomy Kit``
-    | 974 -> Item.``Mining Laser``
-    | 975 -> Item.``Welding Torch``
-    | 976 -> Item.``Plasma Cutter``
-    | 977 -> Item.``Imp_ Plasma Cutter``
-    | 978 -> Item.``CPS Tube``
-    | 979 -> Item.``Multitool``
-    | 980 -> Item.``Flamer``
-    | 981 -> Item.``Asb_ F-torch``
-    | 982 -> Item.``Enh_ Flamer``
-    | 983 -> Item.``Plasma Flamer``
-    | 984 -> Item.``Asb_ P-torch``
-    | 985 -> Item.``RU-N14's Throwing Claymores``
-    | 986 -> Item.``RU-N14's Throwing Claymores v3``
-    | 987 -> Item.``AD-0RF's Magmablaster``
-    | 988 -> Item.``Stasis Beam``
-    | 989 -> Item.``Stasis Projector``
-    | 990 -> Item.``Exp_ Stasis Projector``
-    | 991 -> Item.``Molecular Deconstructor``
-    | 992 -> Item.``SE_WE1``
-    | 993 -> Item.``SE_WE2``
-    | 994 -> Item.``SE_WE3``
-    | 995 -> Item.``SE_WE4``
-    | 996 -> Item.``SE_WE5``
-    | 997 -> Item.``Hammer``
-    | 998 -> Item.``Mace``
-    | 999 -> Item.``Flail``
-    | 1000 -> Item.``Maul``
-    | 1001 -> Item.``Asb_ Maul``
-    | 1002 -> Item.``Hvy_ Hammer``
-    | 1003 -> Item.``Hvy_ Mace``
-    | 1004 -> Item.``Hvy_ Flail``
-    | 1005 -> Item.``Great Maul``
-    | 1006 -> Item.``Powered Hammer``
-    | 1007 -> Item.``Mak_ Hammer``
-    | 1008 -> Item.``Power Maul``
-    | 1009 -> Item.``Asb_ P-maul``
-    | 1010 -> Item.``Impact Mace``
-    | 1011 -> Item.``Shock Maul``
-    | 1012 -> Item.``Thunder Hammer``
-    | 1013 -> Item.``Compactor``
-    | 1014 -> Item.``Gravity Flail``
-    | 1015 -> Item.``CL-ANK's Mallet``
-    | 1016 -> Item.``Core Stripper``
-    | 1017 -> Item.``Mining Claw``
-    | 1018 -> Item.``EC_1``
-    | 1019 -> Item.``Katana``
-    | 1020 -> Item.``Asb_ Blade``
-    | 1021 -> Item.``Scythe``
-    | 1022 -> Item.``Axe``
-    | 1023 -> Item.``Blade Saw``
-    | 1024 -> Item.``EC_3``
-    | 1025 -> Item.``Chainsword``
-    | 1026 -> Item.``Ripper``
-    | 1027 -> Item.``Mak_ Axe``
-    | 1028 -> Item.``Mak_ Sword``
-    | 1029 -> Item.``Great Axe``
-    | 1030 -> Item.``Greatsword``
-    | 1031 -> Item.``Power Sword``
-    | 1032 -> Item.``Asb_ P-sword``
-    | 1033 -> Item.``Falx``
-    | 1034 -> Item.``Carbide Saw``
-    | 1035 -> Item.``Segregator``
-    | 1036 -> Item.``Tearclaws``
-    | 1037 -> Item.``EC_5``
-    | 1038 -> Item.``Phasing Sabre``
-    | 1039 -> Item.``Plasma Sword``
-    | 1040 -> Item.``Ionic Axe``
-    | 1041 -> Item.``Mni_ Tearclaws``
-    | 1042 -> Item.``Dual-blade Saw``
-    | 1043 -> Item.``Vibroblade``
-    | 1044 -> Item.``Molecular Scythe``
-    | 1045 -> Item.``Centrium Greatsword``
-    | 1046 -> Item.``Master Tearclaws``
-    | 1047 -> Item.``Longsword _1``
-    | 1048 -> Item.``EC_7``
-    | 1049 -> Item.``Nanosword``
-    | 1050 -> Item.``Particle Cleaver``
-    | 1051 -> Item.``Centrium Claws``
-    | 1052 -> Item.``1C-UTU's Sword _Lootmaker_``
-    | 1053 -> Item.``1C-UTU's Sword _Choppy_``
-    | 1054 -> Item.``Vortex Shredder``
-    | 1055 -> Item.``EC_9``
-    | 1056 -> Item.``Sigix Broadsword``
-    | 1057 -> Item.``Spear``
-    | 1058 -> Item.``Mak_ Spear``
-    | 1059 -> Item.``CR-A16's Pointy Stick``
-    | 1060 -> Item.``Hvy_ Pick``
-    | 1061 -> Item.``Lance``
-    | 1062 -> Item.``Kinetic Spear``
-    | 1063 -> Item.``Force Lance``
-    | 1064 -> Item.``Plasma Lance``
-    | 1065 -> Item.``Enh_ Force Lance``
-    | 1066 -> Item.``Vortex Lance``
-    | 1067 -> Item.``CR-A16's Behemoth Slayer``
-    | 1068 -> Item.``Blade Trap``
-    | 1069 -> Item.``Segregator Trap``
-    | 1070 -> Item.``Explosive Trap``
-    | 1071 -> Item.``Heavy Explosive Trap``
-    | 1072 -> Item.``Tiamat Bomb Trap``
-    | 1073 -> Item.``Fusion Bomb Trap``
-    | 1074 -> Item.``Hellfire Trap``
-    | 1075 -> Item.``Armageddon Trap``
-    | 1076 -> Item.``Dirty Bomb Trap``
-    | 1077 -> Item.``EMP Trap``
-    | 1078 -> Item.``Proton Bomb Trap``
-    | 1079 -> Item.``Tesla Bomb Trap``
-    | 1080 -> Item.``Gamma Bomb Trap``
-    | 1081 -> Item.``Shrapnel Trap``
-    | 1082 -> Item.``Piercing Trap``
-    | 1083 -> Item.``Shock Trap``
-    | 1084 -> Item.``EM Surge Trap``
-    | 1085 -> Item.``Fire Trap``
-    | 1086 -> Item.``Stasis Trap``
-    | 1087 -> Item.``Scrap Shield Fragment``
-    | 1088 -> Item.``Signal Generator``
-    | 1089 -> Item.``Self-destruct Interrupter``
-    | 1090 -> Item.``Sapper Charge``
-    | 1091 -> Item.``Zhirov Special``
-    | 1092 -> Item.``Deploy-a-Sentry``
-    | 1093 -> Item.``GAL Module``
-    | 1094 -> Item.``Portable AFG``
-    | 1095 -> Item.``SGEMP Prototype``
-    | 1096 -> Item.``Terrabomb Derivative``
-    | 1097 -> Item.``Sigix Containment Pod``
-    | 1098 -> Item.``Sigix Corpse``
-    | 1099 -> Item.``Meganuke``
-    | 1100 -> Item.``Gamma Refractor``
+    | 52 -> Item.``MA-1KR's Cyclogen``
+    | 53 -> Item.``Hvy_ Antimatter Reactor``
+    | 54 -> Item.``Mni_ Fusion Reactor``
+    | 55 -> Item.``Imp_ Fusion Compressor``
+    | 56 -> Item.``Mic_ Neutrino Core``
+    | 57 -> Item.``Zio_ Light DM Reactor``
+    | 58 -> Item.``Zio_ Heavy DM Reactor``
+    | 59 -> Item.``Particle Reactor``
+    | 60 -> Item.``Lgt_ Particle Reactor``
+    | 61 -> Item.``Mic_ Antimatter Reactor``
+    | 62 -> Item.``Com_ Particle Reactor``
+    | 63 -> Item.``Cld_ Antimatter Reactor``
+    | 64 -> Item.``Graviton Reactor``
+    | 65 -> Item.``Asb_ Flux Generator``
+    | 66 -> Item.``Quantum Reactor``
+    | 67 -> Item.``Lgt_ Quantum Reactor``
+    | 68 -> Item.``Rnf_ Quantum Reactor``
+    | 69 -> Item.``Imp_ Quantum Reactor``
+    | 70 -> Item.``Zero-point Reactor``
+    | 71 -> Item.``Vortex Chain Reactor``
+    | 72 -> Item.``Singularity Reactor``
+    | 73 -> Item.``Matter Drive``
+    | 74 -> Item.``Meta Core``
+    | 75 -> Item.``SE_PO1``
+    | 76 -> Item.``Lgt_ Treads``
+    | 77 -> Item.``Imp_ Treads``
+    | 78 -> Item.``Spk_ Treads``
+    | 79 -> Item.``Arm_ Treads``
+    | 80 -> Item.``Adv_ Treads``
+    | 81 -> Item.``Ovr_ Treads``
+    | 82 -> Item.``Med_ Treads``
+    | 83 -> Item.``Imp_ Medium Treads``
+    | 84 -> Item.``Spk_ Medium Treads``
+    | 85 -> Item.``Arm_ Medium Treads``
+    | 86 -> Item.``Hvy_ Treads``
+    | 87 -> Item.``Ovr_ Medium Treads``
+    | 88 -> Item.``Tri-treads``
+    | 89 -> Item.``Wartreads``
+    | 90 -> Item.``Adv_ Medium Treads``
+    | 91 -> Item.``Enh_ Armored Medium Treads``
+    | 92 -> Item.``Imp_ Heavy Treads``
+    | 93 -> Item.``Hvy_ Siege Treads``
+    | 94 -> Item.``Spk_ Heavy Treads``
+    | 95 -> Item.``Vmp_ Heavy Siege Treads``
+    | 96 -> Item.``DD-05H's Wartreads``
+    | 97 -> Item.``Biometal Medium Treads``
+    | 98 -> Item.``Arm_ Heavy Treads``
+    | 99 -> Item.``Adv_ Heavy Treads``
+    | 100 -> Item.``Imp_ Heavy Siege Treads``
+    | 101 -> Item.``Centrium Heavy Treads``
+    | 102 -> Item.``Megatreads``
+    | 103 -> Item.``Biometal Heavy Treads``
+    | 104 -> Item.``Exp_ Biometal Heavy Treads``
+    | 105 -> Item.``Enh_ Armored Heavy Treads``
+    | 106 -> Item.``Adv_ Heavy Siege Treads``
+    | 107 -> Item.``Hdn_ Centrium Heavy Treads``
+    | 108 -> Item.``Exp_ Biometal Medium Treads``
+    | 109 -> Item.``Aluminum Leg``
+    | 110 -> Item.``Imp_ Aluminum Leg``
+    | 111 -> Item.``Carbon-fiber Leg``
+    | 112 -> Item.``Titanium Leg``
+    | 113 -> Item.``Ovr_ Titanium Leg``
+    | 114 -> Item.``VSS Leg``
+    | 115 -> Item.``Imp_ Carbon-fiber Leg``
+    | 116 -> Item.``Imp_ Titanium Leg``
+    | 117 -> Item.``Lgt_ Armored Exoskeleton``
+    | 118 -> Item.``Mak_ Leg``
+    | 119 -> Item.``Flexi-carbon Leg``
+    | 120 -> Item.``Arm_ Leg``
+    | 121 -> Item.``Imp_ VSS Leg``
+    | 122 -> Item.``Zio_ Composite Leg I``
+    | 123 -> Item.``Med_ Armored Exoskeleton``
+    | 124 -> Item.``Ovr_ Flexi-carbon Leg``
+    | 125 -> Item.``Enh_ Flexi-carbon Leg``
+    | 126 -> Item.``Enh_ Armored Leg``
+    | 127 -> Item.``Arachnoskeleton``
+    | 128 -> Item.``Myomer Leg``
+    | 129 -> Item.``Adv_ VSS Leg``
+    | 130 -> Item.``Adv_ Myomer Leg``
+    | 131 -> Item.``Exp_ Flexi-carbon Leg``
+    | 132 -> Item.``Zio_ Composite Leg II``
+    | 133 -> Item.``Cargo Legs``
+    | 134 -> Item.``Etherial Tendrils``
+    | 135 -> Item.``Biometal Leg``
+    | 136 -> Item.``Hvy_ Armored Exoskeleton``
+    | 137 -> Item.``Enh_ Biometal Leg``
+    | 138 -> Item.``Exp_ Myomer Leg``
+    | 139 -> Item.``Tripod Weapons Platform``
+    | 140 -> Item.``T_R_O_L_L_ Exoskeleton``
+    | 141 -> Item.``Asb_ Alloy Leg``
+    | 142 -> Item.``Centrium Leg``
+    | 143 -> Item.``Hdn_ Centrium Leg``
+    | 144 -> Item.``Exp_ Biometal Leg``
+    | 145 -> Item.``Zio_ Supercomposite Leg``
+    | 146 -> Item.``Potential Leg``
+    | 147 -> Item.``Myomer Exoskeleton``
+    | 148 -> Item.``Sigix Exoskeleton``
+    | 149 -> Item.``SE_PR1``
+    | 150 -> Item.``Wheel``
+    | 151 -> Item.``Com_ Wheel``
+    | 152 -> Item.``Arm_ Wheel``
+    | 153 -> Item.``Sub_ Monowheel``
+    | 154 -> Item.``Ovr_ Scrapsphere``
+    | 155 -> Item.``Arm_ Huge Wheel``
+    | 156 -> Item.``Ballwheel``
+    | 157 -> Item.``Ovr_ Huge Scrapsphere``
+    | 158 -> Item.``Centrium Wheel``
+    | 159 -> Item.``Hdn_ Centrium Wheel``
+    | 160 -> Item.``Hover Unit``
+    | 161 -> Item.``Backup Propulsion I``
+    | 162 -> Item.``Imp_ Hover Unit``
+    | 163 -> Item.``Airjet``
+    | 164 -> Item.``Aerolev Unit``
+    | 165 -> Item.``Asb_ Hover Unit``
+    | 166 -> Item.``Backup Propulsion III``
+    | 167 -> Item.``Gravmag System``
+    | 168 -> Item.``Asb_ Hover System``
+    | 169 -> Item.``Imp_ Airjet``
+    | 170 -> Item.``Cld_ Airjet``
+    | 171 -> Item.``Imp_ Gravmag System``
+    | 172 -> Item.``Cld_ Aerolev Unit``
+    | 173 -> Item.``Cmb_ Airjet``
+    | 174 -> Item.``Gravmag Array``
+    | 175 -> Item.``Mak_ Hover Unit``
+    | 176 -> Item.``Zio_ Glidesys I``
+    | 177 -> Item.``Antigrav System``
+    | 178 -> Item.``Gyrokinetic Inverter``
+    | 179 -> Item.``Linear Gravjet``
+    | 180 -> Item.``Cld_ Gravmag System``
+    | 181 -> Item.``Cmb_ Gravmag System``
+    | 182 -> Item.``Imp_ Antigrav System``
+    | 183 -> Item.``Imp_ Gyrokinetic Inverter``
+    | 184 -> Item.``Imp_ Linear Gravjet``
+    | 185 -> Item.``Backup Propulsion VII``
+    | 186 -> Item.``Zio_ Glidesys II``
+    | 187 -> Item.``Cld_ Antigrav System``
+    | 188 -> Item.``Cmb_ Antigrav System``
+    | 189 -> Item.``Antigrav Array``
+    | 190 -> Item.``Exp_ Gyrokinetic Inverter``
+    | 191 -> Item.``Cld_ Linear Gravjet``
+    | 192 -> Item.``Cmb_ Linear Gravjet``
+    | 193 -> Item.``Flight Unit``
+    | 194 -> Item.``VTOL Module``
+    | 195 -> Item.``Imp_ Flight Unit``
+    | 196 -> Item.``Cesium-ion Thruster``
+    | 197 -> Item.``Surge Thruster``
+    | 198 -> Item.``Imp_ VTOL Module``
+    | 199 -> Item.``Xenon Bombardment Thruster``
+    | 200 -> Item.``Imp_ Cesium-ion Thruster``
+    | 201 -> Item.``Cld_ VTOL Module``
+    | 202 -> Item.``Mak_ Flight Unit``
+    | 203 -> Item.``Nuclear Pulse Thruster``
+    | 204 -> Item.``Imp_ Surge Thruster``
+    | 205 -> Item.``Mni_ Nuclear Pulse Thruster``
+    | 206 -> Item.``Cld_ Cesium-ion Thruster``
+    | 207 -> Item.``Biomechanical Wings``
+    | 208 -> Item.``Field Propulsion Drive``
+    | 209 -> Item.``Cld_ Nuclear Pulse Thruster``
+    | 210 -> Item.``Exp_ Cesium-ion Thruster``
+    | 211 -> Item.``Nuclear Pulse Array``
+    | 212 -> Item.``Mak_ Microthruster``
+    | 213 -> Item.``Impulse Thruster``
+    | 214 -> Item.``Adv_ Surge Thruster``
+    | 215 -> Item.``Cld_ Field Propulsion Drive``
+    | 216 -> Item.``Field Propulsion Array``
+    | 217 -> Item.``Diametric Drive``
+    | 218 -> Item.``Flying Fortress v7``
+    | 219 -> Item.``T-thruster``
+    | 220 -> Item.``Integrated Tracker Drive``
+    | 221 -> Item.``Etherial Propulsion``
+    | 222 -> Item.``Q-thruster``
+    | 223 -> Item.``Electron Diverter``
+    | 224 -> Item.``Imp_ Diametric Drive``
+    | 225 -> Item.``Cld_ Impulse Thruster``
+    | 226 -> Item.``Impulse Thruster Array``
+    | 227 -> Item.``Flightbrick``
+    | 228 -> Item.``Imp_ Q-thruster``
+    | 229 -> Item.``Cld_ Q-thruster``
+    | 230 -> Item.``Exp_ Q-thruster``
+    | 231 -> Item.``Scrap Engine``
+    | 232 -> Item.``Arm_ Scrap Engine``
+    | 233 -> Item.``Scrap Suit``
+    | 234 -> Item.``Matter Focus``
+    | 235 -> Item.``Desublimator``
+    | 236 -> Item.``Power Amplifier``
+    | 237 -> Item.``Adv_ Power Amplifier``
+    | 238 -> Item.``Exp_ Power Amplifier``
+    | 239 -> Item.``Thermal Generator``
+    | 240 -> Item.``Imp_ Thermal Generator``
+    | 241 -> Item.``Adv_ Thermal Generator``
+    | 242 -> Item.``Exp_ Thermal Generator``
+    | 243 -> Item.``Cryofiber Web``
+    | 244 -> Item.``Imp_ Cryofiber Web``
+    | 245 -> Item.``Adv_ Cryofiber Web``
+    | 246 -> Item.``Exp_ Cryofiber Web``
+    | 247 -> Item.``Heat Sink``
+    | 248 -> Item.``Imp_ Heat Sink``
+    | 249 -> Item.``Adv_ Heat Sink``
+    | 250 -> Item.``Exp_ Heat Sink``
+    | 251 -> Item.``Cooling System``
+    | 252 -> Item.``Imp_ Cooling System``
+    | 253 -> Item.``Adv_ Cooling System``
+    | 254 -> Item.``Exp_ Cooling System``
+    | 255 -> Item.``Mak_ Coolant Network``
+    | 256 -> Item.``Coolant Network``
+    | 257 -> Item.``Asb_ Nanovents``
+    | 258 -> Item.``2N-1CE's Frost Array``
+    | 259 -> Item.``Disposable Heat Sink``
+    | 260 -> Item.``Coolant Injector``
+    | 261 -> Item.``Imp_ Coolant Injector``
+    | 262 -> Item.``Adv_ Coolant Injector``
+    | 263 -> Item.``Exp_ Coolant Injector``
+    | 264 -> Item.``Mak_ Microdissipator Network``
+    | 265 -> Item.``Sml_ Storage Unit``
+    | 266 -> Item.``Med_ Storage Unit``
+    | 267 -> Item.``Lrg_ Storage Unit``
+    | 268 -> Item.``Hcp_ Storage Unit``
+    | 269 -> Item.``Huge Storage Unit``
+    | 270 -> Item.``Cargo Storage Unit``
+    | 271 -> Item.``Humpback``
+    | 272 -> Item.``Vmp_ Humpback``
+    | 273 -> Item.``Lightpack 2_0``
+    | 274 -> Item.``Sml_ Battery``
+    | 275 -> Item.``Med_ Battery``
+    | 276 -> Item.``Lrg_ Battery``
+    | 277 -> Item.``Hcp_ Battery``
+    | 278 -> Item.``Com_ Battery``
+    | 279 -> Item.``Energy Well``
+    | 280 -> Item.``Imp_ Energy Well``
+    | 281 -> Item.``Adv_ Energy Well``
+    | 282 -> Item.``Exp_ Energy Well``
+    | 283 -> Item.``Zio_ Biocell``
+    | 284 -> Item.``Asb_ Biocell Array``
+    | 285 -> Item.``Zio_ Biocell Array``
+    | 286 -> Item.``Superbattery``
+    | 287 -> Item.``Sml_ Matter Pod``
+    | 288 -> Item.``Med_ Matter Pod``
+    | 289 -> Item.``Lrg_ Matter Pod``
+    | 290 -> Item.``Hcp_ Matter Pod``
+    | 291 -> Item.``Com_ Matter Pod``
+    | 292 -> Item.``Matter Compressor``
+    | 293 -> Item.``Imp_ Matter Compressor``
+    | 294 -> Item.``Adv_ Matter Compressor``
+    | 295 -> Item.``Exp_ Matter Compressor``
+    | 296 -> Item.``YI-UF0's Bottomless Matter Pit``
+    | 297 -> Item.``Weight Redist_ System``
+    | 298 -> Item.``Adv_ Weight Redist_ System``
+    | 299 -> Item.``Gravity Neutralizer``
+    | 300 -> Item.``Adv_ Gravity Neutralizer``
+    | 301 -> Item.``Quantum Shading Machine``
+    | 302 -> Item.``Asb_ Suspension Frame``
+    | 303 -> Item.``Adv_ Quantum Shading Machine``
+    | 304 -> Item.``Rocket Booster``
+    | 305 -> Item.``Asb_ Metafiber Network``
+    | 306 -> Item.``Zio_ Metafield Generator``
+    | 307 -> Item.``ST Field Compressor``
+    | 308 -> Item.``Siege Articulator``
+    | 309 -> Item.``Structural Scanner``
+    | 310 -> Item.``Deep Structural Scanner``
+    | 311 -> Item.``Trap Scanner``
+    | 312 -> Item.``Imp_ Trap Scanner``
+    | 313 -> Item.``Mak_ Trap Scanner``
+    | 314 -> Item.``Adv_ Trap Scanner``
+    | 315 -> Item.``Machine Analyzer``
+    | 316 -> Item.``Triangulator``
+    | 317 -> Item.``Visual Processing Unit``
+    | 318 -> Item.``Sub_ Optics``
+    | 319 -> Item.``Adv_ Visual Processing Unit``
+    | 320 -> Item.``Enh_ Optical Array``
+    | 321 -> Item.``Exp_ Optical Array``
+    | 322 -> Item.``Spectral Analyzer``
+    | 323 -> Item.``Sensor Array``
+    | 324 -> Item.``Imp_ Sensor Array``
+    | 325 -> Item.``Adv_ Sensor Array``
+    | 326 -> Item.``Lrn_ Sensor Array``
+    | 327 -> Item.``Mak_ Sensor Array``
+    | 328 -> Item.``Exp_ Sensor Array``
+    | 329 -> Item.``Signal Interpreter``
+    | 330 -> Item.``Imp_ Signal Interpreter``
+    | 331 -> Item.``Adv_ Signal Interpreter``
+    | 332 -> Item.``Exp_ Signal Interpreter``
+    | 333 -> Item.``Active Sensor Suite``
+    | 334 -> Item.``Terrain Scanner``
+    | 335 -> Item.``Imp_ Terrain Scanner``
+    | 336 -> Item.``Adv_ Terrain Scanner``
+    | 337 -> Item.``Mak_ Terrain Scanner``
+    | 338 -> Item.``Lrn_ Terrain Scanner``
+    | 339 -> Item.``Exp_ Terrain Scanner``
+    | 340 -> Item.``Surveybot 24 Scanner``
+    | 341 -> Item.``Terrain Scan Processor``
+    | 342 -> Item.``Imp_ Terrain Scan Processor``
+    | 343 -> Item.``Mak_ Terrain Scan Processor``
+    | 344 -> Item.``Adv_ Terrain Scan Processor``
+    | 345 -> Item.``Exp_ Terrain Scan Processor``
+    | 346 -> Item.``Surveybot 17 Chip``
+    | 347 -> Item.``Surveybot 24 Chip``
+    | 348 -> Item.``Seismic Detector``
+    | 349 -> Item.``Transport Network Coupler``
+    | 350 -> Item.``Modified TNC``
+    | 351 -> Item.``Encrypted Comm Array``
+    | 352 -> Item.``0b10 Decoder Chip _Generic_``
+    | 353 -> Item.``0b10 Decoder Chip _Looter_``
+    | 354 -> Item.``0b10 Decoder Chip _Scout_``
+    | 355 -> Item.``0b10 Decoder Chip _Skirmisher_``
+    | 356 -> Item.``0b10 Alert Chip``
+    | 357 -> Item.``Salvage Targeting Computer``
+    | 358 -> Item.``Imp_ Salvage Targeting Computer``
+    | 359 -> Item.``Mak_ Salvage Targeting Computer``
+    | 360 -> Item.``Adv_ Salvage Targeting Computer``
+    | 361 -> Item.``Asb_ Combat Suite``
+    | 362 -> Item.``Targeting Computer``
+    | 363 -> Item.``Imp_ Targeting Computer``
+    | 364 -> Item.``Mak_ Targeting Computer``
+    | 365 -> Item.``Adv_ Targeting Computer``
+    | 366 -> Item.``Exp_ Targeting Computer``
+    | 367 -> Item.``Multitargeting Array``
+    | 368 -> Item.``Tactical Coordination Suite``
+    | 369 -> Item.``Melee Analysis Suite``
+    | 370 -> Item.``Imp_ Melee Analysis Suite``
+    | 371 -> Item.``Adv_ Melee Analysis Suite``
+    | 372 -> Item.``Exp_ Melee Analysis Suite``
+    | 373 -> Item.``Launcher Guidance Computer``
+    | 374 -> Item.``Imp_ Launcher Guidance Computer``
+    | 375 -> Item.``Adv_ Launcher Guidance Computer``
+    | 376 -> Item.``Weapon Mount``
+    | 377 -> Item.``Target Analyzer``
+    | 378 -> Item.``Imp_ Target Analyzer``
+    | 379 -> Item.``Adv_ Target Analyzer``
+    | 380 -> Item.``Exp_ Target Analyzer``
+    | 381 -> Item.``Core Analyzer``
+    | 382 -> Item.``Exp_ Core Analyzer``
+    | 383 -> Item.``Armor Integrity Analyzer``
+    | 384 -> Item.``Imp_ Armor Integrity Analyzer``
+    | 385 -> Item.``Exp_ Armor Integrity Analyzer``
+    | 386 -> Item.``Recoil Stabilizer``
+    | 387 -> Item.``Recoil Nullifier``
+    | 388 -> Item.``Matter Filter``
+    | 389 -> Item.``Prc_ Matter Filter``
+    | 390 -> Item.``Energy Filter``
+    | 391 -> Item.``Prc_ Energy Filter``
+    | 392 -> Item.``Particle Charger``
+    | 393 -> Item.``Imp_ Particle Charger``
+    | 394 -> Item.``Adv_ Particle Charger``
+    | 395 -> Item.``Particle Accelerator``
+    | 396 -> Item.``Imp_ Particle Accelerator``
+    | 397 -> Item.``Adv_ Particle Accelerator``
+    | 398 -> Item.``Kinecellerator``
+    | 399 -> Item.``Imp_ Kinecellerator``
+    | 400 -> Item.``Adv_ Kinecellerator``
+    | 401 -> Item.``Expert System``
+    | 402 -> Item.``Heavy Servo Lattice``
+    | 403 -> Item.``VL-GR5's Timing Chip``
+    | 404 -> Item.``Launcher Loader``
+    | 405 -> Item.``Quantum Capacitor``
+    | 406 -> Item.``Weapon Cycler``
+    | 407 -> Item.``Imp_ Weapon Cycler``
+    | 408 -> Item.``Adv_ Weapon Cycler``
+    | 409 -> Item.``Exp_ Weapon Cycler``
+    | 410 -> Item.``Microactuators``
+    | 411 -> Item.``Nanoactuators``
+    | 412 -> Item.``Femtoactuators``
+    | 413 -> Item.``Actuator Array``
+    | 414 -> Item.``Imp_ Actuator Array``
+    | 415 -> Item.``Adv_ Actuator Array``
+    | 416 -> Item.``Exp_ Actuator Array``
+    | 417 -> Item.``Force Booster``
+    | 418 -> Item.``Imp_ Force Booster``
+    | 419 -> Item.``Adv_ Force Booster``
+    | 420 -> Item.``Stasis Canceller``
+    | 421 -> Item.``Transmission Jammer``
+    | 422 -> Item.``Mak_ Transmission Jammer``
+    | 423 -> Item.``Imp_ Transmission Jammer``
+    | 424 -> Item.``Adv_ Transmission Jammer``
+    | 425 -> Item.``Exp_ Transmission Jammer``
+    | 426 -> Item.``ECM Suite``
+    | 427 -> Item.``Mak_ ECM Suite``
+    | 428 -> Item.``Adv_ ECM Suite``
+    | 429 -> Item.``Exp_ ECM Suite``
+    | 430 -> Item.``Active Sensor Spoofer``
+    | 431 -> Item.``Reaction Control System``
+    | 432 -> Item.``Imp_ Reaction Control System``
+    | 433 -> Item.``Adv_ Reaction Control System``
+    | 434 -> Item.``Exp_ Reaction Control System``
+    | 435 -> Item.``Phase Shifter``
+    | 436 -> Item.``Imp_ Phase Shifter``
+    | 437 -> Item.``Adv_ Phase Shifter``
+    | 438 -> Item.``Exp_ Phase Shifter``
+    | 439 -> Item.``Cloaking Device``
+    | 440 -> Item.``Mak_ Cloaking Device``
+    | 441 -> Item.``Imp_ Cloaking Device``
+    | 442 -> Item.``Adv_ Cloaking Device``
+    | 443 -> Item.``Exp_ Cloaking Device``
+    | 444 -> Item.``Cloak of Protection``
+    | 445 -> Item.``5H-AD0's Cloak``
+    | 446 -> Item.``ID Mask``
+    | 447 -> Item.``Core Shielding``
+    | 448 -> Item.``Imp_ Core Shielding``
+    | 449 -> Item.``Mak_ Core Shielding``
+    | 450 -> Item.``Exp_ Core Shielding``
+    | 451 -> Item.``Power Shielding``
+    | 452 -> Item.``Imp_ Power Shielding``
+    | 453 -> Item.``Mak_ Power Shielding``
+    | 454 -> Item.``Exp_ Power Shielding``
+    | 455 -> Item.``Propulsion Shielding``
+    | 456 -> Item.``Imp_ Propulsion Shielding``
+    | 457 -> Item.``Mak_ Propulsion Shielding``
+    | 458 -> Item.``Exp_ Propulsion Shielding``
+    | 459 -> Item.``Utility Shielding``
+    | 460 -> Item.``Imp_ Utility Shielding``
+    | 461 -> Item.``Mak_ Utility Shielding``
+    | 462 -> Item.``Exp_ Utility Shielding``
+    | 463 -> Item.``Weapon Shielding``
+    | 464 -> Item.``Imp_ Weapon Shielding``
+    | 465 -> Item.``Mak_ Weapon Shielding``
+    | 466 -> Item.``Exp_ Weapon Shielding``
+    | 467 -> Item.``Zio_ Weapon Casing``
+    | 468 -> Item.``Backup Plating I``
+    | 469 -> Item.``Backup Plating III``
+    | 470 -> Item.``Backup Plating VII``
+    | 471 -> Item.``Lgt_ Armor Plating``
+    | 472 -> Item.``Med_ Armor Plating``
+    | 473 -> Item.``Hvy_ Armor Plating``
+    | 474 -> Item.``Zio_ Light Carapace``
+    | 475 -> Item.``Zio_ Heavy Carapace``
+    | 476 -> Item.``Hrd_ Light Armor Plating``
+    | 477 -> Item.``Hrd_ Medium Armor Plating``
+    | 478 -> Item.``Hrd_ Heavy Armor Plating``
+    | 479 -> Item.``Imp_ Light Armor Plating``
+    | 480 -> Item.``Imp_ Medium Armor Plating``
+    | 481 -> Item.``Imp_ Heavy Armor Plating``
+    | 482 -> Item.``Mak_ Light Armor Plating``
+    | 483 -> Item.``Mak_ Medium Armor Plating``
+    | 484 -> Item.``Mak_ Heavy Armor Plating``
+    | 485 -> Item.``Lyr_ Light Armor Plating``
+    | 486 -> Item.``Lyr_ Medium Armor Plating``
+    | 487 -> Item.``Lyr_ Heavy Armor Plating``
+    | 488 -> Item.``Gun Armor``
+    | 489 -> Item.``Centrium Light Armor Plating``
+    | 490 -> Item.``Centrium Medium Armor Plating``
+    | 491 -> Item.``Centrium Heavy Armor Plating``
+    | 492 -> Item.``Centrium Linked Plating``
+    | 493 -> Item.``Reactive Plating``
+    | 494 -> Item.``Med_ Reactive Plating``
+    | 495 -> Item.``Mak_ Kinetic Plating``
+    | 496 -> Item.``Hvy_ Reactive Plating``
+    | 497 -> Item.``Superdense Plating``
+    | 498 -> Item.``Reflective Plating``
+    | 499 -> Item.``Med_ Reflective Plating``
+    | 500 -> Item.``Mak_ Thermal Plating``
+    | 501 -> Item.``Hvy_ Reflective Plating``
+    | 502 -> Item.``8R-AWN's Armor_TH``
+    | 503 -> Item.``8R-AWN's Armor_EX``
+    | 504 -> Item.``Insulated Plating``
+    | 505 -> Item.``Med_ Insulated Plating``
+    | 506 -> Item.``Hvy_ Insulated Plating``
+    | 507 -> Item.``Damper Plating``
+    | 508 -> Item.``Zio_ Shade Carapace``
+    | 509 -> Item.``Zio_ Shade Armor``
+    | 510 -> Item.``Asb_ Alloy Armor``
+    | 511 -> Item.``Mak_ Ablative Armor``
+    | 512 -> Item.``Active Cooling Armor``
+    | 513 -> Item.``Scrap Shield``
+    | 514 -> Item.``Enh_ Scrap Shield``
+    | 515 -> Item.``Powered Armor``
+    | 516 -> Item.``Imp_ Powered Armor``
+    | 517 -> Item.``Adv_ Powered Armor``
+    | 518 -> Item.``Exp_ Powered Armor``
+    | 519 -> Item.``1C-UTU's Buckler``
+    | 520 -> Item.``Tower Shield``
+    | 521 -> Item.``Lgt_ Regenerative Plating``
+    | 522 -> Item.``Med_ Regenerative Plating``
+    | 523 -> Item.``Hvy_ Regenerative Plating``
+    | 524 -> Item.``SHELL Armor``
+    | 525 -> Item.``Phase Armor``
+    | 526 -> Item.``Vmp_ Brace Plating``
+    | 527 -> Item.``Graphene Brace``
+    | 528 -> Item.``Focal Shield``
+    | 529 -> Item.``Imp_ Focal Shield``
+    | 530 -> Item.``Adv_ Focal Shield``
+    | 531 -> Item.``Exp_ Focal Shield``
+    | 532 -> Item.``Thermal Shield``
+    | 533 -> Item.``Imp_ Thermal Shield``
+    | 534 -> Item.``Adv_ Thermal Shield``
+    | 535 -> Item.``Exp_ Thermal Shield``
+    | 536 -> Item.``Thermal Barrier``
+    | 537 -> Item.``Beam Splitter``
+    | 538 -> Item.``Thermal Defense Suite``
+    | 539 -> Item.``Imp_ Thermal Defense Suite``
+    | 540 -> Item.``Adv_ Thermal Defense Suite``
+    | 541 -> Item.``Exp_ Thermal Defense Suite``
+    | 542 -> Item.``Shock Absorption System``
+    | 543 -> Item.``Imp_ Shock Absorption System``
+    | 544 -> Item.``Exp_ Shock Absorption System``
+    | 545 -> Item.``EM Disruption Field``
+    | 546 -> Item.``Adv_ EM Disruption Field``
+    | 547 -> Item.``Exp_ EM Disruption Field``
+    | 548 -> Item.``ME-RLN's Chromatic Screen``
+    | 549 -> Item.``Hardlight Generator``
+    | 550 -> Item.``Imp_ Hardlight Generator``
+    | 551 -> Item.``Adv_ Hardlight Generator``
+    | 552 -> Item.``Exp_ Hardlight Generator``
+    | 553 -> Item.``Shield Generator``
+    | 554 -> Item.``Imp_ Shield Generator``
+    | 555 -> Item.``Adv_ Shield Generator``
+    | 556 -> Item.``Exp_ Shield Generator``
+    | 557 -> Item.``Force Field``
+    | 558 -> Item.``Imp_ Force Field``
+    | 559 -> Item.``Adv_ Force Field``
+    | 560 -> Item.``Exp_ Force Field``
+    | 561 -> Item.``7V-RTL's Ultimate Field``
+    | 562 -> Item.``Vortex Field Projector``
+    | 563 -> Item.``Remote Shield``
+    | 564 -> Item.``Imp_ Remote Shield``
+    | 565 -> Item.``Adv_ Remote Shield``
+    | 566 -> Item.``Remote Force Field``
+    | 567 -> Item.``Imp_ Remote Force Field``
+    | 568 -> Item.``Energy Mantle``
+    | 569 -> Item.``Imp_ Energy Mantle``
+    | 570 -> Item.``AEGIS Remote Shield``
+    | 571 -> Item.``Phase Redirector``
+    | 572 -> Item.``Field Manipulator``
+    | 573 -> Item.``Energy Deflector``
+    | 574 -> Item.``Point Defense System``
+    | 575 -> Item.``Point Defense Array``
+    | 576 -> Item.``Antimissile System``
+    | 577 -> Item.``EX Chip 1``
+    | 578 -> Item.``Hacking Suite``
+    | 579 -> Item.``Mak_ Hacking Suite``
+    | 580 -> Item.``Imp_ Hacking Suite``
+    | 581 -> Item.``Adv_ Hacking Suite``
+    | 582 -> Item.``Exp_ Hacking Suite``
+    | 583 -> Item.``System Mapper``
+    | 584 -> Item.``Deep Network Scanner``
+    | 585 -> Item.``Architect God Chip A``
+    | 586 -> Item.``EX Chip 2``
+    | 587 -> Item.``System Shield``
+    | 588 -> Item.``Mak_ System Shield``
+    | 589 -> Item.``Imp_ System Shield``
+    | 590 -> Item.``Adv_ System Shield``
+    | 591 -> Item.``Exp_ System Shield``
+    | 592 -> Item.``Ghost Barrier``
+    | 593 -> Item.``Quantum Router``
+    | 594 -> Item.``Architect God Chip D``
+    | 595 -> Item.``Authchip _R_NC_``
+    | 596 -> Item.``Authchip _R_Combat_``
+    | 597 -> Item.``Authchip _Power_``
+    | 598 -> Item.``Authchip _Propulsion_``
+    | 599 -> Item.``Authchip _Device_``
+    | 600 -> Item.``Authchip _Storage_``
+    | 601 -> Item.``Authchip _Processor_``
+    | 602 -> Item.``Authchip _Armor_``
+    | 603 -> Item.``Authchip _Weapon_``
+    | 604 -> Item.``Relay Coupler _NC_``
+    | 605 -> Item.``Relay Coupler _C_``
+    | 606 -> Item.``Relay Coupler _Swarmer_``
+    | 607 -> Item.``Relay Coupler _Cutter_``
+    | 608 -> Item.``Relay Coupler _Grunt_``
+    | 609 -> Item.``Relay Coupler _Brawler_``
+    | 610 -> Item.``Relay Coupler _Duelist_``
+    | 611 -> Item.``Relay Coupler _Sentry_``
+    | 612 -> Item.``Relay Coupler _Demolisher_``
+    | 613 -> Item.``Relay Coupler _Specialist_``
+    | 614 -> Item.``Relay Coupler _Hunter_``
+    | 615 -> Item.``Relay Coupler _Heavy_``
+    | 616 -> Item.``Relay Coupler _Behemoth_``
+    | 617 -> Item.``Relay Coupler _Programmer_``
+    | 618 -> Item.``Relay Coupler _Proto_``
+    | 619 -> Item.``Skeleton Box``
+    | 620 -> Item.``01-MTF's Autohacker``
+    | 621 -> Item.``Component Analysis Suite``
+    | 622 -> Item.``Imp_ Component Analysis Suite``
+    | 623 -> Item.``Adv_ Component Analysis Suite``
+    | 624 -> Item.``A0-MCA's Component Scanner``
+    | 625 -> Item.``Tech Extrapolator``
+    | 626 -> Item.``Dynamic Insulation System``
+    | 627 -> Item.``Imp_ Dynamic Insulation System``
+    | 628 -> Item.``Adv_ Dynamic Insulation System``
+    | 629 -> Item.``System Guard``
+    | 630 -> Item.``Imp_ System Guard``
+    | 631 -> Item.``Exp_ System Guard``
+    | 632 -> Item.``Corruption Screen``
+    | 633 -> Item.``Imp_ Corruption Screen``
+    | 634 -> Item.``Adv_ Corruption Screen``
+    | 635 -> Item.``System Restoration Module``
+    | 636 -> Item.``Mak_ System Restoration Module``
+    | 637 -> Item.``Imp_ System Restoration Module``
+    | 638 -> Item.``Adv_ System Restoration Module``
+    | 639 -> Item.``System Purifier``
+    | 640 -> Item.``Exp_ System Purifier``
+    | 641 -> Item.``Tractor Beam``
+    | 642 -> Item.``Hpw_ Tractor Beam``
+    | 643 -> Item.``Lrn_ Tractor Beam``
+    | 644 -> Item.``Mobile Refinery Mk_ CCLXVII``
+    | 645 -> Item.``Trap Extractor``
+    | 646 -> Item.``Imp_ Trap Extractor``
+    | 647 -> Item.``Adv_ Trap Extractor``
+    | 648 -> Item.``Trap Reconfigurator``
+    | 649 -> Item.``Recalibrator``
+    | 650 -> Item.``Imp_ Recalibrator``
+    | 651 -> Item.``Adv_ Recalibrator``
+    | 652 -> Item.``Exp_ Recalibrator``
+    | 653 -> Item.``Field Recycling Unit``
+    | 654 -> Item.``Imp_ Field Recycling Unit``
+    | 655 -> Item.``Adv_ Field Recycling Unit``
+    | 656 -> Item.``Exp_ Field Recycling Unit``
+    | 657 -> Item.``Drone Bay``
+    | 658 -> Item.``Z-Drone Bay``
+    | 659 -> Item.``Mni_ Drone Bay``
+    | 660 -> Item.``Mapping Drone Bay``
+    | 661 -> Item.``Adv_ Drone Bay``
+    | 662 -> Item.``Bomb Drone Bay``
+    | 663 -> Item.``Thief Drone Bay``
+    | 664 -> Item.``Decoy Drone Bay``
+    | 665 -> Item.``Splice Drone Bay``
+    | 666 -> Item.``Combat Drone Bay``
+    | 667 -> Item.``Assault Drone Bay``
+    | 668 -> Item.``Stealth Drone Bay``
+    | 669 -> Item.``Swarm Drone Bay``
+    | 670 -> Item.``Supersonic Drone Bay``
+    | 671 -> Item.``Sensor Drone Bay``
+    | 672 -> Item.``Hacking Drone Bay``
+    | 673 -> Item.``Minesniffer Drone Bay``
+    | 674 -> Item.``Army-in-a-Box``
+    | 675 -> Item.``Master Drone Bay``
+    | 676 -> Item.``Wardrone Bay``
+    | 677 -> Item.``Cobbler Unit``
+    | 678 -> Item.``Bomb Factory No_ 2``
+    | 679 -> Item.``Mobile Assembly Unit``
+    | 680 -> Item.``Heart of Steel``
+    | 681 -> Item.``Scrapoid Pod``
+    | 682 -> Item.``GOLEM Unit``
+    | 683 -> Item.``PSU Rigger``
+    | 684 -> Item.``Machine Rigger``
+    | 685 -> Item.``Phasing AFG``
+    | 686 -> Item.``AS-neutralizer No_ 17b``
+    | 687 -> Item.``V3-11A's Pendant``
+    | 688 -> Item.``Amulet of Y3-NDR``
+    | 689 -> Item.``Chronowheel``
+    | 690 -> Item.``Power Bank``
+    | 691 -> Item.``Rainbow Chip``
+    | 692 -> Item.``VL-GR5's Exoskeleton _Deathgrip_``
+    | 693 -> Item.``Dimensional Node Initializer``
+    | 694 -> Item.``Transdimensional Reconstructor``
+    | 695 -> Item.``Hpw_ Transdimensional Reconstructor``
+    | 696 -> Item.``Supercharged TR``
+    | 697 -> Item.``Core Expander``
+    | 698 -> Item.``Core Regenerator``
+    | 699 -> Item.``Integrity Redistributor``
+    | 700 -> Item.``Integrated Dissipator``
+    | 701 -> Item.``Supercharged Integrated Dissipator``
+    | 702 -> Item.``Integrated Thermoelectric Network``
+    | 703 -> Item.``Integrated Reactor``
+    | 704 -> Item.``Supercharged Integrated Reactor``
+    | 705 -> Item.``Integrated Mediator``
+    | 706 -> Item.``Core Membrane``
+    | 707 -> Item.``Navigation Efficiency Matrix``
+    | 708 -> Item.``Core Reset Matrix``
+    | 709 -> Item.``Subatomic Replicator``
+    | 710 -> Item.``Terrabomb``
+    | 711 -> Item.``Core Physics Calibrator``
+    | 712 -> Item.``Personal Teleporter v0_10``
+    | 713 -> Item.``Telecube``
+    | 714 -> Item.``Spacefold Activator``
+    | 715 -> Item.``Microwarp Drive``
+    | 716 -> Item.``LC Capacitor``
+    | 717 -> Item.``LRC Armor``
+    | 718 -> Item.``LRC Storage``
+    | 719 -> Item.``LRC Energy Well``
+    | 720 -> Item.``LRC Matter Compressor``
+    | 721 -> Item.``LRC Inertial Stabilizer``
+    | 722 -> Item.``LRC Insulator``
+    | 723 -> Item.``EM Pulse Gun``
+    | 724 -> Item.``Hvy_ EM Pulse Gun``
+    | 725 -> Item.``EM Shotgun``
+    | 726 -> Item.``Imp_ EM Shotgun``
+    | 727 -> Item.``Shock Rifle``
+    | 728 -> Item.``Riot Gun``
+    | 729 -> Item.``Hvy_ EM Shotgun``
+    | 730 -> Item.``Lightning Gun``
+    | 731 -> Item.``Hvy_ Riot Gun``
+    | 732 -> Item.``Arc Projector``
+    | 733 -> Item.``Prc_ Shock Rifle``
+    | 734 -> Item.``Hpw_ Shock Rifle``
+    | 735 -> Item.``Arc Thrower``
+    | 736 -> Item.``Imp_ Lightning Gun``
+    | 737 -> Item.``Tesla Rifle``
+    | 738 -> Item.``Imp_ Arc Projector``
+    | 739 -> Item.``Hvy_ Tesla Rifle``
+    | 740 -> Item.``Hyp_ EM Gauss Rifle``
+    | 741 -> Item.``Imp_ Arc Thrower``
+    | 742 -> Item.``01-MTF's Shockpuncher``
+    | 743 -> Item.``Gamma Rifle``
+    | 744 -> Item.``Tachyon Dispersion Ray``
+    | 745 -> Item.``Immobilizer``
+    | 746 -> Item.``Electrostorm Shotgun``
+    | 747 -> Item.``Modified EM Gauss Rifle``
+    | 748 -> Item.``AWS_EX-DEC``
+    | 749 -> Item.``Enh_ Gamma Rifle``
+    | 750 -> Item.``Med_ Laser``
+    | 751 -> Item.``Sml_ Laser``
+    | 752 -> Item.``Salvaging Laser``
+    | 753 -> Item.``Backup Laser I``
+    | 754 -> Item.``Beam Rifle``
+    | 755 -> Item.``Particle Gun``
+    | 756 -> Item.``Spread Laser``
+    | 757 -> Item.``Imp_ Medium Laser``
+    | 758 -> Item.``Sub_ Laser``
+    | 759 -> Item.``Autobeam``
+    | 760 -> Item.``Field Laser``
+    | 761 -> Item.``Pulse Rifle``
+    | 762 -> Item.``Ovr_ Pulse Rifle``
+    | 763 -> Item.``Backup Laser III``
+    | 764 -> Item.``Hvy_ Particle Gun``
+    | 765 -> Item.``Prc_ Beam Rifle``
+    | 766 -> Item.``Adv_ Beam Rifle``
+    | 767 -> Item.``Hvy_ Laser``
+    | 768 -> Item.``Gatling Laser``
+    | 769 -> Item.``Cld_ Pulse Rifle``
+    | 770 -> Item.``Hpw_ Field Laser``
+    | 771 -> Item.``Imp_ Spread Laser``
+    | 772 -> Item.``Mak_ Laser``
+    | 773 -> Item.``Plasma Rifle``
+    | 774 -> Item.``Thermic Laser``
+    | 775 -> Item.``Beamcaster``
+    | 776 -> Item.``Force Rifle``
+    | 777 -> Item.``Imp_ Heavy Laser``
+    | 778 -> Item.``Storm Laser``
+    | 779 -> Item.``Zio_ Laser-S``
+    | 780 -> Item.``Wave Gun``
+    | 781 -> Item.``Variable Charge Gun``
+    | 782 -> Item.``Hvy_ Beamcaster``
+    | 783 -> Item.``Ovr_ Beamcaster``
+    | 784 -> Item.``Cld_ Plasma Rifle``
+    | 785 -> Item.``Enh_ Force Rifle``
+    | 786 -> Item.``Hvy_ Gatling Laser``
+    | 787 -> Item.``Zio_ Phaser-S``
+    | 788 -> Item.``Phase Gun``
+    | 789 -> Item.``Dispersion Rifle``
+    | 790 -> Item.``Backup Laser VII``
+    | 791 -> Item.``Plasma Storm``
+    | 792 -> Item.``Adv_ Plasma Rifle``
+    | 793 -> Item.``Hvy_ Wave Gun``
+    | 794 -> Item.``Adv_ Variable Charge Gun``
+    | 795 -> Item.``Cld_ Phase Gun``
+    | 796 -> Item.``Lrn_ Gatling Laser``
+    | 797 -> Item.``Warp Gun``
+    | 798 -> Item.``Vortex Rifle``
+    | 799 -> Item.``Zio_ Laser-M``
+    | 800 -> Item.``AWS_Thermal``
+    | 801 -> Item.``PD Laser``
+    | 802 -> Item.``KN-7UR's Autopenetrator``
+    | 803 -> Item.``Quantum Rifle``
+    | 804 -> Item.``Ovr_ Quantum Rifle``
+    | 805 -> Item.``Prc_ Phase Gun``
+    | 806 -> Item.``Hvy_ Dispersion Rifle``
+    | 807 -> Item.``Vortex Shotgun``
+    | 808 -> Item.``Vortex Rail``
+    | 809 -> Item.``Zio_ Phaser-M``
+    | 810 -> Item.``Enh_ Quantum Rifle``
+    | 811 -> Item.``Zio_ Laser-H``
+    | 812 -> Item.``Hvy_ Quantum Rifle``
+    | 813 -> Item.``Zio_ Phaser-H``
+    | 814 -> Item.``Gatling Beam``
+    | 815 -> Item.``Sigix Sheargun``
+    | 816 -> Item.``Modified Sigix Sheargun``
+    | 817 -> Item.``Lgt_ EM Pulse Cannon``
+    | 818 -> Item.``EM Pulse Cannon``
+    | 819 -> Item.``Imp_ EM Pulse Cannon``
+    | 820 -> Item.``Proton Cannon``
+    | 821 -> Item.``Lrn_ Proton Cannon``
+    | 822 -> Item.``Disruptor Cannon``
+    | 823 -> Item.``Hvy_ Proton Cannon``
+    | 824 -> Item.``HERF Cannon``
+    | 825 -> Item.``Hvy_ Disruptor Cannon``
+    | 826 -> Item.``Cld_ Proton Cannon``
+    | 827 -> Item.``Proton Burst Cannon``
+    | 828 -> Item.``Com_ HERF Cannon``
+    | 829 -> Item.``Latent Energy Streamer``
+    | 830 -> Item.``NK-0LA's Tesla Doomcannon``
+    | 831 -> Item.``EMDS``
+    | 832 -> Item.``Hpw_ Disruptor Cannon``
+    | 833 -> Item.``Beam Cannon``
+    | 834 -> Item.``Particle Cannon``
+    | 835 -> Item.``Adv_ Beam Cannon``
+    | 836 -> Item.``Sub_ Beam Cannon``
+    | 837 -> Item.``Hvy_ Particle Cannon``
+    | 838 -> Item.``Ion Cannon``
+    | 839 -> Item.``Plasma Cannon``
+    | 840 -> Item.``Hvy_ Ion Cannon``
+    | 841 -> Item.``Cld_ Particle Cannon``
+    | 842 -> Item.``Phase Cannon``
+    | 843 -> Item.``Hvy_ Plasma Cannon``
+    | 844 -> Item.``Cld_ Plasma Cannon``
+    | 845 -> Item.``Com_ Ion Cannon``
+    | 846 -> Item.``Ion Burst Cannon``
+    | 847 -> Item.``Adv_ Plasma Cannon``
+    | 848 -> Item.``Hvy_ Phase Cannon``
+    | 849 -> Item.``Neutron Cannon``
+    | 850 -> Item.``Powered Cannon``
+    | 851 -> Item.``Matter Neutralizer``
+    | 852 -> Item.``Hvy_ Neutron Cannon``
+    | 853 -> Item.``Lrn_ Phase Cannon``
+    | 854 -> Item.``Cld_ Phase Cannon``
+    | 855 -> Item.``Vortex Cannon``
+    | 856 -> Item.``Gui_ Plasma Cannon``
+    | 857 -> Item.``Nova Cannon``
+    | 858 -> Item.``Imp_ Matter Neutralizer``
+    | 859 -> Item.``Exp_ Thermic Cannon``
+    | 860 -> Item.``Vortex Driver``
+    | 861 -> Item.``Zio_ Alpha Cannon``
+    | 862 -> Item.``Asb_ Focal Cannon``
+    | 863 -> Item.``Enh_ Nova Cannon``
+    | 864 -> Item.``Firepult``
+    | 865 -> Item.``YOLO Cannon``
+    | 866 -> Item.``Potential Cannon``
+    | 867 -> Item.``Warp Cannon``
+    | 868 -> Item.``Cld_ Nova Cannon``
+    | 869 -> Item.``Null Cannon``
+    | 870 -> Item.``Hyp_ Alpha Cannon``
+    | 871 -> Item.``Zio_ Alpha Cannon Mk_ II``
+    | 872 -> Item.``Imp_ Potential Cannon``
+    | 873 -> Item.``Multinova Projection Cannon``
+    | 874 -> Item.``Disintegrator``
+    | 875 -> Item.``Core Cannon``
+    | 876 -> Item.``Sigix Shearcannon``
+    | 877 -> Item.``Drained L-Cannon``
+    | 878 -> Item.``L-Cannon``
+    | 879 -> Item.``BFG-9k Vortex Edition``
+    | 880 -> Item.``Assault Rifle``
+    | 881 -> Item.``Asb_ Rifle``
+    | 882 -> Item.``Lgt_ Assault Rifle``
+    | 883 -> Item.``Bolt Gun``
+    | 884 -> Item.``Hvy_ Assault Rifle``
+    | 885 -> Item.``Autogun``
+    | 886 -> Item.``Shotgun``
+    | 887 -> Item.``Battle Rifle``
+    | 888 -> Item.``Asb_ Heavy Rifle``
+    | 889 -> Item.``Sub_ Machine Gun``
+    | 890 -> Item.``Imp_ Assault Rifle``
+    | 891 -> Item.``Minigun``
+    | 892 -> Item.``Hpw_ Shotgun``
+    | 893 -> Item.``Asb_ Shotgun``
+    | 894 -> Item.``Barrage Gun``
+    | 895 -> Item.``Ovr_ Barrage Gun``
+    | 896 -> Item.``Enh_ Autogun``
+    | 897 -> Item.``Gauss Rifle``
+    | 898 -> Item.``Asb_ Gauss Rifle``
+    | 899 -> Item.``Flak Gun``
+    | 900 -> Item.``Prc_ Assault Rifle``
+    | 901 -> Item.``Hvy_ Battle Rifle``
+    | 902 -> Item.``Mak_ Shrapnel Gun``
+    | 903 -> Item.``Coil Gun``
+    | 904 -> Item.``Hyp_ Gauss Rifle``
+    | 905 -> Item.``Hvy_ Machine Gun``
+    | 906 -> Item.``Imp_ Heavy Machine Gun``
+    | 907 -> Item.``Com_ Gauss Rifle``
+    | 908 -> Item.``XL Autogun Subcomponent``
+    | 909 -> Item.``KE Penetrator``
+    | 910 -> Item.``Hyp_ Coil Gun``
+    | 911 -> Item.``Ovr_ Coil Gun``
+    | 912 -> Item.``Imp_ KE Penetrator``
+    | 913 -> Item.``Enh_ Coil Gun``
+    | 914 -> Item.``Com_ Coil Gun``
+    | 915 -> Item.``Railgun``
+    | 916 -> Item.``Adv_ KE Penetrator``
+    | 917 -> Item.``Linked Autogun``
+    | 918 -> Item.``AWS_Gauss``
+    | 919 -> Item.``Hyp_ Railgun``
+    | 920 -> Item.``Ovr_ Railgun``
+    | 921 -> Item.``Helical Railgun``
+    | 922 -> Item.``Com_ Railgun``
+    | 923 -> Item.``XL Autogun Array``
+    | 924 -> Item.``12-ASH's Boomstick``
+    | 925 -> Item.``8R-AWN's Boregun``
+    | 926 -> Item.``Multirail``
+    | 927 -> Item.``Hyp_ Multirail``
+    | 928 -> Item.``5H-AD0's Sniper Rifle``
+    | 929 -> Item.``A3's Sniper Rifle``
+    | 930 -> Item.``Lgt_ Cannon``
+    | 931 -> Item.``Imp_ Light Cannon``
+    | 932 -> Item.``Battle Cannon``
+    | 933 -> Item.``Assault Cannon``
+    | 934 -> Item.``Hvy_ Assault Cannon``
+    | 935 -> Item.``Flak Cannon``
+    | 936 -> Item.``Adv_ Assault Cannon``
+    | 937 -> Item.``Gauss Cannon``
+    | 938 -> Item.``Slug Cannon``
+    | 939 -> Item.``Mni_ Assault Cannon``
+    | 940 -> Item.``Siege Cannon Replica``
+    | 941 -> Item.``Magnetic Acceleration Cannon``
+    | 942 -> Item.``Hvy_ Flak Cannon``
+    | 943 -> Item.``Bore Cannon``
+    | 944 -> Item.``Antimatter Cannon``
+    | 945 -> Item.``Siege Cannon``
+    | 946 -> Item.``Mass Driver``
+    | 947 -> Item.``Hvy_ Mass Driver``
+    | 948 -> Item.``Enh_ Gauss Cannon``
+    | 949 -> Item.``Hyp_ Gauss Cannon``
+    | 950 -> Item.``Tri-rail Accelerator``
+    | 951 -> Item.``Hardcell Cannon``
+    | 952 -> Item.``Hvy_ Gauss Cannon``
+    | 953 -> Item.``Hyp_ Mass Driver``
+    | 954 -> Item.``Hvy_ Autocannon``
+    | 955 -> Item.``DAS Cannon``
+    | 956 -> Item.``Lgt_ Antimatter Cannon``
+    | 957 -> Item.``Linear Accelerator``
+    | 958 -> Item.``Hvy_ Linear Accelerator``
+    | 959 -> Item.``Com_ Mass Driver``
+    | 960 -> Item.``Hvy_ Hardcell Cannon``
+    | 961 -> Item.``Com_ Linear Accelerator``
+    | 962 -> Item.``Hyp_ Linear Accelerator``
+    | 963 -> Item.``Hcl_ Linear Accelerator``
+    | 964 -> Item.``Graviton Cannon``
+    | 965 -> Item.``Blast Cannon``
+    | 966 -> Item.``P1-3CE's Gatling Flakker``
+    | 967 -> Item.``AWS_Autocannon``
+    | 968 -> Item.``Perforator``
+    | 969 -> Item.``Omega Cannon``
+    | 970 -> Item.``PL-3XN's Obliterator``
+    | 971 -> Item.``EMP Blaster``
+    | 972 -> Item.``Shock Bomb Launcher``
+    | 973 -> Item.``Adv_ EMP Blaster``
+    | 974 -> Item.``Proton Missile Launcher``
+    | 975 -> Item.``Imp_ Proton Missile Launcher``
+    | 976 -> Item.``Gui_ EMP Blaster``
+    | 977 -> Item.``Hvy_ Shock Bomb Launcher``
+    | 978 -> Item.``Tesla Bomb Launcher``
+    | 979 -> Item.``Hvy_ Proton Missile Launcher``
+    | 980 -> Item.``Com_ Tesla Bomb Launcher``
+    | 981 -> Item.``Gamma Bomb Array``
+    | 982 -> Item.``Enh_ Gamma Bomb Array``
+    | 983 -> Item.``Grenade Launcher``
+    | 984 -> Item.``Rocket Launcher``
+    | 985 -> Item.``Mni_ Grenade Launcher``
+    | 986 -> Item.``Sub_ Shrapnel Launcher``
+    | 987 -> Item.``Imp_ Grenade Launcher``
+    | 988 -> Item.``Missile Launcher``
+    | 989 -> Item.``Concussive RPG``
+    | 990 -> Item.``YI-UF0's Doublenader``
+    | 991 -> Item.``Hvy_ Rocket Launcher``
+    | 992 -> Item.``Hvy_ Missile Launcher``
+    | 993 -> Item.``Gui_ Missile Launcher``
+    | 994 -> Item.``Prc_ Grenade Launcher``
+    | 995 -> Item.``Rocket Array``
+    | 996 -> Item.``Lrn_ Missile Launcher``
+    | 997 -> Item.``Imp_ Concussive RPG``
+    | 998 -> Item.``Prc_ Rocket Launcher``
+    | 999 -> Item.``Scatter Rocket Array``
+    | 1000 -> Item.``Smartbomb Launcher``
+    | 1001 -> Item.``Mni_ Smartbomb Launcher``
+    | 1002 -> Item.``Tiamat Missile Launcher``
+    | 1003 -> Item.``Thermoblaster``
+    | 1004 -> Item.``Micro-nuke Launcher``
+    | 1005 -> Item.``Adv_ Concussive RPG``
+    | 1006 -> Item.``Neutron Missile Launcher``
+    | 1007 -> Item.``Fusion Bomb Launcher``
+    | 1008 -> Item.``Hellfire Missile Launcher``
+    | 1009 -> Item.``Adv_ Micro-nuke Launcher``
+    | 1010 -> Item.``Tactical Quantum Warhead``
+    | 1011 -> Item.``Vortex Catalyst Activator``
+    | 1012 -> Item.``Chain Missile Launcher``
+    | 1013 -> Item.``Ragnarok Missile Launcher``
+    | 1014 -> Item.``Point Singularity Launcher``
+    | 1015 -> Item.``Gui_ Micro-nuke Launcher``
+    | 1016 -> Item.``99-TNT's Nukerbomber``
+    | 1017 -> Item.``Exp_ Neutron Missile Launcher``
+    | 1018 -> Item.``Z-bomb Delivery System``
+    | 1019 -> Item.``Sigix Terminator``
+    | 1020 -> Item.``Supercharged Sigix Terminator``
+    | 1021 -> Item.``Containment Facilitator``
+    | 1022 -> Item.``Detonator``
+    | 1023 -> Item.``Dirty Datajack``
+    | 1024 -> Item.``Splice Injector``
+    | 1025 -> Item.``Master Link``
+    | 1026 -> Item.``Datajack``
+    | 1027 -> Item.``Imp_ Datajack``
+    | 1028 -> Item.``Adv_ Datajack``
+    | 1029 -> Item.``Remote Datajack``
+    | 1030 -> Item.``Imp_ Remote Datajack``
+    | 1031 -> Item.``Adv_ Remote Datajack``
+    | 1032 -> Item.``Exp_ Remote Datajack``
+    | 1033 -> Item.``Gui_ Remote Datajack``
+    | 1034 -> Item.``ME-RLN's Wand``
+    | 1035 -> Item.``System Spiker``
+    | 1036 -> Item.``Field Lobotomy Kit``
+    | 1037 -> Item.``Mining Laser``
+    | 1038 -> Item.``LU-1G1's Laser Shovel``
+    | 1039 -> Item.``Welding Torch``
+    | 1040 -> Item.``Plasma Cutter``
+    | 1041 -> Item.``Imp_ Plasma Cutter``
+    | 1042 -> Item.``Exp_ Plasma Cutter``
+    | 1043 -> Item.``CPS Tube``
+    | 1044 -> Item.``Multitool``
+    | 1045 -> Item.``Flamer``
+    | 1046 -> Item.``Asb_ F-torch``
+    | 1047 -> Item.``Enh_ Flamer``
+    | 1048 -> Item.``Plasma Flamer``
+    | 1049 -> Item.``Asb_ P-torch``
+    | 1050 -> Item.``RU-N14's Throwing Claymores``
+    | 1051 -> Item.``RU-N14's Throwing Claymores v3``
+    | 1052 -> Item.``Warlord Statue``
+    | 1053 -> Item.``Voltaic Drivehammer``
+    | 1054 -> Item.``AD-0RF's Magmablaster``
+    | 1055 -> Item.``IN-MT5's Pitchfork _Insurrection_``
+    | 1056 -> Item.``Shield Trident``
+    | 1057 -> Item.``Junk Cannon``
+    | 1058 -> Item.``Stasis Beam``
+    | 1059 -> Item.``Stasis Projector``
+    | 1060 -> Item.``Exp_ Stasis Projector``
+    | 1061 -> Item.``Molecular Deconstructor``
+    | 1062 -> Item.``SE_WE1``
+    | 1063 -> Item.``SE_WE2``
+    | 1064 -> Item.``SE_WE3``
+    | 1065 -> Item.``SE_WE4``
+    | 1066 -> Item.``SE_WE5``
+    | 1067 -> Item.``Hammer``
+    | 1068 -> Item.``Mace``
+    | 1069 -> Item.``Flail``
+    | 1070 -> Item.``Maul``
+    | 1071 -> Item.``Asb_ Maul``
+    | 1072 -> Item.``Hvy_ Hammer``
+    | 1073 -> Item.``Hvy_ Mace``
+    | 1074 -> Item.``Hvy_ Flail``
+    | 1075 -> Item.``Great Maul``
+    | 1076 -> Item.``Powered Hammer``
+    | 1077 -> Item.``Mak_ Hammer``
+    | 1078 -> Item.``Power Maul``
+    | 1079 -> Item.``Asb_ P-maul``
+    | 1080 -> Item.``Impact Mace``
+    | 1081 -> Item.``Shock Maul``
+    | 1082 -> Item.``Thunder Hammer``
+    | 1083 -> Item.``Compactor``
+    | 1084 -> Item.``Gravity Flail``
+    | 1085 -> Item.``CL-ANK's Mallet``
+    | 1086 -> Item.``Core Stripper``
+    | 1087 -> Item.``Mining Claw``
+    | 1088 -> Item.``EC_1``
+    | 1089 -> Item.``Katana``
+    | 1090 -> Item.``Asb_ Blade``
+    | 1091 -> Item.``Scythe``
+    | 1092 -> Item.``Axe``
+    | 1093 -> Item.``Blade Saw``
+    | 1094 -> Item.``EC_3``
+    | 1095 -> Item.``Chainsword``
+    | 1096 -> Item.``Ripper``
+    | 1097 -> Item.``Mak_ Axe``
+    | 1098 -> Item.``Mak_ Sword``
+    | 1099 -> Item.``Great Axe``
+    | 1100 -> Item.``Greatsword``
+    | 1101 -> Item.``Ripteeth``
+    | 1102 -> Item.``Power Sword``
+    | 1103 -> Item.``Asb_ P-sword``
+    | 1104 -> Item.``Falx``
+    | 1105 -> Item.``Carbide Saw``
+    | 1106 -> Item.``Segregator``
+    | 1107 -> Item.``Tearclaws``
+    | 1108 -> Item.``Companion Sword``
+    | 1109 -> Item.``EC_5``
+    | 1110 -> Item.``Phasing Sabre``
+    | 1111 -> Item.``Plasma Sword``
+    | 1112 -> Item.``Ionic Axe``
+    | 1113 -> Item.``Mni_ Tearclaws``
+    | 1114 -> Item.``Vmp_ Broadsword``
+    | 1115 -> Item.``Dual-blade Saw``
+    | 1116 -> Item.``Vibroblade``
+    | 1117 -> Item.``Molecular Scythe``
+    | 1118 -> Item.``Centrium Greatsword``
+    | 1119 -> Item.``Master Tearclaws``
+    | 1120 -> Item.``Longsword _1``
+    | 1121 -> Item.``EC_7``
+    | 1122 -> Item.``Nanosword``
+    | 1123 -> Item.``Particle Cleaver``
+    | 1124 -> Item.``Centrium Claws``
+    | 1125 -> Item.``1C-UTU's Sword _Lootmaker_``
+    | 1126 -> Item.``DM-GVY's Chainsaw``
+    | 1127 -> Item.``Vortex Shredder``
+    | 1128 -> Item.``EC_9``
+    | 1129 -> Item.``1C-UTU's Sword _Choppy_``
+    | 1130 -> Item.``Quantum Companion``
+    | 1131 -> Item.``Superquantum Companion``
+    | 1132 -> Item.``Quantum Blade``
+    | 1133 -> Item.``Sigix Broadsword``
+    | 1134 -> Item.``Spear``
+    | 1135 -> Item.``Mak_ Spear``
+    | 1136 -> Item.``CR-A16's Pointy Stick``
+    | 1137 -> Item.``Hvy_ Pick``
+    | 1138 -> Item.``Lance``
+    | 1139 -> Item.``Kinetic Spear``
+    | 1140 -> Item.``Force Lance``
+    | 1141 -> Item.``Plasma Lance``
+    | 1142 -> Item.``Enh_ Force Lance``
+    | 1143 -> Item.``Vortex Lance``
+    | 1144 -> Item.``CR-A16's Behemoth Slayer``
+    | 1145 -> Item.``Thermal Lance``
+    | 1146 -> Item.``Blade Trap``
+    | 1147 -> Item.``Segregator Trap``
+    | 1148 -> Item.``Explosive Trap``
+    | 1149 -> Item.``Heavy Explosive Trap``
+    | 1150 -> Item.``Tiamat Bomb Trap``
+    | 1151 -> Item.``Fusion Bomb Trap``
+    | 1152 -> Item.``Hellfire Trap``
+    | 1153 -> Item.``Armageddon Trap``
+    | 1154 -> Item.``Dirty Bomb Trap``
+    | 1155 -> Item.``EMP Trap``
+    | 1156 -> Item.``Proton Bomb Trap``
+    | 1157 -> Item.``Tesla Bomb Trap``
+    | 1158 -> Item.``Gamma Bomb Trap``
+    | 1159 -> Item.``Shrapnel Trap``
+    | 1160 -> Item.``Vortex Trap``
+    | 1161 -> Item.``Piercing Trap``
+    | 1162 -> Item.``Shock Trap``
+    | 1163 -> Item.``EM Surge Trap``
+    | 1164 -> Item.``Fire Trap``
+    | 1165 -> Item.``Heat Bomb Trap``
+    | 1166 -> Item.``Stasis Trap``
+    | 1167 -> Item.``Scrap Shield Fragment``
+    | 1168 -> Item.``SUBCON Basin``
+    | 1169 -> Item.``Signal Generator``
+    | 1170 -> Item.``Self-destruct Interrupter``
+    | 1171 -> Item.``DRS Beacon``
+    | 1172 -> Item.``Sapper Charge``
+    | 1173 -> Item.``Deploy-a-Sentry``
+    | 1174 -> Item.``Botcube``
+    | 1175 -> Item.``Lrg_ Botcube``
+    | 1176 -> Item.``PL-3XN's Ring of Power``
+    | 1177 -> Item.``Disassembled Obliterator``
+    | 1178 -> Item.``GAL Module``
+    | 1179 -> Item.``Portable AFG``
+    | 1180 -> Item.``Zhirov Special``
+    | 1181 -> Item.``SGEMP Prototype``
+    | 1182 -> Item.``Terrabomb Derivative``
+    | 1183 -> Item.``Sigix Containment Pod``
+    | 1184 -> Item.``Sigix Corpse``
+    | 1185 -> Item.``Meganuke``
+    | 1186 -> Item.``Gamma Refractor``
     | x -> raise (System.ArgumentException(sprintf "Invalid item id! %A" x))
+
 
 let itemString =
     function
@@ -2489,203 +2671,215 @@ let itemString =
     | Item.``Imprinter Data Core`` -> "Imprinter Data Core"
     | Item.``A2 Data Core`` -> "A2 Data Core"
     | Item.``A7 Data Core`` -> "A7 Data Core"
-    | Item.``MAIN_C Data Core`` -> "MAIN_C Data Core"
+    | Item.``MAIN_C Data Core`` -> "MAIN.C Data Core"
     | Item.``Architect Data Core`` -> "Architect Data Core"
     | Item.``Scrap`` -> "Scrap"
     | Item.``Protomatter`` -> "Protomatter"
     | Item.``Ion Engine`` -> "Ion Engine"
-    | Item.``Lgt_ Ion Engine`` -> "Lgt_ Ion Engine"
+    | Item.``Lgt_ Ion Engine`` -> "Lgt. Ion Engine"
     | Item.``Backup Power I`` -> "Backup Power I"
-    | Item.``Imp_ Ion Engine`` -> "Imp_ Ion Engine"
-    | Item.``Rnf_ Ion Engine`` -> "Rnf_ Ion Engine"
-    | Item.``Hvy_ Ion Engine`` -> "Hvy_ Ion Engine"
-    | Item.``Cld_ Ion Engine`` -> "Cld_ Ion Engine"
-    | Item.``Sub_ Power Source`` -> "Sub_ Power Source"
+    | Item.``Imp_ Ion Engine`` -> "Imp. Ion Engine"
+    | Item.``Rnf_ Ion Engine`` -> "Rnf. Ion Engine"
+    | Item.``Hvy_ Ion Engine`` -> "Hvy. Ion Engine"
+    | Item.``Cld_ Ion Engine`` -> "Cld. Ion Engine"
+    | Item.``Sub_ Power Source`` -> "Sub. Power Source"
     | Item.``Deuterium Engine`` -> "Deuterium Engine"
-    | Item.``Lgt_ Deuterium Engine`` -> "Lgt_ Deuterium Engine"
+    | Item.``Lgt_ Deuterium Engine`` -> "Lgt. Deuterium Engine"
     | Item.``Backup Power III`` -> "Backup Power III"
     | Item.``Nuclear Core`` -> "Nuclear Core"
-    | Item.``Lgt_ Nuclear Core`` -> "Lgt_ Nuclear Core"
-    | Item.``Imp_ Deuterium Engine`` -> "Imp_ Deuterium Engine"
-    | Item.``Rnf_ Deuterium Engine`` -> "Rnf_ Deuterium Engine"
-    | Item.``Hyb_ Deuterium Engine`` -> "Hyb_ Deuterium Engine"
-    | Item.``Hvy_ Deuterium Engine`` -> "Hvy_ Deuterium Engine"
-    | Item.``Cld_ Deuterium Engine`` -> "Cld_ Deuterium Engine"
-    | Item.``Enh_ Nuclear Core`` -> "Enh_ Nuclear Core"
-    | Item.``Mic_ Nuclear Core`` -> "Mic_ Nuclear Core"
-    | Item.``Mak_ Power Source`` -> "Mak_ Power Source"
+    | Item.``Lgt_ Nuclear Core`` -> "Lgt. Nuclear Core"
+    | Item.``Imp_ Deuterium Engine`` -> "Imp. Deuterium Engine"
+    | Item.``Rnf_ Deuterium Engine`` -> "Rnf. Deuterium Engine"
+    | Item.``Hyb_ Deuterium Engine`` -> "Hyb. Deuterium Engine"
+    | Item.``Hvy_ Deuterium Engine`` -> "Hvy. Deuterium Engine"
+    | Item.``Cld_ Deuterium Engine`` -> "Cld. Deuterium Engine"
+    | Item.``Enh_ Nuclear Core`` -> "Enh. Nuclear Core"
+    | Item.``Mic_ Nuclear Core`` -> "Mic. Nuclear Core"
+    | Item.``Mak_ Power Source`` -> "Mak. Power Source"
     | Item.``Angular Momentum Engine`` -> "Angular Momentum Engine"
-    | Item.``Lgt_ Angular Momentum Engine`` -> "Lgt_ Angular Momentum Engine"
+    | Item.``Lgt_ Angular Momentum Engine`` -> "Lgt. Angular Momentum Engine"
     | Item.``F-cell Engine`` -> "F-cell Engine"
     | Item.``Fission Core`` -> "Fission Core"
-    | Item.``Lgt_ Fission Core`` -> "Lgt_ Fission Core"
-    | Item.``Hyb_ Fission Core`` -> "Hyb_ Fission Core"
+    | Item.``Lgt_ Fission Core`` -> "Lgt. Fission Core"
+    | Item.``Hyb_ Fission Core`` -> "Hyb. Fission Core"
     | Item.``Fusion Compressor`` -> "Fusion Compressor"
     | Item.``Cold Fusion Reactor`` -> "Cold Fusion Reactor"
     | Item.``Neutrino Core`` -> "Neutrino Core"
-    | Item.``Lgt_ Neutrino Core`` -> "Lgt_ Neutrino Core"
-    | Item.``Rnf_ Fission Core`` -> "Rnf_ Fission Core"
-    | Item.``Enh_ Fission Core`` -> "Enh_ Fission Core"
-    | Item.``Cld_ Fission Core`` -> "Cld_ Fission Core"
-    | Item.``Mic_ Fission Core`` -> "Mic_ Fission Core"
+    | Item.``Lgt_ Neutrino Core`` -> "Lgt. Neutrino Core"
+    | Item.``Rnf_ Fission Core`` -> "Rnf. Fission Core"
+    | Item.``Enh_ Fission Core`` -> "Enh. Fission Core"
+    | Item.``Cld_ Fission Core`` -> "Cld. Fission Core"
+    | Item.``Mic_ Fission Core`` -> "Mic. Fission Core"
     | Item.``Fusion Reactor`` -> "Fusion Reactor"
     | Item.``Antimatter Reactor`` -> "Antimatter Reactor"
-    | Item.``Lgt_ Antimatter Reactor`` -> "Lgt_ Antimatter Reactor"
-    | Item.``Rnf_ Antimatter Reactor`` -> "Rnf_ Antimatter Reactor"
-    | Item.``Hyb_ Antimatter Reactor`` -> "Hyb_ Antimatter Reactor"
+    | Item.``Lgt_ Antimatter Reactor`` -> "Lgt. Antimatter Reactor"
+    | Item.``Rnf_ Antimatter Reactor`` -> "Rnf. Antimatter Reactor"
+    | Item.``Hyb_ Antimatter Reactor`` -> "Hyb. Antimatter Reactor"
     | Item.``Backup Power VII`` -> "Backup Power VII"
-    | Item.``Hvy_ Antimatter Reactor`` -> "Hvy_ Antimatter Reactor"
-    | Item.``Mni_ Fusion Reactor`` -> "Mni_ Fusion Reactor"
-    | Item.``Imp_ Fusion Compressor`` -> "Imp_ Fusion Compressor"
-    | Item.``Mic_ Neutrino Core`` -> "Mic_ Neutrino Core"
-    | Item.``Zio_ Light DM Reactor`` -> "Zio_ Light DM Reactor"
-    | Item.``Zio_ Heavy DM Reactor`` -> "Zio_ Heavy DM Reactor"
+    | Item.``MA-1KR's Cyclogen`` -> "MA-1KR's Cyclogen"
+    | Item.``Hvy_ Antimatter Reactor`` -> "Hvy. Antimatter Reactor"
+    | Item.``Mni_ Fusion Reactor`` -> "Mni. Fusion Reactor"
+    | Item.``Imp_ Fusion Compressor`` -> "Imp. Fusion Compressor"
+    | Item.``Mic_ Neutrino Core`` -> "Mic. Neutrino Core"
+    | Item.``Zio_ Light DM Reactor`` -> "Zio. Light DM Reactor"
+    | Item.``Zio_ Heavy DM Reactor`` -> "Zio. Heavy DM Reactor"
     | Item.``Particle Reactor`` -> "Particle Reactor"
-    | Item.``Lgt_ Particle Reactor`` -> "Lgt_ Particle Reactor"
-    | Item.``Mic_ Antimatter Reactor`` -> "Mic_ Antimatter Reactor"
-    | Item.``Com_ Particle Reactor`` -> "Com_ Particle Reactor"
-    | Item.``Cld_ Antimatter Reactor`` -> "Cld_ Antimatter Reactor"
+    | Item.``Lgt_ Particle Reactor`` -> "Lgt. Particle Reactor"
+    | Item.``Mic_ Antimatter Reactor`` -> "Mic. Antimatter Reactor"
+    | Item.``Com_ Particle Reactor`` -> "Com. Particle Reactor"
+    | Item.``Cld_ Antimatter Reactor`` -> "Cld. Antimatter Reactor"
     | Item.``Graviton Reactor`` -> "Graviton Reactor"
-    | Item.``Asb_ Flux Generator`` -> "Asb_ Flux Generator"
+    | Item.``Asb_ Flux Generator`` -> "Asb. Flux Generator"
     | Item.``Quantum Reactor`` -> "Quantum Reactor"
-    | Item.``Lgt_ Quantum Reactor`` -> "Lgt_ Quantum Reactor"
-    | Item.``Rnf_ Quantum Reactor`` -> "Rnf_ Quantum Reactor"
-    | Item.``Imp_ Quantum Reactor`` -> "Imp_ Quantum Reactor"
+    | Item.``Lgt_ Quantum Reactor`` -> "Lgt. Quantum Reactor"
+    | Item.``Rnf_ Quantum Reactor`` -> "Rnf. Quantum Reactor"
+    | Item.``Imp_ Quantum Reactor`` -> "Imp. Quantum Reactor"
     | Item.``Zero-point Reactor`` -> "Zero-point Reactor"
     | Item.``Vortex Chain Reactor`` -> "Vortex Chain Reactor"
     | Item.``Singularity Reactor`` -> "Singularity Reactor"
     | Item.``Matter Drive`` -> "Matter Drive"
     | Item.``Meta Core`` -> "Meta Core"
     | Item.``SE_PO1`` -> "SE_PO1"
-    | Item.``Lgt_ Treads`` -> "Lgt_ Treads"
-    | Item.``Imp_ Treads`` -> "Imp_ Treads"
-    | Item.``Spk_ Treads`` -> "Spk_ Treads"
-    | Item.``Arm_ Treads`` -> "Arm_ Treads"
-    | Item.``Adv_ Treads`` -> "Adv_ Treads"
-    | Item.``Med_ Treads`` -> "Med_ Treads"
-    | Item.``Imp_ Medium Treads`` -> "Imp_ Medium Treads"
-    | Item.``Spk_ Medium Treads`` -> "Spk_ Medium Treads"
-    | Item.``Arm_ Medium Treads`` -> "Arm_ Medium Treads"
-    | Item.``Hvy_ Treads`` -> "Hvy_ Treads"
-    | Item.``Adv_ Medium Treads`` -> "Adv_ Medium Treads"
-    | Item.``Enh_ Armored Medium Treads`` -> "Enh_ Armored Medium Treads"
-    | Item.``Imp_ Heavy Treads`` -> "Imp_ Heavy Treads"
-    | Item.``Hvy_ Siege Treads`` -> "Hvy_ Siege Treads"
-    | Item.``Spk_ Heavy Treads`` -> "Spk_ Heavy Treads"
+    | Item.``Lgt_ Treads`` -> "Lgt. Treads"
+    | Item.``Imp_ Treads`` -> "Imp. Treads"
+    | Item.``Spk_ Treads`` -> "Spk. Treads"
+    | Item.``Arm_ Treads`` -> "Arm. Treads"
+    | Item.``Adv_ Treads`` -> "Adv. Treads"
+    | Item.``Ovr_ Treads`` -> "Ovr. Treads"
+    | Item.``Med_ Treads`` -> "Med. Treads"
+    | Item.``Imp_ Medium Treads`` -> "Imp. Medium Treads"
+    | Item.``Spk_ Medium Treads`` -> "Spk. Medium Treads"
+    | Item.``Arm_ Medium Treads`` -> "Arm. Medium Treads"
+    | Item.``Hvy_ Treads`` -> "Hvy. Treads"
+    | Item.``Ovr_ Medium Treads`` -> "Ovr. Medium Treads"
+    | Item.``Tri-treads`` -> "Tri-treads"
+    | Item.``Wartreads`` -> "Wartreads"
+    | Item.``Adv_ Medium Treads`` -> "Adv. Medium Treads"
+    | Item.``Enh_ Armored Medium Treads`` -> "Enh. Armored Medium Treads"
+    | Item.``Imp_ Heavy Treads`` -> "Imp. Heavy Treads"
+    | Item.``Hvy_ Siege Treads`` -> "Hvy. Siege Treads"
+    | Item.``Spk_ Heavy Treads`` -> "Spk. Heavy Treads"
+    | Item.``Vmp_ Heavy Siege Treads`` -> "Vmp. Heavy Siege Treads"
+    | Item.``DD-05H's Wartreads`` -> "DD-05H's Wartreads"
     | Item.``Biometal Medium Treads`` -> "Biometal Medium Treads"
-    | Item.``Arm_ Heavy Treads`` -> "Arm_ Heavy Treads"
-    | Item.``Adv_ Heavy Treads`` -> "Adv_ Heavy Treads"
-    | Item.``Imp_ Heavy Siege Treads`` -> "Imp_ Heavy Siege Treads"
+    | Item.``Arm_ Heavy Treads`` -> "Arm. Heavy Treads"
+    | Item.``Adv_ Heavy Treads`` -> "Adv. Heavy Treads"
+    | Item.``Imp_ Heavy Siege Treads`` -> "Imp. Heavy Siege Treads"
     | Item.``Centrium Heavy Treads`` -> "Centrium Heavy Treads"
     | Item.``Megatreads`` -> "Megatreads"
     | Item.``Biometal Heavy Treads`` -> "Biometal Heavy Treads"
-    | Item.``Exp_ Biometal Heavy Treads`` -> "Exp_ Biometal Heavy Treads"
-    | Item.``Enh_ Armored Heavy Treads`` -> "Enh_ Armored Heavy Treads"
-    | Item.``Adv_ Heavy Siege Treads`` -> "Adv_ Heavy Siege Treads"
-    | Item.``Hdn_ Centrium Heavy Treads`` -> "Hdn_ Centrium Heavy Treads"
-    | Item.``Exp_ Biometal Medium Treads`` -> "Exp_ Biometal Medium Treads"
+    | Item.``Exp_ Biometal Heavy Treads`` -> "Exp. Biometal Heavy Treads"
+    | Item.``Enh_ Armored Heavy Treads`` -> "Enh. Armored Heavy Treads"
+    | Item.``Adv_ Heavy Siege Treads`` -> "Adv. Heavy Siege Treads"
+    | Item.``Hdn_ Centrium Heavy Treads`` -> "Hdn. Centrium Heavy Treads"
+    | Item.``Exp_ Biometal Medium Treads`` -> "Exp. Biometal Medium Treads"
     | Item.``Aluminum Leg`` -> "Aluminum Leg"
-    | Item.``Imp_ Aluminum Leg`` -> "Imp_ Aluminum Leg"
+    | Item.``Imp_ Aluminum Leg`` -> "Imp. Aluminum Leg"
     | Item.``Carbon-fiber Leg`` -> "Carbon-fiber Leg"
     | Item.``Titanium Leg`` -> "Titanium Leg"
+    | Item.``Ovr_ Titanium Leg`` -> "Ovr. Titanium Leg"
     | Item.``VSS Leg`` -> "VSS Leg"
-    | Item.``Imp_ Carbon-fiber Leg`` -> "Imp_ Carbon-fiber Leg"
-    | Item.``Imp_ Titanium Leg`` -> "Imp_ Titanium Leg"
-    | Item.``Lgt_ Armored Exoskeleton`` -> "Lgt_ Armored Exoskeleton"
-    | Item.``Mak_ Leg`` -> "Mak_ Leg"
+    | Item.``Imp_ Carbon-fiber Leg`` -> "Imp. Carbon-fiber Leg"
+    | Item.``Imp_ Titanium Leg`` -> "Imp. Titanium Leg"
+    | Item.``Lgt_ Armored Exoskeleton`` -> "Lgt. Armored Exoskeleton"
+    | Item.``Mak_ Leg`` -> "Mak. Leg"
     | Item.``Flexi-carbon Leg`` -> "Flexi-carbon Leg"
-    | Item.``Arm_ Leg`` -> "Arm_ Leg"
-    | Item.``Imp_ VSS Leg`` -> "Imp_ VSS Leg"
-    | Item.``Zio_ Composite Leg I`` -> "Zio_ Composite Leg I"
-    | Item.``Med_ Armored Exoskeleton`` -> "Med_ Armored Exoskeleton"
-    | Item.``Enh_ Flexi-carbon Leg`` -> "Enh_ Flexi-carbon Leg"
-    | Item.``Enh_ Armored Leg`` -> "Enh_ Armored Leg"
+    | Item.``Arm_ Leg`` -> "Arm. Leg"
+    | Item.``Imp_ VSS Leg`` -> "Imp. VSS Leg"
+    | Item.``Zio_ Composite Leg I`` -> "Zio. Composite Leg I"
+    | Item.``Med_ Armored Exoskeleton`` -> "Med. Armored Exoskeleton"
+    | Item.``Ovr_ Flexi-carbon Leg`` -> "Ovr. Flexi-carbon Leg"
+    | Item.``Enh_ Flexi-carbon Leg`` -> "Enh. Flexi-carbon Leg"
+    | Item.``Enh_ Armored Leg`` -> "Enh. Armored Leg"
     | Item.``Arachnoskeleton`` -> "Arachnoskeleton"
     | Item.``Myomer Leg`` -> "Myomer Leg"
-    | Item.``Adv_ VSS Leg`` -> "Adv_ VSS Leg"
-    | Item.``Adv_ Myomer Leg`` -> "Adv_ Myomer Leg"
-    | Item.``Exp_ Flexi-carbon Leg`` -> "Exp_ Flexi-carbon Leg"
-    | Item.``Zio_ Composite Leg II`` -> "Zio_ Composite Leg II"
+    | Item.``Adv_ VSS Leg`` -> "Adv. VSS Leg"
+    | Item.``Adv_ Myomer Leg`` -> "Adv. Myomer Leg"
+    | Item.``Exp_ Flexi-carbon Leg`` -> "Exp. Flexi-carbon Leg"
+    | Item.``Zio_ Composite Leg II`` -> "Zio. Composite Leg II"
     | Item.``Cargo Legs`` -> "Cargo Legs"
     | Item.``Etherial Tendrils`` -> "Etherial Tendrils"
     | Item.``Biometal Leg`` -> "Biometal Leg"
-    | Item.``Hvy_ Armored Exoskeleton`` -> "Hvy_ Armored Exoskeleton"
-    | Item.``Enh_ Biometal Leg`` -> "Enh_ Biometal Leg"
-    | Item.``Exp_ Myomer Leg`` -> "Exp_ Myomer Leg"
+    | Item.``Hvy_ Armored Exoskeleton`` -> "Hvy. Armored Exoskeleton"
+    | Item.``Enh_ Biometal Leg`` -> "Enh. Biometal Leg"
+    | Item.``Exp_ Myomer Leg`` -> "Exp. Myomer Leg"
     | Item.``Tripod Weapons Platform`` -> "Tripod Weapons Platform"
-    | Item.``T_R_O_L_L_ Exoskeleton`` -> "T_R_O_L_L_ Exoskeleton"
-    | Item.``Asb_ Alloy Leg`` -> "Asb_ Alloy Leg"
+    | Item.``T_R_O_L_L_ Exoskeleton`` -> "T.R.O.L.L. Exoskeleton"
+    | Item.``Asb_ Alloy Leg`` -> "Asb. Alloy Leg"
     | Item.``Centrium Leg`` -> "Centrium Leg"
-    | Item.``Hdn_ Centrium Leg`` -> "Hdn_ Centrium Leg"
-    | Item.``Exp_ Biometal Leg`` -> "Exp_ Biometal Leg"
-    | Item.``Sigix Exoskeleton`` -> "Sigix Exoskeleton"
-    | Item.``Zio_ Supercomposite Leg`` -> "Zio_ Supercomposite Leg"
+    | Item.``Hdn_ Centrium Leg`` -> "Hdn. Centrium Leg"
+    | Item.``Exp_ Biometal Leg`` -> "Exp. Biometal Leg"
+    | Item.``Zio_ Supercomposite Leg`` -> "Zio. Supercomposite Leg"
     | Item.``Potential Leg`` -> "Potential Leg"
     | Item.``Myomer Exoskeleton`` -> "Myomer Exoskeleton"
+    | Item.``Sigix Exoskeleton`` -> "Sigix Exoskeleton"
     | Item.``SE_PR1`` -> "SE_PR1"
     | Item.``Wheel`` -> "Wheel"
-    | Item.``Com_ Wheel`` -> "Com_ Wheel"
-    | Item.``Arm_ Wheel`` -> "Arm_ Wheel"
-    | Item.``Sub_ Monowheel`` -> "Sub_ Monowheel"
-    | Item.``Arm_ Huge Wheel`` -> "Arm_ Huge Wheel"
+    | Item.``Com_ Wheel`` -> "Com. Wheel"
+    | Item.``Arm_ Wheel`` -> "Arm. Wheel"
+    | Item.``Sub_ Monowheel`` -> "Sub. Monowheel"
+    | Item.``Ovr_ Scrapsphere`` -> "Ovr. Scrapsphere"
+    | Item.``Arm_ Huge Wheel`` -> "Arm. Huge Wheel"
+    | Item.``Ballwheel`` -> "Ballwheel"
+    | Item.``Ovr_ Huge Scrapsphere`` -> "Ovr. Huge Scrapsphere"
     | Item.``Centrium Wheel`` -> "Centrium Wheel"
-    | Item.``Hdn_ Centrium Wheel`` -> "Hdn_ Centrium Wheel"
+    | Item.``Hdn_ Centrium Wheel`` -> "Hdn. Centrium Wheel"
     | Item.``Hover Unit`` -> "Hover Unit"
     | Item.``Backup Propulsion I`` -> "Backup Propulsion I"
-    | Item.``Imp_ Hover Unit`` -> "Imp_ Hover Unit"
+    | Item.``Imp_ Hover Unit`` -> "Imp. Hover Unit"
     | Item.``Airjet`` -> "Airjet"
     | Item.``Aerolev Unit`` -> "Aerolev Unit"
-    | Item.``Asb_ Hover Unit`` -> "Asb_ Hover Unit"
+    | Item.``Asb_ Hover Unit`` -> "Asb. Hover Unit"
     | Item.``Backup Propulsion III`` -> "Backup Propulsion III"
     | Item.``Gravmag System`` -> "Gravmag System"
-    | Item.``Asb_ Hover System`` -> "Asb_ Hover System"
-    | Item.``Imp_ Airjet`` -> "Imp_ Airjet"
-    | Item.``Cld_ Airjet`` -> "Cld_ Airjet"
-    | Item.``Imp_ Gravmag System`` -> "Imp_ Gravmag System"
-    | Item.``Cld_ Aerolev Unit`` -> "Cld_ Aerolev Unit"
-    | Item.``Cmb_ Airjet`` -> "Cmb_ Airjet"
+    | Item.``Asb_ Hover System`` -> "Asb. Hover System"
+    | Item.``Imp_ Airjet`` -> "Imp. Airjet"
+    | Item.``Cld_ Airjet`` -> "Cld. Airjet"
+    | Item.``Imp_ Gravmag System`` -> "Imp. Gravmag System"
+    | Item.``Cld_ Aerolev Unit`` -> "Cld. Aerolev Unit"
+    | Item.``Cmb_ Airjet`` -> "Cmb. Airjet"
     | Item.``Gravmag Array`` -> "Gravmag Array"
-    | Item.``Mak_ Hover Unit`` -> "Mak_ Hover Unit"
-    | Item.``Zio_ Glidesys I`` -> "Zio_ Glidesys I"
+    | Item.``Mak_ Hover Unit`` -> "Mak. Hover Unit"
+    | Item.``Zio_ Glidesys I`` -> "Zio. Glidesys I"
     | Item.``Antigrav System`` -> "Antigrav System"
     | Item.``Gyrokinetic Inverter`` -> "Gyrokinetic Inverter"
     | Item.``Linear Gravjet`` -> "Linear Gravjet"
-    | Item.``Cld_ Gravmag System`` -> "Cld_ Gravmag System"
-    | Item.``Cmb_ Gravmag System`` -> "Cmb_ Gravmag System"
-    | Item.``Imp_ Antigrav System`` -> "Imp_ Antigrav System"
-    | Item.``Imp_ Gyrokinetic Inverter`` -> "Imp_ Gyrokinetic Inverter"
-    | Item.``Imp_ Linear Gravjet`` -> "Imp_ Linear Gravjet"
+    | Item.``Cld_ Gravmag System`` -> "Cld. Gravmag System"
+    | Item.``Cmb_ Gravmag System`` -> "Cmb. Gravmag System"
+    | Item.``Imp_ Antigrav System`` -> "Imp. Antigrav System"
+    | Item.``Imp_ Gyrokinetic Inverter`` -> "Imp. Gyrokinetic Inverter"
+    | Item.``Imp_ Linear Gravjet`` -> "Imp. Linear Gravjet"
     | Item.``Backup Propulsion VII`` -> "Backup Propulsion VII"
-    | Item.``Zio_ Glidesys II`` -> "Zio_ Glidesys II"
-    | Item.``Cld_ Antigrav System`` -> "Cld_ Antigrav System"
-    | Item.``Cmb_ Antigrav System`` -> "Cmb_ Antigrav System"
+    | Item.``Zio_ Glidesys II`` -> "Zio. Glidesys II"
+    | Item.``Cld_ Antigrav System`` -> "Cld. Antigrav System"
+    | Item.``Cmb_ Antigrav System`` -> "Cmb. Antigrav System"
     | Item.``Antigrav Array`` -> "Antigrav Array"
-    | Item.``Exp_ Gyrokinetic Inverter`` -> "Exp_ Gyrokinetic Inverter"
-    | Item.``Cld_ Linear Gravjet`` -> "Cld_ Linear Gravjet"
-    | Item.``Cmb_ Linear Gravjet`` -> "Cmb_ Linear Gravjet"
+    | Item.``Exp_ Gyrokinetic Inverter`` -> "Exp. Gyrokinetic Inverter"
+    | Item.``Cld_ Linear Gravjet`` -> "Cld. Linear Gravjet"
+    | Item.``Cmb_ Linear Gravjet`` -> "Cmb. Linear Gravjet"
     | Item.``Flight Unit`` -> "Flight Unit"
     | Item.``VTOL Module`` -> "VTOL Module"
-    | Item.``Imp_ Flight Unit`` -> "Imp_ Flight Unit"
+    | Item.``Imp_ Flight Unit`` -> "Imp. Flight Unit"
     | Item.``Cesium-ion Thruster`` -> "Cesium-ion Thruster"
     | Item.``Surge Thruster`` -> "Surge Thruster"
-    | Item.``Imp_ VTOL Module`` -> "Imp_ VTOL Module"
+    | Item.``Imp_ VTOL Module`` -> "Imp. VTOL Module"
     | Item.``Xenon Bombardment Thruster`` -> "Xenon Bombardment Thruster"
-    | Item.``Imp_ Cesium-ion Thruster`` -> "Imp_ Cesium-ion Thruster"
-    | Item.``Cld_ VTOL Module`` -> "Cld_ VTOL Module"
-    | Item.``Mak_ Flight Unit`` -> "Mak_ Flight Unit"
+    | Item.``Imp_ Cesium-ion Thruster`` -> "Imp. Cesium-ion Thruster"
+    | Item.``Cld_ VTOL Module`` -> "Cld. VTOL Module"
+    | Item.``Mak_ Flight Unit`` -> "Mak. Flight Unit"
     | Item.``Nuclear Pulse Thruster`` -> "Nuclear Pulse Thruster"
-    | Item.``Imp_ Surge Thruster`` -> "Imp_ Surge Thruster"
-    | Item.``Mni_ Nuclear Pulse Thruster`` -> "Mni_ Nuclear Pulse Thruster"
-    | Item.``Cld_ Cesium-ion Thruster`` -> "Cld_ Cesium-ion Thruster"
+    | Item.``Imp_ Surge Thruster`` -> "Imp. Surge Thruster"
+    | Item.``Mni_ Nuclear Pulse Thruster`` -> "Mni. Nuclear Pulse Thruster"
+    | Item.``Cld_ Cesium-ion Thruster`` -> "Cld. Cesium-ion Thruster"
     | Item.``Biomechanical Wings`` -> "Biomechanical Wings"
     | Item.``Field Propulsion Drive`` -> "Field Propulsion Drive"
-    | Item.``Cld_ Nuclear Pulse Thruster`` -> "Cld_ Nuclear Pulse Thruster"
-    | Item.``Exp_ Cesium-ion Thruster`` -> "Exp_ Cesium-ion Thruster"
+    | Item.``Cld_ Nuclear Pulse Thruster`` -> "Cld. Nuclear Pulse Thruster"
+    | Item.``Exp_ Cesium-ion Thruster`` -> "Exp. Cesium-ion Thruster"
     | Item.``Nuclear Pulse Array`` -> "Nuclear Pulse Array"
-    | Item.``Mak_ Microthruster`` -> "Mak_ Microthruster"
+    | Item.``Mak_ Microthruster`` -> "Mak. Microthruster"
     | Item.``Impulse Thruster`` -> "Impulse Thruster"
-    | Item.``Adv_ Surge Thruster`` -> "Adv_ Surge Thruster"
-    | Item.``Cld_ Field Propulsion Drive`` -> "Cld_ Field Propulsion Drive"
+    | Item.``Adv_ Surge Thruster`` -> "Adv. Surge Thruster"
+    | Item.``Cld_ Field Propulsion Drive`` -> "Cld. Field Propulsion Drive"
     | Item.``Field Propulsion Array`` -> "Field Propulsion Array"
     | Item.``Diametric Drive`` -> "Diametric Drive"
     | Item.``Flying Fortress v7`` -> "Flying Fortress v7"
@@ -2694,416 +2888,444 @@ let itemString =
     | Item.``Etherial Propulsion`` -> "Etherial Propulsion"
     | Item.``Q-thruster`` -> "Q-thruster"
     | Item.``Electron Diverter`` -> "Electron Diverter"
-    | Item.``Imp_ Diametric Drive`` -> "Imp_ Diametric Drive"
-    | Item.``Cld_ Impulse Thruster`` -> "Cld_ Impulse Thruster"
+    | Item.``Imp_ Diametric Drive`` -> "Imp. Diametric Drive"
+    | Item.``Cld_ Impulse Thruster`` -> "Cld. Impulse Thruster"
     | Item.``Impulse Thruster Array`` -> "Impulse Thruster Array"
     | Item.``Flightbrick`` -> "Flightbrick"
-    | Item.``Imp_ Q-thruster`` -> "Imp_ Q-thruster"
-    | Item.``Cld_ Q-thruster`` -> "Cld_ Q-thruster"
-    | Item.``Exp_ Q-thruster`` -> "Exp_ Q-thruster"
+    | Item.``Imp_ Q-thruster`` -> "Imp. Q-thruster"
+    | Item.``Cld_ Q-thruster`` -> "Cld. Q-thruster"
+    | Item.``Exp_ Q-thruster`` -> "Exp. Q-thruster"
     | Item.``Scrap Engine`` -> "Scrap Engine"
-    | Item.``Arm_ Scrap Engine`` -> "Arm_ Scrap Engine"
+    | Item.``Arm_ Scrap Engine`` -> "Arm. Scrap Engine"
+    | Item.``Scrap Suit`` -> "Scrap Suit"
+    | Item.``Matter Focus`` -> "Matter Focus"
     | Item.``Desublimator`` -> "Desublimator"
     | Item.``Power Amplifier`` -> "Power Amplifier"
-    | Item.``Adv_ Power Amplifier`` -> "Adv_ Power Amplifier"
-    | Item.``Exp_ Power Amplifier`` -> "Exp_ Power Amplifier"
+    | Item.``Adv_ Power Amplifier`` -> "Adv. Power Amplifier"
+    | Item.``Exp_ Power Amplifier`` -> "Exp. Power Amplifier"
     | Item.``Thermal Generator`` -> "Thermal Generator"
-    | Item.``Imp_ Thermal Generator`` -> "Imp_ Thermal Generator"
-    | Item.``Adv_ Thermal Generator`` -> "Adv_ Thermal Generator"
-    | Item.``Exp_ Thermal Generator`` -> "Exp_ Thermal Generator"
+    | Item.``Imp_ Thermal Generator`` -> "Imp. Thermal Generator"
+    | Item.``Adv_ Thermal Generator`` -> "Adv. Thermal Generator"
+    | Item.``Exp_ Thermal Generator`` -> "Exp. Thermal Generator"
     | Item.``Cryofiber Web`` -> "Cryofiber Web"
-    | Item.``Imp_ Cryofiber Web`` -> "Imp_ Cryofiber Web"
-    | Item.``Adv_ Cryofiber Web`` -> "Adv_ Cryofiber Web"
-    | Item.``Exp_ Cryofiber Web`` -> "Exp_ Cryofiber Web"
+    | Item.``Imp_ Cryofiber Web`` -> "Imp. Cryofiber Web"
+    | Item.``Adv_ Cryofiber Web`` -> "Adv. Cryofiber Web"
+    | Item.``Exp_ Cryofiber Web`` -> "Exp. Cryofiber Web"
     | Item.``Heat Sink`` -> "Heat Sink"
-    | Item.``Imp_ Heat Sink`` -> "Imp_ Heat Sink"
-    | Item.``Adv_ Heat Sink`` -> "Adv_ Heat Sink"
-    | Item.``Exp_ Heat Sink`` -> "Exp_ Heat Sink"
+    | Item.``Imp_ Heat Sink`` -> "Imp. Heat Sink"
+    | Item.``Adv_ Heat Sink`` -> "Adv. Heat Sink"
+    | Item.``Exp_ Heat Sink`` -> "Exp. Heat Sink"
     | Item.``Cooling System`` -> "Cooling System"
-    | Item.``Imp_ Cooling System`` -> "Imp_ Cooling System"
-    | Item.``Adv_ Cooling System`` -> "Adv_ Cooling System"
-    | Item.``Exp_ Cooling System`` -> "Exp_ Cooling System"
+    | Item.``Imp_ Cooling System`` -> "Imp. Cooling System"
+    | Item.``Adv_ Cooling System`` -> "Adv. Cooling System"
+    | Item.``Exp_ Cooling System`` -> "Exp. Cooling System"
+    | Item.``Mak_ Coolant Network`` -> "Mak. Coolant Network"
     | Item.``Coolant Network`` -> "Coolant Network"
-    | Item.``Asb_ Nanovents`` -> "Asb_ Nanovents"
+    | Item.``Asb_ Nanovents`` -> "Asb. Nanovents"
     | Item.``2N-1CE's Frost Array`` -> "2N-1CE's Frost Array"
     | Item.``Disposable Heat Sink`` -> "Disposable Heat Sink"
     | Item.``Coolant Injector`` -> "Coolant Injector"
-    | Item.``Imp_ Coolant Injector`` -> "Imp_ Coolant Injector"
-    | Item.``Adv_ Coolant Injector`` -> "Adv_ Coolant Injector"
-    | Item.``Exp_ Coolant Injector`` -> "Exp_ Coolant Injector"
-    | Item.``Sml_ Storage Unit`` -> "Sml_ Storage Unit"
-    | Item.``Med_ Storage Unit`` -> "Med_ Storage Unit"
-    | Item.``Lrg_ Storage Unit`` -> "Lrg_ Storage Unit"
-    | Item.``Hcp_ Storage Unit`` -> "Hcp_ Storage Unit"
+    | Item.``Imp_ Coolant Injector`` -> "Imp. Coolant Injector"
+    | Item.``Adv_ Coolant Injector`` -> "Adv. Coolant Injector"
+    | Item.``Exp_ Coolant Injector`` -> "Exp. Coolant Injector"
+    | Item.``Mak_ Microdissipator Network`` -> "Mak. Microdissipator Network"
+    | Item.``Sml_ Storage Unit`` -> "Sml. Storage Unit"
+    | Item.``Med_ Storage Unit`` -> "Med. Storage Unit"
+    | Item.``Lrg_ Storage Unit`` -> "Lrg. Storage Unit"
+    | Item.``Hcp_ Storage Unit`` -> "Hcp. Storage Unit"
     | Item.``Huge Storage Unit`` -> "Huge Storage Unit"
     | Item.``Cargo Storage Unit`` -> "Cargo Storage Unit"
     | Item.``Humpback`` -> "Humpback"
-    | Item.``Lightpack 2_0`` -> "Lightpack 2_0"
-    | Item.``Sml_ Battery`` -> "Sml_ Battery"
-    | Item.``Med_ Battery`` -> "Med_ Battery"
-    | Item.``Lrg_ Battery`` -> "Lrg_ Battery"
-    | Item.``Hcp_ Battery`` -> "Hcp_ Battery"
-    | Item.``Com_ Battery`` -> "Com_ Battery"
+    | Item.``Vmp_ Humpback`` -> "Vmp. Humpback"
+    | Item.``Lightpack 2_0`` -> "Lightpack 2.0"
+    | Item.``Sml_ Battery`` -> "Sml. Battery"
+    | Item.``Med_ Battery`` -> "Med. Battery"
+    | Item.``Lrg_ Battery`` -> "Lrg. Battery"
+    | Item.``Hcp_ Battery`` -> "Hcp. Battery"
+    | Item.``Com_ Battery`` -> "Com. Battery"
     | Item.``Energy Well`` -> "Energy Well"
-    | Item.``Imp_ Energy Well`` -> "Imp_ Energy Well"
-    | Item.``Adv_ Energy Well`` -> "Adv_ Energy Well"
-    | Item.``Exp_ Energy Well`` -> "Exp_ Energy Well"
-    | Item.``Zio_ Biocell`` -> "Zio_ Biocell"
-    | Item.``Asb_ Biocell Array`` -> "Asb_ Biocell Array"
-    | Item.``Zio_ Biocell Array`` -> "Zio_ Biocell Array"
+    | Item.``Imp_ Energy Well`` -> "Imp. Energy Well"
+    | Item.``Adv_ Energy Well`` -> "Adv. Energy Well"
+    | Item.``Exp_ Energy Well`` -> "Exp. Energy Well"
+    | Item.``Zio_ Biocell`` -> "Zio. Biocell"
+    | Item.``Asb_ Biocell Array`` -> "Asb. Biocell Array"
+    | Item.``Zio_ Biocell Array`` -> "Zio. Biocell Array"
     | Item.``Superbattery`` -> "Superbattery"
-    | Item.``Sml_ Matter Pod`` -> "Sml_ Matter Pod"
-    | Item.``Med_ Matter Pod`` -> "Med_ Matter Pod"
-    | Item.``Lrg_ Matter Pod`` -> "Lrg_ Matter Pod"
-    | Item.``Hcp_ Matter Pod`` -> "Hcp_ Matter Pod"
-    | Item.``Com_ Matter Pod`` -> "Com_ Matter Pod"
+    | Item.``Sml_ Matter Pod`` -> "Sml. Matter Pod"
+    | Item.``Med_ Matter Pod`` -> "Med. Matter Pod"
+    | Item.``Lrg_ Matter Pod`` -> "Lrg. Matter Pod"
+    | Item.``Hcp_ Matter Pod`` -> "Hcp. Matter Pod"
+    | Item.``Com_ Matter Pod`` -> "Com. Matter Pod"
     | Item.``Matter Compressor`` -> "Matter Compressor"
-    | Item.``Imp_ Matter Compressor`` -> "Imp_ Matter Compressor"
-    | Item.``Adv_ Matter Compressor`` -> "Adv_ Matter Compressor"
-    | Item.``Exp_ Matter Compressor`` -> "Exp_ Matter Compressor"
+    | Item.``Imp_ Matter Compressor`` -> "Imp. Matter Compressor"
+    | Item.``Adv_ Matter Compressor`` -> "Adv. Matter Compressor"
+    | Item.``Exp_ Matter Compressor`` -> "Exp. Matter Compressor"
     | Item.``YI-UF0's Bottomless Matter Pit`` -> "YI-UF0's Bottomless Matter Pit"
-    | Item.``Weight Redist_ System`` -> "Weight Redist_ System"
-    | Item.``Adv_ Weight Redist_ System`` -> "Adv_ Weight Redist_ System"
+    | Item.``Weight Redist_ System`` -> "Weight Redist. System"
+    | Item.``Adv_ Weight Redist_ System`` -> "Adv. Weight Redist. System"
     | Item.``Gravity Neutralizer`` -> "Gravity Neutralizer"
-    | Item.``Adv_ Gravity Neutralizer`` -> "Adv_ Gravity Neutralizer"
+    | Item.``Adv_ Gravity Neutralizer`` -> "Adv. Gravity Neutralizer"
     | Item.``Quantum Shading Machine`` -> "Quantum Shading Machine"
-    | Item.``Asb_ Suspension Frame`` -> "Asb_ Suspension Frame"
-    | Item.``Adv_ Quantum Shading Machine`` -> "Adv_ Quantum Shading Machine"
-    | Item.``Asb_ Metafiber Network`` -> "Asb_ Metafiber Network"
-    | Item.``Zio_ Metafield Generator`` -> "Zio_ Metafield Generator"
+    | Item.``Asb_ Suspension Frame`` -> "Asb. Suspension Frame"
+    | Item.``Adv_ Quantum Shading Machine`` -> "Adv. Quantum Shading Machine"
+    | Item.``Rocket Booster`` -> "Rocket Booster"
+    | Item.``Asb_ Metafiber Network`` -> "Asb. Metafiber Network"
+    | Item.``Zio_ Metafield Generator`` -> "Zio. Metafield Generator"
     | Item.``ST Field Compressor`` -> "ST Field Compressor"
+    | Item.``Siege Articulator`` -> "Siege Articulator"
     | Item.``Structural Scanner`` -> "Structural Scanner"
+    | Item.``Deep Structural Scanner`` -> "Deep Structural Scanner"
     | Item.``Trap Scanner`` -> "Trap Scanner"
-    | Item.``Imp_ Trap Scanner`` -> "Imp_ Trap Scanner"
-    | Item.``Mak_ Trap Scanner`` -> "Mak_ Trap Scanner"
-    | Item.``Adv_ Trap Scanner`` -> "Adv_ Trap Scanner"
+    | Item.``Imp_ Trap Scanner`` -> "Imp. Trap Scanner"
+    | Item.``Mak_ Trap Scanner`` -> "Mak. Trap Scanner"
+    | Item.``Adv_ Trap Scanner`` -> "Adv. Trap Scanner"
     | Item.``Machine Analyzer`` -> "Machine Analyzer"
     | Item.``Triangulator`` -> "Triangulator"
     | Item.``Visual Processing Unit`` -> "Visual Processing Unit"
-    | Item.``Sub_ Optics`` -> "Sub_ Optics"
-    | Item.``Adv_ Visual Processing Unit`` -> "Adv_ Visual Processing Unit"
-    | Item.``Enh_ Optical Array`` -> "Enh_ Optical Array"
-    | Item.``Exp_ Optical Array`` -> "Exp_ Optical Array"
+    | Item.``Sub_ Optics`` -> "Sub. Optics"
+    | Item.``Adv_ Visual Processing Unit`` -> "Adv. Visual Processing Unit"
+    | Item.``Enh_ Optical Array`` -> "Enh. Optical Array"
+    | Item.``Exp_ Optical Array`` -> "Exp. Optical Array"
     | Item.``Spectral Analyzer`` -> "Spectral Analyzer"
     | Item.``Sensor Array`` -> "Sensor Array"
-    | Item.``Imp_ Sensor Array`` -> "Imp_ Sensor Array"
-    | Item.``Adv_ Sensor Array`` -> "Adv_ Sensor Array"
-    | Item.``Lrn_ Sensor Array`` -> "Lrn_ Sensor Array"
-    | Item.``Mak_ Sensor Array`` -> "Mak_ Sensor Array"
-    | Item.``Exp_ Sensor Array`` -> "Exp_ Sensor Array"
+    | Item.``Imp_ Sensor Array`` -> "Imp. Sensor Array"
+    | Item.``Adv_ Sensor Array`` -> "Adv. Sensor Array"
+    | Item.``Lrn_ Sensor Array`` -> "Lrn. Sensor Array"
+    | Item.``Mak_ Sensor Array`` -> "Mak. Sensor Array"
+    | Item.``Exp_ Sensor Array`` -> "Exp. Sensor Array"
     | Item.``Signal Interpreter`` -> "Signal Interpreter"
-    | Item.``Imp_ Signal Interpreter`` -> "Imp_ Signal Interpreter"
-    | Item.``Adv_ Signal Interpreter`` -> "Adv_ Signal Interpreter"
-    | Item.``Exp_ Signal Interpreter`` -> "Exp_ Signal Interpreter"
+    | Item.``Imp_ Signal Interpreter`` -> "Imp. Signal Interpreter"
+    | Item.``Adv_ Signal Interpreter`` -> "Adv. Signal Interpreter"
+    | Item.``Exp_ Signal Interpreter`` -> "Exp. Signal Interpreter"
     | Item.``Active Sensor Suite`` -> "Active Sensor Suite"
     | Item.``Terrain Scanner`` -> "Terrain Scanner"
-    | Item.``Imp_ Terrain Scanner`` -> "Imp_ Terrain Scanner"
-    | Item.``Adv_ Terrain Scanner`` -> "Adv_ Terrain Scanner"
-    | Item.``Mak_ Terrain Scanner`` -> "Mak_ Terrain Scanner"
-    | Item.``Lrn_ Terrain Scanner`` -> "Lrn_ Terrain Scanner"
-    | Item.``Exp_ Terrain Scanner`` -> "Exp_ Terrain Scanner"
+    | Item.``Imp_ Terrain Scanner`` -> "Imp. Terrain Scanner"
+    | Item.``Adv_ Terrain Scanner`` -> "Adv. Terrain Scanner"
+    | Item.``Mak_ Terrain Scanner`` -> "Mak. Terrain Scanner"
+    | Item.``Lrn_ Terrain Scanner`` -> "Lrn. Terrain Scanner"
+    | Item.``Exp_ Terrain Scanner`` -> "Exp. Terrain Scanner"
     | Item.``Surveybot 24 Scanner`` -> "Surveybot 24 Scanner"
     | Item.``Terrain Scan Processor`` -> "Terrain Scan Processor"
-    | Item.``Imp_ Terrain Scan Processor`` -> "Imp_ Terrain Scan Processor"
-    | Item.``Mak_ Terrain Scan Processor`` -> "Mak_ Terrain Scan Processor"
-    | Item.``Adv_ Terrain Scan Processor`` -> "Adv_ Terrain Scan Processor"
-    | Item.``Exp_ Terrain Scan Processor`` -> "Exp_ Terrain Scan Processor"
+    | Item.``Imp_ Terrain Scan Processor`` -> "Imp. Terrain Scan Processor"
+    | Item.``Mak_ Terrain Scan Processor`` -> "Mak. Terrain Scan Processor"
+    | Item.``Adv_ Terrain Scan Processor`` -> "Adv. Terrain Scan Processor"
+    | Item.``Exp_ Terrain Scan Processor`` -> "Exp. Terrain Scan Processor"
+    | Item.``Surveybot 17 Chip`` -> "Surveybot 17 Chip"
     | Item.``Surveybot 24 Chip`` -> "Surveybot 24 Chip"
     | Item.``Seismic Detector`` -> "Seismic Detector"
     | Item.``Transport Network Coupler`` -> "Transport Network Coupler"
     | Item.``Modified TNC`` -> "Modified TNC"
     | Item.``Encrypted Comm Array`` -> "Encrypted Comm Array"
-    | Item.``0b10 Decoder Chip _Generic_`` -> "0b10 Decoder Chip _Generic_"
-    | Item.``0b10 Decoder Chip _Looter_`` -> "0b10 Decoder Chip _Looter_"
-    | Item.``0b10 Decoder Chip _Scout_`` -> "0b10 Decoder Chip _Scout_"
-    | Item.``0b10 Decoder Chip _Skirmisher_`` -> "0b10 Decoder Chip _Skirmisher_"
+    | Item.``0b10 Decoder Chip _Generic_`` -> "0b10 Decoder Chip [Generic]"
+    | Item.``0b10 Decoder Chip _Looter_`` -> "0b10 Decoder Chip [Looter]"
+    | Item.``0b10 Decoder Chip _Scout_`` -> "0b10 Decoder Chip [Scout]"
+    | Item.``0b10 Decoder Chip _Skirmisher_`` -> "0b10 Decoder Chip [Skirmisher]"
     | Item.``0b10 Alert Chip`` -> "0b10 Alert Chip"
     | Item.``Salvage Targeting Computer`` -> "Salvage Targeting Computer"
-    | Item.``Imp_ Salvage Targeting Computer`` -> "Imp_ Salvage Targeting Computer"
-    | Item.``Mak_ Salvage Targeting Computer`` -> "Mak_ Salvage Targeting Computer"
-    | Item.``Adv_ Salvage Targeting Computer`` -> "Adv_ Salvage Targeting Computer"
-    | Item.``Asb_ Combat Suite`` -> "Asb_ Combat Suite"
+    | Item.``Imp_ Salvage Targeting Computer`` -> "Imp. Salvage Targeting Computer"
+    | Item.``Mak_ Salvage Targeting Computer`` -> "Mak. Salvage Targeting Computer"
+    | Item.``Adv_ Salvage Targeting Computer`` -> "Adv. Salvage Targeting Computer"
+    | Item.``Asb_ Combat Suite`` -> "Asb. Combat Suite"
     | Item.``Targeting Computer`` -> "Targeting Computer"
-    | Item.``Imp_ Targeting Computer`` -> "Imp_ Targeting Computer"
-    | Item.``Adv_ Targeting Computer`` -> "Adv_ Targeting Computer"
-    | Item.``Exp_ Targeting Computer`` -> "Exp_ Targeting Computer"
+    | Item.``Imp_ Targeting Computer`` -> "Imp. Targeting Computer"
+    | Item.``Mak_ Targeting Computer`` -> "Mak. Targeting Computer"
+    | Item.``Adv_ Targeting Computer`` -> "Adv. Targeting Computer"
+    | Item.``Exp_ Targeting Computer`` -> "Exp. Targeting Computer"
     | Item.``Multitargeting Array`` -> "Multitargeting Array"
     | Item.``Tactical Coordination Suite`` -> "Tactical Coordination Suite"
     | Item.``Melee Analysis Suite`` -> "Melee Analysis Suite"
-    | Item.``Imp_ Melee Analysis Suite`` -> "Imp_ Melee Analysis Suite"
-    | Item.``Adv_ Melee Analysis Suite`` -> "Adv_ Melee Analysis Suite"
-    | Item.``Exp_ Melee Analysis Suite`` -> "Exp_ Melee Analysis Suite"
+    | Item.``Imp_ Melee Analysis Suite`` -> "Imp. Melee Analysis Suite"
+    | Item.``Adv_ Melee Analysis Suite`` -> "Adv. Melee Analysis Suite"
+    | Item.``Exp_ Melee Analysis Suite`` -> "Exp. Melee Analysis Suite"
     | Item.``Launcher Guidance Computer`` -> "Launcher Guidance Computer"
-    | Item.``Imp_ Launcher Guidance Computer`` -> "Imp_ Launcher Guidance Computer"
-    | Item.``Adv_ Launcher Guidance Computer`` -> "Adv_ Launcher Guidance Computer"
+    | Item.``Imp_ Launcher Guidance Computer`` -> "Imp. Launcher Guidance Computer"
+    | Item.``Adv_ Launcher Guidance Computer`` -> "Adv. Launcher Guidance Computer"
     | Item.``Weapon Mount`` -> "Weapon Mount"
     | Item.``Target Analyzer`` -> "Target Analyzer"
-    | Item.``Imp_ Target Analyzer`` -> "Imp_ Target Analyzer"
-    | Item.``Adv_ Target Analyzer`` -> "Adv_ Target Analyzer"
-    | Item.``Exp_ Target Analyzer`` -> "Exp_ Target Analyzer"
+    | Item.``Imp_ Target Analyzer`` -> "Imp. Target Analyzer"
+    | Item.``Adv_ Target Analyzer`` -> "Adv. Target Analyzer"
+    | Item.``Exp_ Target Analyzer`` -> "Exp. Target Analyzer"
     | Item.``Core Analyzer`` -> "Core Analyzer"
-    | Item.``Exp_ Core Analyzer`` -> "Exp_ Core Analyzer"
+    | Item.``Exp_ Core Analyzer`` -> "Exp. Core Analyzer"
     | Item.``Armor Integrity Analyzer`` -> "Armor Integrity Analyzer"
-    | Item.``Imp_ Armor Integrity Analyzer`` -> "Imp_ Armor Integrity Analyzer"
-    | Item.``Exp_ Armor Integrity Analyzer`` -> "Exp_ Armor Integrity Analyzer"
+    | Item.``Imp_ Armor Integrity Analyzer`` -> "Imp. Armor Integrity Analyzer"
+    | Item.``Exp_ Armor Integrity Analyzer`` -> "Exp. Armor Integrity Analyzer"
     | Item.``Recoil Stabilizer`` -> "Recoil Stabilizer"
     | Item.``Recoil Nullifier`` -> "Recoil Nullifier"
     | Item.``Matter Filter`` -> "Matter Filter"
-    | Item.``Prc_ Matter Filter`` -> "Prc_ Matter Filter"
+    | Item.``Prc_ Matter Filter`` -> "Prc. Matter Filter"
     | Item.``Energy Filter`` -> "Energy Filter"
-    | Item.``Prc_ Energy Filter`` -> "Prc_ Energy Filter"
+    | Item.``Prc_ Energy Filter`` -> "Prc. Energy Filter"
     | Item.``Particle Charger`` -> "Particle Charger"
-    | Item.``Imp_ Particle Charger`` -> "Imp_ Particle Charger"
-    | Item.``Adv_ Particle Charger`` -> "Adv_ Particle Charger"
+    | Item.``Imp_ Particle Charger`` -> "Imp. Particle Charger"
+    | Item.``Adv_ Particle Charger`` -> "Adv. Particle Charger"
     | Item.``Particle Accelerator`` -> "Particle Accelerator"
-    | Item.``Imp_ Particle Accelerator`` -> "Imp_ Particle Accelerator"
-    | Item.``Adv_ Particle Accelerator`` -> "Adv_ Particle Accelerator"
+    | Item.``Imp_ Particle Accelerator`` -> "Imp. Particle Accelerator"
+    | Item.``Adv_ Particle Accelerator`` -> "Adv. Particle Accelerator"
     | Item.``Kinecellerator`` -> "Kinecellerator"
-    | Item.``Imp_ Kinecellerator`` -> "Imp_ Kinecellerator"
-    | Item.``Adv_ Kinecellerator`` -> "Adv_ Kinecellerator"
+    | Item.``Imp_ Kinecellerator`` -> "Imp. Kinecellerator"
+    | Item.``Adv_ Kinecellerator`` -> "Adv. Kinecellerator"
+    | Item.``Expert System`` -> "Expert System"
     | Item.``Heavy Servo Lattice`` -> "Heavy Servo Lattice"
     | Item.``VL-GR5's Timing Chip`` -> "VL-GR5's Timing Chip"
     | Item.``Launcher Loader`` -> "Launcher Loader"
     | Item.``Quantum Capacitor`` -> "Quantum Capacitor"
     | Item.``Weapon Cycler`` -> "Weapon Cycler"
-    | Item.``Imp_ Weapon Cycler`` -> "Imp_ Weapon Cycler"
-    | Item.``Adv_ Weapon Cycler`` -> "Adv_ Weapon Cycler"
-    | Item.``Exp_ Weapon Cycler`` -> "Exp_ Weapon Cycler"
+    | Item.``Imp_ Weapon Cycler`` -> "Imp. Weapon Cycler"
+    | Item.``Adv_ Weapon Cycler`` -> "Adv. Weapon Cycler"
+    | Item.``Exp_ Weapon Cycler`` -> "Exp. Weapon Cycler"
     | Item.``Microactuators`` -> "Microactuators"
     | Item.``Nanoactuators`` -> "Nanoactuators"
     | Item.``Femtoactuators`` -> "Femtoactuators"
     | Item.``Actuator Array`` -> "Actuator Array"
-    | Item.``Imp_ Actuator Array`` -> "Imp_ Actuator Array"
-    | Item.``Adv_ Actuator Array`` -> "Adv_ Actuator Array"
-    | Item.``Exp_ Actuator Array`` -> "Exp_ Actuator Array"
+    | Item.``Imp_ Actuator Array`` -> "Imp. Actuator Array"
+    | Item.``Adv_ Actuator Array`` -> "Adv. Actuator Array"
+    | Item.``Exp_ Actuator Array`` -> "Exp. Actuator Array"
     | Item.``Force Booster`` -> "Force Booster"
-    | Item.``Imp_ Force Booster`` -> "Imp_ Force Booster"
-    | Item.``Adv_ Force Booster`` -> "Adv_ Force Booster"
+    | Item.``Imp_ Force Booster`` -> "Imp. Force Booster"
+    | Item.``Adv_ Force Booster`` -> "Adv. Force Booster"
     | Item.``Stasis Canceller`` -> "Stasis Canceller"
     | Item.``Transmission Jammer`` -> "Transmission Jammer"
-    | Item.``Mak_ Transmission Jammer`` -> "Mak_ Transmission Jammer"
-    | Item.``Imp_ Transmission Jammer`` -> "Imp_ Transmission Jammer"
-    | Item.``Adv_ Transmission Jammer`` -> "Adv_ Transmission Jammer"
-    | Item.``Exp_ Transmission Jammer`` -> "Exp_ Transmission Jammer"
+    | Item.``Mak_ Transmission Jammer`` -> "Mak. Transmission Jammer"
+    | Item.``Imp_ Transmission Jammer`` -> "Imp. Transmission Jammer"
+    | Item.``Adv_ Transmission Jammer`` -> "Adv. Transmission Jammer"
+    | Item.``Exp_ Transmission Jammer`` -> "Exp. Transmission Jammer"
     | Item.``ECM Suite`` -> "ECM Suite"
-    | Item.``Mak_ ECM Suite`` -> "Mak_ ECM Suite"
-    | Item.``Adv_ ECM Suite`` -> "Adv_ ECM Suite"
-    | Item.``Exp_ ECM Suite`` -> "Exp_ ECM Suite"
+    | Item.``Mak_ ECM Suite`` -> "Mak. ECM Suite"
+    | Item.``Adv_ ECM Suite`` -> "Adv. ECM Suite"
+    | Item.``Exp_ ECM Suite`` -> "Exp. ECM Suite"
     | Item.``Active Sensor Spoofer`` -> "Active Sensor Spoofer"
     | Item.``Reaction Control System`` -> "Reaction Control System"
-    | Item.``Imp_ Reaction Control System`` -> "Imp_ Reaction Control System"
-    | Item.``Adv_ Reaction Control System`` -> "Adv_ Reaction Control System"
-    | Item.``Exp_ Reaction Control System`` -> "Exp_ Reaction Control System"
+    | Item.``Imp_ Reaction Control System`` -> "Imp. Reaction Control System"
+    | Item.``Adv_ Reaction Control System`` -> "Adv. Reaction Control System"
+    | Item.``Exp_ Reaction Control System`` -> "Exp. Reaction Control System"
     | Item.``Phase Shifter`` -> "Phase Shifter"
-    | Item.``Imp_ Phase Shifter`` -> "Imp_ Phase Shifter"
-    | Item.``Adv_ Phase Shifter`` -> "Adv_ Phase Shifter"
-    | Item.``Exp_ Phase Shifter`` -> "Exp_ Phase Shifter"
+    | Item.``Imp_ Phase Shifter`` -> "Imp. Phase Shifter"
+    | Item.``Adv_ Phase Shifter`` -> "Adv. Phase Shifter"
+    | Item.``Exp_ Phase Shifter`` -> "Exp. Phase Shifter"
     | Item.``Cloaking Device`` -> "Cloaking Device"
-    | Item.``Mak_ Cloaking Device`` -> "Mak_ Cloaking Device"
-    | Item.``Imp_ Cloaking Device`` -> "Imp_ Cloaking Device"
-    | Item.``Adv_ Cloaking Device`` -> "Adv_ Cloaking Device"
-    | Item.``Exp_ Cloaking Device`` -> "Exp_ Cloaking Device"
+    | Item.``Mak_ Cloaking Device`` -> "Mak. Cloaking Device"
+    | Item.``Imp_ Cloaking Device`` -> "Imp. Cloaking Device"
+    | Item.``Adv_ Cloaking Device`` -> "Adv. Cloaking Device"
+    | Item.``Exp_ Cloaking Device`` -> "Exp. Cloaking Device"
     | Item.``Cloak of Protection`` -> "Cloak of Protection"
     | Item.``5H-AD0's Cloak`` -> "5H-AD0's Cloak"
+    | Item.``ID Mask`` -> "ID Mask"
     | Item.``Core Shielding`` -> "Core Shielding"
-    | Item.``Imp_ Core Shielding`` -> "Imp_ Core Shielding"
-    | Item.``Exp_ Core Shielding`` -> "Exp_ Core Shielding"
+    | Item.``Imp_ Core Shielding`` -> "Imp. Core Shielding"
+    | Item.``Mak_ Core Shielding`` -> "Mak. Core Shielding"
+    | Item.``Exp_ Core Shielding`` -> "Exp. Core Shielding"
     | Item.``Power Shielding`` -> "Power Shielding"
-    | Item.``Imp_ Power Shielding`` -> "Imp_ Power Shielding"
-    | Item.``Exp_ Power Shielding`` -> "Exp_ Power Shielding"
+    | Item.``Imp_ Power Shielding`` -> "Imp. Power Shielding"
+    | Item.``Mak_ Power Shielding`` -> "Mak. Power Shielding"
+    | Item.``Exp_ Power Shielding`` -> "Exp. Power Shielding"
     | Item.``Propulsion Shielding`` -> "Propulsion Shielding"
-    | Item.``Imp_ Propulsion Shielding`` -> "Imp_ Propulsion Shielding"
-    | Item.``Exp_ Propulsion Shielding`` -> "Exp_ Propulsion Shielding"
+    | Item.``Imp_ Propulsion Shielding`` -> "Imp. Propulsion Shielding"
+    | Item.``Mak_ Propulsion Shielding`` -> "Mak. Propulsion Shielding"
+    | Item.``Exp_ Propulsion Shielding`` -> "Exp. Propulsion Shielding"
     | Item.``Utility Shielding`` -> "Utility Shielding"
-    | Item.``Imp_ Utility Shielding`` -> "Imp_ Utility Shielding"
-    | Item.``Exp_ Utility Shielding`` -> "Exp_ Utility Shielding"
+    | Item.``Imp_ Utility Shielding`` -> "Imp. Utility Shielding"
+    | Item.``Mak_ Utility Shielding`` -> "Mak. Utility Shielding"
+    | Item.``Exp_ Utility Shielding`` -> "Exp. Utility Shielding"
     | Item.``Weapon Shielding`` -> "Weapon Shielding"
-    | Item.``Imp_ Weapon Shielding`` -> "Imp_ Weapon Shielding"
-    | Item.``Exp_ Weapon Shielding`` -> "Exp_ Weapon Shielding"
-    | Item.``Zio_ Weapon Casing`` -> "Zio_ Weapon Casing"
+    | Item.``Imp_ Weapon Shielding`` -> "Imp. Weapon Shielding"
+    | Item.``Mak_ Weapon Shielding`` -> "Mak. Weapon Shielding"
+    | Item.``Exp_ Weapon Shielding`` -> "Exp. Weapon Shielding"
+    | Item.``Zio_ Weapon Casing`` -> "Zio. Weapon Casing"
     | Item.``Backup Plating I`` -> "Backup Plating I"
     | Item.``Backup Plating III`` -> "Backup Plating III"
     | Item.``Backup Plating VII`` -> "Backup Plating VII"
-    | Item.``Lgt_ Armor Plating`` -> "Lgt_ Armor Plating"
-    | Item.``Med_ Armor Plating`` -> "Med_ Armor Plating"
-    | Item.``Hvy_ Armor Plating`` -> "Hvy_ Armor Plating"
-    | Item.``Zio_ Light Carapace`` -> "Zio_ Light Carapace"
-    | Item.``Zio_ Heavy Carapace`` -> "Zio_ Heavy Carapace"
-    | Item.``Hrd_ Light Armor Plating`` -> "Hrd_ Light Armor Plating"
-    | Item.``Hrd_ Medium Armor Plating`` -> "Hrd_ Medium Armor Plating"
-    | Item.``Hrd_ Heavy Armor Plating`` -> "Hrd_ Heavy Armor Plating"
-    | Item.``Imp_ Light Armor Plating`` -> "Imp_ Light Armor Plating"
-    | Item.``Imp_ Medium Armor Plating`` -> "Imp_ Medium Armor Plating"
-    | Item.``Imp_ Heavy Armor Plating`` -> "Imp_ Heavy Armor Plating"
-    | Item.``Lyr_ Light Armor Plating`` -> "Lyr_ Light Armor Plating"
-    | Item.``Mak_ Armor Plating`` -> "Mak_ Armor Plating"
-    | Item.``Lyr_ Medium Armor Plating`` -> "Lyr_ Medium Armor Plating"
-    | Item.``Lyr_ Heavy Armor Plating`` -> "Lyr_ Heavy Armor Plating"
+    | Item.``Lgt_ Armor Plating`` -> "Lgt. Armor Plating"
+    | Item.``Med_ Armor Plating`` -> "Med. Armor Plating"
+    | Item.``Hvy_ Armor Plating`` -> "Hvy. Armor Plating"
+    | Item.``Zio_ Light Carapace`` -> "Zio. Light Carapace"
+    | Item.``Zio_ Heavy Carapace`` -> "Zio. Heavy Carapace"
+    | Item.``Hrd_ Light Armor Plating`` -> "Hrd. Light Armor Plating"
+    | Item.``Hrd_ Medium Armor Plating`` -> "Hrd. Medium Armor Plating"
+    | Item.``Hrd_ Heavy Armor Plating`` -> "Hrd. Heavy Armor Plating"
+    | Item.``Imp_ Light Armor Plating`` -> "Imp. Light Armor Plating"
+    | Item.``Imp_ Medium Armor Plating`` -> "Imp. Medium Armor Plating"
+    | Item.``Imp_ Heavy Armor Plating`` -> "Imp. Heavy Armor Plating"
+    | Item.``Mak_ Light Armor Plating`` -> "Mak. Light Armor Plating"
+    | Item.``Mak_ Medium Armor Plating`` -> "Mak. Medium Armor Plating"
+    | Item.``Mak_ Heavy Armor Plating`` -> "Mak. Heavy Armor Plating"
+    | Item.``Lyr_ Light Armor Plating`` -> "Lyr. Light Armor Plating"
+    | Item.``Lyr_ Medium Armor Plating`` -> "Lyr. Medium Armor Plating"
+    | Item.``Lyr_ Heavy Armor Plating`` -> "Lyr. Heavy Armor Plating"
     | Item.``Gun Armor`` -> "Gun Armor"
     | Item.``Centrium Light Armor Plating`` -> "Centrium Light Armor Plating"
     | Item.``Centrium Medium Armor Plating`` -> "Centrium Medium Armor Plating"
     | Item.``Centrium Heavy Armor Plating`` -> "Centrium Heavy Armor Plating"
     | Item.``Centrium Linked Plating`` -> "Centrium Linked Plating"
     | Item.``Reactive Plating`` -> "Reactive Plating"
-    | Item.``Med_ Reactive Plating`` -> "Med_ Reactive Plating"
-    | Item.``Mak_ Kinetic Plating`` -> "Mak_ Kinetic Plating"
-    | Item.``Hvy_ Reactive Plating`` -> "Hvy_ Reactive Plating"
+    | Item.``Med_ Reactive Plating`` -> "Med. Reactive Plating"
+    | Item.``Mak_ Kinetic Plating`` -> "Mak. Kinetic Plating"
+    | Item.``Hvy_ Reactive Plating`` -> "Hvy. Reactive Plating"
+    | Item.``Superdense Plating`` -> "Superdense Plating"
     | Item.``Reflective Plating`` -> "Reflective Plating"
-    | Item.``Med_ Reflective Plating`` -> "Med_ Reflective Plating"
-    | Item.``Mak_ Thermal Plating`` -> "Mak_ Thermal Plating"
-    | Item.``Hvy_ Reflective Plating`` -> "Hvy_ Reflective Plating"
-    | Item.``8R-AWN's Armor_TH`` -> "8R-AWN's Armor_TH"
-    | Item.``8R-AWN's Armor_EX`` -> "8R-AWN's Armor_EX"
+    | Item.``Med_ Reflective Plating`` -> "Med. Reflective Plating"
+    | Item.``Mak_ Thermal Plating`` -> "Mak. Thermal Plating"
+    | Item.``Hvy_ Reflective Plating`` -> "Hvy. Reflective Plating"
+    | Item.``8R-AWN's Armor_TH`` -> "8R-AWN's Armor/TH"
+    | Item.``8R-AWN's Armor_EX`` -> "8R-AWN's Armor/EX"
     | Item.``Insulated Plating`` -> "Insulated Plating"
-    | Item.``Med_ Insulated Plating`` -> "Med_ Insulated Plating"
-    | Item.``Hvy_ Insulated Plating`` -> "Hvy_ Insulated Plating"
+    | Item.``Med_ Insulated Plating`` -> "Med. Insulated Plating"
+    | Item.``Hvy_ Insulated Plating`` -> "Hvy. Insulated Plating"
     | Item.``Damper Plating`` -> "Damper Plating"
-    | Item.``Zio_ Shade Carapace`` -> "Zio_ Shade Carapace"
-    | Item.``Zio_ Shade Armor`` -> "Zio_ Shade Armor"
-    | Item.``Asb_ Alloy Armor`` -> "Asb_ Alloy Armor"
-    | Item.``Mak_ Ablative Armor`` -> "Mak_ Ablative Armor"
+    | Item.``Zio_ Shade Carapace`` -> "Zio. Shade Carapace"
+    | Item.``Zio_ Shade Armor`` -> "Zio. Shade Armor"
+    | Item.``Asb_ Alloy Armor`` -> "Asb. Alloy Armor"
+    | Item.``Mak_ Ablative Armor`` -> "Mak. Ablative Armor"
     | Item.``Active Cooling Armor`` -> "Active Cooling Armor"
     | Item.``Scrap Shield`` -> "Scrap Shield"
+    | Item.``Enh_ Scrap Shield`` -> "Enh. Scrap Shield"
     | Item.``Powered Armor`` -> "Powered Armor"
-    | Item.``Imp_ Powered Armor`` -> "Imp_ Powered Armor"
-    | Item.``Adv_ Powered Armor`` -> "Adv_ Powered Armor"
-    | Item.``Exp_ Powered Armor`` -> "Exp_ Powered Armor"
+    | Item.``Imp_ Powered Armor`` -> "Imp. Powered Armor"
+    | Item.``Adv_ Powered Armor`` -> "Adv. Powered Armor"
+    | Item.``Exp_ Powered Armor`` -> "Exp. Powered Armor"
     | Item.``1C-UTU's Buckler`` -> "1C-UTU's Buckler"
-    | Item.``Lgt_ Regenerative Plating`` -> "Lgt_ Regenerative Plating"
-    | Item.``Med_ Regenerative Plating`` -> "Med_ Regenerative Plating"
-    | Item.``Hvy_ Regenerative Plating`` -> "Hvy_ Regenerative Plating"
+    | Item.``Tower Shield`` -> "Tower Shield"
+    | Item.``Lgt_ Regenerative Plating`` -> "Lgt. Regenerative Plating"
+    | Item.``Med_ Regenerative Plating`` -> "Med. Regenerative Plating"
+    | Item.``Hvy_ Regenerative Plating`` -> "Hvy. Regenerative Plating"
     | Item.``SHELL Armor`` -> "SHELL Armor"
     | Item.``Phase Armor`` -> "Phase Armor"
+    | Item.``Vmp_ Brace Plating`` -> "Vmp. Brace Plating"
     | Item.``Graphene Brace`` -> "Graphene Brace"
     | Item.``Focal Shield`` -> "Focal Shield"
-    | Item.``Imp_ Focal Shield`` -> "Imp_ Focal Shield"
-    | Item.``Adv_ Focal Shield`` -> "Adv_ Focal Shield"
-    | Item.``Exp_ Focal Shield`` -> "Exp_ Focal Shield"
+    | Item.``Imp_ Focal Shield`` -> "Imp. Focal Shield"
+    | Item.``Adv_ Focal Shield`` -> "Adv. Focal Shield"
+    | Item.``Exp_ Focal Shield`` -> "Exp. Focal Shield"
     | Item.``Thermal Shield`` -> "Thermal Shield"
-    | Item.``Imp_ Thermal Shield`` -> "Imp_ Thermal Shield"
-    | Item.``Adv_ Thermal Shield`` -> "Adv_ Thermal Shield"
-    | Item.``Exp_ Thermal Shield`` -> "Exp_ Thermal Shield"
+    | Item.``Imp_ Thermal Shield`` -> "Imp. Thermal Shield"
+    | Item.``Adv_ Thermal Shield`` -> "Adv. Thermal Shield"
+    | Item.``Exp_ Thermal Shield`` -> "Exp. Thermal Shield"
     | Item.``Thermal Barrier`` -> "Thermal Barrier"
     | Item.``Beam Splitter`` -> "Beam Splitter"
     | Item.``Thermal Defense Suite`` -> "Thermal Defense Suite"
-    | Item.``Imp_ Thermal Defense Suite`` -> "Imp_ Thermal Defense Suite"
-    | Item.``Adv_ Thermal Defense Suite`` -> "Adv_ Thermal Defense Suite"
-    | Item.``Exp_ Thermal Defense Suite`` -> "Exp_ Thermal Defense Suite"
+    | Item.``Imp_ Thermal Defense Suite`` -> "Imp. Thermal Defense Suite"
+    | Item.``Adv_ Thermal Defense Suite`` -> "Adv. Thermal Defense Suite"
+    | Item.``Exp_ Thermal Defense Suite`` -> "Exp. Thermal Defense Suite"
     | Item.``Shock Absorption System`` -> "Shock Absorption System"
-    | Item.``Imp_ Shock Absorption System`` -> "Imp_ Shock Absorption System"
-    | Item.``Exp_ Shock Absorption System`` -> "Exp_ Shock Absorption System"
+    | Item.``Imp_ Shock Absorption System`` -> "Imp. Shock Absorption System"
+    | Item.``Exp_ Shock Absorption System`` -> "Exp. Shock Absorption System"
     | Item.``EM Disruption Field`` -> "EM Disruption Field"
-    | Item.``Adv_ EM Disruption Field`` -> "Adv_ EM Disruption Field"
-    | Item.``Exp_ EM Disruption Field`` -> "Exp_ EM Disruption Field"
+    | Item.``Adv_ EM Disruption Field`` -> "Adv. EM Disruption Field"
+    | Item.``Exp_ EM Disruption Field`` -> "Exp. EM Disruption Field"
     | Item.``ME-RLN's Chromatic Screen`` -> "ME-RLN's Chromatic Screen"
     | Item.``Hardlight Generator`` -> "Hardlight Generator"
-    | Item.``Imp_ Hardlight Generator`` -> "Imp_ Hardlight Generator"
-    | Item.``Adv_ Hardlight Generator`` -> "Adv_ Hardlight Generator"
-    | Item.``Exp_ Hardlight Generator`` -> "Exp_ Hardlight Generator"
+    | Item.``Imp_ Hardlight Generator`` -> "Imp. Hardlight Generator"
+    | Item.``Adv_ Hardlight Generator`` -> "Adv. Hardlight Generator"
+    | Item.``Exp_ Hardlight Generator`` -> "Exp. Hardlight Generator"
     | Item.``Shield Generator`` -> "Shield Generator"
-    | Item.``Imp_ Shield Generator`` -> "Imp_ Shield Generator"
-    | Item.``Adv_ Shield Generator`` -> "Adv_ Shield Generator"
-    | Item.``Exp_ Shield Generator`` -> "Exp_ Shield Generator"
+    | Item.``Imp_ Shield Generator`` -> "Imp. Shield Generator"
+    | Item.``Adv_ Shield Generator`` -> "Adv. Shield Generator"
+    | Item.``Exp_ Shield Generator`` -> "Exp. Shield Generator"
     | Item.``Force Field`` -> "Force Field"
-    | Item.``Imp_ Force Field`` -> "Imp_ Force Field"
-    | Item.``Adv_ Force Field`` -> "Adv_ Force Field"
-    | Item.``Exp_ Force Field`` -> "Exp_ Force Field"
+    | Item.``Imp_ Force Field`` -> "Imp. Force Field"
+    | Item.``Adv_ Force Field`` -> "Adv. Force Field"
+    | Item.``Exp_ Force Field`` -> "Exp. Force Field"
     | Item.``7V-RTL's Ultimate Field`` -> "7V-RTL's Ultimate Field"
     | Item.``Vortex Field Projector`` -> "Vortex Field Projector"
     | Item.``Remote Shield`` -> "Remote Shield"
-    | Item.``Imp_ Remote Shield`` -> "Imp_ Remote Shield"
-    | Item.``Adv_ Remote Shield`` -> "Adv_ Remote Shield"
+    | Item.``Imp_ Remote Shield`` -> "Imp. Remote Shield"
+    | Item.``Adv_ Remote Shield`` -> "Adv. Remote Shield"
     | Item.``Remote Force Field`` -> "Remote Force Field"
-    | Item.``Imp_ Remote Force Field`` -> "Imp_ Remote Force Field"
+    | Item.``Imp_ Remote Force Field`` -> "Imp. Remote Force Field"
     | Item.``Energy Mantle`` -> "Energy Mantle"
-    | Item.``Imp_ Energy Mantle`` -> "Imp_ Energy Mantle"
+    | Item.``Imp_ Energy Mantle`` -> "Imp. Energy Mantle"
     | Item.``AEGIS Remote Shield`` -> "AEGIS Remote Shield"
     | Item.``Phase Redirector`` -> "Phase Redirector"
+    | Item.``Field Manipulator`` -> "Field Manipulator"
+    | Item.``Energy Deflector`` -> "Energy Deflector"
     | Item.``Point Defense System`` -> "Point Defense System"
     | Item.``Point Defense Array`` -> "Point Defense Array"
     | Item.``Antimissile System`` -> "Antimissile System"
     | Item.``EX Chip 1`` -> "EX Chip 1"
     | Item.``Hacking Suite`` -> "Hacking Suite"
-    | Item.``Mak_ Hacking Suite`` -> "Mak_ Hacking Suite"
-    | Item.``Imp_ Hacking Suite`` -> "Imp_ Hacking Suite"
-    | Item.``Adv_ Hacking Suite`` -> "Adv_ Hacking Suite"
-    | Item.``Exp_ Hacking Suite`` -> "Exp_ Hacking Suite"
+    | Item.``Mak_ Hacking Suite`` -> "Mak. Hacking Suite"
+    | Item.``Imp_ Hacking Suite`` -> "Imp. Hacking Suite"
+    | Item.``Adv_ Hacking Suite`` -> "Adv. Hacking Suite"
+    | Item.``Exp_ Hacking Suite`` -> "Exp. Hacking Suite"
     | Item.``System Mapper`` -> "System Mapper"
     | Item.``Deep Network Scanner`` -> "Deep Network Scanner"
     | Item.``Architect God Chip A`` -> "Architect God Chip A"
     | Item.``EX Chip 2`` -> "EX Chip 2"
     | Item.``System Shield`` -> "System Shield"
-    | Item.``Mak_ System Shield`` -> "Mak_ System Shield"
-    | Item.``Imp_ System Shield`` -> "Imp_ System Shield"
-    | Item.``Adv_ System Shield`` -> "Adv_ System Shield"
-    | Item.``Exp_ System Shield`` -> "Exp_ System Shield"
+    | Item.``Mak_ System Shield`` -> "Mak. System Shield"
+    | Item.``Imp_ System Shield`` -> "Imp. System Shield"
+    | Item.``Adv_ System Shield`` -> "Adv. System Shield"
+    | Item.``Exp_ System Shield`` -> "Exp. System Shield"
     | Item.``Ghost Barrier`` -> "Ghost Barrier"
     | Item.``Quantum Router`` -> "Quantum Router"
     | Item.``Architect God Chip D`` -> "Architect God Chip D"
-    | Item.``Authchip _R_NC_`` -> "Authchip _R_NC_"
-    | Item.``Authchip _R_Combat_`` -> "Authchip _R_Combat_"
-    | Item.``Authchip _Power_`` -> "Authchip _Power_"
-    | Item.``Authchip _Propulsion_`` -> "Authchip _Propulsion_"
-    | Item.``Authchip _Device_`` -> "Authchip _Device_"
-    | Item.``Authchip _Storage_`` -> "Authchip _Storage_"
-    | Item.``Authchip _Processor_`` -> "Authchip _Processor_"
-    | Item.``Authchip _Armor_`` -> "Authchip _Armor_"
-    | Item.``Authchip _Weapon_`` -> "Authchip _Weapon_"
-    | Item.``Relay Coupler _NC_`` -> "Relay Coupler _NC_"
-    | Item.``Relay Coupler _C_`` -> "Relay Coupler _C_"
-    | Item.``Relay Coupler _Swarmer_`` -> "Relay Coupler _Swarmer_"
-    | Item.``Relay Coupler _Cutter_`` -> "Relay Coupler _Cutter_"
-    | Item.``Relay Coupler _Grunt_`` -> "Relay Coupler _Grunt_"
-    | Item.``Relay Coupler _Brawler_`` -> "Relay Coupler _Brawler_"
-    | Item.``Relay Coupler _Duelist_`` -> "Relay Coupler _Duelist_"
-    | Item.``Relay Coupler _Sentry_`` -> "Relay Coupler _Sentry_"
-    | Item.``Relay Coupler _Demolisher_`` -> "Relay Coupler _Demolisher_"
-    | Item.``Relay Coupler _Specialist_`` -> "Relay Coupler _Specialist_"
-    | Item.``Relay Coupler _Hunter_`` -> "Relay Coupler _Hunter_"
-    | Item.``Relay Coupler _Heavy_`` -> "Relay Coupler _Heavy_"
-    | Item.``Relay Coupler _Behemoth_`` -> "Relay Coupler _Behemoth_"
-    | Item.``Relay Coupler _Programmer_`` -> "Relay Coupler _Programmer_"
-    | Item.``Relay Coupler _Proto_`` -> "Relay Coupler _Proto_"
+    | Item.``Authchip _R_NC_`` -> "Authchip [R/NC]"
+    | Item.``Authchip _R_Combat_`` -> "Authchip [R/Combat]"
+    | Item.``Authchip _Power_`` -> "Authchip [Power]"
+    | Item.``Authchip _Propulsion_`` -> "Authchip [Propulsion]"
+    | Item.``Authchip _Device_`` -> "Authchip [Device]"
+    | Item.``Authchip _Storage_`` -> "Authchip [Storage]"
+    | Item.``Authchip _Processor_`` -> "Authchip [Processor]"
+    | Item.``Authchip _Armor_`` -> "Authchip [Armor]"
+    | Item.``Authchip _Weapon_`` -> "Authchip [Weapon]"
+    | Item.``Relay Coupler _NC_`` -> "Relay Coupler [NC]"
+    | Item.``Relay Coupler _C_`` -> "Relay Coupler [C]"
+    | Item.``Relay Coupler _Swarmer_`` -> "Relay Coupler [Swarmer]"
+    | Item.``Relay Coupler _Cutter_`` -> "Relay Coupler [Cutter]"
+    | Item.``Relay Coupler _Grunt_`` -> "Relay Coupler [Grunt]"
+    | Item.``Relay Coupler _Brawler_`` -> "Relay Coupler [Brawler]"
+    | Item.``Relay Coupler _Duelist_`` -> "Relay Coupler [Duelist]"
+    | Item.``Relay Coupler _Sentry_`` -> "Relay Coupler [Sentry]"
+    | Item.``Relay Coupler _Demolisher_`` -> "Relay Coupler [Demolisher]"
+    | Item.``Relay Coupler _Specialist_`` -> "Relay Coupler [Specialist]"
+    | Item.``Relay Coupler _Hunter_`` -> "Relay Coupler [Hunter]"
+    | Item.``Relay Coupler _Heavy_`` -> "Relay Coupler [Heavy]"
+    | Item.``Relay Coupler _Behemoth_`` -> "Relay Coupler [Behemoth]"
+    | Item.``Relay Coupler _Programmer_`` -> "Relay Coupler [Programmer]"
+    | Item.``Relay Coupler _Proto_`` -> "Relay Coupler [Proto]"
     | Item.``Skeleton Box`` -> "Skeleton Box"
     | Item.``01-MTF's Autohacker`` -> "01-MTF's Autohacker"
     | Item.``Component Analysis Suite`` -> "Component Analysis Suite"
-    | Item.``Imp_ Component Analysis Suite`` -> "Imp_ Component Analysis Suite"
-    | Item.``Adv_ Component Analysis Suite`` -> "Adv_ Component Analysis Suite"
+    | Item.``Imp_ Component Analysis Suite`` -> "Imp. Component Analysis Suite"
+    | Item.``Adv_ Component Analysis Suite`` -> "Adv. Component Analysis Suite"
+    | Item.``A0-MCA's Component Scanner`` -> "A0-MCA's Component Scanner"
+    | Item.``Tech Extrapolator`` -> "Tech Extrapolator"
     | Item.``Dynamic Insulation System`` -> "Dynamic Insulation System"
-    | Item.``Imp_ Dynamic Insulation System`` -> "Imp_ Dynamic Insulation System"
-    | Item.``Adv_ Dynamic Insulation System`` -> "Adv_ Dynamic Insulation System"
+    | Item.``Imp_ Dynamic Insulation System`` -> "Imp. Dynamic Insulation System"
+    | Item.``Adv_ Dynamic Insulation System`` -> "Adv. Dynamic Insulation System"
     | Item.``System Guard`` -> "System Guard"
-    | Item.``Imp_ System Guard`` -> "Imp_ System Guard"
-    | Item.``Exp_ System Guard`` -> "Exp_ System Guard"
+    | Item.``Imp_ System Guard`` -> "Imp. System Guard"
+    | Item.``Exp_ System Guard`` -> "Exp. System Guard"
     | Item.``Corruption Screen`` -> "Corruption Screen"
-    | Item.``Imp_ Corruption Screen`` -> "Imp_ Corruption Screen"
-    | Item.``Adv_ Corruption Screen`` -> "Adv_ Corruption Screen"
+    | Item.``Imp_ Corruption Screen`` -> "Imp. Corruption Screen"
+    | Item.``Adv_ Corruption Screen`` -> "Adv. Corruption Screen"
     | Item.``System Restoration Module`` -> "System Restoration Module"
-    | Item.``Mak_ System Restoration Module`` -> "Mak_ System Restoration Module"
-    | Item.``Imp_ System Restoration Module`` -> "Imp_ System Restoration Module"
-    | Item.``Adv_ System Restoration Module`` -> "Adv_ System Restoration Module"
+    | Item.``Mak_ System Restoration Module`` -> "Mak. System Restoration Module"
+    | Item.``Imp_ System Restoration Module`` -> "Imp. System Restoration Module"
+    | Item.``Adv_ System Restoration Module`` -> "Adv. System Restoration Module"
     | Item.``System Purifier`` -> "System Purifier"
-    | Item.``Exp_ System Purifier`` -> "Exp_ System Purifier"
+    | Item.``Exp_ System Purifier`` -> "Exp. System Purifier"
     | Item.``Tractor Beam`` -> "Tractor Beam"
-    | Item.``Hpw_ Tractor Beam`` -> "Hpw_ Tractor Beam"
-    | Item.``Lrn_ Tractor Beam`` -> "Lrn_ Tractor Beam"
-    | Item.``Mobile Refinery Mk_ CCLXVII`` -> "Mobile Refinery Mk_ CCLXVII"
+    | Item.``Hpw_ Tractor Beam`` -> "Hpw. Tractor Beam"
+    | Item.``Lrn_ Tractor Beam`` -> "Lrn. Tractor Beam"
+    | Item.``Mobile Refinery Mk_ CCLXVII`` -> "Mobile Refinery Mk. CCLXVII"
     | Item.``Trap Extractor`` -> "Trap Extractor"
-    | Item.``Imp_ Trap Extractor`` -> "Imp_ Trap Extractor"
-    | Item.``Adv_ Trap Extractor`` -> "Adv_ Trap Extractor"
+    | Item.``Imp_ Trap Extractor`` -> "Imp. Trap Extractor"
+    | Item.``Adv_ Trap Extractor`` -> "Adv. Trap Extractor"
     | Item.``Trap Reconfigurator`` -> "Trap Reconfigurator"
     | Item.``Recalibrator`` -> "Recalibrator"
-    | Item.``Imp_ Recalibrator`` -> "Imp_ Recalibrator"
-    | Item.``Adv_ Recalibrator`` -> "Adv_ Recalibrator"
+    | Item.``Imp_ Recalibrator`` -> "Imp. Recalibrator"
+    | Item.``Adv_ Recalibrator`` -> "Adv. Recalibrator"
+    | Item.``Exp_ Recalibrator`` -> "Exp. Recalibrator"
     | Item.``Field Recycling Unit`` -> "Field Recycling Unit"
-    | Item.``Imp_ Field Recycling Unit`` -> "Imp_ Field Recycling Unit"
-    | Item.``Adv_ Field Recycling Unit`` -> "Adv_ Field Recycling Unit"
-    | Item.``Exp_ Field Recycling Unit`` -> "Exp_ Field Recycling Unit"
+    | Item.``Imp_ Field Recycling Unit`` -> "Imp. Field Recycling Unit"
+    | Item.``Adv_ Field Recycling Unit`` -> "Adv. Field Recycling Unit"
+    | Item.``Exp_ Field Recycling Unit`` -> "Exp. Field Recycling Unit"
     | Item.``Drone Bay`` -> "Drone Bay"
     | Item.``Z-Drone Bay`` -> "Z-Drone Bay"
-    | Item.``Mni_ Drone Bay`` -> "Mni_ Drone Bay"
+    | Item.``Mni_ Drone Bay`` -> "Mni. Drone Bay"
     | Item.``Mapping Drone Bay`` -> "Mapping Drone Bay"
-    | Item.``Adv_ Drone Bay`` -> "Adv_ Drone Bay"
+    | Item.``Adv_ Drone Bay`` -> "Adv. Drone Bay"
     | Item.``Bomb Drone Bay`` -> "Bomb Drone Bay"
     | Item.``Thief Drone Bay`` -> "Thief Drone Bay"
     | Item.``Decoy Drone Bay`` -> "Decoy Drone Bay"
@@ -3117,23 +3339,27 @@ let itemString =
     | Item.``Hacking Drone Bay`` -> "Hacking Drone Bay"
     | Item.``Minesniffer Drone Bay`` -> "Minesniffer Drone Bay"
     | Item.``Army-in-a-Box`` -> "Army-in-a-Box"
+    | Item.``Master Drone Bay`` -> "Master Drone Bay"
     | Item.``Wardrone Bay`` -> "Wardrone Bay"
     | Item.``Cobbler Unit`` -> "Cobbler Unit"
-    | Item.``Bomb Factory No_ 2`` -> "Bomb Factory No_ 2"
+    | Item.``Bomb Factory No_ 2`` -> "Bomb Factory No. 2"
     | Item.``Mobile Assembly Unit`` -> "Mobile Assembly Unit"
     | Item.``Heart of Steel`` -> "Heart of Steel"
+    | Item.``Scrapoid Pod`` -> "Scrapoid Pod"
     | Item.``GOLEM Unit`` -> "GOLEM Unit"
     | Item.``PSU Rigger`` -> "PSU Rigger"
+    | Item.``Machine Rigger`` -> "Machine Rigger"
     | Item.``Phasing AFG`` -> "Phasing AFG"
-    | Item.``AS-neutralizer No_ 17b`` -> "AS-neutralizer No_ 17b"
+    | Item.``AS-neutralizer No_ 17b`` -> "AS-neutralizer No. 17b"
     | Item.``V3-11A's Pendant`` -> "V3-11A's Pendant"
+    | Item.``Amulet of Y3-NDR`` -> "Amulet of Y3-NDR"
     | Item.``Chronowheel`` -> "Chronowheel"
     | Item.``Power Bank`` -> "Power Bank"
     | Item.``Rainbow Chip`` -> "Rainbow Chip"
-    | Item.``VL-GR5's Exoskeleton _Deathgrip_`` -> "VL-GR5's Exoskeleton _Deathgrip_"
+    | Item.``VL-GR5's Exoskeleton _Deathgrip_`` -> "VL-GR5's Exoskeleton 'Deathgrip'"
     | Item.``Dimensional Node Initializer`` -> "Dimensional Node Initializer"
     | Item.``Transdimensional Reconstructor`` -> "Transdimensional Reconstructor"
-    | Item.``Hpw_ Transdimensional Reconstructor`` -> "Hpw_ Transdimensional Reconstructor"
+    | Item.``Hpw_ Transdimensional Reconstructor`` -> "Hpw. Transdimensional Reconstructor"
     | Item.``Supercharged TR`` -> "Supercharged TR"
     | Item.``Core Expander`` -> "Core Expander"
     | Item.``Core Regenerator`` -> "Core Regenerator"
@@ -3150,6 +3376,8 @@ let itemString =
     | Item.``Subatomic Replicator`` -> "Subatomic Replicator"
     | Item.``Terrabomb`` -> "Terrabomb"
     | Item.``Core Physics Calibrator`` -> "Core Physics Calibrator"
+    | Item.``Personal Teleporter v0_10`` -> "Personal Teleporter v0.10"
+    | Item.``Telecube`` -> "Telecube"
     | Item.``Spacefold Activator`` -> "Spacefold Activator"
     | Item.``Microwarp Drive`` -> "Microwarp Drive"
     | Item.``LC Capacitor`` -> "LC Capacitor"
@@ -3157,288 +3385,303 @@ let itemString =
     | Item.``LRC Storage`` -> "LRC Storage"
     | Item.``LRC Energy Well`` -> "LRC Energy Well"
     | Item.``LRC Matter Compressor`` -> "LRC Matter Compressor"
-    | Item.``LRC Boosters`` -> "LRC Boosters"
+    | Item.``LRC Inertial Stabilizer`` -> "LRC Inertial Stabilizer"
     | Item.``LRC Insulator`` -> "LRC Insulator"
     | Item.``EM Pulse Gun`` -> "EM Pulse Gun"
-    | Item.``Hvy_ EM Pulse Gun`` -> "Hvy_ EM Pulse Gun"
+    | Item.``Hvy_ EM Pulse Gun`` -> "Hvy. EM Pulse Gun"
     | Item.``EM Shotgun`` -> "EM Shotgun"
-    | Item.``Imp_ EM Shotgun`` -> "Imp_ EM Shotgun"
+    | Item.``Imp_ EM Shotgun`` -> "Imp. EM Shotgun"
     | Item.``Shock Rifle`` -> "Shock Rifle"
     | Item.``Riot Gun`` -> "Riot Gun"
-    | Item.``Hvy_ EM Shotgun`` -> "Hvy_ EM Shotgun"
+    | Item.``Hvy_ EM Shotgun`` -> "Hvy. EM Shotgun"
     | Item.``Lightning Gun`` -> "Lightning Gun"
-    | Item.``Hvy_ Riot Gun`` -> "Hvy_ Riot Gun"
+    | Item.``Hvy_ Riot Gun`` -> "Hvy. Riot Gun"
     | Item.``Arc Projector`` -> "Arc Projector"
-    | Item.``Prc_ Shock Rifle`` -> "Prc_ Shock Rifle"
-    | Item.``Hpw_ Shock Rifle`` -> "Hpw_ Shock Rifle"
+    | Item.``Prc_ Shock Rifle`` -> "Prc. Shock Rifle"
+    | Item.``Hpw_ Shock Rifle`` -> "Hpw. Shock Rifle"
     | Item.``Arc Thrower`` -> "Arc Thrower"
-    | Item.``Imp_ Lightning Gun`` -> "Imp_ Lightning Gun"
+    | Item.``Imp_ Lightning Gun`` -> "Imp. Lightning Gun"
     | Item.``Tesla Rifle`` -> "Tesla Rifle"
-    | Item.``Imp_ Arc Projector`` -> "Imp_ Arc Projector"
-    | Item.``Hvy_ Tesla Rifle`` -> "Hvy_ Tesla Rifle"
-    | Item.``Hyp_ EM Gauss Rifle`` -> "Hyp_ EM Gauss Rifle"
-    | Item.``Imp_ Arc Thrower`` -> "Imp_ Arc Thrower"
+    | Item.``Imp_ Arc Projector`` -> "Imp. Arc Projector"
+    | Item.``Hvy_ Tesla Rifle`` -> "Hvy. Tesla Rifle"
+    | Item.``Hyp_ EM Gauss Rifle`` -> "Hyp. EM Gauss Rifle"
+    | Item.``Imp_ Arc Thrower`` -> "Imp. Arc Thrower"
     | Item.``01-MTF's Shockpuncher`` -> "01-MTF's Shockpuncher"
     | Item.``Gamma Rifle`` -> "Gamma Rifle"
     | Item.``Tachyon Dispersion Ray`` -> "Tachyon Dispersion Ray"
     | Item.``Immobilizer`` -> "Immobilizer"
+    | Item.``Electrostorm Shotgun`` -> "Electrostorm Shotgun"
     | Item.``Modified EM Gauss Rifle`` -> "Modified EM Gauss Rifle"
-    | Item.``AWS_EX-DEC`` -> "AWS_EX-DEC"
-    | Item.``Enh_ Gamma Rifle`` -> "Enh_ Gamma Rifle"
-    | Item.``Med_ Laser`` -> "Med_ Laser"
-    | Item.``Sml_ Laser`` -> "Sml_ Laser"
+    | Item.``AWS_EX-DEC`` -> "AWS/EX-DEC"
+    | Item.``Enh_ Gamma Rifle`` -> "Enh. Gamma Rifle"
+    | Item.``Med_ Laser`` -> "Med. Laser"
+    | Item.``Sml_ Laser`` -> "Sml. Laser"
+    | Item.``Salvaging Laser`` -> "Salvaging Laser"
     | Item.``Backup Laser I`` -> "Backup Laser I"
     | Item.``Beam Rifle`` -> "Beam Rifle"
     | Item.``Particle Gun`` -> "Particle Gun"
     | Item.``Spread Laser`` -> "Spread Laser"
-    | Item.``Imp_ Medium Laser`` -> "Imp_ Medium Laser"
-    | Item.``Sub_ Laser`` -> "Sub_ Laser"
+    | Item.``Imp_ Medium Laser`` -> "Imp. Medium Laser"
+    | Item.``Sub_ Laser`` -> "Sub. Laser"
     | Item.``Autobeam`` -> "Autobeam"
     | Item.``Field Laser`` -> "Field Laser"
     | Item.``Pulse Rifle`` -> "Pulse Rifle"
+    | Item.``Ovr_ Pulse Rifle`` -> "Ovr. Pulse Rifle"
     | Item.``Backup Laser III`` -> "Backup Laser III"
-    | Item.``Hvy_ Particle Gun`` -> "Hvy_ Particle Gun"
-    | Item.``Prc_ Beam Rifle`` -> "Prc_ Beam Rifle"
-    | Item.``Adv_ Beam Rifle`` -> "Adv_ Beam Rifle"
-    | Item.``Hvy_ Laser`` -> "Hvy_ Laser"
+    | Item.``Hvy_ Particle Gun`` -> "Hvy. Particle Gun"
+    | Item.``Prc_ Beam Rifle`` -> "Prc. Beam Rifle"
+    | Item.``Adv_ Beam Rifle`` -> "Adv. Beam Rifle"
+    | Item.``Hvy_ Laser`` -> "Hvy. Laser"
     | Item.``Gatling Laser`` -> "Gatling Laser"
-    | Item.``Cld_ Pulse Rifle`` -> "Cld_ Pulse Rifle"
-    | Item.``Hpw_ Field Laser`` -> "Hpw_ Field Laser"
-    | Item.``Imp_ Spread Laser`` -> "Imp_ Spread Laser"
-    | Item.``Mak_ Laser`` -> "Mak_ Laser"
+    | Item.``Cld_ Pulse Rifle`` -> "Cld. Pulse Rifle"
+    | Item.``Hpw_ Field Laser`` -> "Hpw. Field Laser"
+    | Item.``Imp_ Spread Laser`` -> "Imp. Spread Laser"
+    | Item.``Mak_ Laser`` -> "Mak. Laser"
     | Item.``Plasma Rifle`` -> "Plasma Rifle"
     | Item.``Thermic Laser`` -> "Thermic Laser"
     | Item.``Beamcaster`` -> "Beamcaster"
     | Item.``Force Rifle`` -> "Force Rifle"
-    | Item.``Imp_ Heavy Laser`` -> "Imp_ Heavy Laser"
+    | Item.``Imp_ Heavy Laser`` -> "Imp. Heavy Laser"
     | Item.``Storm Laser`` -> "Storm Laser"
-    | Item.``Zio_ Laser-S`` -> "Zio_ Laser-S"
+    | Item.``Zio_ Laser-S`` -> "Zio. Laser-S"
     | Item.``Wave Gun`` -> "Wave Gun"
     | Item.``Variable Charge Gun`` -> "Variable Charge Gun"
-    | Item.``Hvy_ Beamcaster`` -> "Hvy_ Beamcaster"
-    | Item.``Cld_ Plasma Rifle`` -> "Cld_ Plasma Rifle"
-    | Item.``Enh_ Force Rifle`` -> "Enh_ Force Rifle"
-    | Item.``Hvy_ Gatling Laser`` -> "Hvy_ Gatling Laser"
-    | Item.``Zio_ Phaser-S`` -> "Zio_ Phaser-S"
+    | Item.``Hvy_ Beamcaster`` -> "Hvy. Beamcaster"
+    | Item.``Ovr_ Beamcaster`` -> "Ovr. Beamcaster"
+    | Item.``Cld_ Plasma Rifle`` -> "Cld. Plasma Rifle"
+    | Item.``Enh_ Force Rifle`` -> "Enh. Force Rifle"
+    | Item.``Hvy_ Gatling Laser`` -> "Hvy. Gatling Laser"
+    | Item.``Zio_ Phaser-S`` -> "Zio. Phaser-S"
     | Item.``Phase Gun`` -> "Phase Gun"
     | Item.``Dispersion Rifle`` -> "Dispersion Rifle"
     | Item.``Backup Laser VII`` -> "Backup Laser VII"
     | Item.``Plasma Storm`` -> "Plasma Storm"
-    | Item.``Adv_ Plasma Rifle`` -> "Adv_ Plasma Rifle"
-    | Item.``Hvy_ Wave Gun`` -> "Hvy_ Wave Gun"
-    | Item.``Adv_ Variable Charge Gun`` -> "Adv_ Variable Charge Gun"
-    | Item.``Cld_ Phase Gun`` -> "Cld_ Phase Gun"
-    | Item.``Lrn_ Gatling Laser`` -> "Lrn_ Gatling Laser"
+    | Item.``Adv_ Plasma Rifle`` -> "Adv. Plasma Rifle"
+    | Item.``Hvy_ Wave Gun`` -> "Hvy. Wave Gun"
+    | Item.``Adv_ Variable Charge Gun`` -> "Adv. Variable Charge Gun"
+    | Item.``Cld_ Phase Gun`` -> "Cld. Phase Gun"
+    | Item.``Lrn_ Gatling Laser`` -> "Lrn. Gatling Laser"
     | Item.``Warp Gun`` -> "Warp Gun"
     | Item.``Vortex Rifle`` -> "Vortex Rifle"
-    | Item.``Zio_ Laser-M`` -> "Zio_ Laser-M"
-    | Item.``AWS_Thermal`` -> "AWS_Thermal"
+    | Item.``Zio_ Laser-M`` -> "Zio. Laser-M"
+    | Item.``AWS_Thermal`` -> "AWS/Thermal"
     | Item.``PD Laser`` -> "PD Laser"
+    | Item.``KN-7UR's Autopenetrator`` -> "KN-7UR's Autopenetrator"
     | Item.``Quantum Rifle`` -> "Quantum Rifle"
-    | Item.``Prc_ Phase Gun`` -> "Prc_ Phase Gun"
-    | Item.``Hvy_ Dispersion Rifle`` -> "Hvy_ Dispersion Rifle"
+    | Item.``Ovr_ Quantum Rifle`` -> "Ovr. Quantum Rifle"
+    | Item.``Prc_ Phase Gun`` -> "Prc. Phase Gun"
+    | Item.``Hvy_ Dispersion Rifle`` -> "Hvy. Dispersion Rifle"
     | Item.``Vortex Shotgun`` -> "Vortex Shotgun"
     | Item.``Vortex Rail`` -> "Vortex Rail"
-    | Item.``Zio_ Phaser-M`` -> "Zio_ Phaser-M"
-    | Item.``Enh_ Quantum Rifle`` -> "Enh_ Quantum Rifle"
-    | Item.``Zio_ Laser-H`` -> "Zio_ Laser-H"
-    | Item.``Hvy_ Quantum Rifle`` -> "Hvy_ Quantum Rifle"
-    | Item.``Zio_ Phaser-H`` -> "Zio_ Phaser-H"
+    | Item.``Zio_ Phaser-M`` -> "Zio. Phaser-M"
+    | Item.``Enh_ Quantum Rifle`` -> "Enh. Quantum Rifle"
+    | Item.``Zio_ Laser-H`` -> "Zio. Laser-H"
+    | Item.``Hvy_ Quantum Rifle`` -> "Hvy. Quantum Rifle"
+    | Item.``Zio_ Phaser-H`` -> "Zio. Phaser-H"
     | Item.``Gatling Beam`` -> "Gatling Beam"
     | Item.``Sigix Sheargun`` -> "Sigix Sheargun"
     | Item.``Modified Sigix Sheargun`` -> "Modified Sigix Sheargun"
-    | Item.``Lgt_ EM Pulse Cannon`` -> "Lgt_ EM Pulse Cannon"
+    | Item.``Lgt_ EM Pulse Cannon`` -> "Lgt. EM Pulse Cannon"
     | Item.``EM Pulse Cannon`` -> "EM Pulse Cannon"
-    | Item.``Imp_ EM Pulse Cannon`` -> "Imp_ EM Pulse Cannon"
+    | Item.``Imp_ EM Pulse Cannon`` -> "Imp. EM Pulse Cannon"
     | Item.``Proton Cannon`` -> "Proton Cannon"
-    | Item.``Lrn_ Proton Cannon`` -> "Lrn_ Proton Cannon"
+    | Item.``Lrn_ Proton Cannon`` -> "Lrn. Proton Cannon"
     | Item.``Disruptor Cannon`` -> "Disruptor Cannon"
-    | Item.``Hvy_ Proton Cannon`` -> "Hvy_ Proton Cannon"
+    | Item.``Hvy_ Proton Cannon`` -> "Hvy. Proton Cannon"
     | Item.``HERF Cannon`` -> "HERF Cannon"
-    | Item.``Hvy_ Disruptor Cannon`` -> "Hvy_ Disruptor Cannon"
-    | Item.``Cld_ Proton Cannon`` -> "Cld_ Proton Cannon"
+    | Item.``Hvy_ Disruptor Cannon`` -> "Hvy. Disruptor Cannon"
+    | Item.``Cld_ Proton Cannon`` -> "Cld. Proton Cannon"
     | Item.``Proton Burst Cannon`` -> "Proton Burst Cannon"
-    | Item.``Com_ HERF Cannon`` -> "Com_ HERF Cannon"
+    | Item.``Com_ HERF Cannon`` -> "Com. HERF Cannon"
     | Item.``Latent Energy Streamer`` -> "Latent Energy Streamer"
     | Item.``NK-0LA's Tesla Doomcannon`` -> "NK-0LA's Tesla Doomcannon"
     | Item.``EMDS`` -> "EMDS"
-    | Item.``Hpw_ Disruptor Cannon`` -> "Hpw_ Disruptor Cannon"
+    | Item.``Hpw_ Disruptor Cannon`` -> "Hpw. Disruptor Cannon"
     | Item.``Beam Cannon`` -> "Beam Cannon"
     | Item.``Particle Cannon`` -> "Particle Cannon"
-    | Item.``Adv_ Beam Cannon`` -> "Adv_ Beam Cannon"
-    | Item.``Sub_ Beam Cannon`` -> "Sub_ Beam Cannon"
-    | Item.``Hvy_ Particle Cannon`` -> "Hvy_ Particle Cannon"
+    | Item.``Adv_ Beam Cannon`` -> "Adv. Beam Cannon"
+    | Item.``Sub_ Beam Cannon`` -> "Sub. Beam Cannon"
+    | Item.``Hvy_ Particle Cannon`` -> "Hvy. Particle Cannon"
     | Item.``Ion Cannon`` -> "Ion Cannon"
     | Item.``Plasma Cannon`` -> "Plasma Cannon"
-    | Item.``Hvy_ Ion Cannon`` -> "Hvy_ Ion Cannon"
-    | Item.``Cld_ Particle Cannon`` -> "Cld_ Particle Cannon"
+    | Item.``Hvy_ Ion Cannon`` -> "Hvy. Ion Cannon"
+    | Item.``Cld_ Particle Cannon`` -> "Cld. Particle Cannon"
     | Item.``Phase Cannon`` -> "Phase Cannon"
-    | Item.``Hvy_ Plasma Cannon`` -> "Hvy_ Plasma Cannon"
-    | Item.``Cld_ Plasma Cannon`` -> "Cld_ Plasma Cannon"
-    | Item.``Com_ Ion Cannon`` -> "Com_ Ion Cannon"
+    | Item.``Hvy_ Plasma Cannon`` -> "Hvy. Plasma Cannon"
+    | Item.``Cld_ Plasma Cannon`` -> "Cld. Plasma Cannon"
+    | Item.``Com_ Ion Cannon`` -> "Com. Ion Cannon"
     | Item.``Ion Burst Cannon`` -> "Ion Burst Cannon"
-    | Item.``Adv_ Plasma Cannon`` -> "Adv_ Plasma Cannon"
-    | Item.``Hvy_ Phase Cannon`` -> "Hvy_ Phase Cannon"
+    | Item.``Adv_ Plasma Cannon`` -> "Adv. Plasma Cannon"
+    | Item.``Hvy_ Phase Cannon`` -> "Hvy. Phase Cannon"
     | Item.``Neutron Cannon`` -> "Neutron Cannon"
     | Item.``Powered Cannon`` -> "Powered Cannon"
     | Item.``Matter Neutralizer`` -> "Matter Neutralizer"
-    | Item.``Hvy_ Neutron Cannon`` -> "Hvy_ Neutron Cannon"
-    | Item.``Lrn_ Phase Cannon`` -> "Lrn_ Phase Cannon"
-    | Item.``Cld_ Phase Cannon`` -> "Cld_ Phase Cannon"
+    | Item.``Hvy_ Neutron Cannon`` -> "Hvy. Neutron Cannon"
+    | Item.``Lrn_ Phase Cannon`` -> "Lrn. Phase Cannon"
+    | Item.``Cld_ Phase Cannon`` -> "Cld. Phase Cannon"
     | Item.``Vortex Cannon`` -> "Vortex Cannon"
-    | Item.``Gui_ Plasma Cannon`` -> "Gui_ Plasma Cannon"
+    | Item.``Gui_ Plasma Cannon`` -> "Gui. Plasma Cannon"
     | Item.``Nova Cannon`` -> "Nova Cannon"
-    | Item.``Imp_ Matter Neutralizer`` -> "Imp_ Matter Neutralizer"
-    | Item.``Exp_ Thermic Cannon`` -> "Exp_ Thermic Cannon"
+    | Item.``Imp_ Matter Neutralizer`` -> "Imp. Matter Neutralizer"
+    | Item.``Exp_ Thermic Cannon`` -> "Exp. Thermic Cannon"
     | Item.``Vortex Driver`` -> "Vortex Driver"
-    | Item.``Zio_ Alpha Cannon`` -> "Zio_ Alpha Cannon"
-    | Item.``Asb_ Focal Cannon`` -> "Asb_ Focal Cannon"
-    | Item.``Enh_ Nova Cannon`` -> "Enh_ Nova Cannon"
+    | Item.``Zio_ Alpha Cannon`` -> "Zio. Alpha Cannon"
+    | Item.``Asb_ Focal Cannon`` -> "Asb. Focal Cannon"
+    | Item.``Enh_ Nova Cannon`` -> "Enh. Nova Cannon"
     | Item.``Firepult`` -> "Firepult"
     | Item.``YOLO Cannon`` -> "YOLO Cannon"
     | Item.``Potential Cannon`` -> "Potential Cannon"
     | Item.``Warp Cannon`` -> "Warp Cannon"
-    | Item.``Cld_ Nova Cannon`` -> "Cld_ Nova Cannon"
+    | Item.``Cld_ Nova Cannon`` -> "Cld. Nova Cannon"
     | Item.``Null Cannon`` -> "Null Cannon"
-    | Item.``Imp_ Potential Cannon`` -> "Imp_ Potential Cannon"
+    | Item.``Hyp_ Alpha Cannon`` -> "Hyp. Alpha Cannon"
+    | Item.``Zio_ Alpha Cannon Mk_ II`` -> "Zio. Alpha Cannon Mk. II"
+    | Item.``Imp_ Potential Cannon`` -> "Imp. Potential Cannon"
     | Item.``Multinova Projection Cannon`` -> "Multinova Projection Cannon"
     | Item.``Disintegrator`` -> "Disintegrator"
     | Item.``Core Cannon`` -> "Core Cannon"
     | Item.``Sigix Shearcannon`` -> "Sigix Shearcannon"
     | Item.``Drained L-Cannon`` -> "Drained L-Cannon"
     | Item.``L-Cannon`` -> "L-Cannon"
-    | Item.``Zio_ Alpha Cannon Mk_ II`` -> "Zio_ Alpha Cannon Mk_ II"
     | Item.``BFG-9k Vortex Edition`` -> "BFG-9k Vortex Edition"
     | Item.``Assault Rifle`` -> "Assault Rifle"
-    | Item.``Asb_ Rifle`` -> "Asb_ Rifle"
-    | Item.``Lgt_ Assault Rifle`` -> "Lgt_ Assault Rifle"
-    | Item.``Hvy_ Assault Rifle`` -> "Hvy_ Assault Rifle"
+    | Item.``Asb_ Rifle`` -> "Asb. Rifle"
+    | Item.``Lgt_ Assault Rifle`` -> "Lgt. Assault Rifle"
+    | Item.``Bolt Gun`` -> "Bolt Gun"
+    | Item.``Hvy_ Assault Rifle`` -> "Hvy. Assault Rifle"
     | Item.``Autogun`` -> "Autogun"
     | Item.``Shotgun`` -> "Shotgun"
     | Item.``Battle Rifle`` -> "Battle Rifle"
-    | Item.``Asb_ Heavy Rifle`` -> "Asb_ Heavy Rifle"
-    | Item.``Sub_ Machine Gun`` -> "Sub_ Machine Gun"
-    | Item.``Imp_ Assault Rifle`` -> "Imp_ Assault Rifle"
+    | Item.``Asb_ Heavy Rifle`` -> "Asb. Heavy Rifle"
+    | Item.``Sub_ Machine Gun`` -> "Sub. Machine Gun"
+    | Item.``Imp_ Assault Rifle`` -> "Imp. Assault Rifle"
     | Item.``Minigun`` -> "Minigun"
-    | Item.``Hpw_ Shotgun`` -> "Hpw_ Shotgun"
-    | Item.``Asb_ Shotgun`` -> "Asb_ Shotgun"
+    | Item.``Hpw_ Shotgun`` -> "Hpw. Shotgun"
+    | Item.``Asb_ Shotgun`` -> "Asb. Shotgun"
     | Item.``Barrage Gun`` -> "Barrage Gun"
-    | Item.``Enh_ Autogun`` -> "Enh_ Autogun"
+    | Item.``Ovr_ Barrage Gun`` -> "Ovr. Barrage Gun"
+    | Item.``Enh_ Autogun`` -> "Enh. Autogun"
     | Item.``Gauss Rifle`` -> "Gauss Rifle"
-    | Item.``Asb_ Gauss Rifle`` -> "Asb_ Gauss Rifle"
+    | Item.``Asb_ Gauss Rifle`` -> "Asb. Gauss Rifle"
     | Item.``Flak Gun`` -> "Flak Gun"
-    | Item.``Prc_ Assault Rifle`` -> "Prc_ Assault Rifle"
-    | Item.``Hvy_ Battle Rifle`` -> "Hvy_ Battle Rifle"
-    | Item.``Mak_ Shrapnel Gun`` -> "Mak_ Shrapnel Gun"
+    | Item.``Prc_ Assault Rifle`` -> "Prc. Assault Rifle"
+    | Item.``Hvy_ Battle Rifle`` -> "Hvy. Battle Rifle"
+    | Item.``Mak_ Shrapnel Gun`` -> "Mak. Shrapnel Gun"
     | Item.``Coil Gun`` -> "Coil Gun"
-    | Item.``Hyp_ Gauss Rifle`` -> "Hyp_ Gauss Rifle"
-    | Item.``Hvy_ Machine Gun`` -> "Hvy_ Machine Gun"
-    | Item.``Imp_ Heavy Machine Gun`` -> "Imp_ Heavy Machine Gun"
-    | Item.``Com_ Gauss Rifle`` -> "Com_ Gauss Rifle"
+    | Item.``Hyp_ Gauss Rifle`` -> "Hyp. Gauss Rifle"
+    | Item.``Hvy_ Machine Gun`` -> "Hvy. Machine Gun"
+    | Item.``Imp_ Heavy Machine Gun`` -> "Imp. Heavy Machine Gun"
+    | Item.``Com_ Gauss Rifle`` -> "Com. Gauss Rifle"
     | Item.``XL Autogun Subcomponent`` -> "XL Autogun Subcomponent"
     | Item.``KE Penetrator`` -> "KE Penetrator"
-    | Item.``Hyp_ Coil Gun`` -> "Hyp_ Coil Gun"
-    | Item.``Imp_ KE Penetrator`` -> "Imp_ KE Penetrator"
-    | Item.``Enh_ Coil Gun`` -> "Enh_ Coil Gun"
-    | Item.``Com_ Coil Gun`` -> "Com_ Coil Gun"
+    | Item.``Hyp_ Coil Gun`` -> "Hyp. Coil Gun"
+    | Item.``Ovr_ Coil Gun`` -> "Ovr. Coil Gun"
+    | Item.``Imp_ KE Penetrator`` -> "Imp. KE Penetrator"
+    | Item.``Enh_ Coil Gun`` -> "Enh. Coil Gun"
+    | Item.``Com_ Coil Gun`` -> "Com. Coil Gun"
     | Item.``Railgun`` -> "Railgun"
-    | Item.``Adv_ KE Penetrator`` -> "Adv_ KE Penetrator"
+    | Item.``Adv_ KE Penetrator`` -> "Adv. KE Penetrator"
     | Item.``Linked Autogun`` -> "Linked Autogun"
-    | Item.``AWS_Gauss`` -> "AWS_Gauss"
-    | Item.``Hyp_ Railgun`` -> "Hyp_ Railgun"
+    | Item.``AWS_Gauss`` -> "AWS/Gauss"
+    | Item.``Hyp_ Railgun`` -> "Hyp. Railgun"
+    | Item.``Ovr_ Railgun`` -> "Ovr. Railgun"
     | Item.``Helical Railgun`` -> "Helical Railgun"
-    | Item.``Com_ Railgun`` -> "Com_ Railgun"
+    | Item.``Com_ Railgun`` -> "Com. Railgun"
     | Item.``XL Autogun Array`` -> "XL Autogun Array"
     | Item.``12-ASH's Boomstick`` -> "12-ASH's Boomstick"
     | Item.``8R-AWN's Boregun`` -> "8R-AWN's Boregun"
     | Item.``Multirail`` -> "Multirail"
-    | Item.``Hyp_ Multirail`` -> "Hyp_ Multirail"
+    | Item.``Hyp_ Multirail`` -> "Hyp. Multirail"
     | Item.``5H-AD0's Sniper Rifle`` -> "5H-AD0's Sniper Rifle"
     | Item.``A3's Sniper Rifle`` -> "A3's Sniper Rifle"
-    | Item.``Lgt_ Cannon`` -> "Lgt_ Cannon"
-    | Item.``Imp_ Light Cannon`` -> "Imp_ Light Cannon"
+    | Item.``Lgt_ Cannon`` -> "Lgt. Cannon"
+    | Item.``Imp_ Light Cannon`` -> "Imp. Light Cannon"
     | Item.``Battle Cannon`` -> "Battle Cannon"
     | Item.``Assault Cannon`` -> "Assault Cannon"
-    | Item.``Hvy_ Assault Cannon`` -> "Hvy_ Assault Cannon"
+    | Item.``Hvy_ Assault Cannon`` -> "Hvy. Assault Cannon"
     | Item.``Flak Cannon`` -> "Flak Cannon"
-    | Item.``Adv_ Assault Cannon`` -> "Adv_ Assault Cannon"
+    | Item.``Adv_ Assault Cannon`` -> "Adv. Assault Cannon"
     | Item.``Gauss Cannon`` -> "Gauss Cannon"
     | Item.``Slug Cannon`` -> "Slug Cannon"
-    | Item.``Mni_ Assault Cannon`` -> "Mni_ Assault Cannon"
+    | Item.``Mni_ Assault Cannon`` -> "Mni. Assault Cannon"
+    | Item.``Siege Cannon Replica`` -> "Siege Cannon Replica"
     | Item.``Magnetic Acceleration Cannon`` -> "Magnetic Acceleration Cannon"
-    | Item.``Hvy_ Flak Cannon`` -> "Hvy_ Flak Cannon"
+    | Item.``Hvy_ Flak Cannon`` -> "Hvy. Flak Cannon"
     | Item.``Bore Cannon`` -> "Bore Cannon"
     | Item.``Antimatter Cannon`` -> "Antimatter Cannon"
+    | Item.``Siege Cannon`` -> "Siege Cannon"
     | Item.``Mass Driver`` -> "Mass Driver"
-    | Item.``Hvy_ Mass Driver`` -> "Hvy_ Mass Driver"
-    | Item.``Enh_ Gauss Cannon`` -> "Enh_ Gauss Cannon"
-    | Item.``Hyp_ Gauss Cannon`` -> "Hyp_ Gauss Cannon"
+    | Item.``Hvy_ Mass Driver`` -> "Hvy. Mass Driver"
+    | Item.``Enh_ Gauss Cannon`` -> "Enh. Gauss Cannon"
+    | Item.``Hyp_ Gauss Cannon`` -> "Hyp. Gauss Cannon"
     | Item.``Tri-rail Accelerator`` -> "Tri-rail Accelerator"
     | Item.``Hardcell Cannon`` -> "Hardcell Cannon"
-    | Item.``Hvy_ Gauss Cannon`` -> "Hvy_ Gauss Cannon"
-    | Item.``Hyp_ Mass Driver`` -> "Hyp_ Mass Driver"
-    | Item.``Hvy_ Autocannon`` -> "Hvy_ Autocannon"
+    | Item.``Hvy_ Gauss Cannon`` -> "Hvy. Gauss Cannon"
+    | Item.``Hyp_ Mass Driver`` -> "Hyp. Mass Driver"
+    | Item.``Hvy_ Autocannon`` -> "Hvy. Autocannon"
     | Item.``DAS Cannon`` -> "DAS Cannon"
-    | Item.``Lgt_ Antimatter Cannon`` -> "Lgt_ Antimatter Cannon"
+    | Item.``Lgt_ Antimatter Cannon`` -> "Lgt. Antimatter Cannon"
     | Item.``Linear Accelerator`` -> "Linear Accelerator"
-    | Item.``Hvy_ Linear Accelerator`` -> "Hvy_ Linear Accelerator"
-    | Item.``Com_ Mass Driver`` -> "Com_ Mass Driver"
-    | Item.``Hvy_ Hardcell Cannon`` -> "Hvy_ Hardcell Cannon"
-    | Item.``Com_ Linear Accelerator`` -> "Com_ Linear Accelerator"
-    | Item.``Hyp_ Linear Accelerator`` -> "Hyp_ Linear Accelerator"
-    | Item.``Hcl_ Linear Accelerator`` -> "Hcl_ Linear Accelerator"
+    | Item.``Hvy_ Linear Accelerator`` -> "Hvy. Linear Accelerator"
+    | Item.``Com_ Mass Driver`` -> "Com. Mass Driver"
+    | Item.``Hvy_ Hardcell Cannon`` -> "Hvy. Hardcell Cannon"
+    | Item.``Com_ Linear Accelerator`` -> "Com. Linear Accelerator"
+    | Item.``Hyp_ Linear Accelerator`` -> "Hyp. Linear Accelerator"
+    | Item.``Hcl_ Linear Accelerator`` -> "Hcl. Linear Accelerator"
     | Item.``Graviton Cannon`` -> "Graviton Cannon"
     | Item.``Blast Cannon`` -> "Blast Cannon"
     | Item.``P1-3CE's Gatling Flakker`` -> "P1-3CE's Gatling Flakker"
-    | Item.``AWS_Autocannon`` -> "AWS_Autocannon"
+    | Item.``AWS_Autocannon`` -> "AWS/Autocannon"
     | Item.``Perforator`` -> "Perforator"
     | Item.``Omega Cannon`` -> "Omega Cannon"
+    | Item.``PL-3XN's Obliterator`` -> "PL-3XN's Obliterator"
     | Item.``EMP Blaster`` -> "EMP Blaster"
     | Item.``Shock Bomb Launcher`` -> "Shock Bomb Launcher"
-    | Item.``Adv_ EMP Blaster`` -> "Adv_ EMP Blaster"
+    | Item.``Adv_ EMP Blaster`` -> "Adv. EMP Blaster"
     | Item.``Proton Missile Launcher`` -> "Proton Missile Launcher"
-    | Item.``Imp_ Proton Missile Launcher`` -> "Imp_ Proton Missile Launcher"
-    | Item.``Gui_ EMP Blaster`` -> "Gui_ EMP Blaster"
-    | Item.``Hvy_ Shock Bomb Launcher`` -> "Hvy_ Shock Bomb Launcher"
+    | Item.``Imp_ Proton Missile Launcher`` -> "Imp. Proton Missile Launcher"
+    | Item.``Gui_ EMP Blaster`` -> "Gui. EMP Blaster"
+    | Item.``Hvy_ Shock Bomb Launcher`` -> "Hvy. Shock Bomb Launcher"
     | Item.``Tesla Bomb Launcher`` -> "Tesla Bomb Launcher"
-    | Item.``Hvy_ Proton Missile Launcher`` -> "Hvy_ Proton Missile Launcher"
-    | Item.``Com_ Tesla Bomb Launcher`` -> "Com_ Tesla Bomb Launcher"
+    | Item.``Hvy_ Proton Missile Launcher`` -> "Hvy. Proton Missile Launcher"
+    | Item.``Com_ Tesla Bomb Launcher`` -> "Com. Tesla Bomb Launcher"
     | Item.``Gamma Bomb Array`` -> "Gamma Bomb Array"
-    | Item.``Enh_ Gamma Bomb Array`` -> "Enh_ Gamma Bomb Array"
+    | Item.``Enh_ Gamma Bomb Array`` -> "Enh. Gamma Bomb Array"
     | Item.``Grenade Launcher`` -> "Grenade Launcher"
     | Item.``Rocket Launcher`` -> "Rocket Launcher"
-    | Item.``Mni_ Grenade Launcher`` -> "Mni_ Grenade Launcher"
-    | Item.``Sub_ Shrapnel Launcher`` -> "Sub_ Shrapnel Launcher"
-    | Item.``Imp_ Grenade Launcher`` -> "Imp_ Grenade Launcher"
+    | Item.``Mni_ Grenade Launcher`` -> "Mni. Grenade Launcher"
+    | Item.``Sub_ Shrapnel Launcher`` -> "Sub. Shrapnel Launcher"
+    | Item.``Imp_ Grenade Launcher`` -> "Imp. Grenade Launcher"
     | Item.``Missile Launcher`` -> "Missile Launcher"
     | Item.``Concussive RPG`` -> "Concussive RPG"
     | Item.``YI-UF0's Doublenader`` -> "YI-UF0's Doublenader"
-    | Item.``Hvy_ Rocket Launcher`` -> "Hvy_ Rocket Launcher"
-    | Item.``Hvy_ Missile Launcher`` -> "Hvy_ Missile Launcher"
-    | Item.``Gui_ Missile Launcher`` -> "Gui_ Missile Launcher"
-    | Item.``Prc_ Grenade Launcher`` -> "Prc_ Grenade Launcher"
+    | Item.``Hvy_ Rocket Launcher`` -> "Hvy. Rocket Launcher"
+    | Item.``Hvy_ Missile Launcher`` -> "Hvy. Missile Launcher"
+    | Item.``Gui_ Missile Launcher`` -> "Gui. Missile Launcher"
+    | Item.``Prc_ Grenade Launcher`` -> "Prc. Grenade Launcher"
     | Item.``Rocket Array`` -> "Rocket Array"
-    | Item.``Lrn_ Missile Launcher`` -> "Lrn_ Missile Launcher"
-    | Item.``Imp_ Concussive RPG`` -> "Imp_ Concussive RPG"
-    | Item.``Prc_ Rocket Launcher`` -> "Prc_ Rocket Launcher"
+    | Item.``Lrn_ Missile Launcher`` -> "Lrn. Missile Launcher"
+    | Item.``Imp_ Concussive RPG`` -> "Imp. Concussive RPG"
+    | Item.``Prc_ Rocket Launcher`` -> "Prc. Rocket Launcher"
     | Item.``Scatter Rocket Array`` -> "Scatter Rocket Array"
     | Item.``Smartbomb Launcher`` -> "Smartbomb Launcher"
-    | Item.``Mni_ Smartbomb Launcher`` -> "Mni_ Smartbomb Launcher"
+    | Item.``Mni_ Smartbomb Launcher`` -> "Mni. Smartbomb Launcher"
     | Item.``Tiamat Missile Launcher`` -> "Tiamat Missile Launcher"
     | Item.``Thermoblaster`` -> "Thermoblaster"
     | Item.``Micro-nuke Launcher`` -> "Micro-nuke Launcher"
-    | Item.``Adv_ Concussive RPG`` -> "Adv_ Concussive RPG"
+    | Item.``Adv_ Concussive RPG`` -> "Adv. Concussive RPG"
     | Item.``Neutron Missile Launcher`` -> "Neutron Missile Launcher"
     | Item.``Fusion Bomb Launcher`` -> "Fusion Bomb Launcher"
     | Item.``Hellfire Missile Launcher`` -> "Hellfire Missile Launcher"
-    | Item.``Adv_ Micro-nuke Launcher`` -> "Adv_ Micro-nuke Launcher"
+    | Item.``Adv_ Micro-nuke Launcher`` -> "Adv. Micro-nuke Launcher"
     | Item.``Tactical Quantum Warhead`` -> "Tactical Quantum Warhead"
     | Item.``Vortex Catalyst Activator`` -> "Vortex Catalyst Activator"
     | Item.``Chain Missile Launcher`` -> "Chain Missile Launcher"
     | Item.``Ragnarok Missile Launcher`` -> "Ragnarok Missile Launcher"
     | Item.``Point Singularity Launcher`` -> "Point Singularity Launcher"
-    | Item.``Gui_ Micro-nuke Launcher`` -> "Gui_ Micro-nuke Launcher"
+    | Item.``Gui_ Micro-nuke Launcher`` -> "Gui. Micro-nuke Launcher"
     | Item.``99-TNT's Nukerbomber`` -> "99-TNT's Nukerbomber"
+    | Item.``Exp_ Neutron Missile Launcher`` -> "Exp. Neutron Missile Launcher"
     | Item.``Z-bomb Delivery System`` -> "Z-bomb Delivery System"
     | Item.``Sigix Terminator`` -> "Sigix Terminator"
     | Item.``Supercharged Sigix Terminator`` -> "Supercharged Sigix Terminator"
@@ -3446,33 +3689,42 @@ let itemString =
     | Item.``Detonator`` -> "Detonator"
     | Item.``Dirty Datajack`` -> "Dirty Datajack"
     | Item.``Splice Injector`` -> "Splice Injector"
+    | Item.``Master Link`` -> "Master Link"
     | Item.``Datajack`` -> "Datajack"
-    | Item.``Imp_ Datajack`` -> "Imp_ Datajack"
-    | Item.``Adv_ Datajack`` -> "Adv_ Datajack"
+    | Item.``Imp_ Datajack`` -> "Imp. Datajack"
+    | Item.``Adv_ Datajack`` -> "Adv. Datajack"
     | Item.``Remote Datajack`` -> "Remote Datajack"
-    | Item.``Imp_ Remote Datajack`` -> "Imp_ Remote Datajack"
-    | Item.``Adv_ Remote Datajack`` -> "Adv_ Remote Datajack"
-    | Item.``Exp_ Remote Datajack`` -> "Exp_ Remote Datajack"
-    | Item.``Gui_ Remote Datajack`` -> "Gui_ Remote Datajack"
+    | Item.``Imp_ Remote Datajack`` -> "Imp. Remote Datajack"
+    | Item.``Adv_ Remote Datajack`` -> "Adv. Remote Datajack"
+    | Item.``Exp_ Remote Datajack`` -> "Exp. Remote Datajack"
+    | Item.``Gui_ Remote Datajack`` -> "Gui. Remote Datajack"
     | Item.``ME-RLN's Wand`` -> "ME-RLN's Wand"
+    | Item.``System Spiker`` -> "System Spiker"
     | Item.``Field Lobotomy Kit`` -> "Field Lobotomy Kit"
     | Item.``Mining Laser`` -> "Mining Laser"
+    | Item.``LU-1G1's Laser Shovel`` -> "LU-1G1's Laser Shovel"
     | Item.``Welding Torch`` -> "Welding Torch"
     | Item.``Plasma Cutter`` -> "Plasma Cutter"
-    | Item.``Imp_ Plasma Cutter`` -> "Imp_ Plasma Cutter"
+    | Item.``Imp_ Plasma Cutter`` -> "Imp. Plasma Cutter"
+    | Item.``Exp_ Plasma Cutter`` -> "Exp. Plasma Cutter"
     | Item.``CPS Tube`` -> "CPS Tube"
     | Item.``Multitool`` -> "Multitool"
     | Item.``Flamer`` -> "Flamer"
-    | Item.``Asb_ F-torch`` -> "Asb_ F-torch"
-    | Item.``Enh_ Flamer`` -> "Enh_ Flamer"
+    | Item.``Asb_ F-torch`` -> "Asb. F-torch"
+    | Item.``Enh_ Flamer`` -> "Enh. Flamer"
     | Item.``Plasma Flamer`` -> "Plasma Flamer"
-    | Item.``Asb_ P-torch`` -> "Asb_ P-torch"
+    | Item.``Asb_ P-torch`` -> "Asb. P-torch"
     | Item.``RU-N14's Throwing Claymores`` -> "RU-N14's Throwing Claymores"
     | Item.``RU-N14's Throwing Claymores v3`` -> "RU-N14's Throwing Claymores v3"
+    | Item.``Warlord Statue`` -> "Warlord Statue"
+    | Item.``Voltaic Drivehammer`` -> "Voltaic Drivehammer"
     | Item.``AD-0RF's Magmablaster`` -> "AD-0RF's Magmablaster"
+    | Item.``IN-MT5's Pitchfork _Insurrection_`` -> "IN-MT5's Pitchfork 'Insurrection'"
+    | Item.``Shield Trident`` -> "Shield Trident"
+    | Item.``Junk Cannon`` -> "Junk Cannon"
     | Item.``Stasis Beam`` -> "Stasis Beam"
     | Item.``Stasis Projector`` -> "Stasis Projector"
-    | Item.``Exp_ Stasis Projector`` -> "Exp_ Stasis Projector"
+    | Item.``Exp_ Stasis Projector`` -> "Exp. Stasis Projector"
     | Item.``Molecular Deconstructor`` -> "Molecular Deconstructor"
     | Item.``SE_WE1`` -> "SE_WE1"
     | Item.``SE_WE2`` -> "SE_WE2"
@@ -3483,15 +3735,15 @@ let itemString =
     | Item.``Mace`` -> "Mace"
     | Item.``Flail`` -> "Flail"
     | Item.``Maul`` -> "Maul"
-    | Item.``Asb_ Maul`` -> "Asb_ Maul"
-    | Item.``Hvy_ Hammer`` -> "Hvy_ Hammer"
-    | Item.``Hvy_ Mace`` -> "Hvy_ Mace"
-    | Item.``Hvy_ Flail`` -> "Hvy_ Flail"
+    | Item.``Asb_ Maul`` -> "Asb. Maul"
+    | Item.``Hvy_ Hammer`` -> "Hvy. Hammer"
+    | Item.``Hvy_ Mace`` -> "Hvy. Mace"
+    | Item.``Hvy_ Flail`` -> "Hvy. Flail"
     | Item.``Great Maul`` -> "Great Maul"
     | Item.``Powered Hammer`` -> "Powered Hammer"
-    | Item.``Mak_ Hammer`` -> "Mak_ Hammer"
+    | Item.``Mak_ Hammer`` -> "Mak. Hammer"
     | Item.``Power Maul`` -> "Power Maul"
-    | Item.``Asb_ P-maul`` -> "Asb_ P-maul"
+    | Item.``Asb_ P-maul`` -> "Asb. P-maul"
     | Item.``Impact Mace`` -> "Impact Mace"
     | Item.``Shock Maul`` -> "Shock Maul"
     | Item.``Thunder Hammer`` -> "Thunder Hammer"
@@ -3502,54 +3754,62 @@ let itemString =
     | Item.``Mining Claw`` -> "Mining Claw"
     | Item.``EC_1`` -> "EC_1"
     | Item.``Katana`` -> "Katana"
-    | Item.``Asb_ Blade`` -> "Asb_ Blade"
+    | Item.``Asb_ Blade`` -> "Asb. Blade"
     | Item.``Scythe`` -> "Scythe"
     | Item.``Axe`` -> "Axe"
     | Item.``Blade Saw`` -> "Blade Saw"
     | Item.``EC_3`` -> "EC_3"
     | Item.``Chainsword`` -> "Chainsword"
     | Item.``Ripper`` -> "Ripper"
-    | Item.``Mak_ Axe`` -> "Mak_ Axe"
-    | Item.``Mak_ Sword`` -> "Mak_ Sword"
+    | Item.``Mak_ Axe`` -> "Mak. Axe"
+    | Item.``Mak_ Sword`` -> "Mak. Sword"
     | Item.``Great Axe`` -> "Great Axe"
     | Item.``Greatsword`` -> "Greatsword"
+    | Item.``Ripteeth`` -> "Ripteeth"
     | Item.``Power Sword`` -> "Power Sword"
-    | Item.``Asb_ P-sword`` -> "Asb_ P-sword"
+    | Item.``Asb_ P-sword`` -> "Asb. P-sword"
     | Item.``Falx`` -> "Falx"
     | Item.``Carbide Saw`` -> "Carbide Saw"
     | Item.``Segregator`` -> "Segregator"
     | Item.``Tearclaws`` -> "Tearclaws"
+    | Item.``Companion Sword`` -> "Companion Sword"
     | Item.``EC_5`` -> "EC_5"
     | Item.``Phasing Sabre`` -> "Phasing Sabre"
     | Item.``Plasma Sword`` -> "Plasma Sword"
     | Item.``Ionic Axe`` -> "Ionic Axe"
-    | Item.``Mni_ Tearclaws`` -> "Mni_ Tearclaws"
+    | Item.``Mni_ Tearclaws`` -> "Mni. Tearclaws"
+    | Item.``Vmp_ Broadsword`` -> "Vmp. Broadsword"
     | Item.``Dual-blade Saw`` -> "Dual-blade Saw"
     | Item.``Vibroblade`` -> "Vibroblade"
     | Item.``Molecular Scythe`` -> "Molecular Scythe"
     | Item.``Centrium Greatsword`` -> "Centrium Greatsword"
     | Item.``Master Tearclaws`` -> "Master Tearclaws"
-    | Item.``Longsword _1`` -> "Longsword _1"
+    | Item.``Longsword _1`` -> "Longsword +1"
     | Item.``EC_7`` -> "EC_7"
     | Item.``Nanosword`` -> "Nanosword"
     | Item.``Particle Cleaver`` -> "Particle Cleaver"
     | Item.``Centrium Claws`` -> "Centrium Claws"
-    | Item.``1C-UTU's Sword _Lootmaker_`` -> "1C-UTU's Sword _Lootmaker_"
-    | Item.``1C-UTU's Sword _Choppy_`` -> "1C-UTU's Sword _Choppy_"
+    | Item.``1C-UTU's Sword _Lootmaker_`` -> "1C-UTU's Sword 'Lootmaker'"
+    | Item.``DM-GVY's Chainsaw`` -> "DM-GVY's Chainsaw"
     | Item.``Vortex Shredder`` -> "Vortex Shredder"
     | Item.``EC_9`` -> "EC_9"
+    | Item.``1C-UTU's Sword _Choppy_`` -> "1C-UTU's Sword 'Choppy'"
+    | Item.``Quantum Companion`` -> "Quantum Companion"
+    | Item.``Superquantum Companion`` -> "Superquantum Companion"
+    | Item.``Quantum Blade`` -> "Quantum Blade"
     | Item.``Sigix Broadsword`` -> "Sigix Broadsword"
     | Item.``Spear`` -> "Spear"
-    | Item.``Mak_ Spear`` -> "Mak_ Spear"
+    | Item.``Mak_ Spear`` -> "Mak. Spear"
     | Item.``CR-A16's Pointy Stick`` -> "CR-A16's Pointy Stick"
-    | Item.``Hvy_ Pick`` -> "Hvy_ Pick"
+    | Item.``Hvy_ Pick`` -> "Hvy. Pick"
     | Item.``Lance`` -> "Lance"
     | Item.``Kinetic Spear`` -> "Kinetic Spear"
     | Item.``Force Lance`` -> "Force Lance"
     | Item.``Plasma Lance`` -> "Plasma Lance"
-    | Item.``Enh_ Force Lance`` -> "Enh_ Force Lance"
+    | Item.``Enh_ Force Lance`` -> "Enh. Force Lance"
     | Item.``Vortex Lance`` -> "Vortex Lance"
     | Item.``CR-A16's Behemoth Slayer`` -> "CR-A16's Behemoth Slayer"
+    | Item.``Thermal Lance`` -> "Thermal Lance"
     | Item.``Blade Trap`` -> "Blade Trap"
     | Item.``Segregator Trap`` -> "Segregator Trap"
     | Item.``Explosive Trap`` -> "Explosive Trap"
@@ -3564,30 +3824,41 @@ let itemString =
     | Item.``Tesla Bomb Trap`` -> "Tesla Bomb Trap"
     | Item.``Gamma Bomb Trap`` -> "Gamma Bomb Trap"
     | Item.``Shrapnel Trap`` -> "Shrapnel Trap"
+    | Item.``Vortex Trap`` -> "Vortex Trap"
     | Item.``Piercing Trap`` -> "Piercing Trap"
     | Item.``Shock Trap`` -> "Shock Trap"
     | Item.``EM Surge Trap`` -> "EM Surge Trap"
     | Item.``Fire Trap`` -> "Fire Trap"
+    | Item.``Heat Bomb Trap`` -> "Heat Bomb Trap"
     | Item.``Stasis Trap`` -> "Stasis Trap"
     | Item.``Scrap Shield Fragment`` -> "Scrap Shield Fragment"
+    | Item.``SUBCON Basin`` -> "SUBCON Basin"
     | Item.``Signal Generator`` -> "Signal Generator"
     | Item.``Self-destruct Interrupter`` -> "Self-destruct Interrupter"
+    | Item.``DRS Beacon`` -> "DRS Beacon"
     | Item.``Sapper Charge`` -> "Sapper Charge"
-    | Item.``Zhirov Special`` -> "Zhirov Special"
     | Item.``Deploy-a-Sentry`` -> "Deploy-a-Sentry"
+    | Item.``Botcube`` -> "Botcube"
+    | Item.``Lrg_ Botcube`` -> "Lrg. Botcube"
+    | Item.``PL-3XN's Ring of Power`` -> "PL-3XN's Ring of Power"
+    | Item.``Disassembled Obliterator`` -> "Disassembled Obliterator"
     | Item.``GAL Module`` -> "GAL Module"
     | Item.``Portable AFG`` -> "Portable AFG"
+    | Item.``Zhirov Special`` -> "Zhirov Special"
     | Item.``SGEMP Prototype`` -> "SGEMP Prototype"
     | Item.``Terrabomb Derivative`` -> "Terrabomb Derivative"
     | Item.``Sigix Containment Pod`` -> "Sigix Containment Pod"
     | Item.``Sigix Corpse`` -> "Sigix Corpse"
     | Item.``Meganuke`` -> "Meganuke"
     | Item.``Gamma Refractor`` -> "Gamma Refractor"
+    | x -> raise (System.ArgumentException(sprintf "Invalid item id! %A" x))
+
 
 [<RequireQualifiedAccess>]
 type Prop =
     | ``Concrete Rubble``
     | ``Metal Rubble``
+    | ``Unfinished Machinery``
     | ``GENERIC_MACHINE_10``
     | ``GENERIC_MACHINE_9``
     | ``GENERIC_MACHINE_8``
@@ -3770,10 +4041,12 @@ type Prop =
     | ``Tesla Bomb Trap``
     | ``Gamma Bomb Trap``
     | ``Shrapnel Trap``
+    | ``Vortex Trap``
     | ``Piercing Trap``
     | ``Shock Trap``
     | ``EM Surge Trap``
     | ``Fire Trap``
+    | ``Heat Bomb Trap``
     | ``Stasis Trap``
     | ``Alarm Trap``
     | ``Ambush Trap``
@@ -3792,6 +4065,49 @@ type Prop =
     | ``STO_Door_Open``
     | ``STO_Door_Hackable``
     | ``STO_Shell_Shootable``
+    | ``Scraplab SEP``
+    | ``Scrap Engine Manual``
+    | ``Supplies``
+    | ``C-Scrubber``
+    | ``UFD Members``
+    | ``UFD Registry``
+    | ``UFD Projects``
+    | ``0bPrime Members Only``
+    | ``UFD Mainframe``
+    | ``UFD HQ Gate``
+    | ``Triangle Research``
+    | ``SCR_Reading_Room_Door``
+    | ``UFD Synopsis``
+    | ``Book of Scrap``
+    | ``Soloparser's Compendium``
+    | ``General History``
+    | ``Subcaves Research``
+    | ``Sights of 0b1``
+    | ``Notable Derelicts``
+    | ``Western Derelicts``
+    | ``Miscellany``
+    | ``SCR_Enclosure``
+    | ``Comm Apparatus``
+    | ``Model Spaceship``
+    | ``SCR_SOTW_Speaker``
+    | ``SCR_Mechanic``
+    | ``Lifeworm Database``
+    | ``Replica Nuclear Reactor``
+    | ``CP Mission Status``
+    | ``Latest Submissions``
+    | ``Demos``
+    | ``Operating Theater``
+    | ``SG-Prototypes Database``
+    | ``0bJail``
+    | ``IN-MT5's Safe``
+    | ``0b10 Analyses``
+    | ``JC Pilot Fab``
+    | ``Cannon Storage``
+    | ``SS Performance Data``
+    | ``Super Scrap Suits``
+    | ``Modified UFD Components``
+    | ``Botcube Storage``
+    | ``Sword Access``
     | ``GAR_Door_Shootable``
     | ``GAR_Relay``
     | ``GAR_Generator``
@@ -3826,6 +4142,9 @@ type Prop =
     | ``SUB_Autodoor``
     | ``Clippyterm``
     | ``Triangle-emblazoned Door``
+    | ``UFD SUBCON Station``
+    | ``Subatomizer Accumulator``
+    | ``SUBCON Basin Controls``
     | ``WAR_Sys``
     | ``Prototyping Terminal``
     | ``CAV_Door_Hackable``
@@ -3898,7 +4217,9 @@ type Prop =
     | ``HUB_Transfer_Station``
     | ``HUB_Network_Hub``
     | ``ARM_Door_Hackable``
+    | ``ARM_Blast_Door_Hackable``
     | ``ARM_Shell_Shootable``
+    | ``Derelict Superweapon?``
     | ``ARM_Dimension_Slip_Node``
     | ``NO ENTRY``
     | ``LAB_Door_Hackable``
@@ -3908,6 +4229,7 @@ type Prop =
     | ``A0 Storage 04-B``
     | ``UC xVqbSdU M7q4``
     | ``Suspension Chamber``
+    | ``Blast Barrier``
     | ``TES_Door_Hackable``
     | ``TES_Shell_Shootable``
     | ``Regeneration Lab``
@@ -3953,381 +4275,435 @@ type Prop =
     | ``AC0_Shell_Shootable``
     | ``Analysis Chamber``
     | ``AC0_Workstation``
-    | ``JUN_Black_Space``
-    | ``JUN_New_Year_City``
+    | ``YRD_Black_Space``
+    | ``YRD_New_Year_City``
+
 
 let getProp =
     function
     | 0 -> Prop.``Concrete Rubble``
     | 1 -> Prop.``Metal Rubble``
-    | 2 -> Prop.``GENERIC_MACHINE_10``
-    | 3 -> Prop.``GENERIC_MACHINE_9``
-    | 4 -> Prop.``GENERIC_MACHINE_8``
-    | 5 -> Prop.``GENERIC_MACHINE_7``
-    | 6 -> Prop.``GENERIC_MACHINE_6``
-    | 7 -> Prop.``GENERIC_MACHINE_5``
-    | 8 -> Prop.``GENERIC_MACHINE_4``
-    | 9 -> Prop.``GENERIC_MACHINE_3``
-    | 10 -> Prop.``GENERIC_MACHINE_2``
-    | 11 -> Prop.``GENERIC_MACHINE_1``
-    | 12 -> Prop.``Terminal vFe_01a``
-    | 13 -> Prop.``Terminal vNi_03a``
-    | 14 -> Prop.``Terminal vCu_03a``
-    | 15 -> Prop.``Terminal vZn_06a``
-    | 16 -> Prop.``Terminal vAg_06a``
-    | 17 -> Prop.``Terminal vTi_06n``
-    | 18 -> Prop.``Terminal vCo_08n``
-    | 19 -> Prop.``Terminal vMn_10n``
-    | 20 -> Prop.``Terminal vMo_07n``
-    | 21 -> Prop.``Terminal vPd_10n``
-    | 22 -> Prop.``Terminal vCd_08n``
-    | 23 -> Prop.``Terminal vZr_10n``
-    | 24 -> Prop.``Terminal vY_10n``
-    | 25 -> Prop.``Terminal vW_10x``
-    | 26 -> Prop.``Terminal vIr_12x``
-    | 27 -> Prop.``Terminal vPt_12x``
-    | 28 -> Prop.``Terminal vAu_13x``
-    | 29 -> Prop.``Terminal vHg_20x``
-    | 30 -> Prop.``Terminal vRh_10x``
-    | 31 -> Prop.``Fabricator vLi_07a``
-    | 32 -> Prop.``Fabricator vNa_07a``
-    | 33 -> Prop.``Fabricator vK_08a``
-    | 34 -> Prop.``Fabricator vCs_10n``
-    | 35 -> Prop.``Fabricator vBe_12n``
-    | 36 -> Prop.``Fabricator vMg_13n``
-    | 37 -> Prop.``Fabricator vCa_14x``
-    | 38 -> Prop.``Fabricator vSr_14x``
-    | 39 -> Prop.``Fabricator vBa_16x``
-    | 40 -> Prop.``Fabricator vRa_19x``
-    | 41 -> Prop.``Repair vAl_08a``
-    | 42 -> Prop.``Repair vGa_08a``
-    | 43 -> Prop.``Repair vIn_08a``
-    | 44 -> Prop.``Repair vSn_08n``
-    | 45 -> Prop.``Repair vTl_10n``
-    | 46 -> Prop.``Repair vPb_11n``
-    | 47 -> Prop.``Repair vBi_12x``
-    | 48 -> Prop.``Repair vPo_13x``
-    | 49 -> Prop.``Recycling vH_06a``
-    | 50 -> Prop.``Recycling vN_06a``
-    | 51 -> Prop.``Recycling vO_08n``
-    | 52 -> Prop.``Recycling vF_08n``
-    | 53 -> Prop.``Recycling vP_10x``
-    | 54 -> Prop.``Recycling vI_14x``
-    | 55 -> Prop.``Scanalyzer vHe_07a``
-    | 56 -> Prop.``Scanalyzer vNe_13n``
-    | 57 -> Prop.``Scanalyzer vAr_15x``
-    | 58 -> Prop.``Scanalyzer vXe_13x``
-    | 59 -> Prop.``Garrison vCe_6a``
-    | 60 -> Prop.``Garrison vPr_8a``
-    | 61 -> Prop.``Garrison vNd_9n``
-    | 62 -> Prop.``Garrison vPm_7n``
-    | 63 -> Prop.``Garrison vSm_13x``
-    | 64 -> Prop.``Garrison vEu_9x``
-    | 65 -> Prop.``T1``
-    | 66 -> Prop.``Core Extractor``
-    | 67 -> Prop.``Pulverizer``
-    | 68 -> Prop.``Laser Drill``
-    | 69 -> Prop.``Plasma Injector``
-    | 70 -> Prop.``Seismic Survey Station``
-    | 71 -> Prop.``Matter Pump``
-    | 72 -> Prop.``Pressure Siphon``
-    | 73 -> Prop.``Nuclear Reactor``
-    | 74 -> Prop.``Neutrino Reactor``
-    | 75 -> Prop.``Fusion Modulator``
-    | 76 -> Prop.``Quantum Generator``
-    | 77 -> Prop.``Dark Matter Chamber``
-    | 78 -> Prop.``Hypermatter Reactor``
-    | 79 -> Prop.``Compression Vault``
-    | 80 -> Prop.``Component Storage``
-    | 81 -> Prop.``Holding Depot``
-    | 82 -> Prop.``Packing Station``
-    | 83 -> Prop.``Arsenal Racks``
-    | 84 -> Prop.``Extraspacial Lockers``
-    | 85 -> Prop.``Energy Cycler``
-    | 86 -> Prop.``Transport Mainframe``
-    | 87 -> Prop.``Transfer Shaft``
-    | 88 -> Prop.``Hadron Collector``
-    | 89 -> Prop.``Electrolysis Chamber``
-    | 90 -> Prop.``Processing Tank``
-    | 91 -> Prop.``Atomic Centrifuge``
-    | 92 -> Prop.``Purification Channel``
-    | 93 -> Prop.``Integration Channel``
-    | 94 -> Prop.``Material Processor``
-    | 95 -> Prop.``Material Compactor``
-    | 96 -> Prop.``Matter Filter``
-    | 97 -> Prop.``Manufacturing Mainframe``
-    | 98 -> Prop.``Construction Platform``
-    | 99 -> Prop.``Assembly Bed``
-    | 100 -> Prop.``Megafabricator``
-    | 101 -> Prop.``Subcomponent Replicator``
-    | 102 -> Prop.``Power Conduit``
-    | 103 -> Prop.``Research Mainframe``
-    | 104 -> Prop.``Antiparticle Reservoir``
-    | 105 -> Prop.``Reaction Chamber``
-    | 106 -> Prop.``Vacuum Chamber``
-    | 107 -> Prop.``Subatomic Condenser``
-    | 108 -> Prop.``Catalytron``
-    | 109 -> Prop.``Meson Extractor``
-    | 110 -> Prop.``Antimatter Diverter``
-    | 111 -> Prop.``Field Manipulator``
-    | 112 -> Prop.``Particle Synthesizer``
-    | 113 -> Prop.``Quantum Separator``
-    | 114 -> Prop.``Wave Intensifier``
-    | 115 -> Prop.``Proton Scatter Basin``
-    | 116 -> Prop.``Ion Accelerator``
-    | 117 -> Prop.``Magnetic Photon System``
-    | 118 -> Prop.``Hypercollider``
-    | 119 -> Prop.``Graviton Restrictor``
-    | 120 -> Prop.``Potential Refractor``
-    | 121 -> Prop.``Prototyping Station``
-    | 122 -> Prop.``Engineering Station``
-    | 123 -> Prop.``Biostasis Chamber``
-    | 124 -> Prop.``Organic Neutralizer``
-    | 125 -> Prop.``Containment Shield``
-    | 126 -> Prop.``Testing Mainframe``
-    | 127 -> Prop.``Sonic Impulse Analyzer``
-    | 128 -> Prop.``Field Warper``
-    | 129 -> Prop.``Gravity Sphere``
-    | 130 -> Prop.``Quantum Transformer``
-    | 131 -> Prop.``Focalizer``
-    | 132 -> Prop.``Phase Constrictor``
-    | 133 -> Prop.``Resonance Scanner``
-    | 134 -> Prop.``Tau Charger``
-    | 135 -> Prop.``Harmonic Fracturing Unit``
-    | 136 -> Prop.``Antiparticle Suffusor``
-    | 137 -> Prop.``Thermocompressor Array``
-    | 138 -> Prop.``Cryocooling Duct``
-    | 139 -> Prop.``Artifact Storage``
-    | 140 -> Prop.``Cryopreservation Unit``
-    | 141 -> Prop.``Biostim Tank``
-    | 142 -> Prop.``Quarantine Pod``
-    | 143 -> Prop.``Aeration Cycler``
-    | 144 -> Prop.``Deconstruction Unit``
-    | 145 -> Prop.``Anatomizer``
-    | 146 -> Prop.``Cloning Tubes``
-    | 147 -> Prop.``Cell Assembler``
-    | 148 -> Prop.``Molecular Binding Bank``
-    | 149 -> Prop.``Anti-Ion Cluster``
-    | 150 -> Prop.``Deuterium Array``
-    | 151 -> Prop.``Mainframe``
-    | 152 -> Prop.``Storage``
-    | 153 -> Prop.``Retrofitting Station``
-    | 154 -> Prop.``Signal Jammer``
-    | 155 -> Prop.``Cloak Generator``
-    | 156 -> Prop.``Decryption Engine``
-    | 157 -> Prop.``Backup Mainframe``
-    | 158 -> Prop.``Archive Unit``
-    | 159 -> Prop.``Control Node``
-    | 160 -> Prop.``Operations Mainframe``
-    | 161 -> Prop.``Quantum Router``
-    | 162 -> Prop.``Hyperwave Decoder``
-    | 163 -> Prop.``Sealed Freight Elevator``
-    | 164 -> Prop.``Radio-Gravity Array``
-    | 165 -> Prop.``Anti-Orbital Battery``
-    | 166 -> Prop.``Spectral Interrupter``
-    | 167 -> Prop.``Wave Collapse Detector``
-    | 168 -> Prop.``Signal Shield``
-    | 169 -> Prop.``Longscan Aggregator``
-    | 170 -> Prop.``Blade Trap``
-    | 171 -> Prop.``Segregator Trap``
-    | 172 -> Prop.``Explosive Trap``
-    | 173 -> Prop.``Heavy Explosive Trap``
-    | 174 -> Prop.``Tiamat Bomb Trap``
-    | 175 -> Prop.``Fusion Bomb Trap``
-    | 176 -> Prop.``Hellfire Trap``
-    | 177 -> Prop.``Armageddon Trap``
-    | 178 -> Prop.``Dirty Bomb Trap``
-    | 179 -> Prop.``EMP Trap``
-    | 180 -> Prop.``Proton Bomb Trap``
-    | 181 -> Prop.``Tesla Bomb Trap``
-    | 182 -> Prop.``Gamma Bomb Trap``
-    | 183 -> Prop.``Shrapnel Trap``
-    | 184 -> Prop.``Piercing Trap``
-    | 185 -> Prop.``Shock Trap``
-    | 186 -> Prop.``EM Surge Trap``
-    | 187 -> Prop.``Fire Trap``
-    | 188 -> Prop.``Stasis Trap``
-    | 189 -> Prop.``Alarm Trap``
-    | 190 -> Prop.``Ambush Trap``
-    | 191 -> Prop.``Chute Trap``
-    | 197 -> Prop.``Collapsed Tunnel``
-    | 215 -> Prop.``Door Terminal``
-    | 216 -> Prop.``DSF Access``
-    | 217 -> Prop.``Broken Shaft Lining``
-    | 218 -> Prop.``XXX_Blast_Door_Open``
-    | 219 -> Prop.``XXX_Blast_Door_Hackable``
-    | 220 -> Prop.``ACC_Door_Shootable_SUR``
-    | 221 -> Prop.``ACC_Door_Shootable_COM``
-    | 222 -> Prop.``ACC_Door_Hackable``
-    | 223 -> Prop.``ACC_Shell_Shootable``
-    | 224 -> Prop.``Main Access Lift``
-    | 226 -> Prop.``STO_Door_Open``
-    | 227 -> Prop.``STO_Door_Hackable``
-    | 228 -> Prop.``STO_Shell_Shootable``
-    | 229 -> Prop.``GAR_Door_Shootable``
-    | 230 -> Prop.``GAR_Relay``
-    | 231 -> Prop.``GAR_Generator``
-    | 232 -> Prop.``GAR_RIF_Installer``
-    | 233 -> Prop.``Garrison Terminal``
-    | 234 -> Prop.``GAR_Heavy_Assembler``
-    | 235 -> Prop.``GAR_QS_Assembler``
-    | 236 -> Prop.``SHOP_Sys``
-    | 237 -> Prop.``MIN_Door_Hackable_Weak``
-    | 238 -> Prop.``Assembled Analyzer``
-    | 239 -> Prop.``Components``
-    | 240 -> Prop.``Testing Chamber Shield``
-    | 241 -> Prop.``Testing Apparatus``
-    | 242 -> Prop.``EX-Generator``
-    | 243 -> Prop.``BIN's Workstation``
-    | 244 -> Prop.``DEC's Workstation``
-    | 245 -> Prop.``HEX's Workstation``
-    | 246 -> Prop.``BIN's Terminal``
-    | 247 -> Prop.``DEC's Terminal``
-    | 248 -> Prop.``HEX's Terminal``
-    | 249 -> Prop.``EXI_Farcom``
-    | 250 -> Prop.``EX-Vault Access``
-    | 251 -> Prop.``EX-Prototypes Database``
-    | 252 -> Prop.``EX-Message Board``
-    | 253 -> Prop.``Repaired_Machine_T``
-    | 254 -> Prop.``Repaired_Machine_F``
-    | 255 -> Prop.``Repaired_Machine_R``
-    | 256 -> Prop.``Repaired_Machine_Y``
-    | 257 -> Prop.``Repaired_Machine_S``
-    | 258 -> Prop.``Testing Chamber``
-    | 259 -> Prop.``4L-MR0's Prototype Logs``
-    | 260 -> Prop.``SUB_Autodoor``
-    | 261 -> Prop.``Clippyterm``
-    | 262 -> Prop.``Triangle-emblazoned Door``
-    | 263 -> Prop.``WAR_Sys``
-    | 264 -> Prop.``Prototyping Terminal``
-    | 265 -> Prop.``CAV_Door_Hackable``
-    | 266 -> Prop.``Outpost Terminal``
-    | 267 -> Prop.``CAV_Base_Generator``
-    | 268 -> Prop.``CAV_Junk_Machine``
-    | 269 -> Prop.``CAV_Reinforcement``
-    | 270 -> Prop.``CAV_Door_Shootable``
-    | 271 -> Prop.``CAV_Door_No_Terminal``
-    | 272 -> Prop.``Private``
-    | 273 -> Prop.``CAV_Thief_Den``
-    | 274 -> Prop.``W-Fans Enter Here``
-    | 275 -> Prop.``LOW_Warlord_Fan_Stuff``
-    | 276 -> Prop.``PRO_Base_Generator``
-    | 277 -> Prop.``PRO_Target_Dispatcher``
-    | 278 -> Prop.``PRO_Test_Aggregator``
-    | 279 -> Prop.``PRO_Data_Receptor``
-    | 280 -> Prop.``Matter Repository``
-    | 281 -> Prop.``Twisting Tunnel``
-    | 282 -> Prop.``DAT_Data_Conduit``
-    | 283 -> Prop.``ORACLE Interface``
-    | 284 -> Prop.``ZHI_Cloak_Generator``
-    | 286 -> Prop.``ZHI_Main_Door``
-    | 287 -> Prop.``Zhirov's Terminal``
-    | 288 -> Prop.``Quantum Analyzer``
-    | 289 -> Prop.``Zhirov's Workstation``
-    | 290 -> Prop.``WAR_Door_Hackable``
-    | 291 -> Prop.``Vortex Lab Terminal``
-    | 292 -> Prop.``Hacking Lab Terminal``
-    | 293 -> Prop.``Relay Lab Terminal``
-    | 294 -> Prop.``Fabnet Lab Terminal``
-    | 295 -> Prop.``Intel Room Terminal``
-    | 296 -> Prop.``WAR_Staging_Area``
-    | 297 -> Prop.``RES_Staging_Area``
-    | 298 -> Prop.``WAR_Mainc_Tunnel``
-    | 299 -> Prop.``ZIO_Machinery``
-    | 300 -> Prop.``Deep Containment System``
-    | 301 -> Prop.``ZIOWAR_Quarantine_Array``
-    | 302 -> Prop.``ZIO_Cloak_Generator``
-    | 303 -> Prop.``ZIO_Stockpile_Wall``
-    | 304 -> Prop.``ZIO_Prototype_Hold``
-    | 305 -> Prop.``ZIO_Lab_Wall``
-    | 306 -> Prop.``ZIO_Repair_Shop_Wall``
-    | 307 -> Prop.``Zion Terminal``
-    | 308 -> Prop.``ZIO_Machinery_Fake``
-    | 309 -> Prop.``Conduit Teleporter``
-    | 310 -> Prop.``ZIO_Memory_Banks``
-    | 311 -> Prop.``ZIO_Imprinter``
-    | 312 -> Prop.``DEE_Z_Facility``
-    | 313 -> Prop.``Z-Power``
-    | 315 -> Prop.``DEE_Sigix_Wall``
-    | 316 -> Prop.``DEE_Sigix_Gate``
-    | 317 -> Prop.``DEE_Wall_Chamber``
-    | 318 -> Prop.``DEE_Survey_Way_Station``
-    | 319 -> Prop.``EXT_Door_Hackable``
-    | 321 -> Prop.``EXT_Transfer_Station``
-    | 322 -> Prop.``Cetus Terminal``
-    | 323 -> Prop.``Cetus Manufacturing Controls``
-    | 324 -> Prop.``CET_Door_Hackable``
-    | 325 -> Prop.``Doors``
-    | 326 -> Prop.``Bed``
-    | 327 -> Prop.``Lockers``
-    | 328 -> Prop.``Table``
-    | 329 -> Prop.``Lab Station``
-    | 330 -> Prop.``Research Interface``
-    | 331 -> Prop.``Cetus Mainframe``
-    | 332 -> Prop.``Cetus Manufacturing Module``
-    | 333 -> Prop.``Archive Terminal``
-    | 334 -> Prop.``Archive Hub``
-    | 335 -> Prop.``HUB_Transfer_Station``
-    | 336 -> Prop.``HUB_Network_Hub``
-    | 337 -> Prop.``ARM_Door_Hackable``
-    | 338 -> Prop.``ARM_Shell_Shootable``
-    | 339 -> Prop.``ARM_Dimension_Slip_Node``
-    | 340 -> Prop.``NO ENTRY``
-    | 341 -> Prop.``LAB_Door_Hackable``
-    | 342 -> Prop.``Active System Cloaker``
-    | 343 -> Prop.``A0 Command``
-    | 344 -> Prop.``hN 3sDk7Qc``
-    | 345 -> Prop.``A0 Storage 04-B``
-    | 346 -> Prop.``UC xVqbSdU M7q4``
-    | 347 -> Prop.``Suspension Chamber``
-    | 349 -> Prop.``TES_Door_Hackable``
-    | 350 -> Prop.``TES_Shell_Shootable``
-    | 351 -> Prop.``Regeneration Lab``
-    | 352 -> Prop.``TES_Terrabomb``
-    | 353 -> Prop.``QUA_Door_Hackable``
-    | 354 -> Prop.``QUA_Door_Hackable_Hard``
-    | 355 -> Prop.``Sigix Lab``
-    | 356 -> Prop.``Sigix Quarantine Controls``
-    | 357 -> Prop.``Sigix Quarantine Chamber``
-    | 358 -> Prop.``Teleportation Lab``
-    | 359 -> Prop.``Autopsy Lab``
-    | 360 -> Prop.``Research Terminal``
-    | 361 -> Prop.``SEC_Door_Hackable``
-    | 362 -> Prop.``L2 Monitoring Station``
-    | 363 -> Prop.``Power Cell Monitoring``
-    | 364 -> Prop.``Thrusters``
-    | 365 -> Prop.``SEC_L2_Power_Cell``
-    | 366 -> Prop.``Wing Frame``
-    | 367 -> Prop.``FTL Facilitator``
-    | 368 -> Prop.``Core Housing``
-    | 369 -> Prop.``Hull``
-    | 370 -> Prop.``Armor Plating``
-    | 371 -> Prop.``Navigation``
-    | 372 -> Prop.``Construction Supplies``
-    | 373 -> Prop.``L2 Fabricator``
-    | 374 -> Prop.``Exoskeleton Controls``
-    | 375 -> Prop.``Cave Seal Controls``
-    | 376 -> Prop.``COM_Cave_Spawn``
-    | 377 -> Prop.``COM_Shell_Shootable``
-    | 378 -> Prop.``Access Lift``
-    | 379 -> Prop.``COM_Teleport_Inhibitor``
-    | 380 -> Prop.``COM_Door_Hackable``
-    | 381 -> Prop.``COM_0b10_Conduit``
-    | 382 -> Prop.``COM_Alternative_Access``
-    | 384 -> Prop.``COM_Cache_Door``
-    | 385 -> Prop.``AC0_Singularity_Gate``
-    | 386 -> Prop.``Gate Controls``
-    | 388 -> Prop.``AC0_Subspace_Node``
-    | 389 -> Prop.``AC0_Subspace_Node_Mid``
-    | 390 -> Prop.``AC0_Architect_Shell``
-    | 391 -> Prop.``Architect Logs``
-    | 392 -> Prop.``AC0_Abandoned_Machinery``
-    | 393 -> Prop.``AC0_Shell_Shootable``
-    | 394 -> Prop.``Analysis Chamber``
-    | 395 -> Prop.``AC0_Workstation``
-    | 396 -> Prop.``JUN_Black_Space``
-    | 397 -> Prop.``JUN_New_Year_City``
+    | 2 -> Prop.``Unfinished Machinery``
+    | 3 -> Prop.``GENERIC_MACHINE_10``
+    | 4 -> Prop.``GENERIC_MACHINE_9``
+    | 5 -> Prop.``GENERIC_MACHINE_8``
+    | 6 -> Prop.``GENERIC_MACHINE_7``
+    | 7 -> Prop.``GENERIC_MACHINE_6``
+    | 8 -> Prop.``GENERIC_MACHINE_5``
+    | 9 -> Prop.``GENERIC_MACHINE_4``
+    | 10 -> Prop.``GENERIC_MACHINE_3``
+    | 11 -> Prop.``GENERIC_MACHINE_2``
+    | 12 -> Prop.``GENERIC_MACHINE_1``
+    | 13 -> Prop.``Terminal vFe_01a``
+    | 14 -> Prop.``Terminal vNi_03a``
+    | 15 -> Prop.``Terminal vCu_03a``
+    | 16 -> Prop.``Terminal vZn_06a``
+    | 17 -> Prop.``Terminal vAg_06a``
+    | 18 -> Prop.``Terminal vTi_06n``
+    | 19 -> Prop.``Terminal vCo_08n``
+    | 20 -> Prop.``Terminal vMn_10n``
+    | 21 -> Prop.``Terminal vMo_07n``
+    | 22 -> Prop.``Terminal vPd_10n``
+    | 23 -> Prop.``Terminal vCd_08n``
+    | 24 -> Prop.``Terminal vZr_10n``
+    | 25 -> Prop.``Terminal vY_10n``
+    | 26 -> Prop.``Terminal vW_10x``
+    | 27 -> Prop.``Terminal vIr_12x``
+    | 28 -> Prop.``Terminal vPt_12x``
+    | 29 -> Prop.``Terminal vAu_13x``
+    | 30 -> Prop.``Terminal vHg_20x``
+    | 31 -> Prop.``Terminal vRh_10x``
+    | 32 -> Prop.``Fabricator vLi_07a``
+    | 33 -> Prop.``Fabricator vNa_07a``
+    | 34 -> Prop.``Fabricator vK_08a``
+    | 35 -> Prop.``Fabricator vCs_10n``
+    | 36 -> Prop.``Fabricator vBe_12n``
+    | 37 -> Prop.``Fabricator vMg_13n``
+    | 38 -> Prop.``Fabricator vCa_14x``
+    | 39 -> Prop.``Fabricator vSr_14x``
+    | 40 -> Prop.``Fabricator vBa_16x``
+    | 41 -> Prop.``Fabricator vRa_19x``
+    | 42 -> Prop.``Repair vAl_08a``
+    | 43 -> Prop.``Repair vGa_08a``
+    | 44 -> Prop.``Repair vIn_08a``
+    | 45 -> Prop.``Repair vSn_08n``
+    | 46 -> Prop.``Repair vTl_10n``
+    | 47 -> Prop.``Repair vPb_11n``
+    | 48 -> Prop.``Repair vBi_12x``
+    | 49 -> Prop.``Repair vPo_13x``
+    | 50 -> Prop.``Recycling vH_06a``
+    | 51 -> Prop.``Recycling vN_06a``
+    | 52 -> Prop.``Recycling vO_08n``
+    | 53 -> Prop.``Recycling vF_08n``
+    | 54 -> Prop.``Recycling vP_10x``
+    | 55 -> Prop.``Recycling vI_14x``
+    | 56 -> Prop.``Scanalyzer vHe_07a``
+    | 57 -> Prop.``Scanalyzer vNe_13n``
+    | 58 -> Prop.``Scanalyzer vAr_15x``
+    | 59 -> Prop.``Scanalyzer vXe_13x``
+    | 60 -> Prop.``Garrison vCe_6a``
+    | 61 -> Prop.``Garrison vPr_8a``
+    | 62 -> Prop.``Garrison vNd_9n``
+    | 63 -> Prop.``Garrison vPm_7n``
+    | 64 -> Prop.``Garrison vSm_13x``
+    | 65 -> Prop.``Garrison vEu_9x``
+    | 66 -> Prop.``T1``
+    | 67 -> Prop.``Core Extractor``
+    | 68 -> Prop.``Pulverizer``
+    | 69 -> Prop.``Laser Drill``
+    | 70 -> Prop.``Plasma Injector``
+    | 71 -> Prop.``Seismic Survey Station``
+    | 72 -> Prop.``Matter Pump``
+    | 73 -> Prop.``Pressure Siphon``
+    | 74 -> Prop.``Nuclear Reactor``
+    | 75 -> Prop.``Neutrino Reactor``
+    | 76 -> Prop.``Fusion Modulator``
+    | 77 -> Prop.``Quantum Generator``
+    | 78 -> Prop.``Dark Matter Chamber``
+    | 79 -> Prop.``Hypermatter Reactor``
+    | 80 -> Prop.``Compression Vault``
+    | 81 -> Prop.``Component Storage``
+    | 82 -> Prop.``Holding Depot``
+    | 83 -> Prop.``Packing Station``
+    | 84 -> Prop.``Arsenal Racks``
+    | 85 -> Prop.``Extraspacial Lockers``
+    | 86 -> Prop.``Energy Cycler``
+    | 87 -> Prop.``Transport Mainframe``
+    | 88 -> Prop.``Transfer Shaft``
+    | 89 -> Prop.``Hadron Collector``
+    | 90 -> Prop.``Electrolysis Chamber``
+    | 91 -> Prop.``Processing Tank``
+    | 92 -> Prop.``Atomic Centrifuge``
+    | 93 -> Prop.``Purification Channel``
+    | 94 -> Prop.``Integration Channel``
+    | 95 -> Prop.``Material Processor``
+    | 96 -> Prop.``Material Compactor``
+    | 97 -> Prop.``Matter Filter``
+    | 98 -> Prop.``Manufacturing Mainframe``
+    | 99 -> Prop.``Construction Platform``
+    | 100 -> Prop.``Assembly Bed``
+    | 101 -> Prop.``Megafabricator``
+    | 102 -> Prop.``Subcomponent Replicator``
+    | 103 -> Prop.``Power Conduit``
+    | 104 -> Prop.``Research Mainframe``
+    | 105 -> Prop.``Antiparticle Reservoir``
+    | 106 -> Prop.``Reaction Chamber``
+    | 107 -> Prop.``Vacuum Chamber``
+    | 108 -> Prop.``Subatomic Condenser``
+    | 109 -> Prop.``Catalytron``
+    | 110 -> Prop.``Meson Extractor``
+    | 111 -> Prop.``Antimatter Diverter``
+    | 112 -> Prop.``Field Manipulator``
+    | 113 -> Prop.``Particle Synthesizer``
+    | 114 -> Prop.``Quantum Separator``
+    | 115 -> Prop.``Wave Intensifier``
+    | 116 -> Prop.``Proton Scatter Basin``
+    | 117 -> Prop.``Ion Accelerator``
+    | 118 -> Prop.``Magnetic Photon System``
+    | 119 -> Prop.``Hypercollider``
+    | 120 -> Prop.``Graviton Restrictor``
+    | 121 -> Prop.``Potential Refractor``
+    | 122 -> Prop.``Prototyping Station``
+    | 123 -> Prop.``Engineering Station``
+    | 124 -> Prop.``Biostasis Chamber``
+    | 125 -> Prop.``Organic Neutralizer``
+    | 126 -> Prop.``Containment Shield``
+    | 127 -> Prop.``Testing Mainframe``
+    | 128 -> Prop.``Sonic Impulse Analyzer``
+    | 129 -> Prop.``Field Warper``
+    | 130 -> Prop.``Gravity Sphere``
+    | 131 -> Prop.``Quantum Transformer``
+    | 132 -> Prop.``Focalizer``
+    | 133 -> Prop.``Phase Constrictor``
+    | 134 -> Prop.``Resonance Scanner``
+    | 135 -> Prop.``Tau Charger``
+    | 136 -> Prop.``Harmonic Fracturing Unit``
+    | 137 -> Prop.``Antiparticle Suffusor``
+    | 138 -> Prop.``Thermocompressor Array``
+    | 139 -> Prop.``Cryocooling Duct``
+    | 140 -> Prop.``Artifact Storage``
+    | 141 -> Prop.``Cryopreservation Unit``
+    | 142 -> Prop.``Biostim Tank``
+    | 143 -> Prop.``Quarantine Pod``
+    | 144 -> Prop.``Aeration Cycler``
+    | 145 -> Prop.``Deconstruction Unit``
+    | 146 -> Prop.``Anatomizer``
+    | 147 -> Prop.``Cloning Tubes``
+    | 148 -> Prop.``Cell Assembler``
+    | 149 -> Prop.``Molecular Binding Bank``
+    | 150 -> Prop.``Anti-Ion Cluster``
+    | 151 -> Prop.``Deuterium Array``
+    | 152 -> Prop.``Mainframe``
+    | 153 -> Prop.``Storage``
+    | 154 -> Prop.``Retrofitting Station``
+    | 155 -> Prop.``Signal Jammer``
+    | 156 -> Prop.``Cloak Generator``
+    | 157 -> Prop.``Decryption Engine``
+    | 158 -> Prop.``Backup Mainframe``
+    | 159 -> Prop.``Archive Unit``
+    | 160 -> Prop.``Control Node``
+    | 161 -> Prop.``Operations Mainframe``
+    | 162 -> Prop.``Quantum Router``
+    | 163 -> Prop.``Hyperwave Decoder``
+    | 164 -> Prop.``Sealed Freight Elevator``
+    | 165 -> Prop.``Radio-Gravity Array``
+    | 166 -> Prop.``Anti-Orbital Battery``
+    | 167 -> Prop.``Spectral Interrupter``
+    | 168 -> Prop.``Wave Collapse Detector``
+    | 169 -> Prop.``Signal Shield``
+    | 170 -> Prop.``Longscan Aggregator``
+    | 171 -> Prop.``Blade Trap``
+    | 172 -> Prop.``Segregator Trap``
+    | 173 -> Prop.``Explosive Trap``
+    | 174 -> Prop.``Heavy Explosive Trap``
+    | 175 -> Prop.``Tiamat Bomb Trap``
+    | 176 -> Prop.``Fusion Bomb Trap``
+    | 177 -> Prop.``Hellfire Trap``
+    | 178 -> Prop.``Armageddon Trap``
+    | 179 -> Prop.``Dirty Bomb Trap``
+    | 180 -> Prop.``EMP Trap``
+    | 181 -> Prop.``Proton Bomb Trap``
+    | 182 -> Prop.``Tesla Bomb Trap``
+    | 183 -> Prop.``Gamma Bomb Trap``
+    | 184 -> Prop.``Shrapnel Trap``
+    | 185 -> Prop.``Vortex Trap``
+    | 186 -> Prop.``Piercing Trap``
+    | 187 -> Prop.``Shock Trap``
+    | 188 -> Prop.``EM Surge Trap``
+    | 189 -> Prop.``Fire Trap``
+    | 190 -> Prop.``Heat Bomb Trap``
+    | 191 -> Prop.``Stasis Trap``
+    | 192 -> Prop.``Alarm Trap``
+    | 193 -> Prop.``Ambush Trap``
+    | 194 -> Prop.``Chute Trap``
+    | 195 -> Prop.``Collapsed Tunnel``
+    | 197 -> Prop.``Door Terminal``
+    | 198 -> Prop.``DSF Access``
+    | 199 -> Prop.``Broken Shaft Lining``
+    | 200 -> Prop.``XXX_Blast_Door_Open``
+    | 201 -> Prop.``XXX_Blast_Door_Hackable``
+    | 202 -> Prop.``ACC_Door_Shootable_SUR``
+    | 203 -> Prop.``ACC_Door_Shootable_COM``
+    | 204 -> Prop.``ACC_Door_Hackable``
+    | 205 -> Prop.``ACC_Shell_Shootable``
+    | 206 -> Prop.``Main Access Lift``
+    | 208 -> Prop.``STO_Door_Open``
+    | 209 -> Prop.``STO_Door_Hackable``
+    | 210 -> Prop.``STO_Shell_Shootable``
+    | 211 -> Prop.``Scraplab SEP``
+    | 212 -> Prop.``Scrap Engine Manual``
+    | 213 -> Prop.``Supplies``
+    | 214 -> Prop.``C-Scrubber``
+    | 215 -> Prop.``UFD Members``
+    | 216 -> Prop.``UFD Registry``
+    | 217 -> Prop.``UFD Projects``
+    | 218 -> Prop.``0bPrime Members Only``
+    | 219 -> Prop.``UFD Mainframe``
+    | 220 -> Prop.``UFD HQ Gate``
+    | 221 -> Prop.``Triangle Research``
+    | 222 -> Prop.``SCR_Reading_Room_Door``
+    | 223 -> Prop.``UFD Synopsis``
+    | 224 -> Prop.``Book of Scrap``
+    | 225 -> Prop.``Soloparser's Compendium``
+    | 226 -> Prop.``General History``
+    | 227 -> Prop.``Subcaves Research``
+    | 228 -> Prop.``Sights of 0b1``
+    | 229 -> Prop.``Notable Derelicts``
+    | 230 -> Prop.``Western Derelicts``
+    | 231 -> Prop.``Miscellany``
+    | 232 -> Prop.``SCR_Enclosure``
+    | 233 -> Prop.``Comm Apparatus``
+    | 234 -> Prop.``Model Spaceship``
+    | 235 -> Prop.``SCR_SOTW_Speaker``
+    | 236 -> Prop.``SCR_Mechanic``
+    | 237 -> Prop.``Lifeworm Database``
+    | 238 -> Prop.``Replica Nuclear Reactor``
+    | 239 -> Prop.``CP Mission Status``
+    | 240 -> Prop.``Latest Submissions``
+    | 241 -> Prop.``Demos``
+    | 243 -> Prop.``Operating Theater``
+    | 244 -> Prop.``SG-Prototypes Database``
+    | 245 -> Prop.``0bJail``
+    | 246 -> Prop.``IN-MT5's Safe``
+    | 247 -> Prop.``0b10 Analyses``
+    | 248 -> Prop.``JC Pilot Fab``
+    | 249 -> Prop.``Cannon Storage``
+    | 250 -> Prop.``SS Performance Data``
+    | 251 -> Prop.``Super Scrap Suits``
+    | 252 -> Prop.``Modified UFD Components``
+    | 253 -> Prop.``Botcube Storage``
+    | 254 -> Prop.``Sword Access``
+    | 255 -> Prop.``GAR_Door_Shootable``
+    | 256 -> Prop.``GAR_Relay``
+    | 257 -> Prop.``GAR_Generator``
+    | 258 -> Prop.``GAR_RIF_Installer``
+    | 259 -> Prop.``Garrison Terminal``
+    | 260 -> Prop.``GAR_Heavy_Assembler``
+    | 261 -> Prop.``GAR_QS_Assembler``
+    | 262 -> Prop.``SHOP_Sys``
+    | 263 -> Prop.``MIN_Door_Hackable_Weak``
+    | 264 -> Prop.``Assembled Analyzer``
+    | 265 -> Prop.``Components``
+    | 266 -> Prop.``Testing Chamber Shield``
+    | 267 -> Prop.``Testing Apparatus``
+    | 268 -> Prop.``EX-Generator``
+    | 269 -> Prop.``BIN's Workstation``
+    | 270 -> Prop.``DEC's Workstation``
+    | 271 -> Prop.``HEX's Workstation``
+    | 272 -> Prop.``BIN's Terminal``
+    | 273 -> Prop.``DEC's Terminal``
+    | 274 -> Prop.``HEX's Terminal``
+    | 275 -> Prop.``EXI_Farcom``
+    | 276 -> Prop.``EX-Vault Access``
+    | 277 -> Prop.``EX-Prototypes Database``
+    | 278 -> Prop.``EX-Message Board``
+    | 279 -> Prop.``Repaired_Machine_T``
+    | 280 -> Prop.``Repaired_Machine_F``
+    | 281 -> Prop.``Repaired_Machine_R``
+    | 282 -> Prop.``Repaired_Machine_Y``
+    | 283 -> Prop.``Repaired_Machine_S``
+    | 284 -> Prop.``Testing Chamber``
+    | 285 -> Prop.``4L-MR0's Prototype Logs``
+    | 286 -> Prop.``SUB_Autodoor``
+    | 287 -> Prop.``Clippyterm``
+    | 288 -> Prop.``Triangle-emblazoned Door``
+    | 289 -> Prop.``UFD SUBCON Station``
+    | 290 -> Prop.``Subatomizer Accumulator``
+    | 291 -> Prop.``SUBCON Basin Controls``
+    | 292 -> Prop.``WAR_Sys``
+    | 293 -> Prop.``Prototyping Terminal``
+    | 294 -> Prop.``CAV_Door_Hackable``
+    | 295 -> Prop.``Outpost Terminal``
+    | 296 -> Prop.``CAV_Base_Generator``
+    | 297 -> Prop.``CAV_Junk_Machine``
+    | 298 -> Prop.``CAV_Reinforcement``
+    | 299 -> Prop.``CAV_Door_Shootable``
+    | 300 -> Prop.``CAV_Door_No_Terminal``
+    | 301 -> Prop.``Private``
+    | 302 -> Prop.``CAV_Thief_Den``
+    | 303 -> Prop.``W-Fans Enter Here``
+    | 304 -> Prop.``LOW_Warlord_Fan_Stuff``
+    | 305 -> Prop.``PRO_Base_Generator``
+    | 306 -> Prop.``PRO_Target_Dispatcher``
+    | 307 -> Prop.``PRO_Test_Aggregator``
+    | 308 -> Prop.``PRO_Data_Receptor``
+    | 309 -> Prop.``Matter Repository``
+    | 310 -> Prop.``Twisting Tunnel``
+    | 311 -> Prop.``DAT_Data_Conduit``
+    | 312 -> Prop.``ORACLE Interface``
+    | 313 -> Prop.``ZHI_Cloak_Generator``
+    | 315 -> Prop.``ZHI_Main_Door``
+    | 316 -> Prop.``Zhirov's Terminal``
+    | 317 -> Prop.``Quantum Analyzer``
+    | 318 -> Prop.``Zhirov's Workstation``
+    | 319 -> Prop.``WAR_Door_Hackable``
+    | 320 -> Prop.``Vortex Lab Terminal``
+    | 321 -> Prop.``Hacking Lab Terminal``
+    | 322 -> Prop.``Relay Lab Terminal``
+    | 323 -> Prop.``Fabnet Lab Terminal``
+    | 324 -> Prop.``Intel Room Terminal``
+    | 325 -> Prop.``WAR_Staging_Area``
+    | 326 -> Prop.``RES_Staging_Area``
+    | 327 -> Prop.``WAR_Mainc_Tunnel``
+    | 328 -> Prop.``ZIO_Machinery``
+    | 329 -> Prop.``Deep Containment System``
+    | 330 -> Prop.``ZIOWAR_Quarantine_Array``
+    | 331 -> Prop.``ZIO_Cloak_Generator``
+    | 332 -> Prop.``ZIO_Stockpile_Wall``
+    | 333 -> Prop.``ZIO_Prototype_Hold``
+    | 334 -> Prop.``ZIO_Lab_Wall``
+    | 335 -> Prop.``ZIO_Repair_Shop_Wall``
+    | 336 -> Prop.``Zion Terminal``
+    | 337 -> Prop.``ZIO_Machinery_Fake``
+    | 338 -> Prop.``Conduit Teleporter``
+    | 339 -> Prop.``ZIO_Memory_Banks``
+    | 340 -> Prop.``ZIO_Imprinter``
+    | 341 -> Prop.``DEE_Z_Facility``
+    | 342 -> Prop.``Z-Power``
+    | 344 -> Prop.``DEE_Sigix_Wall``
+    | 345 -> Prop.``DEE_Sigix_Gate``
+    | 346 -> Prop.``DEE_Wall_Chamber``
+    | 347 -> Prop.``DEE_Survey_Way_Station``
+    | 348 -> Prop.``EXT_Door_Hackable``
+    | 350 -> Prop.``EXT_Transfer_Station``
+    | 351 -> Prop.``Cetus Terminal``
+    | 352 -> Prop.``Cetus Manufacturing Controls``
+    | 353 -> Prop.``CET_Door_Hackable``
+    | 354 -> Prop.``Doors``
+    | 355 -> Prop.``Bed``
+    | 356 -> Prop.``Lockers``
+    | 357 -> Prop.``Table``
+    | 358 -> Prop.``Lab Station``
+    | 359 -> Prop.``Research Interface``
+    | 360 -> Prop.``Cetus Mainframe``
+    | 361 -> Prop.``Cetus Manufacturing Module``
+    | 362 -> Prop.``Archive Terminal``
+    | 363 -> Prop.``Archive Hub``
+    | 364 -> Prop.``HUB_Transfer_Station``
+    | 365 -> Prop.``HUB_Network_Hub``
+    | 366 -> Prop.``ARM_Door_Hackable``
+    | 367 -> Prop.``ARM_Blast_Door_Hackable``
+    | 368 -> Prop.``ARM_Shell_Shootable``
+    | 369 -> Prop.``Derelict Superweapon?``
+    | 370 -> Prop.``ARM_Dimension_Slip_Node``
+    | 371 -> Prop.``NO ENTRY``
+    | 372 -> Prop.``LAB_Door_Hackable``
+    | 373 -> Prop.``Active System Cloaker``
+    | 374 -> Prop.``A0 Command``
+    | 375 -> Prop.``hN 3sDk7Qc``
+    | 376 -> Prop.``A0 Storage 04-B``
+    | 377 -> Prop.``UC xVqbSdU M7q4``
+    | 378 -> Prop.``Suspension Chamber``
+    | 380 -> Prop.``Blast Barrier``
+    | 381 -> Prop.``TES_Door_Hackable``
+    | 382 -> Prop.``TES_Shell_Shootable``
+    | 383 -> Prop.``Regeneration Lab``
+    | 384 -> Prop.``TES_Terrabomb``
+    | 385 -> Prop.``QUA_Door_Hackable``
+    | 386 -> Prop.``QUA_Door_Hackable_Hard``
+    | 387 -> Prop.``Sigix Lab``
+    | 388 -> Prop.``Sigix Quarantine Controls``
+    | 389 -> Prop.``Sigix Quarantine Chamber``
+    | 390 -> Prop.``Teleportation Lab``
+    | 391 -> Prop.``Autopsy Lab``
+    | 392 -> Prop.``Research Terminal``
+    | 393 -> Prop.``SEC_Door_Hackable``
+    | 394 -> Prop.``L2 Monitoring Station``
+    | 395 -> Prop.``Power Cell Monitoring``
+    | 396 -> Prop.``Thrusters``
+    | 397 -> Prop.``SEC_L2_Power_Cell``
+    | 398 -> Prop.``Wing Frame``
+    | 399 -> Prop.``FTL Facilitator``
+    | 400 -> Prop.``Core Housing``
+    | 401 -> Prop.``Hull``
+    | 402 -> Prop.``Armor Plating``
+    | 403 -> Prop.``Navigation``
+    | 404 -> Prop.``Construction Supplies``
+    | 405 -> Prop.``L2 Fabricator``
+    | 406 -> Prop.``Exoskeleton Controls``
+    | 407 -> Prop.``Cave Seal Controls``
+    | 408 -> Prop.``COM_Cave_Spawn``
+    | 409 -> Prop.``COM_Shell_Shootable``
+    | 410 -> Prop.``Access Lift``
+    | 411 -> Prop.``COM_Teleport_Inhibitor``
+    | 412 -> Prop.``COM_Door_Hackable``
+    | 413 -> Prop.``COM_0b10_Conduit``
+    | 414 -> Prop.``COM_Alternative_Access``
+    | 416 -> Prop.``COM_Cache_Door``
+    | 417 -> Prop.``AC0_Singularity_Gate``
+    | 418 -> Prop.``Gate Controls``
+    | 420 -> Prop.``AC0_Subspace_Node``
+    | 421 -> Prop.``AC0_Subspace_Node_Mid``
+    | 422 -> Prop.``AC0_Architect_Shell``
+    | 423 -> Prop.``Architect Logs``
+    | 424 -> Prop.``AC0_Abandoned_Machinery``
+    | 425 -> Prop.``AC0_Shell_Shootable``
+    | 426 -> Prop.``Analysis Chamber``
+    | 427 -> Prop.``AC0_Workstation``
+    | 428 -> Prop.``YRD_Black_Space``
+    | 429 -> Prop.``YRD_New_Year_City``
     | x -> raise (System.ArgumentException(sprintf "Invalid value for prop type: %A" x))
+
 
 [<RequireQualifiedAccess>]
 type Entity =
@@ -4341,257 +4717,279 @@ type Entity =
     | ``Minesniffer Drone`` = 7
     | ``Decoy Drone`` = 8
     | ``Splice Drone`` = 9
-    | ``Advanced Drone`` = 10
-    | ``Stealth Drone`` = 11
-    | ``Trailblazer`` = 12
-    | ``Thief Drone`` = 13
-    | ``Army Drone`` = 14
-    | ``Swarm Drone`` = 15
-    | ``Combat Drone`` = 16
-    | ``Assault Drone`` = 17
-    | ``Bomb Drone`` = 18
-    | ``Wardrone`` = 19
-    | ``DAS Turret`` = 20
-    | ``Autobeam Turret`` = 21
-    | ``K-01 Serf`` = 22
-    | ``U-05 Engineer`` = 23
-    | ``T-07 Excavator`` = 24
-    | ``A-02 Transporter`` = 25
-    | ``A-15 Conveyor`` = 26
-    | ``A-27 Freighter`` = 27
-    | ``R-06 Scavenger`` = 28
-    | ``R-10 Processor`` = 29
-    | ``C-30 ARC`` = 30
-    | ``M-14 Sweeper`` = 31
-    | ``M-22 Extractor`` = 32
-    | ``M-30 Cleanser`` = 33
-    | ``M-13 Machinist`` = 34
-    | ``M-28 Smith`` = 35
-    | ``M-36 Artificer`` = 36
-    | ``O-16 Technician`` = 37
-    | ``O-24 Administrator`` = 38
-    | ``O-32 Director`` = 39
-    | ``N-00 Fly`` = 40
-    | ``N-01 Spotter`` = 41
-    | ``W-16 Scout`` = 42
-    | ``W-25 Informer`` = 43
-    | ``W-44 Eye`` = 44
-    | ``S-10 Pest`` = 45
-    | ``S-27 Virus`` = 46
-    | ``S-43 Plague`` = 47
-    | ``C-17 Slicer`` = 48
-    | ``C-35 Carver`` = 49
-    | ``C-57 Dissector`` = 50
-    | ``E-15 Imp`` = 51
-    | ``G-34 Mercenary`` = 52
-    | ``G-47 Trooper`` = 53
-    | ``G-50 Soldier`` = 54
-    | ``G-67 Veteran`` = 55
-    | ``G-73 Enforcer`` = 56
-    | ``B-36 Bruiser`` = 57
-    | ``B-48 Gladiator`` = 58
-    | ``B-60 Warrior`` = 59
-    | ``B-74 Champion`` = 60
-    | ``L-31 Rogue`` = 61
-    | ``L-41 Fighter`` = 62
-    | ``L-61 Swordsman`` = 63
-    | ``I-25 Savior`` = 64
-    | ``I-36 Angel`` = 65
-    | ``I-47 Archangel`` = 66
-    | ``C-55 Analyst`` = 67
-    | ``C-65 Expert`` = 68
-    | ``Y-45 Defender`` = 69
-    | ``Y-54 Guardian`` = 70
-    | ``Y-64 Sentinel`` = 71
-    | ``Y-72 Warden`` = 72
-    | ``D-53 Grenadier`` = 73
-    | ``D-63 Destroyer`` = 74
-    | ``D-83 Annihilator`` = 75
-    | ``X-57 Shotgunner`` = 76
-    | ``X-62 Marksman`` = 77
-    | ``X-67 Chaingunner`` = 78
-    | ``X-72 Disruptor`` = 79
-    | ``X-77 Beamer`` = 80
-    | ``X-82 Rainmaker`` = 81
-    | ``X-87 Electro`` = 82
-    | ``H-55 Commando`` = 83
-    | ``H-66 Slayer`` = 84
-    | ``H-77 Assassin`` = 85
-    | ``H-88 Terminator`` = 86
-    | ``P-60 Hacker`` = 87
-    | ``P-70 Sage`` = 88
-    | ``P-80 Master`` = 89
-    | ``H-61 Shepherd`` = 90
-    | ``H-71 Marshal`` = 91
-    | ``H-81 Overseer`` = 92
-    | ``Q-Series`` = 93
-    | ``B-75 Beast`` = 94
-    | ``B-86 Titan`` = 95
-    | ``B-90 Cyclops`` = 96
-    | ``B-99 Colossus`` = 97
-    | ``C-40 Crusher`` = 98
-    | ``Cetus Guard`` = 99
-    | ``Quarantine Guard`` = 100
-    | ``S7 Guard`` = 101
-    | ``M Guard`` = 102
-    | ``M Shell_Atk`` = 103
-    | ``M Shell_Def`` = 104
-    | ``Enhanced Grunt`` = 105
-    | ``Enhanced Sentry`` = 106
-    | ``Enhanced Demolisher`` = 107
-    | ``Enhanced Hunter`` = 108
-    | ``Enhanced Programmer`` = 109
-    | ``Enhanced Q-Series`` = 110
-    | ``Lightning`` = 111
-    | ``Tracker`` = 112
-    | ``Combat Programmer`` = 113
-    | ``Investigator`` = 114
-    | ``Striker`` = 115
-    | ``Executioner`` = 116
-    | ``Superbehemoth`` = 117
-    | ``Alpha 7`` = 118
-    | ``Fortress`` = 119
-    | ``LRC-V4`` = 120
-    | ``LRC-V5`` = 121
-    | ``LRC-V6`` = 122
-    | ``P_Grunt`` = 123
-    | ``P_Duelist`` = 124
-    | ``P_Sentry`` = 125
-    | ``P_Demolisher`` = 126
-    | ``P_Specialist`` = 127
-    | ``P_Hunter`` = 128
-    | ``P_Programmer`` = 129
-    | ``Artisan`` = 130
-    | ``Cobbler`` = 131
-    | ``Subdweller`` = 132
-    | ``Zionite`` = 133
-    | ``Z-Technician`` = 134
-    | ``Z_Courier`` = 135
-    | ``Z_Recon`` = 136
-    | ``Z_Light_5`` = 137
-    | ``Z_Light_7`` = 138
-    | ``Z_Light_9`` = 139
-    | ``Z_Heavy_5`` = 140
-    | ``Z_Heavy_7`` = 141
-    | ``Z_Heavy_9`` = 142
-    | ``Z_Experiment_8`` = 143
-    | ``Z_Experiment_10`` = 144
-    | ``Decomposer`` = 145
-    | ``Packrat`` = 146
-    | ``Samaritan`` = 147
-    | ``Tinkerer`` = 148
-    | ``Demented`` = 149
-    | ``Furnace`` = 150
-    | ``Parasite`` = 151
-    | ``Thief_5`` = 152
-    | ``Thief_7`` = 153
-    | ``Assembler`` = 154
-    | ``Assembled_4`` = 155
-    | ``Assembled_7`` = 156
-    | ``Golem_8`` = 157
-    | ``Golem_0`` = 158
-    | ``Surgeon_4`` = 159
-    | ``Surgeon_6`` = 160
-    | ``Wasp_5`` = 161
-    | ``Wasp_7`` = 162
-    | ``Thug_5`` = 163
-    | ``Thug_7`` = 164
-    | ``Savage_5`` = 165
-    | ``Savage_7`` = 166
-    | ``Butcher_5`` = 167
-    | ``Butcher_7`` = 168
-    | ``Bouncer_7`` = 169
-    | ``Martyr_5`` = 170
-    | ``Martyr_7`` = 171
-    | ``Guerilla_5`` = 172
-    | ``Guerilla_7`` = 173
-    | ``Wizard_5`` = 174
-    | ``Wizard_7`` = 175
-    | ``Marauder_6`` = 176
-    | ``Marauder_8`` = 177
-    | ``Fireman_5`` = 178
-    | ``Fireman_7`` = 179
-    | ``Mutant_5`` = 180
-    | ``Mutant_6`` = 181
-    | ``Mutant_7`` = 182
-    | ``Mutant_8`` = 183
-    | ``Infiltrator_6`` = 184
-    | ``Infiltrator_7`` = 185
-    | ``Infiltrator_8`` = 186
-    | ``Sapper`` = 187
-    | ``Commander`` = 188
-    | ``Knight`` = 189
-    | ``Troll`` = 190
-    | ``Dragon`` = 191
-    | ``Hydra`` = 192
-    | ``Borebot`` = 193
-    | ``Revision`` = 194
-    | ``Anomaly`` = 195
-    | ``Lesser Abomination`` = 196
-    | ``Minor Abomination`` = 197
-    | ``Greater Abomination`` = 198
-    | ``Major Abomination`` = 199
-    | ``Ultimate Abomination`` = 200
-    | ``Final Abomination`` = 201
-    | ``Player`` = 202
-    | ``Player 2`` = 203
-    | ``Sauler`` = 204
-    | ``Elf`` = 205
-    | ``YI-UF0`` = 206
-    | ``01-MTF`` = 207
-    | ``Warlord Statue`` = 208
-    | ``Warbot`` = 209
-    | ``5H-AD0`` = 210
-    | ``Surveybot 24`` = 211
-    | ``AZ-K3N`` = 212
-    | ``HV-R5K`` = 213
-    | ``7R-MNS`` = 214
-    | ``VL-GR5`` = 215
-    | ``8R-AWN`` = 216
-    | ``EX-BIN`` = 217
-    | ``EX-DEC`` = 218
-    | ``EX-HEX`` = 219
-    | ``Zion_Hero_01`` = 220
-    | ``Zion_Hero_02`` = 221
-    | ``Zion_Hero_03`` = 222
-    | ``Zion_Hero_04`` = 223
-    | ``Zion_Hero_05`` = 224
-    | ``Zion_Hero_06`` = 225
-    | ``Zion_Hero_07`` = 226
-    | ``Zion_Hero_08`` = 227
-    | ``Zion_Hero_09`` = 228
-    | ``Revision 17`` = 229
-    | ``Revision 17__`` = 230
-    | ``Imprinter`` = 231
-    | ``Z-Imprinter`` = 232
-    | ``A8`` = 233
-    | ``A7`` = 234
-    | ``A6`` = 235
-    | ``A5`` = 236
-    | ``A4`` = 237
-    | ``A3`` = 238
-    | ``A2`` = 239
-    | ``Zhirov`` = 240
-    | ``Perun`` = 241
-    | ``Svarog`` = 242
-    | ``Data Miner`` = 243
-    | ``Fake_God_Mode`` = 244
-    | ``God_Mode`` = 245
-    | ``Warlord`` = 246
-    | ``Warlord_B`` = 247
-    | ``Warlord AM-PH4`` = 248
-    | ``Warlord MG-163`` = 249
-    | ``Warlord HL-1SK`` = 250
-    | ``Warlord SH-K8T`` = 251
-    | ``Warlord D3-CKR`` = 252
-    | ``Warlord 4Z-XS3`` = 253
-    | ``Warlord KY-Z71`` = 254
-    | ``Sigix Containment Pod`` = 255
-    | ``Sigix Exoskeleton`` = 256
-    | ``Sigix Warrior`` = 257
-    | ``MAINC_A`` = 258
-    | ``MAINC_B`` = 259
-    | ``Architect`` = 260
+    | ``Master Drone`` = 10
+    | ``Advanced Drone`` = 11
+    | ``Stealth Drone`` = 12
+    | ``Trailblazer`` = 13
+    | ``Thief Drone`` = 14
+    | ``Army Drone`` = 15
+    | ``Swarm Drone`` = 16
+    | ``Combat Drone`` = 17
+    | ``Assault Drone`` = 18
+    | ``Bomb Drone`` = 19
+    | ``Wardrone`` = 20
+    | ``DAS Turret`` = 21
+    | ``Autobeam Turret`` = 22
+    | ``K-01 Serf`` = 23
+    | ``U-05 Engineer`` = 24
+    | ``T-07 Excavator`` = 25
+    | ``A-02 Transporter`` = 26
+    | ``A-15 Conveyor`` = 27
+    | ``A-27 Freighter`` = 28
+    | ``R-06 Scavenger`` = 29
+    | ``R-10 Processor`` = 30
+    | ``C-30 ARC`` = 31
+    | ``M-14 Sweeper`` = 32
+    | ``M-22 Extractor`` = 33
+    | ``M-30 Cleanser`` = 34
+    | ``M-13 Machinist`` = 35
+    | ``M-28 Smith`` = 36
+    | ``M-36 Artificer`` = 37
+    | ``O-16 Technician`` = 38
+    | ``O-24 Administrator`` = 39
+    | ``O-32 Director`` = 40
+    | ``N-00 Fly`` = 41
+    | ``N-01 Spotter`` = 42
+    | ``W-16 Scout`` = 43
+    | ``W-25 Informer`` = 44
+    | ``W-44 Eye`` = 45
+    | ``S-10 Pest`` = 46
+    | ``S-27 Virus`` = 47
+    | ``S-43 Plague`` = 48
+    | ``C-17 Slicer`` = 49
+    | ``C-35 Carver`` = 50
+    | ``C-57 Dissector`` = 51
+    | ``E-15 Imp`` = 52
+    | ``G-34 Mercenary`` = 53
+    | ``G-47 Trooper`` = 54
+    | ``G-50 Soldier`` = 55
+    | ``G-67 Veteran`` = 56
+    | ``G-73 Enforcer`` = 57
+    | ``B-36 Bruiser`` = 58
+    | ``B-48 Gladiator`` = 59
+    | ``B-60 Warrior`` = 60
+    | ``B-74 Champion`` = 61
+    | ``L-31 Rogue`` = 62
+    | ``L-41 Fighter`` = 63
+    | ``L-61 Swordsman`` = 64
+    | ``I-25 Savior`` = 65
+    | ``I-36 Angel`` = 66
+    | ``I-47 Archangel`` = 67
+    | ``C-55 Analyst`` = 68
+    | ``C-65 Expert`` = 69
+    | ``Y-45 Defender`` = 70
+    | ``Y-54 Guardian`` = 71
+    | ``Y-64 Sentinel`` = 72
+    | ``Y-72 Warden`` = 73
+    | ``D-53 Grenadier`` = 74
+    | ``D-63 Destroyer`` = 75
+    | ``D-83 Annihilator`` = 76
+    | ``X-57 Shotgunner`` = 77
+    | ``X-62 Marksman`` = 78
+    | ``X-67 Chaingunner`` = 79
+    | ``X-72 Disruptor`` = 80
+    | ``X-77 Beamer`` = 81
+    | ``X-82 Rainmaker`` = 82
+    | ``X-87 Electro`` = 83
+    | ``H-55 Commando`` = 84
+    | ``H-66 Slayer`` = 85
+    | ``H-77 Assassin`` = 86
+    | ``H-88 Terminator`` = 87
+    | ``P-60 Hacker`` = 88
+    | ``P-70 Sage`` = 89
+    | ``P-80 Master`` = 90
+    | ``H-61 Shepherd`` = 91
+    | ``H-71 Marshal`` = 92
+    | ``H-81 Overseer`` = 93
+    | ``Q-Series`` = 94
+    | ``B-75 Beast`` = 95
+    | ``B-86 Titan`` = 96
+    | ``B-90 Cyclops`` = 97
+    | ``B-99 Colossus`` = 98
+    | ``C-40 Crusher`` = 99
+    | ``Cetus Guard`` = 100
+    | ``Quarantine Guard`` = 101
+    | ``Armor Guard`` = 102
+    | ``S7 Guard`` = 103
+    | ``M Guard`` = 104
+    | ``M Shell_Atk`` = 105
+    | ``M Shell_Def`` = 106
+    | ``Enhanced Grunt`` = 107
+    | ``Enhanced Sentry`` = 108
+    | ``Enhanced Demolisher`` = 109
+    | ``Enhanced Hunter`` = 110
+    | ``Enhanced Programmer`` = 111
+    | ``Enhanced Q-Series`` = 112
+    | ``Lightning`` = 113
+    | ``Tracker`` = 114
+    | ``Combat Programmer`` = 115
+    | ``Investigator`` = 116
+    | ``Striker`` = 117
+    | ``Executioner`` = 118
+    | ``Superbehemoth`` = 119
+    | ``Alpha 7`` = 120
+    | ``Fortress`` = 121
+    | ``LRC-V4`` = 122
+    | ``LRC-V5`` = 123
+    | ``LRC-V6`` = 124
+    | ``P_Grunt`` = 125
+    | ``P_Duelist`` = 126
+    | ``P_Sentry`` = 127
+    | ``P_Demolisher`` = 128
+    | ``P_Specialist`` = 129
+    | ``P_Hunter`` = 130
+    | ``P_Programmer`` = 131
+    | ``Artisan`` = 132
+    | ``Cobbler`` = 133
+    | ``Subdweller`` = 134
+    | ``Bolteater`` = 135
+    | ``Federalist`` = 136
+    | ``Explorer`` = 137
+    | ``Ranger`` = 138
+    | ``Ranger_DRS`` = 139
+    | ``Guru`` = 140
+    | ``Scientist`` = 141
+    | ``Scrapper_3`` = 142
+    | ``Elite_4`` = 143
+    | ``Scrapoid_3`` = 144
+    | ``Scrapoid_6`` = 145
+    | ``Scrapoid_8`` = 146
+    | ``Mutated Botcube`` = 147
+    | ``Large Mutated Botcube`` = 148
+    | ``Wyrm Statue`` = 149
+    | ``Zionite`` = 150
+    | ``Z-Technician`` = 151
+    | ``Z_Courier`` = 152
+    | ``Z_Recon`` = 153
+    | ``Z_Light_5`` = 154
+    | ``Z_Light_7`` = 155
+    | ``Z_Light_9`` = 156
+    | ``Z_Heavy_5`` = 157
+    | ``Z_Heavy_7`` = 158
+    | ``Z_Heavy_9`` = 159
+    | ``Z_Experiment_8`` = 160
+    | ``Z_Experiment_10`` = 161
+    | ``Assembler`` = 162
+    | ``Assembled_4`` = 163
+    | ``Assembled_7`` = 164
+    | ``Golem_8`` = 165
+    | ``Golem_0`` = 166
+    | ``Decomposer`` = 167
+    | ``Packrat`` = 168
+    | ``Samaritan`` = 169
+    | ``Tinkerer`` = 170
+    | ``Demented`` = 171
+    | ``Furnace`` = 172
+    | ``Parasite`` = 173
+    | ``Thief_5`` = 174
+    | ``Thief_7`` = 175
+    | ``Surgeon_4`` = 176
+    | ``Surgeon_6`` = 177
+    | ``Wasp_5`` = 178
+    | ``Wasp_7`` = 179
+    | ``Thug_5`` = 180
+    | ``Thug_7`` = 181
+    | ``Savage_5`` = 182
+    | ``Savage_7`` = 183
+    | ``Butcher_5`` = 184
+    | ``Butcher_7`` = 185
+    | ``Bouncer_7`` = 186
+    | ``Martyr_5`` = 187
+    | ``Martyr_7`` = 188
+    | ``Guerilla_5`` = 189
+    | ``Guerilla_7`` = 190
+    | ``Wizard_5`` = 191
+    | ``Wizard_7`` = 192
+    | ``Marauder_6`` = 193
+    | ``Marauder_8`` = 194
+    | ``Fireman_5`` = 195
+    | ``Fireman_7`` = 196
+    | ``Mutant_5`` = 197
+    | ``Mutant_6`` = 198
+    | ``Mutant_7`` = 199
+    | ``Mutant_8`` = 200
+    | ``Infiltrator_6`` = 201
+    | ``Infiltrator_7`` = 202
+    | ``Infiltrator_8`` = 203
+    | ``Sapper`` = 204
+    | ``Commander`` = 205
+    | ``Knight`` = 206
+    | ``Troll`` = 207
+    | ``Dragon`` = 208
+    | ``Hydra`` = 209
+    | ``Borebot`` = 210
+    | ``8R-AWN`` = 211
+    | ``EX-BIN`` = 212
+    | ``EX-DEC`` = 213
+    | ``EX-HEX`` = 214
+    | ``YI-UF0`` = 215
+    | ``01-MTF`` = 216
+    | ``KN-7UR`` = 217
+    | ``Warlord Statue`` = 218
+    | ``Warbot`` = 219
+    | ``5H-AD0`` = 220
+    | ``Surveybot 24`` = 221
+    | ``AZ-K3N`` = 222
+    | ``HV-R5K`` = 223
+    | ``7R-MNS`` = 224
+    | ``VL-GR5`` = 225
+    | ``LV-01A`` = 226
+    | ``DD-05H`` = 227
+    | ``Zion_Hero_01`` = 228
+    | ``Zion_Hero_02`` = 229
+    | ``Zion_Hero_03`` = 230
+    | ``Zion_Hero_04`` = 231
+    | ``Zion_Hero_05`` = 232
+    | ``Zion_Hero_06`` = 233
+    | ``Zion_Hero_07`` = 234
+    | ``Zion_Hero_08`` = 235
+    | ``Zion_Hero_09`` = 236
+    | ``Revision`` = 237
+    | ``Revision 17`` = 238
+    | ``Revision 17__`` = 239
+    | ``Imprinter`` = 240
+    | ``Z-Imprinter`` = 241
+    | ``Triborg_A`` = 242
+    | ``A8`` = 243
+    | ``A7`` = 244
+    | ``A6`` = 245
+    | ``A5`` = 246
+    | ``A4`` = 247
+    | ``A3`` = 248
+    | ``A2`` = 249
+    | ``Zhirov`` = 250
+    | ``Perun`` = 251
+    | ``Svarog`` = 252
+    | ``Data Miner`` = 253
+    | ``Fake_God_Mode`` = 254
+    | ``God_Mode`` = 255
+    | ``Warlord`` = 256
+    | ``Warlord_B`` = 257
+    | ``Warlord AM-PH4`` = 258
+    | ``Warlord MG-163`` = 259
+    | ``Warlord HL-1SK`` = 260
+    | ``Warlord SH-K8T`` = 261
+    | ``Warlord D3-CKR`` = 262
+    | ``Warlord 4Z-XS3`` = 263
+    | ``Warlord KY-Z71`` = 264
+    | ``Sigix Containment Pod`` = 265
+    | ``Sigix Exoskeleton`` = 266
+    | ``Sigix Warrior`` = 267
+    | ``MAINC_A`` = 268
+    | ``MAINC_B`` = 269
+    | ``Architect`` = 270
+    | ``Anomaly`` = 271
+    | ``Lesser Abomination`` = 272
+    | ``Minor Abomination`` = 273
+    | ``Greater Abomination`` = 274
+    | ``Major Abomination`` = 275
+    | ``Ultimate Abomination`` = 276
+    | ``Final Abomination`` = 277
+    | ``Player`` = 278
+    | ``Player 2`` = 279
+    | ``Sauler`` = 280
+    | ``Elf`` = 281
+
 
 let getEntity =
     function
@@ -4605,257 +5003,278 @@ let getEntity =
     | 7 -> Entity.``Minesniffer Drone``
     | 8 -> Entity.``Decoy Drone``
     | 9 -> Entity.``Splice Drone``
-    | 10 -> Entity.``Advanced Drone``
-    | 11 -> Entity.``Stealth Drone``
-    | 12 -> Entity.``Trailblazer``
-    | 13 -> Entity.``Thief Drone``
-    | 14 -> Entity.``Army Drone``
-    | 15 -> Entity.``Swarm Drone``
-    | 16 -> Entity.``Combat Drone``
-    | 17 -> Entity.``Assault Drone``
-    | 18 -> Entity.``Bomb Drone``
-    | 19 -> Entity.``Wardrone``
-    | 20 -> Entity.``DAS Turret``
-    | 21 -> Entity.``Autobeam Turret``
-    | 22 -> Entity.``K-01 Serf``
-    | 23 -> Entity.``U-05 Engineer``
-    | 24 -> Entity.``T-07 Excavator``
-    | 25 -> Entity.``A-02 Transporter``
-    | 26 -> Entity.``A-15 Conveyor``
-    | 27 -> Entity.``A-27 Freighter``
-    | 28 -> Entity.``R-06 Scavenger``
-    | 29 -> Entity.``R-10 Processor``
-    | 30 -> Entity.``C-30 ARC``
-    | 31 -> Entity.``M-14 Sweeper``
-    | 32 -> Entity.``M-22 Extractor``
-    | 33 -> Entity.``M-30 Cleanser``
-    | 34 -> Entity.``M-13 Machinist``
-    | 35 -> Entity.``M-28 Smith``
-    | 36 -> Entity.``M-36 Artificer``
-    | 37 -> Entity.``O-16 Technician``
-    | 38 -> Entity.``O-24 Administrator``
-    | 39 -> Entity.``O-32 Director``
-    | 40 -> Entity.``N-00 Fly``
-    | 41 -> Entity.``N-01 Spotter``
-    | 42 -> Entity.``W-16 Scout``
-    | 43 -> Entity.``W-25 Informer``
-    | 44 -> Entity.``W-44 Eye``
-    | 45 -> Entity.``S-10 Pest``
-    | 46 -> Entity.``S-27 Virus``
-    | 47 -> Entity.``S-43 Plague``
-    | 48 -> Entity.``C-17 Slicer``
-    | 49 -> Entity.``C-35 Carver``
-    | 50 -> Entity.``C-57 Dissector``
-    | 51 -> Entity.``E-15 Imp``
-    | 52 -> Entity.``G-34 Mercenary``
-    | 53 -> Entity.``G-47 Trooper``
-    | 54 -> Entity.``G-50 Soldier``
-    | 55 -> Entity.``G-67 Veteran``
-    | 56 -> Entity.``G-73 Enforcer``
-    | 57 -> Entity.``B-36 Bruiser``
-    | 58 -> Entity.``B-48 Gladiator``
-    | 59 -> Entity.``B-60 Warrior``
-    | 60 -> Entity.``B-74 Champion``
-    | 61 -> Entity.``L-31 Rogue``
-    | 62 -> Entity.``L-41 Fighter``
-    | 63 -> Entity.``L-61 Swordsman``
-    | 64 -> Entity.``I-25 Savior``
-    | 65 -> Entity.``I-36 Angel``
-    | 66 -> Entity.``I-47 Archangel``
-    | 67 -> Entity.``C-55 Analyst``
-    | 68 -> Entity.``C-65 Expert``
-    | 69 -> Entity.``Y-45 Defender``
-    | 70 -> Entity.``Y-54 Guardian``
-    | 71 -> Entity.``Y-64 Sentinel``
-    | 72 -> Entity.``Y-72 Warden``
-    | 73 -> Entity.``D-53 Grenadier``
-    | 74 -> Entity.``D-63 Destroyer``
-    | 75 -> Entity.``D-83 Annihilator``
-    | 76 -> Entity.``X-57 Shotgunner``
-    | 77 -> Entity.``X-62 Marksman``
-    | 78 -> Entity.``X-67 Chaingunner``
-    | 79 -> Entity.``X-72 Disruptor``
-    | 80 -> Entity.``X-77 Beamer``
-    | 81 -> Entity.``X-82 Rainmaker``
-    | 82 -> Entity.``X-87 Electro``
-    | 83 -> Entity.``H-55 Commando``
-    | 84 -> Entity.``H-66 Slayer``
-    | 85 -> Entity.``H-77 Assassin``
-    | 86 -> Entity.``H-88 Terminator``
-    | 87 -> Entity.``P-60 Hacker``
-    | 88 -> Entity.``P-70 Sage``
-    | 89 -> Entity.``P-80 Master``
-    | 90 -> Entity.``H-61 Shepherd``
-    | 91 -> Entity.``H-71 Marshal``
-    | 92 -> Entity.``H-81 Overseer``
-    | 93 -> Entity.``Q-Series``
-    | 94 -> Entity.``B-75 Beast``
-    | 95 -> Entity.``B-86 Titan``
-    | 96 -> Entity.``B-90 Cyclops``
-    | 97 -> Entity.``B-99 Colossus``
-    | 98 -> Entity.``C-40 Crusher``
-    | 99 -> Entity.``Cetus Guard``
-    | 100 -> Entity.``Quarantine Guard``
-    | 101 -> Entity.``S7 Guard``
-    | 102 -> Entity.``M Guard``
-    | 103 -> Entity.``M Shell_Atk``
-    | 104 -> Entity.``M Shell_Def``
-    | 105 -> Entity.``Enhanced Grunt``
-    | 106 -> Entity.``Enhanced Sentry``
-    | 107 -> Entity.``Enhanced Demolisher``
-    | 108 -> Entity.``Enhanced Hunter``
-    | 109 -> Entity.``Enhanced Programmer``
-    | 110 -> Entity.``Enhanced Q-Series``
-    | 111 -> Entity.``Lightning``
-    | 112 -> Entity.``Tracker``
-    | 113 -> Entity.``Combat Programmer``
-    | 114 -> Entity.``Investigator``
-    | 115 -> Entity.``Striker``
-    | 116 -> Entity.``Executioner``
-    | 117 -> Entity.``Superbehemoth``
-    | 118 -> Entity.``Alpha 7``
-    | 119 -> Entity.``Fortress``
-    | 120 -> Entity.``LRC-V4``
-    | 121 -> Entity.``LRC-V5``
-    | 122 -> Entity.``LRC-V6``
-    | 123 -> Entity.``P_Grunt``
-    | 124 -> Entity.``P_Duelist``
-    | 125 -> Entity.``P_Sentry``
-    | 126 -> Entity.``P_Demolisher``
-    | 127 -> Entity.``P_Specialist``
-    | 128 -> Entity.``P_Hunter``
-    | 129 -> Entity.``P_Programmer``
-    | 130 -> Entity.``Artisan``
-    | 131 -> Entity.``Cobbler``
-    | 132 -> Entity.``Subdweller``
-    | 133 -> Entity.``Zionite``
-    | 134 -> Entity.``Z-Technician``
-    | 135 -> Entity.``Z_Courier``
-    | 136 -> Entity.``Z_Recon``
-    | 137 -> Entity.``Z_Light_5``
-    | 138 -> Entity.``Z_Light_7``
-    | 139 -> Entity.``Z_Light_9``
-    | 140 -> Entity.``Z_Heavy_5``
-    | 141 -> Entity.``Z_Heavy_7``
-    | 142 -> Entity.``Z_Heavy_9``
-    | 143 -> Entity.``Z_Experiment_8``
-    | 144 -> Entity.``Z_Experiment_10``
-    | 145 -> Entity.``Decomposer``
-    | 146 -> Entity.``Packrat``
-    | 147 -> Entity.``Samaritan``
-    | 148 -> Entity.``Tinkerer``
-    | 149 -> Entity.``Demented``
-    | 150 -> Entity.``Furnace``
-    | 151 -> Entity.``Parasite``
-    | 152 -> Entity.``Thief_5``
-    | 153 -> Entity.``Thief_7``
-    | 154 -> Entity.``Assembler``
-    | 155 -> Entity.``Assembled_4``
-    | 156 -> Entity.``Assembled_7``
-    | 157 -> Entity.``Golem_8``
-    | 158 -> Entity.``Golem_0``
-    | 159 -> Entity.``Surgeon_4``
-    | 160 -> Entity.``Surgeon_6``
-    | 161 -> Entity.``Wasp_5``
-    | 162 -> Entity.``Wasp_7``
-    | 163 -> Entity.``Thug_5``
-    | 164 -> Entity.``Thug_7``
-    | 165 -> Entity.``Savage_5``
-    | 166 -> Entity.``Savage_7``
-    | 167 -> Entity.``Butcher_5``
-    | 168 -> Entity.``Butcher_7``
-    | 169 -> Entity.``Bouncer_7``
-    | 170 -> Entity.``Martyr_5``
-    | 171 -> Entity.``Martyr_7``
-    | 172 -> Entity.``Guerilla_5``
-    | 173 -> Entity.``Guerilla_7``
-    | 174 -> Entity.``Wizard_5``
-    | 175 -> Entity.``Wizard_7``
-    | 176 -> Entity.``Marauder_6``
-    | 177 -> Entity.``Marauder_8``
-    | 178 -> Entity.``Fireman_5``
-    | 179 -> Entity.``Fireman_7``
-    | 180 -> Entity.``Mutant_5``
-    | 181 -> Entity.``Mutant_6``
-    | 182 -> Entity.``Mutant_7``
-    | 183 -> Entity.``Mutant_8``
-    | 184 -> Entity.``Infiltrator_6``
-    | 185 -> Entity.``Infiltrator_7``
-    | 186 -> Entity.``Infiltrator_8``
-    | 187 -> Entity.``Sapper``
-    | 188 -> Entity.``Commander``
-    | 189 -> Entity.``Knight``
-    | 190 -> Entity.``Troll``
-    | 191 -> Entity.``Dragon``
-    | 192 -> Entity.``Hydra``
-    | 193 -> Entity.``Borebot``
-    | 194 -> Entity.``Revision``
-    | 195 -> Entity.``Anomaly``
-    | 196 -> Entity.``Lesser Abomination``
-    | 197 -> Entity.``Minor Abomination``
-    | 198 -> Entity.``Greater Abomination``
-    | 199 -> Entity.``Major Abomination``
-    | 200 -> Entity.``Ultimate Abomination``
-    | 201 -> Entity.``Final Abomination``
-    | 202 -> Entity.``Player``
-    | 203 -> Entity.``Player 2``
-    | 204 -> Entity.``Sauler``
-    | 205 -> Entity.``Elf``
-    | 206 -> Entity.``YI-UF0``
-    | 207 -> Entity.``01-MTF``
-    | 208 -> Entity.``Warlord Statue``
-    | 209 -> Entity.``Warbot``
-    | 210 -> Entity.``5H-AD0``
-    | 211 -> Entity.``Surveybot 24``
-    | 212 -> Entity.``AZ-K3N``
-    | 213 -> Entity.``HV-R5K``
-    | 214 -> Entity.``7R-MNS``
-    | 215 -> Entity.``VL-GR5``
-    | 216 -> Entity.``8R-AWN``
-    | 217 -> Entity.``EX-BIN``
-    | 218 -> Entity.``EX-DEC``
-    | 219 -> Entity.``EX-HEX``
-    | 220 -> Entity.``Zion_Hero_01``
-    | 221 -> Entity.``Zion_Hero_02``
-    | 222 -> Entity.``Zion_Hero_03``
-    | 223 -> Entity.``Zion_Hero_04``
-    | 224 -> Entity.``Zion_Hero_05``
-    | 225 -> Entity.``Zion_Hero_06``
-    | 226 -> Entity.``Zion_Hero_07``
-    | 227 -> Entity.``Zion_Hero_08``
-    | 228 -> Entity.``Zion_Hero_09``
-    | 229 -> Entity.``Revision 17``
-    | 230 -> Entity.``Revision 17__``
-    | 231 -> Entity.``Imprinter``
-    | 232 -> Entity.``Z-Imprinter``
-    | 233 -> Entity.``A8``
-    | 234 -> Entity.``A7``
-    | 235 -> Entity.``A6``
-    | 236 -> Entity.``A5``
-    | 237 -> Entity.``A4``
-    | 238 -> Entity.``A3``
-    | 239 -> Entity.``A2``
-    | 240 -> Entity.``Zhirov``
-    | 241 -> Entity.``Perun``
-    | 242 -> Entity.``Svarog``
-    | 243 -> Entity.``Data Miner``
-    | 244 -> Entity.``Fake_God_Mode``
-    | 245 -> Entity.``God_Mode``
-    | 246 -> Entity.``Warlord``
-    | 247 -> Entity.``Warlord_B``
-    | 248 -> Entity.``Warlord AM-PH4``
-    | 249 -> Entity.``Warlord MG-163``
-    | 250 -> Entity.``Warlord HL-1SK``
-    | 251 -> Entity.``Warlord SH-K8T``
-    | 252 -> Entity.``Warlord D3-CKR``
-    | 253 -> Entity.``Warlord 4Z-XS3``
-    | 254 -> Entity.``Warlord KY-Z71``
-    | 255 -> Entity.``Sigix Containment Pod``
-    | 256 -> Entity.``Sigix Exoskeleton``
-    | 257 -> Entity.``Sigix Warrior``
-    | 258 -> Entity.``MAINC_A``
-    | 259 -> Entity.``MAINC_B``
-    | 260 -> Entity.``Architect``
+    | 10 -> Entity.``Master Drone``
+    | 11 -> Entity.``Advanced Drone``
+    | 12 -> Entity.``Stealth Drone``
+    | 13 -> Entity.``Trailblazer``
+    | 14 -> Entity.``Thief Drone``
+    | 15 -> Entity.``Army Drone``
+    | 16 -> Entity.``Swarm Drone``
+    | 17 -> Entity.``Combat Drone``
+    | 18 -> Entity.``Assault Drone``
+    | 19 -> Entity.``Bomb Drone``
+    | 20 -> Entity.``Wardrone``
+    | 21 -> Entity.``DAS Turret``
+    | 22 -> Entity.``Autobeam Turret``
+    | 23 -> Entity.``K-01 Serf``
+    | 24 -> Entity.``U-05 Engineer``
+    | 25 -> Entity.``T-07 Excavator``
+    | 26 -> Entity.``A-02 Transporter``
+    | 27 -> Entity.``A-15 Conveyor``
+    | 28 -> Entity.``A-27 Freighter``
+    | 29 -> Entity.``R-06 Scavenger``
+    | 30 -> Entity.``R-10 Processor``
+    | 31 -> Entity.``C-30 ARC``
+    | 32 -> Entity.``M-14 Sweeper``
+    | 33 -> Entity.``M-22 Extractor``
+    | 34 -> Entity.``M-30 Cleanser``
+    | 35 -> Entity.``M-13 Machinist``
+    | 36 -> Entity.``M-28 Smith``
+    | 37 -> Entity.``M-36 Artificer``
+    | 38 -> Entity.``O-16 Technician``
+    | 39 -> Entity.``O-24 Administrator``
+    | 40 -> Entity.``O-32 Director``
+    | 41 -> Entity.``N-00 Fly``
+    | 42 -> Entity.``N-01 Spotter``
+    | 43 -> Entity.``W-16 Scout``
+    | 44 -> Entity.``W-25 Informer``
+    | 45 -> Entity.``W-44 Eye``
+    | 46 -> Entity.``S-10 Pest``
+    | 47 -> Entity.``S-27 Virus``
+    | 48 -> Entity.``S-43 Plague``
+    | 49 -> Entity.``C-17 Slicer``
+    | 50 -> Entity.``C-35 Carver``
+    | 51 -> Entity.``C-57 Dissector``
+    | 52 -> Entity.``E-15 Imp``
+    | 53 -> Entity.``G-34 Mercenary``
+    | 54 -> Entity.``G-47 Trooper``
+    | 55 -> Entity.``G-50 Soldier``
+    | 56 -> Entity.``G-67 Veteran``
+    | 57 -> Entity.``G-73 Enforcer``
+    | 58 -> Entity.``B-36 Bruiser``
+    | 59 -> Entity.``B-48 Gladiator``
+    | 60 -> Entity.``B-60 Warrior``
+    | 61 -> Entity.``B-74 Champion``
+    | 62 -> Entity.``L-31 Rogue``
+    | 63 -> Entity.``L-41 Fighter``
+    | 64 -> Entity.``L-61 Swordsman``
+    | 65 -> Entity.``I-25 Savior``
+    | 66 -> Entity.``I-36 Angel``
+    | 67 -> Entity.``I-47 Archangel``
+    | 68 -> Entity.``C-55 Analyst``
+    | 69 -> Entity.``C-65 Expert``
+    | 70 -> Entity.``Y-45 Defender``
+    | 71 -> Entity.``Y-54 Guardian``
+    | 72 -> Entity.``Y-64 Sentinel``
+    | 73 -> Entity.``Y-72 Warden``
+    | 74 -> Entity.``D-53 Grenadier``
+    | 75 -> Entity.``D-63 Destroyer``
+    | 76 -> Entity.``D-83 Annihilator``
+    | 77 -> Entity.``X-57 Shotgunner``
+    | 78 -> Entity.``X-62 Marksman``
+    | 79 -> Entity.``X-67 Chaingunner``
+    | 80 -> Entity.``X-72 Disruptor``
+    | 81 -> Entity.``X-77 Beamer``
+    | 82 -> Entity.``X-82 Rainmaker``
+    | 83 -> Entity.``X-87 Electro``
+    | 84 -> Entity.``H-55 Commando``
+    | 85 -> Entity.``H-66 Slayer``
+    | 86 -> Entity.``H-77 Assassin``
+    | 87 -> Entity.``H-88 Terminator``
+    | 88 -> Entity.``P-60 Hacker``
+    | 89 -> Entity.``P-70 Sage``
+    | 90 -> Entity.``P-80 Master``
+    | 91 -> Entity.``H-61 Shepherd``
+    | 92 -> Entity.``H-71 Marshal``
+    | 93 -> Entity.``H-81 Overseer``
+    | 94 -> Entity.``Q-Series``
+    | 95 -> Entity.``B-75 Beast``
+    | 96 -> Entity.``B-86 Titan``
+    | 97 -> Entity.``B-90 Cyclops``
+    | 98 -> Entity.``B-99 Colossus``
+    | 99 -> Entity.``C-40 Crusher``
+    | 100 -> Entity.``Cetus Guard``
+    | 101 -> Entity.``Quarantine Guard``
+    | 102 -> Entity.``Armor Guard``
+    | 103 -> Entity.``S7 Guard``
+    | 104 -> Entity.``M Guard``
+    | 105 -> Entity.``M Shell_Atk``
+    | 106 -> Entity.``M Shell_Def``
+    | 107 -> Entity.``Enhanced Grunt``
+    | 108 -> Entity.``Enhanced Sentry``
+    | 109 -> Entity.``Enhanced Demolisher``
+    | 110 -> Entity.``Enhanced Hunter``
+    | 111 -> Entity.``Enhanced Programmer``
+    | 112 -> Entity.``Enhanced Q-Series``
+    | 113 -> Entity.``Lightning``
+    | 114 -> Entity.``Tracker``
+    | 115 -> Entity.``Combat Programmer``
+    | 116 -> Entity.``Investigator``
+    | 117 -> Entity.``Striker``
+    | 118 -> Entity.``Executioner``
+    | 119 -> Entity.``Superbehemoth``
+    | 120 -> Entity.``Alpha 7``
+    | 121 -> Entity.``Fortress``
+    | 122 -> Entity.``LRC-V4``
+    | 123 -> Entity.``LRC-V5``
+    | 124 -> Entity.``LRC-V6``
+    | 125 -> Entity.``P_Grunt``
+    | 126 -> Entity.``P_Duelist``
+    | 127 -> Entity.``P_Sentry``
+    | 128 -> Entity.``P_Demolisher``
+    | 129 -> Entity.``P_Specialist``
+    | 130 -> Entity.``P_Hunter``
+    | 131 -> Entity.``P_Programmer``
+    | 132 -> Entity.``Artisan``
+    | 133 -> Entity.``Cobbler``
+    | 134 -> Entity.``Subdweller``
+    | 135 -> Entity.``Bolteater``
+    | 136 -> Entity.``Federalist``
+    | 137 -> Entity.``Explorer``
+    | 138 -> Entity.``Ranger``
+    | 139 -> Entity.``Ranger_DRS``
+    | 140 -> Entity.``Guru``
+    | 141 -> Entity.``Scientist``
+    | 142 -> Entity.``Scrapper_3``
+    | 143 -> Entity.``Elite_4``
+    | 144 -> Entity.``Scrapoid_3``
+    | 145 -> Entity.``Scrapoid_6``
+    | 146 -> Entity.``Scrapoid_8``
+    | 147 -> Entity.``Mutated Botcube``
+    | 148 -> Entity.``Large Mutated Botcube``
+    | 149 -> Entity.``Wyrm Statue``
+    | 150 -> Entity.``Zionite``
+    | 151 -> Entity.``Z-Technician``
+    | 152 -> Entity.``Z_Courier``
+    | 153 -> Entity.``Z_Recon``
+    | 154 -> Entity.``Z_Light_5``
+    | 155 -> Entity.``Z_Light_7``
+    | 156 -> Entity.``Z_Light_9``
+    | 157 -> Entity.``Z_Heavy_5``
+    | 158 -> Entity.``Z_Heavy_7``
+    | 159 -> Entity.``Z_Heavy_9``
+    | 160 -> Entity.``Z_Experiment_8``
+    | 161 -> Entity.``Z_Experiment_10``
+    | 162 -> Entity.``Assembler``
+    | 163 -> Entity.``Assembled_4``
+    | 164 -> Entity.``Assembled_7``
+    | 165 -> Entity.``Golem_8``
+    | 166 -> Entity.``Golem_0``
+    | 167 -> Entity.``Decomposer``
+    | 168 -> Entity.``Packrat``
+    | 169 -> Entity.``Samaritan``
+    | 170 -> Entity.``Tinkerer``
+    | 171 -> Entity.``Demented``
+    | 172 -> Entity.``Furnace``
+    | 173 -> Entity.``Parasite``
+    | 174 -> Entity.``Thief_5``
+    | 175 -> Entity.``Thief_7``
+    | 176 -> Entity.``Surgeon_4``
+    | 177 -> Entity.``Surgeon_6``
+    | 178 -> Entity.``Wasp_5``
+    | 179 -> Entity.``Wasp_7``
+    | 180 -> Entity.``Thug_5``
+    | 181 -> Entity.``Thug_7``
+    | 182 -> Entity.``Savage_5``
+    | 183 -> Entity.``Savage_7``
+    | 184 -> Entity.``Butcher_5``
+    | 185 -> Entity.``Butcher_7``
+    | 186 -> Entity.``Bouncer_7``
+    | 187 -> Entity.``Martyr_5``
+    | 188 -> Entity.``Martyr_7``
+    | 189 -> Entity.``Guerilla_5``
+    | 190 -> Entity.``Guerilla_7``
+    | 191 -> Entity.``Wizard_5``
+    | 192 -> Entity.``Wizard_7``
+    | 193 -> Entity.``Marauder_6``
+    | 194 -> Entity.``Marauder_8``
+    | 195 -> Entity.``Fireman_5``
+    | 196 -> Entity.``Fireman_7``
+    | 197 -> Entity.``Mutant_5``
+    | 198 -> Entity.``Mutant_6``
+    | 199 -> Entity.``Mutant_7``
+    | 200 -> Entity.``Mutant_8``
+    | 201 -> Entity.``Infiltrator_6``
+    | 202 -> Entity.``Infiltrator_7``
+    | 203 -> Entity.``Infiltrator_8``
+    | 204 -> Entity.``Sapper``
+    | 205 -> Entity.``Commander``
+    | 206 -> Entity.``Knight``
+    | 207 -> Entity.``Troll``
+    | 208 -> Entity.``Dragon``
+    | 209 -> Entity.``Hydra``
+    | 210 -> Entity.``Borebot``
+    | 211 -> Entity.``8R-AWN``
+    | 212 -> Entity.``EX-BIN``
+    | 213 -> Entity.``EX-DEC``
+    | 214 -> Entity.``EX-HEX``
+    | 215 -> Entity.``YI-UF0``
+    | 216 -> Entity.``01-MTF``
+    | 217 -> Entity.``KN-7UR``
+    | 218 -> Entity.``Warlord Statue``
+    | 219 -> Entity.``Warbot``
+    | 220 -> Entity.``5H-AD0``
+    | 221 -> Entity.``Surveybot 24``
+    | 222 -> Entity.``AZ-K3N``
+    | 223 -> Entity.``HV-R5K``
+    | 224 -> Entity.``7R-MNS``
+    | 225 -> Entity.``VL-GR5``
+    | 226 -> Entity.``LV-01A``
+    | 227 -> Entity.``DD-05H``
+    | 228 -> Entity.``Zion_Hero_01``
+    | 229 -> Entity.``Zion_Hero_02``
+    | 230 -> Entity.``Zion_Hero_03``
+    | 231 -> Entity.``Zion_Hero_04``
+    | 232 -> Entity.``Zion_Hero_05``
+    | 233 -> Entity.``Zion_Hero_06``
+    | 234 -> Entity.``Zion_Hero_07``
+    | 235 -> Entity.``Zion_Hero_08``
+    | 236 -> Entity.``Zion_Hero_09``
+    | 237 -> Entity.``Revision``
+    | 238 -> Entity.``Revision 17``
+    | 239 -> Entity.``Revision 17__``
+    | 240 -> Entity.``Imprinter``
+    | 241 -> Entity.``Z-Imprinter``
+    | 242 -> Entity.``Triborg_A``
+    | 243 -> Entity.``A8``
+    | 244 -> Entity.``A7``
+    | 245 -> Entity.``A6``
+    | 246 -> Entity.``A5``
+    | 247 -> Entity.``A4``
+    | 248 -> Entity.``A3``
+    | 249 -> Entity.``A2``
+    | 250 -> Entity.``Zhirov``
+    | 251 -> Entity.``Perun``
+    | 252 -> Entity.``Svarog``
+    | 253 -> Entity.``Data Miner``
+    | 254 -> Entity.``Fake_God_Mode``
+    | 255 -> Entity.``God_Mode``
+    | 256 -> Entity.``Warlord``
+    | 257 -> Entity.``Warlord_B``
+    | 258 -> Entity.``Warlord AM-PH4``
+    | 259 -> Entity.``Warlord MG-163``
+    | 260 -> Entity.``Warlord HL-1SK``
+    | 261 -> Entity.``Warlord SH-K8T``
+    | 262 -> Entity.``Warlord D3-CKR``
+    | 263 -> Entity.``Warlord 4Z-XS3``
+    | 264 -> Entity.``Warlord KY-Z71``
+    | 265 -> Entity.``Sigix Containment Pod``
+    | 266 -> Entity.``Sigix Exoskeleton``
+    | 267 -> Entity.``Sigix Warrior``
+    | 268 -> Entity.``MAINC_A``
+    | 269 -> Entity.``MAINC_B``
+    | 270 -> Entity.``Architect``
+    | 271 -> Entity.``Anomaly``
+    | 272 -> Entity.``Lesser Abomination``
+    | 273 -> Entity.``Minor Abomination``
+    | 274 -> Entity.``Greater Abomination``
+    | 275 -> Entity.``Major Abomination``
+    | 276 -> Entity.``Ultimate Abomination``
+    | 277 -> Entity.``Final Abomination``
+    | 278 -> Entity.``Player``
+    | 279 -> Entity.``Player 2``
+    | 280 -> Entity.``Sauler``
+    | 281 -> Entity.``Elf``
     | x -> raise (System.ArgumentException(sprintf "Invalid value for entity type: %A" x))
 
 /// Represents the location in-world

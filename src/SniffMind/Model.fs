@@ -405,9 +405,7 @@ let propToOcclusion =
     | Prop.``AC0_Abandoned_Machinery``
     | Prop.``AC0_Shell_Shootable``
     | Prop.``Analysis Chamber``
-    | Prop.``AC0_Workstation``
-    | Prop.``JUN_Black_Space``
-    | Prop.``JUN_New_Year_City`` -> PropOcclusion.Obstructed
+    | Prop.``AC0_Workstation`` -> PropOcclusion.Obstructed
 
 let itemToCategory (item: Item) : ItemCategory =
     match item with
@@ -865,7 +863,9 @@ let itemToCategory (item: Item) : ItemCategory =
     | Item.``Imp_ Medium Armor Plating``
     | Item.``Imp_ Heavy Armor Plating``
     | Item.``Lyr_ Light Armor Plating``
-    | Item.``Mak_ Armor Plating``
+    | Item.``Mak_ Light Armor Plating``
+    | Item.``Mak_ Medium Armor Plating``
+    | Item.``Mak_ Heavy Armor Plating``
     | Item.``Lyr_ Medium Armor Plating``
     | Item.``Lyr_ Heavy Armor Plating``
     | Item.``Gun Armor``
@@ -1086,7 +1086,7 @@ let itemToCategory (item: Item) : ItemCategory =
     | Item.``LRC Storage``
     | Item.``LRC Energy Well``
     | Item.``LRC Matter Compressor``
-    | Item.``LRC Boosters``
+    | Item.``LRC Inertial Stabilizer``
     | Item.``LRC Insulator`` -> Utility Device
     | Item.``EM Pulse Gun``
     | Item.``Hvy_ EM Pulse Gun``
@@ -1538,7 +1538,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.NO_CELL
     | cell.SEALED_DOOR
     | cell.DOOR_SAN
-    | cell.DOOR_JUN
+    | cell.DOOR_SCR
     | cell.DOOR_MAT
     | cell.DOOR_FAC
     | cell.DOOR_RES
@@ -1574,7 +1574,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.DOOR_TOW -> Vacant
     | cell.TEMP_WALL
     | cell.WALL_SAN
-    | cell.WALL_JUN
+    | cell.WALL_SCR
     | cell.WALL_MAT
     | cell.WALL_FAC
     | cell.WALL_RES
@@ -1611,7 +1611,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.EARTH
     | cell.EARTH_EXC -> Obstructed
     | cell.FLOOR_SAN
-    | cell.FLOOR_JUN
+    | cell.FLOOR_SCR
     | cell.FLOOR_MAT
     | cell.FLOOR_FAC
     | cell.FLOOR_RES
@@ -1647,7 +1647,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.FLOOR_TOW
     | cell.GROUND -> Vacant
     | cell.STAIRS_SAN
-    | cell.STAIRS_JUN
+    | cell.STAIRS_SCR
     | cell.STAIRS_MAT
     | cell.STAIRS_FAC
     | cell.STAIRS_RES
@@ -1687,7 +1687,7 @@ let mapTileOccupancy (tile: LuigiTile) =
     | cell.STAIRS_DSF_OPEN
     | cell.STAIRS_SHORTCUT -> Vacant
     | cell.SHORTCUT_SAN
-    | cell.SHORTCUT_JUN
+    | cell.SHORTCUT_SCR
     | cell.SHORTCUT_MAT
     | cell.SHORTCUT_FAC
     | cell.SHORTCUT_RES
@@ -1748,7 +1748,7 @@ let cellToChar (tile: LuigiTile) : string =
     match tile.cell with
     | cell.SEALED_DOOR
     | cell.DOOR_SAN
-    | cell.DOOR_JUN
+    | cell.DOOR_SCR
     | cell.DOOR_MAT
     | cell.DOOR_FAC
     | cell.DOOR_RES
@@ -1784,7 +1784,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.DOOR_TOW -> Some "+"
     | cell.TEMP_WALL
     | cell.WALL_SAN
-    | cell.WALL_JUN
+    | cell.WALL_SCR
     | cell.WALL_MAT
     | cell.WALL_FAC
     | cell.WALL_RES
@@ -1821,7 +1821,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.EARTH
     | cell.EARTH_EXC -> Some "#"
     | cell.FLOOR_SAN
-    | cell.FLOOR_JUN
+    | cell.FLOOR_SCR
     | cell.FLOOR_MAT
     | cell.FLOOR_FAC
     | cell.FLOOR_RES
@@ -1857,7 +1857,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.FLOOR_TOW
     | cell.GROUND -> Some " "
     | cell.STAIRS_SAN
-    | cell.STAIRS_JUN
+    | cell.STAIRS_SCR
     | cell.STAIRS_MAT
     | cell.STAIRS_FAC
     | cell.STAIRS_RES
@@ -1897,7 +1897,7 @@ let cellToChar (tile: LuigiTile) : string =
     | cell.STAIRS_DSF_OPEN
     | cell.STAIRS_SHORTCUT -> Some ">"
     | cell.SHORTCUT_SAN
-    | cell.SHORTCUT_JUN
+    | cell.SHORTCUT_SCR
     | cell.SHORTCUT_MAT
     | cell.SHORTCUT_FAC
     | cell.SHORTCUT_RES

@@ -1,5 +1,6 @@
 ﻿open FSharp.Data.LiteralProviders
 open FSharpx.Text.Regex.Compiled
+open System.IO
 
 let splitLines (s: string) = List.ofSeq (s.Split([| '\n' |]))
 
@@ -239,11 +240,16 @@ let entityIdMap =
     }
     |> join
 
-//printfn $"{cellEnumType}"
-printfn $"{itemDuType}"
-//printfn $"{itemIdMap}"
-//printfn $"{itemStringMap}"
-//printfn $"{propDuType}"
-//printfn $"{propIdMap}"
-//printfn $"{entityEnumType}"
-//printfn $"{entityIdMap}"
+// Define the file path
+let filePath = @"C:\Users\isaac\source\repos\aronson\WalkMind\output.fs"
+
+// Write the content to the file
+File.WriteAllText(filePath, 
+    $"{cellEnumType}\n" +
+    $"{itemDuType}\n" +
+    $"{itemIdMap}\n" +
+    $"{itemStringMap}\n" +
+    $"{propDuType}\n" +
+    $"{propIdMap}\n" +
+    $"{entityEnumType}\n" +
+    $"{entityIdMap}\n")
